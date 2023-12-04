@@ -4,7 +4,7 @@ metadata:
   name: portfolio-ingress
 spec:
   rules:
-    - host: www.piny940.com
+    - host: hello-world.info
       http:
         paths:
           - path: /

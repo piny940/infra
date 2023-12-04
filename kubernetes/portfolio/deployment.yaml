@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portfolio-deployment
-  namespace: portfolio
   labels:
     app: portfolio
 spec:
