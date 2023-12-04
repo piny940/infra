@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: piny940/portfolio:latest
+          image: piny940/portfolio:20231205120855
           ports:
-            - containerPort: 4040
+            - containerPort: 4400

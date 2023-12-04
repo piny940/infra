@@ -7,6 +7,6 @@ spec:
     app: portfolio
   ports:
     - protocol: TCP
-      port: 4040
-      targetPort: 4040
+      port: 4400
+      targetPort: 4400
   type: ClusterIP

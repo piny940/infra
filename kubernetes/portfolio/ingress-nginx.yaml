@@ -13,4 +13,4 @@ spec:
               service:
                 name: portfolio-service
                 port:
-                  number: 4040
+                  number: 4400
