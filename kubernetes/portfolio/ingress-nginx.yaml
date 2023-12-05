@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: portfolio-ingress
 spec:
+  ingressClassName: nginx
   rules:
     - host: hello-world.piny940.com
       http:
