@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio
+  labels:
+    app: portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+        - name: app
+          image: piny940/portfolio:20231205120855
+          ports:
+            - containerPort: 4400
