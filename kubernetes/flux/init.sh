@@ -5,6 +5,6 @@ flux bootstrap github \
   --owner=piny940 \
   --repository=infra \
   --branch=main \
-  --path=kubernetes \
+  --path=kubernetes/flux \
   --read-write-key \
   --personal
