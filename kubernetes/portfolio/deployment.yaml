@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: piny940/portfolio:20231205120855 # {"$imagepolicy": "flux-system:portfolio"}
+          image: piny940/portfolio:20231209043735 # {"$imagepolicy": "flux-system:portfolio"}
           ports:
             - containerPort: 4400
