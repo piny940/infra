@@ -1,20 +1,20 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: ingress-nginx
+  name: longhorn-system
 spec:
   interval: 1h
-  url: https://kubernetes.github.io/ingress-nginx
+  url: https://charts.longhorn.io
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: longhorn-system
 spec:
   interval: 1h
   chart:
     spec:
-      chart: ingress-nginx
+      chart: longhorn-system
       sourceRef:
         kind: HelmRepository
-        name: ingress-nginx
+        name: longhorn-system
