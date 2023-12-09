@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kubectl -n flux-system delete secret flux-system
 
 source .env
