@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: metallb
+  name: metallb-system
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: "./kubernetes/metallb"
+  path: "./kubernetes/metallb-system"
   prune: true
   sourceRef:
     kind: GitRepository
