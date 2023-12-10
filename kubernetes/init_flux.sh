@@ -15,3 +15,5 @@ flux bootstrap github \
   --path=kubernetes/flux \
   --read-write-key \
   --personal
+
+. <(flux completion bash)
