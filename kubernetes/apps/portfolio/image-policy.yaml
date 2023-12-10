@@ -17,4 +17,4 @@ spec:
     name: portfolio
   policy:
     semver:
-      range: ^1.0.0
+      range: 1.0.x
