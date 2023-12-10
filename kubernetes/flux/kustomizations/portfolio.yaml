@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: "./kubernetes/portfolio"
+  path: "./kubernetes/apps/portfolio"
   prune: true
   sourceRef:
     kind: GitRepository

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: "./kubernetes/ingress-nginx"
+  path: "./kubernetes/apps/ingress-nginx"
   prune: true
   sourceRef:
     kind: GitRepository
