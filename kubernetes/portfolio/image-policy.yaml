@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   image: piny940/portfolio
-  interval: 1m0s
+  interval: 5m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
