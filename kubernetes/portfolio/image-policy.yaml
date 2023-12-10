@@ -4,7 +4,7 @@ metadata:
   name: portfolio
   namespace: flux-system
 spec:
-  image: piny940/portfolio
+  image: ghcr.io/piny940/portfolio
   interval: 5m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
@@ -15,8 +15,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: portfolio
-  filterTags:
-    pattern: "^[0-9]+$"
   policy:
-    numerical:
-      order: asc
+    semver:
+      range: ^1.0.0
