@@ -4,5 +4,5 @@ resources:
   - ingress-nginx.yaml
   - prometheus.yaml
   - grafana.yaml
-  - longhorn.yaml
-  - metallb.yaml
+  - longhorn-system.yaml
+  - metallb-system.yaml
