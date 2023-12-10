@@ -20,5 +20,5 @@ spec:
     push:
       branch: main
   update:
-    path: ./kubernetes
+    path: ./kubernetes/apps
     strategy: Setters
