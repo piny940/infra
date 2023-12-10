@@ -12,6 +12,6 @@ flux bootstrap github \
   --owner=piny940 \
   --repository=infra \
   --branch=main \
-  --path=kubernetes/flux \
+  --path=kubernetes/_flux \
   --read-write-key \
   --personal
