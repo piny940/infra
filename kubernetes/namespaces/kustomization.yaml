@@ -6,3 +6,4 @@ resources:
   - grafana.yaml
   - longhorn-system.yaml
   - metallb-system.yaml
+  - vault.yaml
