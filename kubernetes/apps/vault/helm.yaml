@@ -25,3 +25,18 @@ spec:
         enabled: true
         raft:
           enabled: true
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      pathType: Prefix
+      activeService: true
+      hosts:
+        - host: vault.piny940.com
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: vault
+                  port:
+                    number: 80
