@@ -4,3 +4,4 @@ namespace: vault
 resources:
   - helm.yaml
   - service-account.yaml
+  - secret.yaml
