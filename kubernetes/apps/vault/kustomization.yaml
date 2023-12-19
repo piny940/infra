@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: vault
 resources:
   - helm.yaml
+  - service-account.yaml
