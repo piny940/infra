@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: external-secrets
 resources:
   - helm.yaml
+  - secret-store.yaml
