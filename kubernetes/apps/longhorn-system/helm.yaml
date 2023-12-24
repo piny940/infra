@@ -18,3 +18,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
+  values:
+    service:
+      ui:
+        type: ClusterIP
