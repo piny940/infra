@@ -20,11 +20,6 @@ spec:
         name: hashicorp
   values:
     server:
-      affinity: ""
-      ha:
-        enabled: true
-        raft:
-          enabled: true
       ingress:
         enabled: true
         ingressClassName: nginx
