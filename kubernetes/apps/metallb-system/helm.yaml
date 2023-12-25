@@ -6,7 +6,7 @@ spec:
   interval: 1h
   url: https://metallb.github.io/metallb
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: metallb
@@ -19,4 +19,3 @@ spec:
         kind: HelmRepository
         name: metallb
   values:
-    
