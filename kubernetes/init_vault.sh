@@ -5,7 +5,7 @@ kubectl exec vault-0 -n vault -- vault operator init \
 
 VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ~/cluster-keys.json)
 kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
-export VAULT_ADDR=https://vault.example.com
+export VAULT_ADDR=https://vault.piny940.com
 jq -r ".root_token" ~/cluster-keys.json | vault login -
 vault auth enable kubernetes
 export SA_SECRET_NAME=$(kubectl get secrets --output=json \
@@ -21,7 +21,6 @@ vault write auth/kubernetes/config \
     kubernetes_host="$K8S_HOST" \
     kubernetes_ca_cert="$SA_CA_CRT" \
     issuer="https://kubernetes.default.svc.cluster.local"
-vault secrets enable kv
 vault policy write k8s-cluster - <<EOF
 path "k8s/*" {
   capabilities = ["read", "list"]
