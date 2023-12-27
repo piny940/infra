@@ -43,13 +43,13 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: postgres-operator-ui
-    values:
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-          - host: postgres-operator.piny940.com
-            paths: ["/"]
+  values:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - host: postgres-operator.piny940.com
+          paths: ["/"]
 
 # apiVersion: source.toolkit.fluxcd.io/v1beta2
 # kind: HelmRepository
