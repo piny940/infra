@@ -8,9 +8,9 @@ spec:
     size: 10Gi
   numberOfInstances: 1
   users:
-    kintai:
+    default.kintai:
       - createdb
   databases:
-    kintai_production: kintai
+    kintai_production: default.kintai
   postgresql:
     version: "15"
