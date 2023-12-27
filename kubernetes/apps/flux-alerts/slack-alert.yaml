@@ -2,6 +2,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: slack-alert
+  namespace: default
 spec:
   summary: "Flux alert"
   eventMetadata:
