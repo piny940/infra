@@ -6,6 +6,7 @@ spec:
   teamId: cluster
   volume:
     size: 10Gi
+    storageClass: longhorn
   numberOfInstances: 1
   users:
     default.kintai:
@@ -14,3 +15,6 @@ spec:
     kintai_production: default.kintai
   postgresql:
     version: "15"
+  resources:
+    requests:
+      memory: 256Mi
