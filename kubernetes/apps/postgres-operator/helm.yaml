@@ -23,33 +23,3 @@ spec:
   values:
     configKubernetes:
       enable_cross_namespace_secret: true
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: postgres-operator-ui
-  namespace: database
-spec:
-  interval: 1h
-  url: https://opensource.zalando.com/postgres-operator/charts/postgres-operator-ui
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
-kind: HelmRelease
-metadata:
-  name: postgres-operator-ui
-  namespace: database
-spec:
-  interval: 1h
-  chart:
-    spec:
-      chart: postgres-operator-ui
-      sourceRef:
-        kind: HelmRepository
-        name: postgres-operator-ui
-  values:
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-        - host: postgres-operator.piny940.com
-          paths: ["/"]
