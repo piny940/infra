@@ -1,0 +1,19 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: slack-alert
+  namespace: flux-system
+spec:
+  summary: "cluster addons"
+  eventMetadata:
+    env: "production"
+    cluster: "my-cluster"
+    region: "us-east-2"
+  providerRef:
+    name: slack-bot
+  eventSeverity: info
+  eventSources:
+    - kind: GitRepository
+      name: "*"
+    - kind: Kustomization
+      name: "*"
