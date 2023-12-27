@@ -20,6 +20,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: postgres-operator
+  values:
+    configKubernetes:
+      enable_cross_namespace_secret: true
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
@@ -50,50 +53,3 @@ spec:
       hosts:
         - host: postgres-operator.piny940.com
           paths: ["/"]
-
-# apiVersion: source.toolkit.fluxcd.io/v1beta2
-# kind: HelmRepository
-# metadata:
-#   name: bitnamicharts
-#   namespace: database
-# spec:
-#   interval: 1h
-#   url: https://charts.bitnami.com/bitnami
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta2
-# kind: HelmRelease
-# metadata:
-#   name: postgresql
-#   namespace: database
-# spec:
-#   interval: 1h
-#   chart:
-#     spec:
-#       chart: postgresql
-#       sourceRef:
-#         kind: HelmRepository
-#         name: bitnamicharts
-#   values:
-#     image:
-#       registry: docker.io
-#       repository: bitnami/postgresql
-#       tag: 15-debian-11
-#       pullPolicy: IfNotPresent
-#     auth:
-#       enablePostgresUser: true
-#       existingSecret: postgres-secret
-#       secretKeys:
-#         adminPasswordKey: admin-password
-#     primary:
-#       resources:
-#         requests:
-#           memory: 256Mi
-#       service:
-#         type: ClusterIP
-#         ports:
-#           postgresql: 5432
-#       persistence:
-#         enabled: true
-#         storageClass: longhorn
-#         size: 10Gi
-
