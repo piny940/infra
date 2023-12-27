@@ -4,7 +4,5 @@ metadata:
   name: slack-bot
 spec:
   type: slack
-  channel: flux-notification
-  address: https://slack.com/api/chat.postMessage
   secretRef:
     name: slack-webhook-url
