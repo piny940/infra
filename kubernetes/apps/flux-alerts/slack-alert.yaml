@@ -2,7 +2,6 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: slack-alert
-  namespace: flux-system
 spec:
   summary: "cluster addons"
   eventMetadata:
