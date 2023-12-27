@@ -7,4 +7,4 @@ spec:
   channel: flux-notification
   address: https://slack.com/api/chat.postMessage
   secretRef:
-    name: slack-bot-token
+    name: slack-webhook-url
