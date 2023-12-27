@@ -18,4 +18,4 @@ spec:
         - name: app
           image: ghcr.io/piny940/kintai-backend:1.0.5 # {"$imagepolicy": "flux-system:kintai-backend"}
           ports:
-            - containerPort: 4400
+            - containerPort: 8080
