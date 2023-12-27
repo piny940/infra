@@ -19,3 +19,24 @@ spec:
           image: ghcr.io/piny940/kintai-backend:1.0.5 # {"$imagepolicy": "flux-system:kintai-backend"}
           ports:
             - containerPort: 8080
+    data:
+      - name: POSTGRES_USER
+        value: kintai
+      - name: POSTGRES_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: kintai-secret
+            key: postgres-password
+      - name: POSTGRS_HOST
+        value: postgresql.database.svc.cluster.local
+      - name: POSTGRES_PORT
+        value: "5432"
+      - name: POSTGRES_NAME
+        value: kintai_production
+      - name: POSTGRES_SSLMODE
+        value: disable
+      - name: SESSION_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: kintai-secret
+            key: session-secret
