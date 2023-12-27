@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: database
 resources:
   - helm.yaml
+  - external-secrets.yaml
