@@ -24,7 +24,7 @@ spec:
     image:
       registry: docker.io
       repository: bitnami/postgresql
-      tag: 15-alpine
+      tag: 15-debian-11
       pullPolicy: IfNotPresent
     auth:
       enablePostgresUser: true
