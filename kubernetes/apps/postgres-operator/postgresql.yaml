@@ -6,7 +6,7 @@ spec:
   teamId: cluster
   volume:
     size: 10Gi
-  numberOfInstances: 2
+  numberOfInstances: 1
   users:
     kintai:
       - createdb
