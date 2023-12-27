@@ -21,12 +21,15 @@ spec:
             - containerPort: 8080
     data:
       - name: POSTGRES_USER
-        value: kintai
+        valueFrom:
+          secretKeyRef:
+            name: default.kintai.cluster-db.credentials.postgresql.acid.zalan.do
+            key: username
       - name: POSTGRES_PASSWORD
         valueFrom:
           secretKeyRef:
-            name: kintai-secret
-            key: postgres-password
+            name: default.kintai.cluster-db.credentials.postgresql.acid.zalan.do
+            key: password
       - name: POSTGRS_HOST
         value: postgresql.database.svc.cluster.local
       - name: POSTGRES_PORT
