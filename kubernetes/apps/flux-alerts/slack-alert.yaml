@@ -3,7 +3,7 @@ kind: Alert
 metadata:
   name: slack-alert
 spec:
-  summary: "cluster addons"
+  summary: "Flux alert"
   eventMetadata:
     env: "production"
     cluster: "my-cluster"
