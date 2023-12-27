@@ -6,8 +6,8 @@ spec:
   summary: "Flux alert"
   eventMetadata:
     env: "production"
-    cluster: "my-cluster"
-    region: "us-east-2"
+    cluster: "home-cluster"
+    region: "kyoto/japan"
   providerRef:
     name: slack-bot
   eventSeverity: info
