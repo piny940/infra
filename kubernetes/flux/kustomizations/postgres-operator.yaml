@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: postgresql
+  name: postgres-operator
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: "./kubernetes/apps/postgresql"
+  path: "./kubernetes/apps/postgres-operator"
   prune: true
   sourceRef:
     kind: GitRepository
