@@ -18,7 +18,7 @@ spec:
   patroni:
     initdb:
       encoding: UTF8
-      data-checksums: true
+      data-checksums: "true"
     pg_hba:
       - host all all 0.0.0.0/0 md5
       - hostssl all all 0.0.0.0/0 md5
