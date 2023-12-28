@@ -37,7 +37,7 @@ spec:
             - name: POSTGRES_NAME
               value: kintai_production
             - name: POSTGRES_SSLMODE
-              value: disable
+              value: enforce
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
