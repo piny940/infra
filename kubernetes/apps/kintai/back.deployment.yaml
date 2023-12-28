@@ -26,8 +26,8 @@ spec:
                   name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: username
             - name: POSTGRES_PASSWORD
-              valuefrom:
-                secretKeyref:
+              valueFrom:
+                secretKeyRef:
                   name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
             - name: POSTGRES_HOST
