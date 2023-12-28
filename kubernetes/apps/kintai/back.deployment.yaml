@@ -19,27 +19,27 @@ spec:
           image: ghcr.io/piny940/kintai-backend:1.0.4 # {"$imagepolicy": "flux-system:kintai-backend"}
           ports:
             - containerPort: 8080
-    data:
-      - name: POSTGRES_USER
-        valueFrom:
-          secretKeyRef:
-            name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
-            key: username
-      - name: POSTGRES_PASSWORD
-        valuefrom:
-          secretkeyref:
-            name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
-            key: password
-      - name: POSTGRES_HOST
-        value: postgres-cluster.database.svc.cluster.local
-      - name: POSTGRES_PORT
-        value: "5432"
-      - name: POSTGRES_NAME
-        value: kintai_production
-      - name: POSTGRES_SSLMODE
-        value: disable
-      - name: SESSION_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: kintai-secret
-            key: session-secret
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valuefrom:
+                secretkeyref:
+                  name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: POSTGRES_HOST
+              value: postgres-cluster.database.svc.cluster.local
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_NAME
+              value: kintai_production
+            - name: POSTGRES_SSLMODE
+              value: disable
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kintai-secret
+                  key: session-secret
