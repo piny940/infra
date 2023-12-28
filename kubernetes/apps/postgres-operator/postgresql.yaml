@@ -3,21 +3,25 @@ kind: postgresql
 metadata:
   name: postgres-cluster
 spec:
-  dockerImage: bitnami/postgresql:15.5.0-debian-11-r17
   teamId: cluster
   volume:
     size: 10Gi
     storageClass: longhorn
   numberOfInstances: 1
   users:
-    postgres:
-      - superuser
     default.kintai:
       - createdb
   databases:
     kintai_production: default.kintai
   postgresql:
     version: "15"
+  patroni:
+    initdb:
+      encoding: UTF8
+      data-checksums: true
+    pg_hba:
+      - host all all 0.0.0.0/0 md5
+      - hostssl all all 0.0.0.0/0 md5
   resources:
     requests:
       memory: 256Mi
