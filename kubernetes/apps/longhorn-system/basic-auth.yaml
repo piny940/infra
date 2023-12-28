@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: basic-auth
+  namespace: longhorn-system
+spec:
+  secretStoreRef:
+    name: vault-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 1m
+  data:
+    - secretKey: auth
+      remoteRef:
+        key: longhorn
+        property: basic-auth
