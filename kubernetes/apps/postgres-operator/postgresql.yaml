@@ -3,13 +3,15 @@ kind: postgresql
 metadata:
   name: postgres-cluster
 spec:
-  dockerImage: postgres:15-alpine
+  dockerImage: bitnami/postgresql:15.5.0-debian-11-r17
   teamId: cluster
   volume:
     size: 10Gi
     storageClass: longhorn
   numberOfInstances: 1
   users:
+    postgres:
+      - superuser
     default.kintai:
       - createdb
   databases:
