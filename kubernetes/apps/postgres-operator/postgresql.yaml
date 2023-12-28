@@ -3,6 +3,7 @@ kind: postgresql
 metadata:
   name: postgres-cluster
 spec:
+  dockerImage: 15-alpine
   teamId: cluster
   volume:
     size: 10Gi
