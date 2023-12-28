@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/kintai-frontend:1.0.7 # {"$imagepolicy": "flux-system:kintai-frontend"}
+          image: ghcr.io/piny940/kintai-frontend:1.0.9 # {"$imagepolicy": "flux-system:kintai-frontend"}
           ports:
             - containerPort: 4400
     data:
