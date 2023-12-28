@@ -30,7 +30,7 @@ spec:
           secretkeyref:
             name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
             key: password
-      - name: POSTGRS_HOST
+      - name: POSTGRES_HOST
         value: postgres-cluster.database.svc.cluster.local
       - name: POSTGRES_PORT
         value: "5432"
