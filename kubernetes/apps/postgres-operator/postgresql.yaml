@@ -15,8 +15,6 @@ spec:
     kintai_production: default.kintai
   postgresql:
     version: "15"
-    tls:
-      enabled: false
   resources:
     requests:
       memory: 256Mi
