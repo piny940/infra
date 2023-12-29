@@ -4,6 +4,10 @@ metadata:
   name: portfolio-ingress
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - hello-world.piny940.com
+      secretName: cluster-tls
   rules:
     - host: hello-world.piny940.com
       http:
