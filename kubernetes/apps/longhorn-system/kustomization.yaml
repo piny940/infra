@@ -4,3 +4,4 @@ namespace: longhorn-system
 resources:
   - helm.yaml
   - ingress.yaml
+  - basic-auth.yaml
