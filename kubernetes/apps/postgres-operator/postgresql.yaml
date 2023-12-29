@@ -20,8 +20,10 @@ spec:
       encoding: UTF8
       data-checksums: "true"
     pg_hba:
+      - local all all md5
       - host all all 0.0.0.0/0 md5
       - hostssl all all 0.0.0.0/0 md5
+      - hostnossl all all 0.0.0.0/0 md5
   resources:
     requests:
       memory: 256Mi
