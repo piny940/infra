@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: prometheus-ingress
   namespace: prometheus
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
 spec:
   ingressClassName: nginx
   tls:
