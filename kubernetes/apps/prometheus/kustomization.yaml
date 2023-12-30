@@ -4,3 +4,4 @@ namespace: prometheus
 resources:
   - helm.yaml
   - ingress.yaml
+  - basic-auth.yaml
