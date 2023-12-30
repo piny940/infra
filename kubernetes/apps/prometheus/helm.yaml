@@ -34,8 +34,6 @@ spec:
       ingressClassName: nginx
       hosts:
         - host: prometheus.piny940.com
-          paths:
-            - /
       tls:
         - hosts:
             - prometheus.piny940.com
