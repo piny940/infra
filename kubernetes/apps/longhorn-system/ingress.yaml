@@ -8,6 +8,10 @@ metadata:
     nginx.ingress.kubernetes.io/auth-secret: basic-auth
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - longhorn.piny940.com
+      secretName: cluster-tls
   rules:
     - host: longhorn.piny940.com
       http:
