@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: grafana
 resources:
   - helm.yaml
+  - ingress.yaml
