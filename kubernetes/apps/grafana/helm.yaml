@@ -34,3 +34,7 @@ spec:
       type: pvc
       storageClassName: longhorn
       size: 1Gi
+    admin:
+      existingSecret: grafana-secret
+      userKey: admin-user
+      passwordKey: admin-password
