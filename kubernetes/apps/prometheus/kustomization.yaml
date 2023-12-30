@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: prometheus
 resources:
   - helm.yaml
+  - ingress.yaml
