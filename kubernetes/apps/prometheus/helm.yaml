@@ -29,3 +29,14 @@ spec:
       persistence:
         enabled: true
         storageClass: longhorn
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - host: prometheus.piny940.com
+          paths:
+            - /
+      tls:
+        - hosts:
+            - prometheus.piny940.com
+          secretName: cluster-tls
