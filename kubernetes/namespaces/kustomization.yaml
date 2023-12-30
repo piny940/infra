@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - database.yaml
   - external-secrets.yaml
-  # - grafana.yaml
+  - grafana.yaml
   - ingress-nginx.yaml
   - longhorn-system.yaml
   - metallb-system.yaml
