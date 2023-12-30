@@ -4,3 +4,4 @@ namespace: grafana
 resources:
   - helm.yaml
   - ingress.yaml
+  - external-secret.yaml
