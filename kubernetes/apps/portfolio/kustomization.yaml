@@ -4,5 +4,5 @@ namespace: default
 resources:
   - deployment.yaml
   - service.yaml
-  # - ingress-nginx.yaml
+  - ingress.yaml
   - external-secret.yaml
