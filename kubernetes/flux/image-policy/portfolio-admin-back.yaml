@@ -28,7 +28,7 @@ spec:
   imageRepositoryRef:
     name: portfolio-admin-backend
   filterTags:
-    pattern: "^main-[a-f0-9]+-(?P<ts>[0-9]+)"$"
+    pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
     extract: "$ts"
   policy:
     numerical:
