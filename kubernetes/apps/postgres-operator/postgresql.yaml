@@ -11,8 +11,11 @@ spec:
   users:
     default.kintai:
       - createdb
+    default.portfolio:
+      - createdb
   databases:
     kintai_production: default.kintai
+    portfolio_production: default.portfolio
   postgresql:
     version: "15"
   patroni:
