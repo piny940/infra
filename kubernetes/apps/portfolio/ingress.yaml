@@ -32,3 +32,14 @@ spec:
                 name: portfolio-admin-backend
                 port:
                   number: 8080
+    - host: portfolio-admin-frontend.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-admin-frontend
+                port:
+                  number: 4400
+
