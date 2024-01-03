@@ -4,6 +4,8 @@ namespace: default
 resources:
   - admin-back.deployment.yaml
   - admin-back.service.yaml
+  - admin-front.deployment.yaml
+  - admin-front.service.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
