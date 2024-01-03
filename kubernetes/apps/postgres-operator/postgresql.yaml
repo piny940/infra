@@ -16,6 +16,7 @@ spec:
   databases:
     kintai_production: default.kintai
     portfolio_production: default.portfolio
+    portfolio_staging: default.portfolio
   postgresql:
     version: "15"
   patroni:
