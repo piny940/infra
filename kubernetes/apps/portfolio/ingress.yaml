@@ -31,4 +31,4 @@ spec:
               service:
                 name: portfolio-admin-backend
                 port:
-                  number: 4400
+                  number: 8080

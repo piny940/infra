@@ -18,4 +18,4 @@ spec:
         - name: app
           image: ghcr.io/piny940/portfolio-admin-backend:1.0.1 # {"$imagepolicy": "flux-system:portfolio-admin-backend"}
           ports:
-            - containerPort: 4400
+            - containerPort: 8080
