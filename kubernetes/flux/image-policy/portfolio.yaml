@@ -39,4 +39,24 @@ spec:
   policy:
     semver:
       range: 1.0.x
-
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: portfolio-admin-frontend
+  namespace: flux-system
+spec:
+  image: ghcr.io/piny940/portfolio-admin-frontend
+  interval: 10m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: portfolio-admin-frontend
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: portfolio-admin-frontend
+  policy:
+    semver:
+      range: 1.0.x
