@@ -8,6 +8,9 @@ spec:
     - hosts:
         - hello-world.piny940.com
       secretName: cluster-tls
+    - hosts:
+        - portfolio-admin-backend.piny940.com
+      secretName: cluster-tls
   rules:
     - host: hello-world.piny940.com
       http:
@@ -17,5 +20,15 @@ spec:
             backend:
               service:
                 name: portfolio
+                port:
+                  number: 4400
+    - host: portfolio-admin-backend.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-admin-backend
                 port:
                   number: 4400
