@@ -1,12 +1,4 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: portfolio-admin-backend
-spec:
-  image: ghcr.io/piny940/portfolio-admin-backend
-  interval: 10m
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: portfolio-admin-backend-staging

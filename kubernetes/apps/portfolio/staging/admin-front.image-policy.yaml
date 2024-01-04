@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: portfolio-admin-frontend-staging
+spec:
+  imageRepositoryRef:
+    name: portfolio-admin-frontend-staging
+  policy:
+    semver:
+      range: 1.0.x
