@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: portfolio
+  name: portfolio-app-staging
 spec:
   selector:
-    app: portfolio
+    app: portfolio-app-staging
   ports:
     - name: http
       protocol: TCP
