@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-admin-frontend:1.0.1 # {"$imagepolicy": "flux-system:portfolio-admin-frontend"}
+          image: ghcr.io/piny940/portfolio-admin-frontend:1.0.1 # {"$imagepolicy": "default:portfolio-admin-frontend"}
           ports:
             - containerPort: 4400
