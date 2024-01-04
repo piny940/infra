@@ -9,4 +9,5 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - ingress-staging.yaml
   - external-secret.yaml
