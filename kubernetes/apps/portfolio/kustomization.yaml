@@ -6,7 +6,7 @@ resources:
   - admin-back.service.yaml
   - admin-front.deployment.yaml
   - admin-front.service.yaml
-  - admin-back-staging.image-policy.yaml
+  - admin-back.image-policy.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
