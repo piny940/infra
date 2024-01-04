@@ -9,7 +9,7 @@ resources:
   - admin-back.image-policy.yaml
   - app.deployment.yaml
   - app.service.yaml
-  - app.ingress.yaml
+  - ingress.yaml
   - external-secret.yaml
   - staging/admin-back.deployment.yaml
   - staging/admin-back.image-policy.yaml
@@ -18,4 +18,4 @@ resources:
   - staging/admin-front.service.yaml
   - staging/app.deployment.yaml
   - staging/app.service.yaml
-  - staging/app.ingress.yaml
+  - staging/ingress.yaml
