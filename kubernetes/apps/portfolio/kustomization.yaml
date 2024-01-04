@@ -10,5 +10,12 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
-  - ingress-staging.yaml
   - external-secret.yaml
+  - staging/admin-back.deployment.yaml
+  - staging/admin-back.image-policy.yaml
+  - staging/admin-back.service.yaml
+  - staging/admin-front.deployment.yaml
+  - staging/admin-front.service.yaml
+  - staging/deployment.yaml
+  - staging/service.yaml
+  - staging/ingress.yaml
