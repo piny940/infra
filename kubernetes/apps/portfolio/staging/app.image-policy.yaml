@@ -5,6 +5,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: portfolio-app
+  filterTags:
+    pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
+    extract: "$ts"
   policy:
-    semver:
-      range: 1.0.x
+    numerical:
+      order: asc
