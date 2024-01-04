@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: default
 resources:
   - admin-back.deployment.yaml
+  - admin-back.image-policy.yaml
   - admin-back.service.yaml
   - admin-front.deployment.yaml
   - admin-front.service.yaml
-  - admin-back.image-policy.yaml
   - app.deployment.yaml
   - app.service.yaml
   - ingress.yaml
