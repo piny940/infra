@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-admin-backend:1.0.1 # {"$imagepolicy": "flux-system:portfolio-admin-backend"}
+          image: ghcr.io/piny940/portfolio-admin-backend:1.0.1 # {"$imagepolicy": "default:portfolio-admin-backend"}
           ports:
             - containerPort: 8080
           env:
@@ -57,7 +57,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-admin-backend:main-49c8b8220fb161c03ade85f990aafd4f0d530b55-31 # {"$imagepolicy": "flux-system:portfolio-admin-backend-staging"}
+          image: ghcr.io/piny940/portfolio-admin-backend:main-49c8b8220fb161c03ade85f990aafd4f0d530b55-31 # {"$imagepolicy": "default:portfolio-admin-backend-staging"}
           ports:
             - containerPort: 8080
           env:
