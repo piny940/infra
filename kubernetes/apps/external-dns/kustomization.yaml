@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: default
 resources:
   - deployment.yaml
-  - externalsecret.yaml
-  - serviceaccount.yaml
+  - external-secret.yaml
+  - image-policy.yaml
+  - service-account.yaml
