@@ -1,0 +1,20 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: external-dns
+spec:
+  image: ghcr.io/piny940/external-dns
+  interval: 10m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: external-dns
+spec:
+  imageRepositoryRef:
+    name: external-dns
+  policy:
+    numerical:
+      order: asc
+  filterTags:
+    pattern: "^[0-9]{14}$"
