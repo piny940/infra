@@ -23,9 +23,10 @@ spec:
             - --provider=cloudflaretunnel
           env:
             - name: CF_API_TOKEN
-              secretKeyRef:
-                name: external-dns-secret
-                key: cloudflare-token
+              valueFrom:
+                secretKeyRef:
+                  name: external-dns-secret
+                  key: cloudflare-token
             - name: CF_TUNNEL_ID
               value: 3c210ca0-7914-452d-b946-1f45380de739
             - name: CF_ACCOUNT_ID
