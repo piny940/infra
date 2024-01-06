@@ -16,7 +16,7 @@ spec:
       serviceAccountName: external-dns
       containers:
         - name: external-dns
-          image: ghcr.io/piny940/external-dns:20240106235944 # {"$imagepolicy": "default:external-dns"}
+          image: ghcr.io/piny940/external-dns:20240107000738 # {"$imagepolicy": "default:external-dns"}
           args:
             - --source=ingress
             - --domain-filter=piny940.com
