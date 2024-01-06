@@ -16,7 +16,7 @@ spec:
       serviceAccountName: external-dns
       containers:
         - name: external-dns
-          image: ghcr.io/piny940/external-dns:70de10ad
+          image: ghcr.io/piny940/external-dns:8aef2fca
           args:
             - --source=ingress
             - --domain-filter=piny940.com
