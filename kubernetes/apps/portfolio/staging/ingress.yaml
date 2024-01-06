@@ -15,7 +15,7 @@ spec:
         - portfolio-app-staging.piny940.com
       secretName: cluster-tls
   rules:
-    - host: portfolio-staging.piny940.com
+    - host: portfolio-app-staging.piny940.com
       http:
         paths:
           - path: /
