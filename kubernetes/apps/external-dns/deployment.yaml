@@ -19,7 +19,7 @@ spec:
           image: ghcr.io/piny940/external-dns:ba93130a
           args:
             - --source=ingress
-            - --domain-filter=piny940.com # (optional) limit to only example.com domains; change to match the zone created above.
+            - --domain-filter=piny940.com
             - --provider=cloudflaretunnel
           env:
             - name: CF_API_TOKEN
