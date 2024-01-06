@@ -2,6 +2,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: external-dns
+  namespace: flux-system
 spec:
   image: ghcr.io/piny940/external-dns
   interval: 10m
@@ -10,6 +11,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: external-dns
+  namespace: flux-system
 spec:
   imageRepositoryRef:
     name: external-dns
