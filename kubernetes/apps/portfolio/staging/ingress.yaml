@@ -12,10 +12,10 @@ spec:
         - portfolio-admin-frontend-staging.piny940.com
       secretName: cluster-tls
     - hosts:
-        - portfolio-app-staging.piny940.com
+        - portfolio-appp-staging.piny940.com
       secretName: cluster-tls
   rules:
-    - host: portfolio-app-staging.piny940.com
+    - host: portfolio-appp-staging.piny940.com
       http:
         paths:
           - path: /
