@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
 resources:
-  - admin-back.deployment.yaml
-  - admin-back.image-policy.yaml
-  - admin-back.service.yaml
+  - back.deployment.yaml
+  - back.image-policy.yaml
+  - back.service.yaml
   - admin-front.deployment.yaml
   - admin-front.image-policy.yaml
   - admin-front.service.yaml
@@ -13,9 +13,9 @@ resources:
   - app.service.yaml
   - ingress.yaml
   - external-secret.yaml
-  - staging/admin-back.deployment.yaml
-  - staging/admin-back.image-policy.yaml
-  - staging/admin-back.service.yaml
+  - staging/back.deployment.yaml
+  - staging/back.image-policy.yaml
+  - staging/back.service.yaml
   - staging/admin-front.deployment.yaml
   - staging/admin-front.image-policy.yaml
   - staging/admin-front.service.yaml
