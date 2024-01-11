@@ -15,7 +15,9 @@ resources:
   - staging/admin-back.image-policy.yaml
   - staging/admin-back.service.yaml
   - staging/admin-front.deployment.yaml
+  - staging/admin-front.image-policy.yaml
   - staging/admin-front.service.yaml
   - staging/app.deployment.yaml
+  - staging/app.image-policy.yaml
   - staging/app.service.yaml
   - staging/ingress.yaml
