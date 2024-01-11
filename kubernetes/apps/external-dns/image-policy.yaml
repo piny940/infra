@@ -1,20 +1,20 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: portfolio
-  namespace: flux-system
+  name: external-dns
 spec:
-  image: ghcr.io/piny940/portfolio
-  interval: 10m
+  image: ghcr.io/piny940/external-dns
+  interval: 3m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio
-  namespace: flux-system
+  name: external-dns
 spec:
   imageRepositoryRef:
-    name: portfolio
+    name: external-dns
   policy:
-    semver:
-      range: 1.0.x
+    numerical:
+      order: asc
+  filterTags:
+    pattern: "^[0-9]{14}$"
