@@ -1,10 +1,10 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-admin-backend-staging
+  name: portfolio-backend-staging
 spec:
   imageRepositoryRef:
-    name: portfolio-admin-backend
+    name: portfolio-backend
   filterTags:
     pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
     extract: "$ts"

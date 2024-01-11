@@ -1,18 +1,18 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: portfolio-admin-backend
+  name: portfolio-backend
 spec:
-  image: ghcr.io/piny940/portfolio-admin-backend
+  image: ghcr.io/piny940/portfolio-backend
   interval: 10m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-admin-backend
+  name: portfolio-backend
 spec:
   imageRepositoryRef:
-    name: portfolio-admin-backend
+    name: portfolio-backend
   policy:
     semver:
       range: 1.0.x

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portfolio-admin-backend
+  name: portfolio-backend
   labels:
-    app: portfolio-admin-backend
+    app: portfolio-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: portfolio-admin-backend
+      app: portfolio-backend
   template:
     metadata:
       labels:
-        app: portfolio-admin-backend
+        app: portfolio-backend
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-admin-backend:1.0.2 # {"$imagepolicy": "default:portfolio-admin-backend"}
+          image: ghcr.io/piny940/portfolio-backend:1.0.2 # {"$imagepolicy": "default:portfolio-backend"}
           ports:
             - containerPort: 8080
           env:
