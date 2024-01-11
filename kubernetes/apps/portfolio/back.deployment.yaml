@@ -35,6 +35,6 @@ spec:
             - name: DB_PORT
               value: "5432"
             - name: DB_NAME
-              value: portfolio_staging
+              value: portfolio_production
             - name: DB_SSLMODE
               value: disable
