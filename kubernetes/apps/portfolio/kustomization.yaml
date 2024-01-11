@@ -6,8 +6,10 @@ resources:
   - admin-back.image-policy.yaml
   - admin-back.service.yaml
   - admin-front.deployment.yaml
+  - admin-front.image-policy.yaml
   - admin-front.service.yaml
   - app.deployment.yaml
+  - app.image-policy.yaml
   - app.service.yaml
   - ingress.yaml
   - external-secret.yaml
