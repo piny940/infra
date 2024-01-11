@@ -4,7 +4,7 @@ metadata:
   name: portfolio-admin-frontend-staging
 spec:
   imageRepositoryRef:
-    name: portfolio-admin-frontend-staging
+    name: portfolio-admin-frontend
   filterTags:
     pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
     extract: "$ts"
