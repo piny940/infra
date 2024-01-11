@@ -5,9 +5,9 @@ resources:
   - back.deployment.yaml
   - back.image-policy.yaml
   - back.service.yaml
-  - admin-front.deployment.yaml
-  - admin-front.image-policy.yaml
-  - admin-front.service.yaml
+  - admin.deployment.yaml
+  - admin.image-policy.yaml
+  - admin.service.yaml
   - app.deployment.yaml
   - app.image-policy.yaml
   - app.service.yaml
@@ -16,9 +16,9 @@ resources:
   - staging/back.deployment.yaml
   - staging/back.image-policy.yaml
   - staging/back.service.yaml
-  - staging/admin-front.deployment.yaml
-  - staging/admin-front.image-policy.yaml
-  - staging/admin-front.service.yaml
+  - staging/admin.deployment.yaml
+  - staging/admin.image-policy.yaml
+  - staging/admin.service.yaml
   - staging/app.deployment.yaml
   - staging/app.image-policy.yaml
   - staging/app.service.yaml
