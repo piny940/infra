@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portfolio-admin-frontend-staging
+  name: portfolio-admin-staging
   labels:
-    app: portfolio-admin-frontend-staging
+    app: portfolio-admin-staging
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: portfolio-admin-frontend-staging
+      app: portfolio-admin-staging
   template:
     metadata:
       labels:
-        app: portfolio-admin-frontend-staging
+        app: portfolio-admin-staging
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-admin-frontend:main-42424e403bb4484c3e9740fea681a75a66bd3ffb-48 # {"$imagepolicy": "default:portfolio-admin-frontend-staging"}
+          image: ghcr.io/piny940/portfolio-admin:main-42424e403bb4484c3e9740fea681a75a66bd3ffb-48 # {"$imagepolicy": "default:portfolio-admin-staging"}
           ports:
             - containerPort: 4400

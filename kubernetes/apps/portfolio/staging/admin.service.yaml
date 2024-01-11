@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: portfolio-admin-frontend-staging
+  name: portfolio-admin-staging
 spec:
   selector:
-    app: portfolio-admin-frontend-staging
+    app: portfolio-admin-staging
   ports:
     - name: http
       protocol: TCP

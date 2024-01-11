@@ -9,7 +9,7 @@ spec:
         - portfolio-backend-staging.piny940.com
       secretName: cluster-tls
     - hosts:
-        - portfolio-admin-frontend-staging.piny940.com
+        - portfolio-admin-staging.piny940.com
       secretName: cluster-tls
     - hosts:
         - portfolio-app-staging.piny940.com
@@ -35,13 +35,13 @@ spec:
                 name: portfolio-backend-staging
                 port:
                   number: 8080
-    - host: portfolio-admin-frontend-staging.piny940.com
+    - host: portfolio-admin-staging.piny940.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: portfolio-admin-frontend-staging
+                name: portfolio-admin-staging
                 port:
                   number: 4400
