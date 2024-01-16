@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-admin:main-1834098e9a68838249107b585de11dfb1ada6dc2-53 # {"$imagepolicy": "default:portfolio-admin-staging"}
+          image: ghcr.io/piny940/portfolio-admin:main-a2335265088acd506a116147d3207212eb538914-54 # {"$imagepolicy": "default:portfolio-admin-staging"}
           ports:
             - containerPort: 4400
