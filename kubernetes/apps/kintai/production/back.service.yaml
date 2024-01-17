@@ -5,7 +5,6 @@ metadata:
 spec:
   selector:
     app: kintai-backend
-    env: production
   ports:
     - name: http
       protocol: TCP

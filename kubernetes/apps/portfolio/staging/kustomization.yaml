@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+nameSuffix: -staging
+commonLabels:
+  env: staging
+images:
+  - name: ghcr.io/piny940/portfolio-backend
+    newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend-staging:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
+  - name: ghcr.io/piny940/portfolio-frontend
+    newName: ghcr.io/piny940/portfolio-frontend # {"$imagepolicy": "default:portfolio-frontend-staging:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:portfolio-frontend-staging:tag"}
+  - name: ghcr.io/piny940/portfolio-admin
+    newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin-staging:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
+resources:
+  - ../production
