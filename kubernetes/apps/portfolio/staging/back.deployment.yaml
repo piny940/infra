@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-backend:main-014f8c881c845d3cdc90e7b55171979dc6e98dfe-60 # {"$imagepolicy": "default:portfolio-backend-staging"}
+          image: ghcr.io/piny940/portfolio-backend:main-0b4e890efa00b9218d70efe468264fe3a67366a4-61 # {"$imagepolicy": "default:portfolio-backend-staging"}
           ports:
             - containerPort: 8080
           env:
