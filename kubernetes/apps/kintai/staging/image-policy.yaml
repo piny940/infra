@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: kintai-backend
+  name: kintai-backend-staging
 spec:
   imageRepositoryRef:
     name: kintai-backend
@@ -15,7 +15,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: kintai-frontend
+  name: kintai-frontend-staging
 spec:
   imageRepositoryRef:
     name: kintai-frontend
