@@ -15,6 +15,7 @@ spec:
       - createdb
   databases:
     kintai_production: default.kintai
+    kintai_staging: default.kintai
     portfolio_production: default.portfolio
     portfolio_staging: default.portfolio
   postgresql:

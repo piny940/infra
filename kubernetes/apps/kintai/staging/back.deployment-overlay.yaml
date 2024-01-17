@@ -1,0 +1,8 @@
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          env:
+            - name: POSTGRES_NAME
+              value: kintai_staging
