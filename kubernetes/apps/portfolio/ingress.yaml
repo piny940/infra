@@ -22,7 +22,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: portfolio
+                name: portfolio-app
                 port:
                   number: 4400
     - host: portfolio-backend.piny940.com
