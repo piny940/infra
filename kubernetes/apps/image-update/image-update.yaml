@@ -29,7 +29,7 @@ metadata:
   name: flux-system
   namespace: default
 spec:
-  interval: 3m
+  interval: 10m
   sourceRef:
     kind: GitRepository
     name: flux-system

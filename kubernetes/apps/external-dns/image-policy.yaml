@@ -4,7 +4,7 @@ metadata:
   name: external-dns
 spec:
   image: ghcr.io/piny940/external-dns
-  interval: 3m
+  interval: 10m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
