@@ -38,3 +38,20 @@ spec:
               value: portfolio_production
             - name: DB_SSLMODE
               value: disable
+            - name: API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: portfolio-secret
+                  key: backend-api-token
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: portfolio-secret
+                  key: jwt-secret
+            - name: ADMIN_ID
+              value: piny940
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: portfolio-secret
+                  key: admin-password
