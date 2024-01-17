@@ -1,5 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
+metadata:
+  name: kintai-backend
+  labels:
+    app: kintai-backend
 spec:
   template:
     spec:
