@@ -8,3 +8,4 @@ resources:
   - front.service.yaml
   - ingress.yaml
   - external-secret.yaml
+  - ./staging
