@@ -4,15 +4,18 @@ metadata:
   name: kintai-backend
   labels:
     app: kintai-backend
+    env: production
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: kintai-backend
+      env: production
   template:
     metadata:
       labels:
         app: kintai-backend
+        env: production
     spec:
       containers:
         - name: app

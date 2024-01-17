@@ -17,5 +17,3 @@ patches:
     path: back.deployment-overlay.yaml
 resources:
   - ../production
-  - image-policy.yaml
-  - ingress.yaml

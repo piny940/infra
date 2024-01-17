@@ -3,5 +3,8 @@ kind: Kustomization
 namespace: default
 resources:
   - external-secret.yaml
-  # - ./production
+  - back.image-policy.yaml
+  - front.image-policy.yaml
+  - ingress.yaml
+  - ./production
   - ./staging
