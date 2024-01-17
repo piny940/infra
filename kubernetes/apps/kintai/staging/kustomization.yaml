@@ -3,6 +3,7 @@ kind: Kustomization
 nameSuffix: -staging
 commonLabels:
   env: staging
+replicas: 1
 images:
   - name: ghcr.io/piny940/kintai-backend
     newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:kintai-backend-staging:name"}
