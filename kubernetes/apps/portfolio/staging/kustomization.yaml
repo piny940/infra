@@ -3,7 +3,6 @@ kind: Kustomization
 nameSuffix: -staging
 commonLabels:
   env: staging
-replicas: 1
 images:
   - name: ghcr.io/piny940/portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend-staging:name"}
