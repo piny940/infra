@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kintai
+  name: kintai-staging
 spec:
   ingressClassName: nginx
   tls:
