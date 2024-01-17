@@ -6,7 +6,7 @@ commonLabels:
 resources:
   - back.deployment.yaml
   - back.service.yaml
-  - front.deployment.yaml
-  - front.service.yaml
+  - app.deployment.yaml
+  - app.service.yaml
   - admin.deployment.yaml
   - admin.service.yaml
