@@ -3,3 +3,11 @@ kind: Kustomization
 namespace: default
 commonLabels:
   env: production
+resources:
+  - back.deployment.yaml
+  - back.service.yaml
+  - back.image-policy.yaml
+  - front.deployment.yaml
+  - front.service.yaml
+  - front.image-policy.yaml
+  - ingress.yaml
