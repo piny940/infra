@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+nameSuffix: -staging
+commonLabels:
+  env: staging
+images:
+  - name: ghcr.io/piny940/kintai-backend
+    newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:kintai-backend-staging"}
+    newTag: main-014f8c881c845d3cdc90e7b55171979dc6e98dfe-60 # {"$imagepolicy": "default:kintai-backend-staging"}
+  - name: ghcr.io/piny940/kintai-frontend
+    newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "flux-system:kintai-frontend-staging"}
+    newTag: main-hoge-0 # {"$imagepolicy": "flux-system:kintai-frontend-staging"}
+resources:
+  - ../back.deployment.yaml
+  - ../back.service.yaml
+  - ../front.deployment.yaml
+  - ../front.service.yaml
