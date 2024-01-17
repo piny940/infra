@@ -3,5 +3,5 @@ kind: Kustomization
 namespace: default
 resources:
   - external-secret.yaml
-  - ./production/
-  - ./staging/
+  - ./production
+  - ./staging

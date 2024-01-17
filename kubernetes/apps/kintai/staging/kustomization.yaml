@@ -17,6 +17,6 @@ patches:
       name: kintai-backend
     path: back.deployment-overlay.yaml
 resources:
-  - ../production/
+  - ../production
   - image-policy.yaml
   - ingress.yaml
