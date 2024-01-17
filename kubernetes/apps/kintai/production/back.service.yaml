@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kintai-frontend
+  name: kintai-backend
 spec:
   selector:
-    app: kintai-frontend
-    env: production
+    app: kintai-backend
   ports:
     - name: http
       protocol: TCP
-      port: 4400
-      targetPort: 4400
+      port: 8080
+      targetPort: 8080
   type: ClusterIP
