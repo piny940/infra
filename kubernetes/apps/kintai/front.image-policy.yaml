@@ -1,27 +1,6 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: kintai-backend
-  namespace: flux-system
-spec:
-  image: ghcr.io/piny940/kintai-backend
-  interval: 10m
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: kintai-backend
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: kintai-backend
-  policy:
-    semver:
-      range: 1.0.x
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
   name: kintai-frontend
   namespace: flux-system
 spec:

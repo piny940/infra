@@ -16,3 +16,5 @@ resources:
   - ../back.service.yaml
   - ../front.deployment.yaml
   - ../front.service.yaml
+  - image-policy.yaml
+  - ingress.yaml
