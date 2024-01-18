@@ -1,34 +1,34 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kintai
+  name: song-list
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - kintai.piny940.com
+        - song-list.piny940.com
       secretName: cluster-tls
     - hosts:
-        - kintai-staging.piny940.com
+        - song-list-staging.piny940.com
       secretName: cluster-tls
   rules:
-    - host: kintai.piny940.com
+    - host: song-list.piny940.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kintai-frontend
+                name: song-list-frontend
                 port:
                   number: 4400
-    - host: kintai-staging.piny940.com
+    - host: song-list-staging.piny940.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kintai-frontend-staging
+                name: song-list-frontend-staging
                 port:
                   number: 4400

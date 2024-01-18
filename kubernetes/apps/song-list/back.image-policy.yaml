@@ -1,18 +1,18 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: kintai-backend
+  name: song-list-backend
 spec:
-  image: ghcr.io/piny940/kintai-backend
+  image: ghcr.io/piny940/song-list-backend
   interval: 10m
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: kintai-backend
+  name: song-list-backend
 spec:
   imageRepositoryRef:
-    name: kintai-backend
+    name: song-list-backend
   policy:
     semver:
       range: 1.0.x
@@ -20,10 +20,10 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: kintai-backend-staging
+  name: song-list-backend-staging
 spec:
   imageRepositoryRef:
-    name: kintai-backend
+    name: song-list-backend
   filterTags:
     pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
     extract: "$ts"
