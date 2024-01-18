@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/song-list-backend:1.0.5 # {"$imagepolicy": "default:song-list-backend"}
+          image: ghcr.io/piny940/song-list-backend:1.0.1 # {"$imagepolicy": "default:song-list-backend"}
           ports:
             - containerPort: 8080
           env:
