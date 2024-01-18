@@ -18,5 +18,9 @@ patches:
       kind: Deployment
       name: portfolio-app
     path: app.deployment-overlay.yaml
+  - target:
+      kind: Deployment
+      name: portfolio-backend
+    path: back.deployment-overlay.yaml
 resources:
   - ../production
