@@ -13,6 +13,8 @@ spec:
       - createdb
     default.portfolio:
       - createdb
+    default.song-list:
+      - createdb
   databases:
     kintai_production: default.kintai
     kintai_staging: default.kintai
