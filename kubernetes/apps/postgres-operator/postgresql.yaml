@@ -18,6 +18,8 @@ spec:
     kintai_staging: default.kintai
     portfolio_production: default.portfolio
     portfolio_staging: default.portfolio
+    song_list_production: default.song-list
+    song_list_staging: default.song-list
   postgresql:
     version: "15"
   patroni:
