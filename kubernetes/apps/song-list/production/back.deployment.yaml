@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kintai-backend
+  name: song-list-backend
   labels:
-    app: kintai-backend
+    app: song-list-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kintai-backend
+      app: song-list-backend
   template:
     metadata:
       labels:
-        app: kintai-backend
+        app: song-list-backend
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/kintai-backend:1.0.5 # {"$imagepolicy": "default:kintai-backend"}
+          image: ghcr.io/piny940/song-list-backend:1.0.5 # {"$imagepolicy": "default:song-list-backend"}
           ports:
             - containerPort: 8080
           env:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
             - name: POSTGRES_HOST
               value: postgres-cluster.database.svc.cluster.local
@@ -41,5 +41,5 @@ spec:
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: kintai-secret
+                  name: song-list-secret
                   key: session-secret

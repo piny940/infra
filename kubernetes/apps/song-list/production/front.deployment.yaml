@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kintai-frontend
+  name: song-list-frontend
   labels:
-    app: kintai-frontend
+    app: song-list-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kintai-frontend
+      app: song-list-frontend
   template:
     metadata:
       labels:
-        app: kintai-frontend
+        app: song-list-frontend
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/kintai-frontend:1.0.9 # {"$imagepolicy": "default:kintai-frontend"}
+          image: ghcr.io/piny940/song-list-frontend:1.0.9 # {"$imagepolicy": "default:song-list-frontend"}
           ports:
             - containerPort: 4400
           env:
             - name: BACKEND_HOST
-              value: kintai-backend.default.svc.cluster.local
+              value: song-list-backend.default.svc.cluster.local

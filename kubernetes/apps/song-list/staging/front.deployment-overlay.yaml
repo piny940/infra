@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: song-list-frontend
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          env:
+            - name: BACKEND_HOST
+              value: song-list-backend-staging.default.svc.cluster.local
