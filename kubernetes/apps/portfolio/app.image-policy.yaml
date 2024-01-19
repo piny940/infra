@@ -17,7 +17,7 @@ spec:
     numerical:
       order: asc
   filterTags:
-    pattern: "$1.0.0-(?P<ts>[0-9]+)$"
+    pattern: "^1.0.0-(?P<ts>[0-9]+)$"
     extract: "$ts"
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
