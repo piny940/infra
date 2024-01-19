@@ -6,13 +6,13 @@ commonLabels:
 images:
   - name: ghcr.io/piny940/portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend-staging:name"}
-    newTag: main-3e9c0cc4e6bd71a75cfbd36858fca4a6e8a4a0a5-73 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
+    newTag: main-d8a62eef7f6458066b9181757a13672201695d17-74 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
   - name: ghcr.io/piny940/portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:portfolio-app-staging:name"}
-    newTag: main-3e9c0cc4e6bd71a75cfbd36858fca4a6e8a4a0a5-73 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
+    newTag: main-d8a62eef7f6458066b9181757a13672201695d17-74 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
   - name: ghcr.io/piny940/portfolio-admin
     newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin-staging:name"}
-    newTag: main-3e9c0cc4e6bd71a75cfbd36858fca4a6e8a4a0a5-73 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
+    newTag: main-d8a62eef7f6458066b9181757a13672201695d17-74 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
 patches:
   - target:
       kind: Deployment
