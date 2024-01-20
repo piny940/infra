@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: portfolio-blog-updater
 spec:
-  schedule: "24 5 * * *"
+  schedule: "32 5 * * *"
   jobTemplate:
     spec:
       template:
