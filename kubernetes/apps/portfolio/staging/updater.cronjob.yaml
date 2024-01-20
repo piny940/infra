@@ -18,7 +18,7 @@ spec:
                       name: portfolio-secret
                       key: qiita-api-token
                 - name: BACKEND_HOST
-                  value: http://portfolio-backend.default.svc.cluster.local
+                  value: http://portfolio-backend.default.svc.cluster.local:8080
                 - name: BACKEND_TOKEN
                   valueFrom:
                     secretKeyRef:

@@ -11,4 +11,4 @@ spec:
             - name: portfolio-blog-updater
               env:
                 - name: BACKEND_HOST
-                  value: http://portfolio-backend-staging.default.svc.cluster.local
+                  value: http://portfolio-backend-staging.default.svc.cluster.local:8080
