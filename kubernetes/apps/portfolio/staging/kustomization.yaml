@@ -31,4 +31,3 @@ patches:
     path: updater.cronjob-overlay.yaml
 resources:
   - ../production
-  - updater.cronjob.yaml
