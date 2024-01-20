@@ -7,5 +7,6 @@ resources:
   - app.image-policy.yaml
   - back.image-policy.yaml
   - admin.image-policy.yaml
+  - updater.image-policy.yaml
   - ./production
   - ./staging
