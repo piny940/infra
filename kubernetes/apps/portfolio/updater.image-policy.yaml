@@ -1,0 +1,32 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: portfolio-blog-updater
+spec:
+  image: ghcr.io/piny940/portfolio-blog-updater
+  interval: 10m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: portfolio-blog-updater
+spec:
+  imageRepositoryRef:
+    name: portfolio-blog-updater
+  policy:
+    semver:
+      range: 1.0.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: portfolio-blog-updater-staging
+spec:
+  imageRepositoryRef:
+    name: portfolio-blog-updater
+  filterTags:
+    pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc

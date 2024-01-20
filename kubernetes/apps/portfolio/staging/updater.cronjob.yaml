@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: portfolio-blog-updater
+spec:
+  schedule: "50 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: portfolio-blog-updater
+              image: ghcr.io/piny940/portfolio-blog-updater:1.0.1 # {"$imagepolicy": "default:portfolio-blog-updater"}
+              env:
+                - name: QIITA_API_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: portfolio-secret
+                      key: qiita-api-token
+                - name: BACKEND_HOST
+                  value: http://portfolio-backend.default.svc.cluster.local
+                - name: BACKEND_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: portfolio-secret
+                      key: backend-api-token
+                - name: SLACK_WEBHOOK_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: portfolio-secret
+                      key: slack-blog-update-notification-webhook-url
+          restartPolicy: OnFailure
