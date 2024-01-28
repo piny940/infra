@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: clubroom
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - clubroom.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: clubroom.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: clubroom-frontend
+                port:
+                  number: 4400
