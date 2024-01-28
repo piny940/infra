@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/clubroom-frontend:1.0.2 # {"$imagepolicy": "default:clubroom-frontend"}
+          image: ghcr.io/piny940/clubroom-frontend:1.0.3 # {"$imagepolicy": "default:clubroom-frontend"}
           ports:
             - containerPort: 4400
           env:
