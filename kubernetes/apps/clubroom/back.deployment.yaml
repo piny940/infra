@@ -38,3 +38,10 @@ spec:
               value: clubroom_production
             - name: POSTGRES_SSLMODE
               value: disable
+            - name: GOOGLE_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: clubroom-secret
+                  key: google-json
+            - name: GOOGLE_BUCKET
+              value: dev-piny940
