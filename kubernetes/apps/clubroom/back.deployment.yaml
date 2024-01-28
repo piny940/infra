@@ -49,3 +49,8 @@ spec:
               value: clubroom.piny940.com,clubroom-backend.default.svc.cluster.local:3000
             - name: RAILS_ENV
               value: production
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: clubroom-secret
+                  key: secret-key-base
