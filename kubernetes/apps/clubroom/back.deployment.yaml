@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/clubroom-backend:1.0.1 # {"$imagepolicy": "default:clubroom-backend"}
+          image: ghcr.io/piny940/clubroom-backend:1.0.2 # {"$imagepolicy": "default:clubroom-backend"}
           ports:
             - containerPort: 3000
           env:
