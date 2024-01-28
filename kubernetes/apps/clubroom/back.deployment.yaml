@@ -45,3 +45,5 @@ spec:
                   key: google-json
             - name: GOOGLE_BUCKET
               value: dev-piny940
+            - name: RAILS_HOST
+              value: clubroom.piny940.com
