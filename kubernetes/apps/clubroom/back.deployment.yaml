@@ -47,3 +47,5 @@ spec:
               value: dev-piny940
             - name: RAILS_HOSTS
               value: clubroom.piny940.com,clubroom-backend.default.svc.cluster.local:3000
+            - name: RAILS_ENV
+              value: production
