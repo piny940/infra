@@ -21,4 +21,4 @@ spec:
             - containerPort: 4400
           env:
             - name: BACKEND_HOST
-              value: clubroom-backend.default.svc.cluster.local
+              value: http://clubroom-backend.default.svc.cluster.local:3000
