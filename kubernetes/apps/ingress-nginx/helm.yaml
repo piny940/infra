@@ -18,10 +18,3 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
-  values:
-    controller:
-      proxySetHeaders:
-        Host: $host
-  #       X-Forwarded-Proto: $scheme
-  #       Connection: $connection_upgrade
-  #       Upgrade: $http_upgrade
