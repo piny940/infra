@@ -46,7 +46,7 @@ spec:
             - name: GOOGLE_BUCKET
               value: dev-piny940
             - name: RAILS_HOSTS
-              value: clubroom.piny940.com
+              value: 0.0.0.0/0
             - name: RAILS_ENV
               value: production
             - name: SECRET_KEY_BASE
