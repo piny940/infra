@@ -1,8 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
-commonLabels:
-  env: production
 resources:
   - back.deployment.yaml
   - back.image-policy.yaml
