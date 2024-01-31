@@ -46,7 +46,7 @@ spec:
             - name: GOOGLE_BUCKET
               value: dev-piny940
             - name: RAILS_HOSTS
-              value: 0.0.0.0/0,clubroom-backend.default.svc.cluster.local:3000,clubroom.piny940.com
+              value: 0.0.0.0/0,clubroom-backend.default.svc.cluster.local:3000,clubroom.piny940.com,clubroom-backend.piny940.com
             - name: RAILS_ENV
               value: production
             - name: SECRET_KEY_BASE
