@@ -20,7 +20,7 @@ spec:
                 - name: FIREBASE_PROJECT_ID
                   value: magic-spreadsheet-notifier
                 - name: MAGIC_SPREADSHEET_WAIT_TIME
-                  value: 10
+                  value: "10"
                 - name: SLACK_API_TOKEN
                   valueFrom:
                     secretKeyRef:
