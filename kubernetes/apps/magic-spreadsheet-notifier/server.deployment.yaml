@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/magic-spreadsheet-notifier-server:1.0.11 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server"}
+          image: ghcr.io/piny940/magic-spreadsheet-notifier-server:1.0.12 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server"}
           ports:
             - containerPort: 8080
           env:
