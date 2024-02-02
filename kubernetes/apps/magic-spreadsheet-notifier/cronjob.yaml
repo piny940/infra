@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: magic-spreadsheet-notifier
+spec:
+  schedule: "5 12 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: magic-spreadsheet-notifier
+              image: ghcr.io/piny940/magic-spreadsheet-notifier:1.0.7 # {"$imagepolicy": "default:magic-spreadsheet-notifier"}
+              env:
+                - name: FIREBASE_JSON
+                  valueFrom:
+                    secretKeyRef:
+                      name: magic-spreadsheet-notifier-secret
+                      key: firebase-json
+                - name: FIREBASE_PROJECT_ID
+                  value: magic-spreadsheet-notifier
+                - name: MAGIC_SPREADSHEET_WAIT_TIME
+                  value: 10
+                - name: SLACK_API_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: magic-spreadsheet-notifier-secret
+                      key: slack-api-token
+                # The following variables need to be changed every year
+                - name: FIRESTORE_COLLECTION_PATH
+                  value: spreadsheets/2023-summer/recruits
+                - name: MAGIC_SPREADSHEET_URL
+                  value: https://deep-professor-e3c.notion.site/049ca5329bbc4493bc9f4f5b3727d027?v=3b000340195242b0bd4b0741063ec259
+          restartPolicy: OnFailure
