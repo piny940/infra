@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
             - name: magic-spreadsheet-notifier
-              image: ghcr.io/piny940/magic-spreadsheet-notifier:1.0.11 # {"$imagepolicy": "default:magic-spreadsheet-notifier"}
+              image: ghcr.io/piny940/magic-spreadsheet-notifier:1.0.12 # {"$imagepolicy": "default:magic-spreadsheet-notifier"}
               env:
                 - name: FIREBASE_JSON
                   valueFrom:
