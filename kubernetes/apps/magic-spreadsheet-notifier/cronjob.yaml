@@ -3,14 +3,14 @@ kind: CronJob
 metadata:
   name: magic-spreadsheet-notifier
 spec:
-  schedule: "42 12 * * *"
+  schedule: "52 12 * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
             - name: magic-spreadsheet-notifier
-              image: ghcr.io/piny940/magic-spreadsheet-notifier:1.0.2 # {"$imagepolicy": "default:magic-spreadsheet-notifier"}
+              image: ghcr.io/piny940/magic-spreadsheet-notifier:1.0.3 # {"$imagepolicy": "default:magic-spreadsheet-notifier"}
               env:
                 - name: FIREBASE_JSON
                   valueFrom:
