@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: magic-spreadsheet-notifier
 spec:
-  schedule: "5 12 * * *"
+  schedule: "38 18 * * *"
   jobTemplate:
     spec:
       template:
