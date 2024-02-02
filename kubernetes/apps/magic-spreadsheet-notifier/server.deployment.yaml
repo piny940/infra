@@ -23,9 +23,9 @@ spec:
             - name: SERVER_HOST
               value: https://magic-spreadsheet-notifier.piny940.com
             - name: SERVER_PORT
-              value: 8080
+              value: "8080"
             - name: SLACK_CLIENT_ID
-              value: 5473329502838.6559415455783
+              value: "5473329502838.6559415455783"
             - name: SLACK_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
