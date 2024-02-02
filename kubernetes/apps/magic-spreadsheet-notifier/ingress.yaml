@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: magic-spreadsheet-notifier
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - magic-spreadsheet-notifier.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: magic-spreadsheet-notifier.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: magic-spreadsheet-notifier-server
+                port:
+                  number: 8080

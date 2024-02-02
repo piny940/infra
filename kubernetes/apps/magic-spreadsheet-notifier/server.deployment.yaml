@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-spreadsheet-notifier-server
+  labels:
+    app: magic-spreadsheet-notifier-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magic-spreadsheet-notifier-server
+  template:
+    metadata:
+      labels:
+        app: magic-spreadsheet-notifier-server
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/piny940/magic-spreadsheet-notifier-server:1.0.7 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server"}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_HOST
+              value: https://magic-spreadsheet-notifier.piny940.com
+            - name: SERVER_PORT
+              value: 8080
+            - name: SLACK_CLIENT_ID
+              value: 5473329502838.6559415455783
+            - name: SLACK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: magic-spreadsheet-notifier-secret
+                  key: slack-client-secret
+            - name: FIREBASE_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: magic-spreadsheet-notifier-secret
+                  key: firebase-json
+            - name: FIREBASE_PROJECT_ID
+              value: magic-spreadsheet-notifier
