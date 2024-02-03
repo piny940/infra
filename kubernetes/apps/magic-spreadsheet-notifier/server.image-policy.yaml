@@ -16,4 +16,3 @@ spec:
   policy:
     semver:
       range: 1.0.x
-
