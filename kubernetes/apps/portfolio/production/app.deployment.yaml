@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-app:1.0.0-20240205071937 # {"$imagepolicy": "default:portfolio-app"}
+          image: ghcr.io/piny940/portfolio-app:1.0.0-20240206071847 # {"$imagepolicy": "default:portfolio-app"}
           ports:
             - containerPort: 4400
           env:
