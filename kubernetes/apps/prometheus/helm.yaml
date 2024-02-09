@@ -40,21 +40,3 @@ spec:
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta2
-# kind: HelmRelease
-# metadata:
-#   name: prometheus-nginx-exporter
-# spec:
-#   interval: 1h
-#   chart:
-#     spec:
-#       chart: prometheus-nginx-exporter
-#       sourceRef:
-#         kind: HelmRepository
-#         name: prometheus-community
-#   values:
-    # prometheus:
-    #   prometheusSpec:
-    #     podMonitorSelectorNilUsesHelmValues: false
-    #     serviceMonitorSelectorNilUsesHelmValues: false

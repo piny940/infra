@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: ingress-nginx
 resources:
   - helm.yaml
-  # - config.yaml
