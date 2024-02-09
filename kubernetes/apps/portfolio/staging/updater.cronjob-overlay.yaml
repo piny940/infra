@@ -12,3 +12,5 @@ spec:
               env:
                 - name: BACKEND_HOST
                   value: http://portfolio-backend-staging.default.svc.cluster.local:8080
+                - name: SLACK_CHANNEL_ID
+                  value: ''

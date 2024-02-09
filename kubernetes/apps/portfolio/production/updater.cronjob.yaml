@@ -29,4 +29,11 @@ spec:
                     secretKeyRef:
                       name: portfolio-secret
                       key: slack-blog-update-notification-webhook-url
+                - name: SLACK_OAUTH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: portfolio-secret
+                      key: slack-oauth-token
+                - name: SLACK_CHANNEL_ID
+                  value: C06EQE53RA8
           restartPolicy: OnFailure
