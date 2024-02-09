@@ -22,7 +22,7 @@ spec:
     controller:
       metrics:
         enabled: true
-        serviceMonitor:
-          enabled: true
-          additionalLabels:
-            release: prometheus
+        # serviceMonitor:
+        #   enabled: true
+        #   additionalLabels:
+        #     release: prometheus
