@@ -11,7 +11,7 @@ kind: HelmRelease
 metadata:
   name: ingress-nginx
 spec:
-  interval: 1h
+  interval: 1m
   chart:
     spec:
       chart: ingress-nginx
