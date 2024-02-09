@@ -18,10 +18,10 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
-  values:
-    controller:
-      metrics:
-        enabled: true
-        serviceMonitor:
-          enabled: true
-          additionalLabels.release: prometheus
+  # values:
+  #   controller:
+  #     metrics:
+  #       enabled: true
+  #       serviceMonitor:
+  #         enabled: true
+  #         additionalLabels.release: prometheus
