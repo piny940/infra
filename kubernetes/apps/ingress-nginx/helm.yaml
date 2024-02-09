@@ -18,3 +18,12 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
+  values:
+    controller:
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "8080"
+            prometheus.io/scheme: http
