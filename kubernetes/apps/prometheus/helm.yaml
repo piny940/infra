@@ -36,18 +36,18 @@ spec:
         - hosts:
             - prometheus.piny940.com
           secretName: cluster-tls
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta2
-# kind: HelmRelease
-# metadata:
-#   name: prometheus-nginx-exporter
-# spec:
-#   interval: 1h
-#   chart:
-#     spec:
-#       chart: prometheus-nginx-exporter
-#       sourceRef:
-#         kind: HelmRepository
-#         name: prometheus-community
-#   values:
-#     nginxServer: "http://ingress-nginx-controller-metrics.ingress-nginx.svc.cluster.local:10254"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: prometheus-nginx-exporter
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: prometheus-nginx-exporter
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+  values:
+    nginxServer: "http://ingress-nginx-controller-metrics.ingress-nginx.svc.cluster.local:10254"
