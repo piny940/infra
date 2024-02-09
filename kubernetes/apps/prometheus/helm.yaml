@@ -36,6 +36,10 @@ spec:
         - hosts:
             - prometheus.piny940.com
           secretName: cluster-tls
+    prometheus:
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta2
 # kind: HelmRelease
@@ -50,7 +54,7 @@ spec:
 #         kind: HelmRepository
 #         name: prometheus-community
 #   values:
-#     prometheus:
-#       prometheusSpec:
-#         podMonitorSelectorNilUsesHelmValues: false
-#         serviceMonitorSelectorNilUsesHelmValues: false
+    # prometheus:
+    #   prometheusSpec:
+    #     podMonitorSelectorNilUsesHelmValues: false
+    #     serviceMonitorSelectorNilUsesHelmValues: false
