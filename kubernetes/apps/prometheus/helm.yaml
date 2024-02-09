@@ -49,3 +49,5 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
+  values:
+    nginxServer: "http://ingress-nginx-controller-metrics.ingress-nginx.svc.cluster.local:10254/stub_status"
