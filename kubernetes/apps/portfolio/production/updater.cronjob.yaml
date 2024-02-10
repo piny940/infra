@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
             - name: portfolio-updater
-              image: ghcr.io/piny940/portfolio-updater:1.0.7 # {"$imagepolicy": "default:portfolio-updater"}
+              image: ghcr.io/piny940/portfolio-updater:1.0.8 # {"$imagepolicy": "default:portfolio-updater"}
               env:
                 - name: QIITA_API_TOKEN
                   valueFrom:
