@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: portfolio-blog-updater
+  name: portfolio-updater
 spec:
   schedule: "45 17 * * *"
   jobTemplate:
@@ -9,8 +9,8 @@ spec:
       template:
         spec:
           containers:
-            - name: portfolio-blog-updater
-              image: ghcr.io/piny940/portfolio-blog-updater:1.0.7 # {"$imagepolicy": "default:portfolio-blog-updater"}
+            - name: portfolio-updater
+              image: ghcr.io/piny940/portfolio-updater:1.0.7 # {"$imagepolicy": "default:portfolio-updater"}
               env:
                 - name: QIITA_API_TOKEN
                   valueFrom:
