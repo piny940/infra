@@ -24,11 +24,6 @@ spec:
                     secretKeyRef:
                       name: portfolio-secret
                       key: backend-api-token
-                - name: SLACK_WEBHOOK_URL
-                  valueFrom:
-                    secretKeyRef:
-                      name: portfolio-secret
-                      key: slack-blog-update-notification-webhook-url
                 - name: SLACK_OAUTH_TOKEN
                   valueFrom:
                     secretKeyRef:
