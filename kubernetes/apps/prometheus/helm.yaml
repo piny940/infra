@@ -52,7 +52,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-secret: basic-auth
         ingressClassName: nginx
         hosts:
-          - host: prometheus.piny940.com
+          - prometheus.piny940.com
         tls:
           - hosts:
               - prometheus.piny940.com
