@@ -31,16 +31,29 @@ spec:
       persistence:
         enabled: true
         storageClass: longhorn
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-        - host: prometheus.piny940.com
-      tls:
-        - hosts:
-            - prometheus.piny940.com
-          secretName: cluster-tls
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - host: grafana.piny940.com
+        tls:
+          - hosts:
+              - grafana.piny940.com
+            secretName: cluster-tls
+
     prometheus:
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
+      ingress:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: basic-auth
+        ingressClassName: nginx
+        hosts:
+          - host: prometheus.piny940.com
+        tls:
+          - hosts:
+              - prometheus.piny940.com
+            secretName: cluster-tls
