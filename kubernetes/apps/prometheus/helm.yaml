@@ -28,19 +28,7 @@ spec:
         enabled: true
         storageClass: longhorn
     grafana:
-      persistence:
-        enabled: true
-        storageClass: longhorn
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-          - grafana.piny940.com
-        tls:
-          - hosts:
-              - grafana.piny940.com
-            secretName: cluster-tls
-
+      enabled: false
     prometheus:
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
