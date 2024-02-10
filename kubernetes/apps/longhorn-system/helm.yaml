@@ -22,3 +22,6 @@ spec:
     service:
       ui:
         type: ClusterIP
+    defaultSettings:
+      backupTarget: GCP
+      backupTargetCredentialSecret: longhorn-secret

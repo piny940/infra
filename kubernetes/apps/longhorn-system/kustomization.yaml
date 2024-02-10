@@ -5,3 +5,4 @@ resources:
   - helm.yaml
   - ingress.yaml
   - basic-auth.yaml
+  - external-secret.yaml
