@@ -35,7 +35,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - host: grafana.piny940.com
+          - grafana.piny940.com
         tls:
           - hosts:
               - grafana.piny940.com
