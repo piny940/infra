@@ -23,5 +23,5 @@ spec:
       ui:
         type: ClusterIP
     defaultSettings:
-      backupTarget: GCP
+      backupTarget: s3://kubernetes-backup-piny940@us/
       backupTargetCredentialSecret: longhorn-secret
