@@ -26,7 +26,7 @@ spec:
           - name: "Prometheus"
             type: prometheus
             access: proxy
-            url: http://prometheus-server.prometheus.svc.cluster.local
+            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
