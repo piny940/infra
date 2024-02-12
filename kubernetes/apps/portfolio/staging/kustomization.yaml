@@ -15,7 +15,7 @@ images:
     newTag: main-2929a40ae9260e86cdc6ce02f2cc13b9bb58514b-100 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
   - name: ghcr.io/piny940/portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater-staging:name"}
-    newTag: main-2929a40ae9260e86cdc6ce02f2cc13b9bb58514b-100 # {"$imagepolicy": "default:portfolio-updater-staging:tag"}
+    newTag: main-82f4033aa35c93098028a38222d2fd23cde888f2-101 # {"$imagepolicy": "default:portfolio-updater-staging:tag"}
 patches:
   - target:
       kind: Deployment
