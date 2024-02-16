@@ -6,13 +6,13 @@ commonLabels:
 images:
   - name: ghcr.io/piny940/portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend-staging:name"}
-    newTag: main-aa11335b13cecf4eb77e521575ab00eb09febaf3-102 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
+    newTag: main-c5d0199cdf55fcbff4da99d65cc4b72446310d5d-103 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
   - name: ghcr.io/piny940/portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:portfolio-app-staging:name"}
-    newTag: main-9899130b9a34fc553f08f2d8b173158cfec001c7-20240215182656 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
+    newTag: main-c5d0199cdf55fcbff4da99d65cc4b72446310d5d-20240216043054 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
   - name: ghcr.io/piny940/portfolio-admin
     newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin-staging:name"}
-    newTag: main-aa11335b13cecf4eb77e521575ab00eb09febaf3-102 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
+    newTag: main-c5d0199cdf55fcbff4da99d65cc4b72446310d5d-103 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
   - name: ghcr.io/piny940/portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater-staging:name"}
     newTag: main-c5d0199cdf55fcbff4da99d65cc4b72446310d5d-103 # {"$imagepolicy": "default:portfolio-updater-staging:tag"}
