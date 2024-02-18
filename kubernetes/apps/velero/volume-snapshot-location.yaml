@@ -1,0 +1,11 @@
+apiVersion: velero.io/v1
+kind: VolumeSnapshotLocation
+metadata:
+  name: gcs-default
+spec:
+  provider: gcs
+  credential:
+    name: velero-secret
+    key: google-json
+  config:
+    profile: "default"
