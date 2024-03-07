@@ -30,5 +30,5 @@ spec:
                 - name: FIRESTORE_COLLECTION_PATH
                   value: spreadsheets/2024-summer/recruits
                 - name: MAGIC_SPREADSHEET_URL
-                  value: https://deep-professor-e3c.notion.site/277c859180bd4f99bc7dd1707a7e9b16?v=b9cbe037a2364cc5a1c62dad9f62fa81
+                  value: https://deep-professor-e3c.notion.site/277c859180bd4f99bc7dd1707a7e9b16?v=c94b0cf0a6424eca9c3b8f9a8bc0f4d3
           restartPolicy: OnFailure
