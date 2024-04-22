@@ -6,3 +6,4 @@ resources:
   - ingress.yaml
   - basic-auth.yaml
   - external-secret.yaml
+  - volume-snapshot-class.yaml
