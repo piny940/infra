@@ -47,6 +47,12 @@ spec:
         - name: default
           provider: gcp
           bucket: velero-piny940
+          credential:
+            name: google-credentials
+            key: gcp
       volumeSnapshotLocation:
         - name: default
           provider: gcp
+          credential:
+            name: google-credentials
+            key: gcp
