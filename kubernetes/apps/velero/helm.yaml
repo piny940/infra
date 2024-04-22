@@ -62,4 +62,6 @@ spec:
         disabled: false
         schedule: "48 3 * * *"
         template:
+          labels:
+            app: velero-backup-daily
           snapshotVolumes: true
