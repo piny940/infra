@@ -56,3 +56,9 @@ spec:
           credential:
             name: google-credentials
             key: gcp
+    schedules:
+      backup-daily:
+        disabled: false
+        schedule: "48 3 * * *"
+        template:
+          snapshotVolumes: true
