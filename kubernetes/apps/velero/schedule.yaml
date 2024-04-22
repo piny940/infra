@@ -1,0 +1,9 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: backup-schedule
+spec:
+  schedule: 48 3 * * *
+  template:
+    csiSnapshotTimeout: 10m
+    snapshotVolumes: true
