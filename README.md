@@ -133,7 +133,13 @@ sudo apt-get update
 sudo apt-get install helm
 ```
 
-### 7. namespace を作成
+### 7. taint を削除
+
+```bash
+kubectl taint nodes {node-name} node-role.kubernetes.io/control-plane:NoSchedule-
+```
+
+### 8. namespace を作成
 
 ```bash
 kubectl apply -k namespaces
@@ -152,7 +158,7 @@ scp credentials-velero.json hostname:~/credentials-velero.json
 Secret を作成
 
 ```bash
-kubectl create secret generic google-credentials -n velero --from-file=gcp=./credentials-velero.json
+kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/credentials-velero.json
 ```
 
 Velero をインストール
