@@ -5,7 +5,7 @@
 ### 0. 事前準備
 
 - containerd が入っていない場合はインストールする
-  - docker をインストールしたら勝手についてくる
+  - [docker](https://docs.docker.com/engine/install/) をインストールしたら勝手についてくる
 - [必要なポート](https://kubernetes.io/ja/docs/reference/networking/ports-and-protocols/)が開いているか確認する
   - `nc 127.0.0.1 6443 -v`やらで確認できる(?)
 
@@ -28,18 +28,24 @@ Swap:              0           0           0
 
 参考: https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
+必要なパッケージをインストール
+
 ```bash
 sudo apt-get update
-# apt-transport-httpsはダミーパッケージの可能性があります。その場合、そのパッケージはスキップできます
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+```
 
-# `/etc/apt/keyrings`フォルダーが存在しない場合は、curlコマンドの前に作成する必要があります。下記の備考を参照してください。
-# sudo mkdir -p -m 755 /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+公開署名キーをダウンロード・レポジトリを追加
 
-# これにより、/etc/apt/sources.list.d/kubernetes.listにある既存の設定が上書きされます
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```bash
+KUBE_VERSION=1.28
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v${KUBE_VERSION}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v${KUBE_VERSION}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
 
+パッケージをインストール
+
+```bash
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
@@ -149,6 +155,12 @@ kubectl taint nodes {node-name} node-role.kubernetes.io/control-plane:NoSchedule
 
 ```bash
 kubectl apply -k namespaces
+```
+
+### 9. flannel をインストール
+
+```bash
+kubectl apply -k apps/flannel
 ```
 
 ### 7. バックアップを復元
