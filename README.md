@@ -80,6 +80,12 @@ sudo systemctl restart containerd
 
 ### 4. kubeadm init
 
+CNI の設定やらの残骸を削除
+
+```bash
+sudo rm /etc/cni/net.d/*
+```
+
 ```bash
 sudo kubeadm init --config kubeadm-config.yaml
 ```
