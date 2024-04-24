@@ -9,7 +9,7 @@
 - [必要なポート](https://kubernetes.io/ja/docs/reference/networking/ports-and-protocols/)が開いているか確認する
   - `nc 127.0.0.1 6443 -v`やらで確認できる(?)
 
-### 1. swap の無効化(初回のみ)
+### 1. swap の無効化(再起動ごとに必須)
 
 ```bash
 sudo swapoff -a
@@ -78,10 +78,6 @@ disabled_plugins = []
 sudo systemctl restart containerd
 ```
 
-<p style="font-size:40px">
-以下のコマンドは<code>kubernetes/</code>ディレクトリで実行する。
-</p>
-
 ### 4. kubeadm init
 
 ```bash
@@ -91,6 +87,7 @@ sudo kubeadm init --config kubeadm-config.yaml
 表示されたコマンドを実行する。
 
 ```bash
+sudo rm -r $HOME/.kube
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -102,14 +99,75 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubeadm join ...
 ```
 
-### 4. namespace を作成
+### 4. flux をインストール(初回のみ)
+
+参考: https://fluxcd.io/flux/installation/
+
+```bash
+curl -s https://fluxcd.io/install.sh | sudo bash
+. <(flux completion bash)
+```
+
+### 5. velero CLI をインストール(初回のみ)
+
+参考: https://velero.io/docs/v1.13/basic-install/
+
+- [latest release](https://github.com/vmware-tanzu/velero/releases/latest)から tar をダウンロード
+- 展開してバイナリを移動
+
+```bash
+wget https://github.com/vmware-tanzu/velero/releases/download/v1.13.2/velero-v1.13.2-linux-amd64.tar.gz
+tar -xvf velero-v1.13.2-linux-amd64.tar.gz
+sudo mv velero-v1.13.2-linux-amd64/velero /usr/local/bin/
+```
+
+### 6. Helm をインストール(初回のみ)
+
+参考: https://helm.sh/ja/docs/intro/install/
+
+```bash
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+```
+
+### 7. namespace を作成
 
 ```bash
 kubectl apply -k namespaces
 ```
 
+### 7. バックアップを復元
+
+参考: https://velero.io/docs/v1.13/restore-reference/
+
+GCP の鍵をローカルから送信(初回のみ)
+
+```bash
+scp credentials-velero.json hostname:~/credentials-velero.json
+```
+
+Secret を作成
+
+```bash
+kubectl create secret generic google-credentials -n velero --from-file=gcp=./credentials-velero.json
+```
+
+Velero をインストール
+
+```bash
+helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
+helm install velero vmware-tanzu/velero --namespace velero --values velero/values.yaml
+```
+
 - `kubectl apply -k namespaces`
 - `bash init_flux.sh`
+
+```
+
+```
 
 ```
 
