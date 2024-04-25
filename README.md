@@ -126,11 +126,13 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 
 - [latest release](https://github.com/vmware-tanzu/velero/releases/latest)から tar をダウンロード
 - 展開してバイナリを移動
+- tab 補完を追加
 
 ```bash
 wget https://github.com/vmware-tanzu/velero/releases/download/v1.13.2/velero-v1.13.2-linux-amd64.tar.gz
 tar -xvf velero-v1.13.2-linux-amd64.tar.gz
 sudo mv velero-v1.13.2-linux-amd64/velero /usr/local/bin/
+echo 'source <(velero completion bash)' >>~/.bashrc
 ```
 
 ### 6. Helm をインストール(初回のみ)
@@ -186,13 +188,9 @@ helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
 helm install velero vmware-tanzu/velero --namespace velero --values velero/values.yaml
 ```
 
+```bash
+velero restore create --from-schedule velero-backup-daily
+```
+
 - `kubectl apply -k namespaces`
 - `bash init_flux.sh`
-
-```
-
-```
-
-```
-
-```
