@@ -165,6 +165,20 @@ kubectl apply -k namespaces
 kubectl apply -k apps/flannel
 ```
 
+reboot が必要(多分)
+
+```bash
+sudo systemctl reboot
+```
+
+reboot したら swap が再度有効化されるため、再度無効化する。
+
+```bash
+sudo swapoff -a
+```
+
+Pod が起動するまで少し時間がかかる(多分)
+
 ### 7. バックアップを復元
 
 参考: https://velero.io/docs/v1.13/restore-reference/
@@ -188,9 +202,21 @@ helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
 helm install velero vmware-tanzu/velero --namespace velero --values velero/values.yaml
 ```
 
+次のコマンドで、バックアップが sync されているのを確認する。
+
 ```bash
-velero restore create --from-schedule velero-backup-daily
+velero get backup
+```
+
+バックアップを復元する
+
+```bash
+velero restore create --from-backup {backup-name}
 ```
 
 - `kubectl apply -k namespaces`
 - `bash init_flux.sh`
+
+バックアップから復元しない場合
+https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov-file
+を入れる必要がある
