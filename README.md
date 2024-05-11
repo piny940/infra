@@ -219,7 +219,7 @@ velero get backup
 バックアップを復元する
 
 ```bash
-velero restore create --from-backup {backup-name}
+velero restore create --include-cluster-resources --from-backup {backup-name}
 ```
 
 - `kubectl apply -k namespaces`
