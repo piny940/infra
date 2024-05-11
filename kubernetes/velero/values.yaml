@@ -36,6 +36,14 @@ configuration:
         name: google-credentials
         key: gcp
   features: EnableCSI
+  defaultSnapshotMoveData: true
+deployNodeAgent: true
+nodeAgent:
+  podVolumePath: /var/lib/kubelet/pods
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
 schedules:
   backup-daily:
     disabled: false
