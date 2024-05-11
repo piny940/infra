@@ -1,0 +1,6 @@
+service:
+  ui:
+    type: ClusterIP
+defaultSettings:
+  backupTarget: s3://kubernetes-backup-piny940@us/
+  backupTargetCredentialSecret: longhorn-secret
