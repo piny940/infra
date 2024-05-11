@@ -61,7 +61,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 ```
 
-`SystemdCgroup = true` に変更する。
+`/etc/containerd/config.toml`を編集して`SystemdCgroup = true` に変更する。
 
 ```
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
@@ -178,6 +178,14 @@ sudo swapoff -a
 ```
 
 Pod が起動するまで少し時間がかかる(多分)
+
+### longhorn のための設定
+
+```bash
+sudo apt -y install open-iscsi nfs-common
+sudo systemctl start iscsid
+sudo systemctl enable iscsid
+```
 
 ### 7. バックアップを復元
 
