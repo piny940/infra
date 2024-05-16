@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: default
 resources:
   - external-secret.yaml
-  - ingress.yaml
+  # - ingress.yaml
   - app.image-policy.yaml
   - back.image-policy.yaml
   - admin.image-policy.yaml
