@@ -84,6 +84,14 @@ disabled_plugins = []
 sudo systemctl restart containerd
 ```
 
+### longhorn のための設定(初回のみ)
+
+```bash
+sudo apt -y install open-iscsi nfs-common
+sudo systemctl start iscsid
+sudo systemctl enable iscsid
+```
+
 ### 4. kubeadm init
 
 CNI の設定やらの残骸を削除
@@ -178,14 +186,6 @@ sudo swapoff -a
 ```
 
 Pod が起動するまで少し時間がかかる(多分)
-
-### longhorn のための設定
-
-```bash
-sudo apt -y install open-iscsi nfs-common
-sudo systemctl start iscsid
-sudo systemctl enable iscsid
-```
 
 ### 7. バックアップを復元
 
