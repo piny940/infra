@@ -18,15 +18,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
-  values:
-    service:
-      ui:
-        type: ClusterIP
-    defaultSettings:
-      backupTarget: s3://kubernetes-backup-piny940@us/
-      backupTargetCredentialSecret: longhorn-secret
-      defaultReplicaCount: 1
-    persistence:
-      defaultClassReplicaCount: 1
-    longhornUI:
-      replicas: 1
+  valuesFrom:
+    - kind: ConfigMap
+      name: longhorn-values
