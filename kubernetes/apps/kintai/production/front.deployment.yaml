@@ -22,3 +22,17 @@ spec:
           env:
             - name: BACKEND_HOST
               value: kintai-backend.default.svc.cluster.local
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4400
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4400
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            failureThreshold: 3
