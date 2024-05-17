@@ -1,6 +1,5 @@
 name: Kubeconform
 on: push
-
 jobs:
   kubeconform:
     runs-on: ubuntu-latest
@@ -22,7 +21,6 @@ jobs:
             -schema-location 'https://raw.githubusercontent.com/piny940/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
             -output json
           done
-
   yamlfmt:
     runs-on: ubuntu-latest
     steps:
@@ -33,4 +31,4 @@ jobs:
       - name: Install yamlfmt
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
       - name: Yamlfmt
-        run: yamlfmt kubernetes/
+        run: yamlfmt -lint kubernetes/
