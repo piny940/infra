@@ -12,4 +12,3 @@ spec:
       remoteRef:
         key: prometheus
         property: basic-auth
-
