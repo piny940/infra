@@ -25,3 +25,8 @@ spec:
     defaultSettings:
       backupTarget: s3://kubernetes-backup-piny940@us/
       backupTargetCredentialSecret: longhorn-secret
+      defaultReplicaCount: 1
+    persistence:
+      defaultClassReplicaCount: 1
+    longhornUI:
+      replicas: 1
