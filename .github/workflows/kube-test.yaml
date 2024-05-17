@@ -12,8 +12,4 @@ jobs:
         with:
           entrypoint: '/kubeconform'
           args: |
-            -summary \
-            -schema-location default \
-            -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json \
-            -output json \
-            kubernetes/apps/
+            -summary -schema-location default -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json -output json kubernetes/apps/
