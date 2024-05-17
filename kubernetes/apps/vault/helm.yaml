@@ -32,3 +32,8 @@ spec:
         pathType: Prefix
         hosts:
           - host: vault.piny940.com
+      dataStorage:
+        enabled: true
+        storageClass: longhorn
+        size: 1Gi
+        accessMode: ReadWriteOnce
