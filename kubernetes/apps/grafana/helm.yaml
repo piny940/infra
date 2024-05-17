@@ -3,7 +3,7 @@ kind: HelmRepository
 metadata:
   name: grafana
 spec:
-  interval: 1h
+  interval: 10m
   url: https://grafana.github.io/helm-charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
@@ -11,7 +11,7 @@ kind: HelmRelease
 metadata:
   name: grafana
 spec:
-  interval: 1h
+  interval: 10m
   chart:
     spec:
       chart: grafana
@@ -31,14 +31,14 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-        - name: 'default'
-          orgId: 1
-          folder: ''
-          type: file
-          disableDeletion: false
-          editable: true
-          options:
-            path: /var/lib/grafana/dashboards/default
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
     persistence:
       enabled: true
       type: pvc

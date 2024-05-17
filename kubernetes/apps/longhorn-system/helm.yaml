@@ -3,7 +3,7 @@ kind: HelmRepository
 metadata:
   name: longhorn
 spec:
-  interval: 1h
+  interval: 10m
   url: https://charts.longhorn.io
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
@@ -11,7 +11,7 @@ kind: HelmRelease
 metadata:
   name: longhorn
 spec:
-  interval: 1h
+  interval: 10m
   chart:
     spec:
       chart: longhorn
