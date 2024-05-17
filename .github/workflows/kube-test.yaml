@@ -22,3 +22,15 @@ jobs:
             -schema-location 'https://raw.githubusercontent.com/piny940/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
             -output json
           done
+
+  yamlfmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '^1.22.1'
+      - name: Install yamlfmt
+        run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
+      - name: Yamlfmt
+        run: yamlfmt kubernetes/
