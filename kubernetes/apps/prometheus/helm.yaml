@@ -20,13 +20,31 @@ spec:
         name: prometheus-community
   values:
     server:
+      image:
+        repository: quay.io/prometheus/prometheus
+        tag: "v2.52.0"
+        pullPolicy: IfNotPresent
       persistentVolume:
         enabled: true
         storageClass: longhorn
+        accessModes:
+          - ReadWriteOnce
+        size: 8Gi
+      replicaCount: 1
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 500m
+          memory: 512Mi
     alertmanager:
       persistence:
+        size: 2Gi
         enabled: true
         storageClass: longhorn
+    prometheus-node-exporter:
+      enabled: true
     grafana:
       enabled: false
     prometheus:
