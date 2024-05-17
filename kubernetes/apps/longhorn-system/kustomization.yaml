@@ -7,11 +7,9 @@ resources:
   - basic-auth.yaml
   - external-secret.yaml
   - volume-snapshot-class.yaml
-
 configMapGenerator:
   - name: longhorn-values
     files:
       - values.yaml
-
 configurations:
   - kustomizeconfig.yaml
