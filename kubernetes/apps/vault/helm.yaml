@@ -21,7 +21,43 @@ spec:
         kind: HelmRepository
         name: hashicorp
   values:
+    injector:
+      replicas: 1
+      image:
+        repository: "hashicorp/vault-k8s"
+        tag: "1.4.1"
+        pullPolicy: IfNotPresent
+      agentImage:
+        repository: "hashicorp/vault"
+        tag: "1.16.1"
+      agentDefaults:
+        cpuLimit: "500m"
+        cpuRequest: "250m"
+        memLimit: "128Mi"
+        memRequest: "64Mi"
+      livenessProbe:
+        failureThreshold: 2
+        initialDelaySeconds: 5
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 5
+      readinessProbe:
+        failureThreshold: 2
+        initialDelaySeconds: 5
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 5
+      startupProbe:
+        failureThreshold: 12
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 5
     server:
+      image:
+        repository: "hashicorp/vault"
+        tag: "1.16.1"
+        pullPolicy: IfNotPresent
       ingress:
         enabled: true
         ingressClassName: nginx
@@ -37,3 +73,20 @@ spec:
         storageClass: longhorn
         size: 1Gi
         accessMode: ReadWriteOnce
+      readinessProbe:
+        enabled: true
+        # If you need to use a http path instead of the default exec
+        path: /v1/sys/health?standbyok=true
+        port: 8200
+        failureThreshold: 2
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 3
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 250m
+        limits:
+          memory: 256Mi
+          cpu: 250m
