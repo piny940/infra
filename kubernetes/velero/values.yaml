@@ -24,14 +24,14 @@ initContainers:
 configuration:
   backupStorageLocation:
     - name: default
-      provider: gcp
+      provider: velero.io/gcp
       bucket: velero-piny940
       credential:
         name: google-credentials
         key: gcp
   volumeSnapshotLocation:
     - name: default
-      provider: gcp
+      provider: velero.io/gcp
       credential:
         name: google-credentials
         key: gcp
