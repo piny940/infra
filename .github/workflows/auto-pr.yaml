@@ -1,12 +1,11 @@
 name: Staging Auto-PR
 on:
   create:
-    branches: ["staging"]
 jobs:
   create-pull-request:
     name: Open PR to main
     runs-on: ubuntu-latest
-    if: github.actor == 'fluxcdbot[bot]'
+    if: github.event.ref_type == 'branch' && github.event.ref == 'staging'
     steps:
       - uses: actions/checkout@v3
         name: checkout
