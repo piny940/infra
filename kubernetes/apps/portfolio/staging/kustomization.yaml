@@ -6,10 +6,10 @@ commonLabels:
 images:
   - name: ghcr.io/piny940/portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend-staging:name"}
-    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-130 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-131 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
   - name: ghcr.io/piny940/portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:portfolio-app-staging:name"}
-    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-20240518052556 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-20240518063754 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
   - name: ghcr.io/piny940/portfolio-admin
     newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin-staging:name"}
     newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-130 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
