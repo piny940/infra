@@ -1,8 +1,7 @@
 name: Staging Auto-PR
 on:
-  push:
-    branches:
-      - staging
+  create:
+    branches: ["staging"]
 jobs:
   create-pull-request:
     name: Open PR to main
