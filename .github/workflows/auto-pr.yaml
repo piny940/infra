@@ -1,6 +1,5 @@
 name: Staging Auto-PR
-on:
-  create:
+on: create
 jobs:
   create-pull-request:
     name: Open PR to main
