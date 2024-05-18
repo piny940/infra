@@ -1,8 +1,8 @@
 name: Staging Auto-PR
 on:
   push:
-    branches:
-      - staging
+    # branches:
+    #   - staging
 jobs:
   create-pull-request:
     name: Open PR to main
@@ -13,17 +13,17 @@ jobs:
       - name: Get the latest commit message
         run: |
           echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
-      - uses: repo-sync/pull-request@v2
-        name: Create pull request
-        with:
-          destination_branch: "main"
-          pr_title: ${{ env.COMMIT_MSG }}
-          pr_body: ":crown: *An automated PR*"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Echo github.actor
         run: echo ${{ github.actor }}
-      - name: Enable auto-merge for FluxCD PRs
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # - uses: repo-sync/pull-request@v2
+      #   name: Create pull request
+      #   with:
+      #     destination_branch: "main"
+      #     pr_title: ${{ env.COMMIT_MSG }}
+      #     pr_body: ":crown: *An automated PR*"
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Enable auto-merge for FluxCD PRs
+      #   run: gh pr merge --auto --merge "$PR_URL"
+      #   env:
+      #     PR_URL: ${{github.event.pull_request.html_url}}
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
