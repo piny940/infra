@@ -1,7 +1,7 @@
 name: Staging Auto-PR
 on: create
 jobs:
-  create-pull-request:
+  create-and-merge-pr:
     name: Open PR to main
     runs-on: ubuntu-latest
     if: github.event.ref_type == 'branch' && github.event.ref == 'staging'
