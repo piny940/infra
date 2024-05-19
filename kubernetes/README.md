@@ -227,3 +227,12 @@ velero restore create --include-cluster-resources --from-backup {backup-name}
 バックアップから復元しない場合
 https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov-file
 を入れる必要がある
+
+## チェックポイント
+
+- 必須ポートは開いてる？(ファイアウォール)
+- swap は無効化されている？
+- containerd の設定は正しい？
+- longhorn のために iscsid 入れた？
+- `.env` は正しい？
+- コマンドを実行してるディレクトリ(`pwd`)は正しい？
