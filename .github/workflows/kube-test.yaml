@@ -38,8 +38,15 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           cd kubernetes/
-          output=$(bash scripts/flux-kustomize.sh)
-          if [ -n "$output" ]; then
-            echo "Kustomization not created"
+          before=$(ls _flux/**/*)
+          bash scripts/flux-kustomize.sh
+          after=$(ls _flux/**/*)
+          diff=$(diff <(echo ${before}) <(echo ${after}))
+          echo $diff
+          if [ -z "$diff" ]; then
+            echo "No changes detected"
+            exit 0
+          else
+            echo "Changes detected"
             exit 1
           fi
