@@ -36,9 +36,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          cd kubernetes
-          if [ -n "$(bash scripts/flux-kustomize.sh)" ]; then
-            echo "Flux Kustomize Not Created"
-            exit 1
-          fi
+      - run: cd kubernetes && if [ -n "$(bash scripts/flux-kustomize.sh)" ]; then echo "Flux Kustomize Not Created"; exit 1; fi
