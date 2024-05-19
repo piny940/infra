@@ -3,15 +3,11 @@
 kubectl -n flux-system delete secret flux-system
 
 source .env
-export GITHUB_USER
-export GITHUB_TOKEN
+export K8S_ENV
 
-flux bootstrap github \
+flux bootstrap git \
   --components-extra=image-reflector-controller,image-automation-controller \
-  --token-auth \
-  --owner=piny940 \
-  --repository=infra \
+  --url=ssh://git@github.com:piny940/infra.git \
   --branch=main \
-  --path=kubernetes/flux \
-  --read-write-key \
-  --personal
+  --private-key-file=~/.ssh/ed25519 \
+  --path=kubernetes/_flux/${K8S_ENV}
