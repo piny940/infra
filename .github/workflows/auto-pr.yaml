@@ -4,7 +4,7 @@ jobs:
   create-and-merge-pr:
     name: Open PR to main
     runs-on: ubuntu-latest
-    if: github.event.ref_type == 'branch' && github.event.ref == 'staging'
+    if: github.event.ref_type == 'branch' && github.event.ref == 'fluxcd/image-update'
     steps:
       - uses: actions/checkout@v3
         name: checkout
