@@ -7,7 +7,7 @@ export K8S_ENV
 
 flux bootstrap git \
   --components-extra=image-reflector-controller,image-automation-controller \
-  --url=ssh://git@github.com:piny940/infra.git \
+  --url=ssh://git@github.com/piny940/infra \
   --branch=main \
   --private-key-file=~/.ssh/ed25519 \
   --path=kubernetes/_flux/${K8S_ENV}
