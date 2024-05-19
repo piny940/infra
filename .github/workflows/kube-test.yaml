@@ -32,3 +32,13 @@ jobs:
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
       - name: Yamlfmt
         run: yamlfmt -lint kubernetes/
+  flux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd kubernetes
+          if [ -n "$(bash scripts/flux-kustomize.sh)" ]; then
+            echo "Flux Kustomize Not Created"
+            exit 1
+          fi
