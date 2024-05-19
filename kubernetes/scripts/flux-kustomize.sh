@@ -27,8 +27,6 @@ createKustomization() {
     return
   fi
 
-  echo "Creating $file_path"
-
   # StagingとProductionの区別がない場合
   if [ ! -e "./apps/$app/production" ]; then
     kustomization $app "apps/$app" > $file_path
@@ -39,7 +37,7 @@ createKustomization() {
     return
   fi
 
-  # $envが存在しない場合はProductionをデプロイ
+  # $envディレクトリが存在しない場合はProductionをデプロイ
   if [ ! -e "./apps/$app/$env" ]; then
     target="apps/$app/production"
   else
@@ -49,6 +47,8 @@ createKustomization() {
   kustomization $app $target > $file_path
 }
 
+before=`ls _flux/**/*`
+rm -f _flux/$env/kustomizations/*.yaml
 for dir in `ls -d apps/*/`; do
   # apps/xx/ -> xx
   app=$(echo $dir | sed -e 's:apps/::g' | sed -e 's:/::g')
@@ -57,3 +57,5 @@ for dir in `ls -d apps/*/`; do
     createKustomization $app $env
   done
 done
+after=`ls _flux/**/*`
+echo `diff <(echo ${before}) <(echo ${after})`
