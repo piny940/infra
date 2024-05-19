@@ -1,3 +1,9 @@
+## flux の kustomization 生成
+
+```bash
+bash scripts/flux-kustomize.sh
+```
+
 ## k8s クラスタの立て方
 
 ### 事前準備
