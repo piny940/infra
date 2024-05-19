@@ -30,6 +30,7 @@ createKustomization() {
   # StagingとProductionの区別がない場合
   if [ ! -e "./apps/$app/production" ]; then
     kustomization $app "apps/$app" > $file_path
+    return
   fi
 
   # Baseがない場合はまだ非対応
