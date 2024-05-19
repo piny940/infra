@@ -4,6 +4,7 @@ namespace: default
 commonLabels:
   env: production
 resources:
+  - ../base
   - back.deployment.yaml
   - back.service.yaml
   - front.deployment.yaml

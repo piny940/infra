@@ -17,3 +17,4 @@ patches:
     path: back.deployment-overlay.yaml
 resources:
   - ../production
+  - ../base
