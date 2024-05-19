@@ -236,3 +236,12 @@ https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov
 - longhorn のために iscsid 入れた？
 - `.env` は正しい？
 - コマンドを実行してるディレクトリ(`pwd`)は正しい？
+
+## Vault のセットアップ
+
+- [scripts/init_vault.sh](scripts/init_vault.sh)に従う
+
+## FluxCD のセットアップ
+
+- `.env`に必要な情報を記入する
+- [scripts/init_flux.sh](scripts/init_flux.sh)に従う
