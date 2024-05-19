@@ -48,7 +48,6 @@ createKustomization() {
   kustomization $app $target > $file_path
 }
 
-before=`ls _flux/**/*`
 rm -f _flux/$env/kustomizations/*.yaml
 for dir in `ls -d apps/*/`; do
   # apps/xx/ -> xx
@@ -58,5 +57,3 @@ for dir in `ls -d apps/*/`; do
     createKustomization $app $env
   done
 done
-after=`ls _flux/**/*`
-echo `diff <(echo ${before}) <(echo ${after})`
