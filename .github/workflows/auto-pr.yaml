@@ -1,21 +1,19 @@
-name: Staging Auto-PR
-on: create
+name: FluxCD Auto-PR
+on:
+  push:
+    branches:
+      - fluxcd/image-update
 jobs:
   create-and-merge-pr:
     name: Open PR to main
     runs-on: ubuntu-latest
-    if: github.event.ref_type == 'branch' && github.event.ref == 'fluxcd/image-update'
     steps:
       - uses: actions/checkout@v3
         name: checkout
-      - name: Get the latest commit message
-        run: |
-          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
       - uses: repo-sync/pull-request@v2
         name: Create pull request
         with:
           destination_branch: "main"
-          pr_title: ${{ env.COMMIT_MSG }}
           pr_body: ":crown: *An automated PR*"
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable auto-merge for FluxCD PRs
