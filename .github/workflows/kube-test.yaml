@@ -32,3 +32,21 @@ jobs:
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
       - name: Yamlfmt
         run: yamlfmt -lint kubernetes/
+  flux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd kubernetes/
+          before=$(ls _flux/**/*)
+          bash scripts/flux-kustomize.sh
+          after=$(ls _flux/**/*)
+          diff=$(diff <(echo ${before}) <(echo ${after}))
+          echo $diff
+          if [ -z "$diff" ]; then
+            echo "No changes detected"
+            exit 0
+          else
+            echo "Changes detected"
+            exit 1
+          fi
