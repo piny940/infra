@@ -10,3 +10,5 @@ resources:
   - front.service.yaml
   - external-secret.yaml
   - ingress.yaml
+  - https://github.com/kubernetes-csi/external-snapshotter//client/config/crd
+  - https://github.com/kubernetes-csi/external-snapshotter//deploy/kubernetes/snapshot-controller
