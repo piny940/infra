@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clubroom-backend
+  labels:
+    app: clubroom-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clubroom-backend
+  template:
+    metadata:
+      labels:
+        app: clubroom-backend
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/piny940/clubroom-backend:1.0.15 # {"$imagepolicy": "default:clubroom-backend"}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.clubroom.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.clubroom.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: POSTGRES_HOST
+              value: postgres-cluster.database.svc.cluster.local
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_NAME
+              value: clubroom_production
+            - name: POSTGRES_SSLMODE
+              value: disable
+            - name: GOOGLE_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: clubroom-secret
+                  key: google-json
+            - name: GOOGLE_BUCKET
+              value: dev-piny940
+            - name: RAILS_HOSTS
+              value: 0.0.0.0/0
+            - name: RAILS_ENV
+              value: production
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: clubroom-secret
+                  key: secret-key-base
