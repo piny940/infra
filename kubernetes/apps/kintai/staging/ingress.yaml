@@ -6,22 +6,9 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - kintai.piny940.com
-      secretName: cluster-tls
-    - hosts:
         - kintai-staging.piny940.com
       secretName: cluster-tls
   rules:
-    - host: kintai.piny940.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: kintai-frontend
-                port:
-                  number: 4400
     - host: kintai-staging.piny940.com
       http:
         paths:
@@ -29,6 +16,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: kintai-frontend-staging
+                name: kintai-frontend
                 port:
                   number: 4400

@@ -2,10 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
 resources:
+  - back.deployment.yaml
+  - back.service.yaml
   - external-secret.yaml
-  - back.image-policy.yaml
-  - front.image-policy.yaml
-  - ingress.yaml
+  - front.deployment.yaml
+  - front.service.yaml
+  - image-repository.yaml
 
 configMapGenerator:
   - name: kintai-conf
@@ -13,3 +15,5 @@ configMapGenerator:
       - POSTGRES_HOST=postgres-cluster.database.svc.cluster.local
       - POSTGRES_PORT=5432
       - POSTGRES_SSLMODE=disable
+      - POSTGRES_NAME=
+      - BACKEND_HOST=
