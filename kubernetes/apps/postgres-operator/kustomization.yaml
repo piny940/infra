@@ -4,3 +4,4 @@ namespace: database
 resources:
   - helm.yaml
   - external-secrets.yaml
+  - postgresql.yaml
