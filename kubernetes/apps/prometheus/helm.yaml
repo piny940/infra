@@ -18,12 +18,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
+      version: "58.6.0"
   values:
     server:
-      image:
-        repository: quay.io/prometheus/prometheus
-        tag: "v2.52.0"
-        pullPolicy: IfNotPresent
       persistentVolume:
         enabled: true
         storageClass: longhorn
