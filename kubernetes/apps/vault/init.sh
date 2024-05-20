@@ -1,3 +1,4 @@
+# コマンドは1つずつ実行する
 kubectl exec vault-0 -n vault -- vault operator init \
     -key-shares=1 \
     -key-threshold=1 \
@@ -8,9 +9,9 @@ kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
 export VAULT_ADDR=https://vault.piny940.com
 jq -r ".root_token" ~/cluster-keys.json | vault login -
 vault auth enable kubernetes
-export SA_SECRET_NAME=$(kubectl get secrets --output=json \
+export SA_SECRET_NAME=$(kubectl get secrets -n vault --output=json \
     | jq -r '.items[].metadata | select(.name|startswith("vault-auth-")).name')
-export SA_JWT_TOKEN=$(kubectl get secret $SA_SECRET_NAME \
+export SA_JWT_TOKEN=$(kubectl get secret -n vault $SA_SECRET_NAME \
     --output 'go-template={{ .data.token }}' | base64 --decode)
 export SA_CA_CRT=$(kubectl config view --raw --minify --flatten \
     --output 'jsonpath={.clusters[].cluster.certificate-authority-data}' | base64 --decode)
