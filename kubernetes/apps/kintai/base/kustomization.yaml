@@ -8,7 +8,6 @@ resources:
   - front.deployment.yaml
   - front.service.yaml
   - image-repository.yaml
-
 configMapGenerator:
   - name: kintai-conf
     literals:

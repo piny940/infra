@@ -3,7 +3,6 @@ kind: Kustomization
 nameSuffix: -staging
 commonLabels:
   env: staging
-
 images:
   - name: kintai-backend
     newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:kintai-backend-staging:name"}
@@ -11,10 +10,8 @@ images:
   - name: kintai-frontend
     newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:kintai-frontend-staging:name"}
     newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-frontend-staging:tag"}
-
 resources:
   - ../base
-
 configMapGenerator:
   - name: kintai-conf
     behavior: merge
