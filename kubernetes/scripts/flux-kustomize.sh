@@ -47,7 +47,9 @@ createKustomization() {
   kustomization $app $target > $file_path
 }
 
-rm -f _flux/$env/kustomizations/*.yaml
+for env in staging production; do
+  rm -f _flux/$env/kustomizations/*.yaml
+done
 for dir in `ls -d apps/*/`; do
   # apps/xx/ -> xx
   app=$(echo $dir | sed -e 's:apps/::g' | sed -e 's:/::g')
