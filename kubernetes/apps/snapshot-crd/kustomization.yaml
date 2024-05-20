@@ -4,4 +4,3 @@ namespace: kube-system
 resources:
   - https://github.com/kubernetes-csi/external-snapshotter//client/config/crd
   - https://github.com/kubernetes-csi/external-snapshotter//deploy/kubernetes/snapshot-controller
-  - back.deployment.yaml
