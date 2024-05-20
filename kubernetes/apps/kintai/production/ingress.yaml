@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kintai
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - kintai.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: kintai.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kintai-frontend
+                port:
+                  number: 4400
