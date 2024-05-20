@@ -12,7 +12,11 @@
 
 ## WebUI にログイン
 
-`jq -r ".root_token" cluster-keys.json`でトークンを取得し、ログインする。
+`jq -r ".root_token" ~/cluster-keys.json`でトークンを取得し、ログインする。
+
+## Secret Engine を作成
+
+`Secret Engines`から`K/V`を選択し、`k8s`という名前で作成する。
 
 ## Admin ユーザーを作成
 
