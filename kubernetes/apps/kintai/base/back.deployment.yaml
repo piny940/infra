@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/kintai-backend:1.0.5 # {"$imagepolicy": "default:kintai-backend"}
+          image: kintai-backend
           ports:
             - containerPort: 8080
           env:
@@ -31,13 +31,25 @@ spec:
                   name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
             - name: POSTGRES_HOST
-              value: postgres-cluster.database.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: kintai-conf
+                  key: POSTGRES_HOST
             - name: POSTGRES_PORT
-              value: "5432"
+              valueFrom:
+                configMapKeyRef:
+                  name: kintai-conf
+                  key: POSTGRES_PORT
             - name: POSTGRES_NAME
-              value: kintai_production
+              valueFrom:
+                configMapKeyRef:
+                  name: kintai-conf
+                  key: POSTGRES_NAME
             - name: POSTGRES_SSLMODE
-              value: disable
+              valueFrom:
+                configMapKeyRef:
+                  name: kintai-conf
+                  key: POSTGRES_SSLMODE
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:

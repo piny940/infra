@@ -16,12 +16,15 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/kintai-frontend:1.0.9 # {"$imagepolicy": "default:kintai-frontend"}
+          image: kintai-frontend
           ports:
             - containerPort: 4400
           env:
             - name: BACKEND_HOST
-              value: kintai-backend.default.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: kintai-conf
+                  key: BACKEND_HOST
           livenessProbe:
             httpGet:
               path: /

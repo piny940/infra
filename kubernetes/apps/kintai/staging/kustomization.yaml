@@ -4,16 +4,17 @@ nameSuffix: -staging
 commonLabels:
   env: staging
 images:
-  - name: ghcr.io/piny940/kintai-backend
+  - name: kintai-backend
     newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:kintai-backend-staging:name"}
     newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-backend-staging:tag"}
-  - name: ghcr.io/piny940/kintai-frontend
+  - name: kintai-frontend
     newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:kintai-frontend-staging:name"}
     newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-frontend-staging:tag"}
-patches:
-  - target:
-      kind: Deployment
-      name: kintai-backend
-    path: back.deployment-overlay.yaml
 resources:
-  - ../production
+  - ../base
+configMapGenerator:
+  - name: kintai-conf
+    behavior: merge
+    literals:
+      - POSTGRES_NAME=kintai_staging
+      - BACKEND_HOST=kintai-backend-staging.default.svc.cluster.local
