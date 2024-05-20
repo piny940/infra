@@ -133,6 +133,18 @@ sudo apt-get update
 sudo apt-get install helm
 ```
 
+### Vault CLI をインストール(初回のみ)
+
+参考: https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-install
+
+```bash
+sudo apt update && sudo apt install gpg wget
+ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install vault
+```
+
 ### kubeadm init
 
 CNI の設定やらの残骸を削除
@@ -192,6 +204,12 @@ sudo swapoff -a
 
 Pod が起動するまで少し時間がかかる(多分)
 
+### longhorn をインストール
+
+```bash
+sh longhorn/install.sh
+```
+
 ### バックアップを復元
 
 参考: https://velero.io/docs/v1.13/restore-reference/
@@ -211,8 +229,7 @@ kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME
 Velero をインストール
 
 ```bash
-helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
-helm install velero vmware-tanzu/velero --namespace velero --values velero/values.yaml
+sh velero/install.sh
 ```
 
 次のコマンドで、バックアップが sync されているのを確認する。
