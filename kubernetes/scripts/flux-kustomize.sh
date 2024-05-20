@@ -6,6 +6,7 @@ kustomization() {
 kind: Kustomization
 metadata:
   name: ${app}
+  namespace: flux-system
 spec:
   interval: 10m0s
   path: "./kubernetes/${path}"
