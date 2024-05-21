@@ -10,7 +10,7 @@ resources:
   - front.service.yaml
   - external-secret.yaml
 configMapGenerator:
-  - name: clubroom-config
+  - name: clubroom-conf
     literals:
       - POSTGRES_HOST=postgres-cluster.database.svc.cluster.local
       - POSTGRES_PORT=5432
