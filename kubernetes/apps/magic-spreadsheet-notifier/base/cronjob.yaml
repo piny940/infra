@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
             - name: magic-spreadsheet-notifier
-              image: ghcr.io/piny940/magic-spreadsheet-notifier:1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier"}
+              image: magic-spreadsheet-notifier
               env:
                 - name: FIREBASE_JSON
                   valueFrom:
@@ -18,9 +18,15 @@ spec:
                       name: magic-spreadsheet-notifier-secret
                       key: firebase-json
                 - name: FIREBASE_PROJECT_ID
-                  value: magic-spreadsheet-notifier
+                  valueFrom:
+                    configMapKeyRef:
+                      name: magic-spreadsheet-notifier-conf
+                      key: FIREBASE_PROJECT_ID
                 - name: MAGIC_SPREADSHEET_WAIT_TIME
-                  value: "20"
+                  valueFrom:
+                    configMapKeyRef:
+                      name: magic-spreadsheet-notifier-conf
+                      key: MAGIC_SPREADSHEET_WAIT_TIME
                 - name: SLACK_API_TOKEN
                   valueFrom:
                     secretKeyRef:
@@ -28,7 +34,13 @@ spec:
                       key: slack-api-token
                 # The following variables need to be changed every year
                 - name: FIRESTORE_COLLECTION_PATH
-                  value: spreadsheets/2024-summer/recruits
+                  valueFrom:
+                    configMapKeyRef:
+                      name: magic-spreadsheet-notifier-conf
+                      key: FIRESTORE_COLLECTION_PATH
                 - name: MAGIC_SPREADSHEET_URL
-                  value: https://deep-professor-e3c.notion.site/277c859180bd4f99bc7dd1707a7e9b16?v=c94b0cf0a6424eca9c3b8f9a8bc0f4d3
+                  valueFrom:
+                    configMapKeyRef:
+                      name: magic-spreadsheet-notifier-conf
+                      key: MAGIC_SPREADSHEET_URL
           restartPolicy: OnFailure

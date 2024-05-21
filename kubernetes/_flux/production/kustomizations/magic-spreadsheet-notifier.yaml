@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./kubernetes/apps/magic-spreadsheet-notifier
+  path: ./kubernetes/apps/magic-spreadsheet-notifier/production
   prune: true
   sourceRef:
     kind: GitRepository

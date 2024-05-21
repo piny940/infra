@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+commonLabels:
+  env: production
+images:
+  - name: magic-spreadsheet-notifier
+    newName: ghcr.io/piny940/magic-spreadsheet-notifier # {"$imagepolicy": "default:magic-spreadsheet-notifier:name"}
+    newTag: 1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier:tag"}
+  - name: magic-spreadsheet-notifier-server
+    newName: ghcr.io/piny940/magic-spreadsheet-notifier-server # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:name"}
+    newTag: 1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:tag"}
+resources:
+  - ../base
+  - ingress.yaml
+configMapGenerator:
+  - name: magic-spreadsheet-notifier-conf
+    behavior: merge
+    literals:
+      - FIREBASE_PROJECT_ID=magic-spreadsheet-notifier
+      - FIRESTORE_COLLECTION_PATH=spreadsheets/2024-summer/recruits
+      - MAGIC_SPREADSHEET_URL=https://deep-professor-e3c.notion.site/277c859180bd4f99bc7dd1707a7e9b16?v=c94b0cf0a6424eca9c3b8f9a8bc0f4d3
+      - SERVER_HOST=https://magic-spreadsheet-notifier.piny940.com
