@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./kubernetes/apps/grafana
+  path: ./kubernetes/apps/grafana/staging
   prune: true
   sourceRef:
     kind: GitRepository

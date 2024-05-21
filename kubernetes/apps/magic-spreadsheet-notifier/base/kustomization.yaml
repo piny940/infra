@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+resources:
+  - cronjob.yaml
+  - external-secret.yaml
+  - image-policy.yaml
+  - server.deployment.yaml
+  - server.image-policy.yaml
+  - server.service.yaml
+configMapGenerator:
+  - name: magic-spreadsheet-notifier-conf
+    literals:
+      - FIREBASE_PROJECT_ID=
+      - MAGIC_SPREADSHEET_WAIT_TIME=20
+      - FIRESTORE_COLLECTION_PATH=
+      - MAGIC_SPREADSHEET_URL=
+      - SERVER_HOST=
+      - SERVER_PORT=8080
+      - SLACK_CLIENT_ID=5473329502838.6559415455783

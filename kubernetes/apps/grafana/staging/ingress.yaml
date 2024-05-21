@@ -1,21 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kintai
+  name: grafana-ingress
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - stg-kintai.piny940.com
+        - stg-grafana.piny940.com
       secretName: cluster-tls
   rules:
-    - host: stg-kintai.piny940.com
+    - host: stg-grafana.piny940.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kintai-frontend
+                name: grafana
                 port:
-                  number: 4400
+                  number: 80

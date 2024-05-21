@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+spec:
+  values:
+    prometheus:
+      ingress:
+        hosts:
+          - prometheus.piny940.com
+        tls:
+          - hosts:
+              - prometheus.piny940.com

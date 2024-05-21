@@ -16,16 +16,25 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/magic-spreadsheet-notifier-server:1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server"}
+          image: magic-spreadsheet-notifier-server
           ports:
             - containerPort: 8080
           env:
             - name: SERVER_HOST
-              value: https://magic-spreadsheet-notifier.piny940.com
+              valueFrom:
+                configMapKeyRef:
+                  name: magic-spreadsheet-notifier-conf
+                  key: SERVER_HOST
             - name: SERVER_PORT
-              value: "8080"
+              valueFrom:
+                configMapKeyRef:
+                  name: magic-spreadsheet-notifier-conf
+                  key: SERVER_PORT
             - name: SLACK_CLIENT_ID
-              value: "5473329502838.6559415455783"
+              valueFrom:
+                configMapKeyRef:
+                  name: magic-spreadsheet-notifier-conf
+                  key: SLACK_CLIENT_ID
             - name: SLACK_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -37,4 +46,7 @@ spec:
                   name: magic-spreadsheet-notifier-secret
                   key: firebase-json
             - name: FIREBASE_PROJECT_ID
-              value: magic-spreadsheet-notifier
+              valueFrom:
+                configMapKeyRef:
+                  name: magic-spreadsheet-notifier-conf
+                  key: FIREBASE_PROJECT_ID
