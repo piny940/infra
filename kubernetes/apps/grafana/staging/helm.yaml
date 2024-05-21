@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  values:
+    datasources:
+      datasources.yaml:
+        datasources:
+          - name: "Prometheus"
+            type: prometheus
+            access: proxy
+            url: http://kube-prometheus-stack-prometheus-staging.monitoring.svc.cluster.local
