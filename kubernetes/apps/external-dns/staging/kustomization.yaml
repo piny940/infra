@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+nameSuffix: -staging
+commonLabels:
+  env: staging
+images:
+  - name: external-dns
+    newName: ghcr.io/piny940/external-dns # {"$imagepolicy": "default:external-dns-staging:name"}
+    newTag: 20240504030500 # {"$imagepolicy": "default:external-dns-staging:tag"}
+resources:
+  - ../base
+configMapGenerator:
+  - name: external-dns-conf
+    behavior: merge
+    literals:
+      - CF_TUNNEL_ID=d2dd618d-4dd7-467b-a41a-41b5b1985dfe
+      - CF_ACCOUNT_ID=66f329cedfe902cbfc395f9f5850122a

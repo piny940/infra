@@ -6,3 +6,8 @@ resources:
   - external-secret.yaml
   - service-account.yaml
   - image-policy.yaml
+configMapGenerator:
+  - name: external-dns-conf
+    literals:
+      - CF_TUNNEL_ID=
+      - CF_ACCOUNT_ID=
