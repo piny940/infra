@@ -1,10 +1,13 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
+kind: ImagePolicy
 metadata:
-  name: portfolio-app
+  name: portfolio-admin
 spec:
-  image: ghcr.io/piny940/portfolio-app
-  interval: 10m
+  imageRepositoryRef:
+    name: portfolio-admin
+  policy:
+    semver:
+      range: 1.0.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -23,13 +26,21 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-app-staging
+  name: portfolio-backend
 spec:
   imageRepositoryRef:
-    name: portfolio-app
-  filterTags:
-    pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
-    extract: "$ts"
+    name: portfolio-backend
   policy:
-    numerical:
-      order: asc
+    semver:
+      range: 1.0.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: portfolio-updater
+spec:
+  imageRepositoryRef:
+    name: portfolio-updater
+  policy:
+    semver:
+      range: 1.0.x

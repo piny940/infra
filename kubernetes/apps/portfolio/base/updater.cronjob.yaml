@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
             - name: portfolio-updater
-              image: ghcr.io/piny940/portfolio-updater:1.0.19 # {"$imagepolicy": "default:portfolio-updater"}
+              image: portfolio-updater
               env:
                 - name: QIITA_API_TOKEN
                   valueFrom:
@@ -18,7 +18,10 @@ spec:
                       name: portfolio-secret
                       key: qiita-api-token
                 - name: BACKEND_HOST
-                  value: http://portfolio-backend.default.svc.cluster.local:8080
+                  valueFrom:
+                    configMapKeyRef:
+                      name: portfolio-config
+                      key: BACKEND_HOST
                 - name: BACKEND_TOKEN
                   valueFrom:
                     secretKeyRef:
@@ -30,5 +33,8 @@ spec:
                       name: portfolio-secret
                       key: slack-oauth-token
                 - name: SLACK_CHANNEL_ID
-                  value: C06EQE53RA8
+                  valueFrom:
+                    configMapKeyRef:
+                      name: portfolio-config
+                      key: SLACK_CHANNEL_ID
           restartPolicy: OnFailure

@@ -3,18 +3,18 @@ kind: Kustomization
 commonLabels:
   env: staging
 images:
+  - name: portfolio-admin
+    newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin:name"}
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-admin:tag"}
+  - name: portfolio-app
+    newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:portfolio-app:name"}
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-20240518072358 # {"$imagepolicy": "default:portfolio-app:tag"}
   - name: ghcr.io/piny940/portfolio-backend
-    newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend-staging:name"}
-    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-backend-staging:tag"}
-  - name: ghcr.io/piny940/portfolio-app
-    newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:portfolio-app-staging:name"}
-    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-20240518072358 # {"$imagepolicy": "default:portfolio-app-staging:tag"}
-  - name: ghcr.io/piny940/portfolio-admin
-    newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin-staging:name"}
-    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-admin-staging:tag"}
+    newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend:name"}
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-backend:tag"}
   - name: ghcr.io/piny940/portfolio-updater
-    newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater-staging:name"}
-    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-updater-staging:tag"}
+    newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater:name"}
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-updater:tag"}
 patches:
   - target:
       kind: Deployment
@@ -29,4 +29,11 @@ patches:
       name: portfolio-updater
     path: updater.cronjob-overlay.yaml
 resources:
-  - ../production
+  - ../base
+  - ingress.yaml
+  - image-policy.yaml
+configMapGenerator:
+  - name: portfolio-conf
+    behavior: merge
+    literals:
+      - DB_NAME=portfolio_staging

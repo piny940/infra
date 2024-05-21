@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/portfolio-app:1.0.0-20240518055632 # {"$imagepolicy": "default:portfolio-app"}
+          image: portfolio-app
           ports:
             - containerPort: 4400
           env:
@@ -26,4 +26,7 @@ spec:
                   name: portfolio-secret
                   key: backend-api-token
             - name: BACKEND_HOST
-              value: http://portfolio-backend.default.svc.cluster.local:8080
+              valueFrom:
+                configMapKeyRef:
+                  name: portfolio-config
+                  key: BACKEND_HOST
