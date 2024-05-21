@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - stg-portfolio-app.piny940.com
+      secretName: cluster-tls
+    - hosts:
+        - stg-portfolio-backend.piny940.com
+      secretName: cluster-tls
+    - hosts:
+        - stg-portfolio-admin.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: stg-portfolio-app.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-app
+                port:
+                  number: 4400
+    - host: stg-portfolio-backend.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-backend
+                port:
+                  number: 8080
+    - host: stg-portfolio-admin.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-admin
+                port:
+                  number: 4400
