@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vault
+  namespace: vault
+spec:
+  values:
+    server:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        tls:
+          - hosts:
+              - stg-vault.piny940.com
+            secretName: cluster-tls
+        pathType: Prefix
+        hosts:
+          - host: stg-vault.piny940.com
