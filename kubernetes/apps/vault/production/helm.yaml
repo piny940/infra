@@ -7,12 +7,8 @@ spec:
   values:
     server:
       ingress:
-        enabled: true
-        ingressClassName: nginx
         tls:
           - hosts:
               - vault.piny940.com
-            secretName: cluster-tls
-        pathType: Prefix
         hosts:
           - host: vault.piny940.com
