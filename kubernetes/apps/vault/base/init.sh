@@ -1,8 +1,15 @@
 # コマンドは1つずつ実行する
-kubectl exec vault-0 -n vault -- vault operator init \
-    -key-shares=1 \
-    -key-threshold=1 \
-    -format=json > ~/cluster-keys.json
+CLUSTER_KEY=$(kubectl exec vault-0 -n vault -- vault operator init \
+                -key-shares=1 \
+                -key-threshold=1 \
+                -format=json)
+
+if [ -z "${CLUSTER_KEY}" ]; then
+  echo "CLUSTER_KEY is not set"
+  exit 1
+fi
+
+echo $CLUSTRE_KEY > ~/cluster-keys.json
 
 VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ~/cluster-keys.json)
 kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
