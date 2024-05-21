@@ -6,13 +6,13 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - clubroom.piny940.com
+        - stg-clubroom.piny940.com
       secretName: cluster-tls
     - hosts:
-        - clubroom-backend.piny940.com
+        - stg-clubroom-backend.piny940.com
       secretName: cluster-tls
   rules:
-    - host: clubroom.piny940.com
+    - host: stg-clubroom.piny940.com
       http:
         paths:
           - path: /
@@ -22,7 +22,7 @@ spec:
                 name: clubroom-frontend
                 port:
                   number: 4400
-    - host: clubroom-backend.piny940.com
+    - host: stg-clubroom-backend.piny940.com
       http:
         paths:
           - path: /

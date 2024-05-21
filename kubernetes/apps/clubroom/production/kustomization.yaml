@@ -11,13 +11,7 @@ images:
     newName: ghcr.io/piny940/clubroom-frontend # {"$imagepolicy": "default:clubroom-frontend:name"}
     newTag: 1.0.15 # {"$imagepolicy": "default:clubroom-frontend:tag"}
 resources:
-  - back.deployment.yaml
-  - back.image-policy.yaml
-  - back.service.yaml
-  - front.deployment.yaml
-  - front.image-policy.yaml
-  - front.service.yaml
-  - external-secret.yaml
+  - ../base
   - ingress.yaml
 configMapGenerator:
   - name: clubroom-conf
