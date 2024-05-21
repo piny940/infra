@@ -2,20 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
 resources:
-  - back.deployment.yaml
-  - back.image-policy.yaml
-  - back.service.yaml
-  - front.deployment.yaml
-  - front.image-policy.yaml
-  - front.service.yaml
   - external-secret.yaml
-configMapGenerator:
-  - name: clubroom-conf
-    literals:
-      - POSTGRES_HOST=postgres-cluster.database.svc.cluster.local
-      - POSTGRES_PORT=5432
-      - POSTGRES_NAME=
-      - POSTGRES_SSLMODE=disable
-      - GOOGLE_BUCKET=dev-piny940
-      - RAILS_HOSTS=0.0.0.0/0
-      - RAILS_ENV=production
+  - helm.yaml
