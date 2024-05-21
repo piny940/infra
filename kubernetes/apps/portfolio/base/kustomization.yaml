@@ -3,13 +3,13 @@ kind: Kustomization
 namespace: default
 resources:
   - admin.deployment.yaml
-  - admin.image-policy.yaml
+  - admin.image-repository.yaml
   - admin.service.yaml
   - app.deployment.yaml
-  - app.image-policy.yaml
+  - app.image-repository.yaml
   - app.service.yaml
   - back.deployment.yaml
-  - back.image-policy.yaml
+  - back.image-repository.yaml
   - back.service.yaml
   - external-secret.yaml
   - updater.cronjob.yaml
