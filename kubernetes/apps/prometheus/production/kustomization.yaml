@@ -9,4 +9,4 @@ patches:
   - target:
       kind: HelmRelease
       name: grafana
-      path: helm.yaml
+    path: helm.yaml
