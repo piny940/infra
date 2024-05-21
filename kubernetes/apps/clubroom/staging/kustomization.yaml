@@ -10,3 +10,8 @@ resources:
   - front.service.yaml
   - external-secret.yaml
   - ingress.yaml
+configMapGenerator:
+  - name: clubroom-config
+    behavior: merge
+    literals:
+      - POSTGRES_NAME=clubroom_staging

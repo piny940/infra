@@ -31,24 +31,45 @@ spec:
                   name: default.clubroom.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
             - name: POSTGRES_HOST
-              value: postgres-cluster.database.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: POSTGRES_HOST
             - name: POSTGRES_PORT
-              value: "5432"
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: POSTGRES_PORT
             - name: POSTGRES_NAME
-              value: clubroom_production
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: POSTGRES_NAME
             - name: POSTGRES_SSLMODE
-              value: disable
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: POSTGRES_SSLMODE
             - name: GOOGLE_JSON
               valueFrom:
                 secretKeyRef:
                   name: clubroom-secret
                   key: google-json
             - name: GOOGLE_BUCKET
-              value: dev-piny940
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: GOOGLE_BUCKET
             - name: RAILS_HOSTS
-              value: 0.0.0.0/0
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: RAILS_HOSTS
             - name: RAILS_ENV
-              value: production
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-config
+                  key: RAILS_ENV
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
