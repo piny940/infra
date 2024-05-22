@@ -20,6 +20,25 @@ spec:
         name: prometheus-community
       version: "58.6.0"
   values:
+    alertmanager:
+      enabled: true
+      serviceAccount:
+        create: false
+        name: prometheus
+      alertmanagerSpec:
+        replicas: 1
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 2Gi
+        resources:
+          requests:
+            memory: 400Mi
     server:
       persistentVolume:
         enabled: true
@@ -35,19 +54,18 @@ spec:
         requests:
           cpu: 500m
           memory: 512Mi
-    alertmanager:
-      persistence:
-        size: 2Gi
-        enabled: true
-        storageClass: longhorn
-    prometheus-node-exporter:
-      enabled: true
     grafana:
       enabled: false
+    nodeExporter:
+      enabled: true
+    prometheusOperator:
+      enabled: true
+    prometheus-node-exporter:
+      enabled: true
     prometheus:
-      prometheusSpec:
-        podMonitorSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
+      serviceAccount:
+        create: false
+        name: prometheus
       ingress:
         enabled: true
         annotations:
@@ -60,3 +78,20 @@ spec:
           - hosts:
               - prometheus.piny940.com
             secretName: cluster-tls
+      prometheusSpec:
+        scrapeInterval: 30s
+        replicas: 1
+        resources:
+          requests:
+            memory: 400Mi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 8Gi
+        podMonitorSelectorNilUsesHelmValues: true
+        serviceMonitorSelectorNilUsesHelmValues: false
