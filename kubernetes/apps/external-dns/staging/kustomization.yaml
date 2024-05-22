@@ -1,12 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
+namePrefix: stg-
 commonLabels:
   env: staging
 images:
   - name: external-dns
-    newName: ghcr.io/piny940/external-dns # {"$imagepolicy": "default:external-dns:name"}
-    newTag: 20240504030500 # {"$imagepolicy": "default:external-dns:tag"}
+    newName: ghcr.io/piny940/external-dns # {"$imagepolicy": "default:stg-external-dns:name"}
+    newTag: 20240504030500 # {"$imagepolicy": "default:stg-external-dns:tag"}
 resources:
   - ../base
 configMapGenerator:
