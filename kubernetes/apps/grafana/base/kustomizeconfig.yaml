@@ -6,4 +6,4 @@ nameReference:
   - kind: HelmRepository
     fieldSpecs:
       - kind: HelmRelease
-        path: spec/chart/sourceRef/name
+        path: spec/chart/spec/sourceRef/name
