@@ -23,5 +23,5 @@ spec:
             - name: BACKEND_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: portfolio-config
+                  name: portfolio-conf
                   key: BACKEND_HOST

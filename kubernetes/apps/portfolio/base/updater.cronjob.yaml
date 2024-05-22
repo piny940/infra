@@ -20,7 +20,7 @@ spec:
                 - name: BACKEND_HOST
                   valueFrom:
                     configMapKeyRef:
-                      name: portfolio-config
+                      name: portfolio-conf
                       key: BACKEND_HOST
                 - name: BACKEND_TOKEN
                   valueFrom:
@@ -35,6 +35,6 @@ spec:
                 - name: SLACK_CHANNEL_ID
                   valueFrom:
                     configMapKeyRef:
-                      name: portfolio-config
+                      name: portfolio-conf
                       key: SLACK_CHANNEL_ID
           restartPolicy: OnFailure
