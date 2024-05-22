@@ -5,11 +5,11 @@ commonLabels:
   env: staging
 images:
   - name: magic-spreadsheet-notifier
-    newName: ghcr.io/piny940/magic-spreadsheet-notifier # {"$imagepolicy": "default:magic-spreadsheet-notifier-staging:name"}
-    newTag: 1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier-staging:tag"}
+    newName: ghcr.io/piny940/magic-spreadsheet-notifier # {"$imagepolicy": "default:magic-spreadsheet-notifier:name"}
+    newTag: 1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier:tag"}
   - name: magic-spreadsheet-notifier-server
-    newName: ghcr.io/piny940/magic-spreadsheet-notifier-server # {"$imagepolicy": "default:magic-spreadsheet-notifier-server-staging:name"}
-    newTag: 1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server-staging:tag"}
+    newName: ghcr.io/piny940/magic-spreadsheet-notifier-server # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:name"}
+    newTag: 1.0.16 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:tag"}
 resources:
   - ../base
   - ingress.yaml

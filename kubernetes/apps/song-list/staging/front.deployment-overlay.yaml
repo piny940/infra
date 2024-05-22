@@ -9,4 +9,4 @@ spec:
         - name: app
           env:
             - name: BACKEND_HOST
-              value: song-list-backend-staging.default.svc.cluster.local
+              value: song-list-backend.default.svc.cluster.local

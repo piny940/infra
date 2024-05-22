@@ -20,7 +20,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: song-list-backend-staging
+  name: song-list-backend
 spec:
   imageRepositoryRef:
     name: song-list-backend

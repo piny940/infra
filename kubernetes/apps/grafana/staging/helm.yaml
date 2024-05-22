@@ -10,4 +10,4 @@ spec:
           - name: "Prometheus"
             type: prometheus
             access: proxy
-            url: http://kube-prometheus-stack-prometheus-staging.monitoring.svc.cluster.local
+            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local

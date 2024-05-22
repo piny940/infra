@@ -5,11 +5,11 @@ commonLabels:
   env: staging
 images:
   - name: kintai-backend
-    newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:kintai-backend-staging:name"}
-    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-backend-staging:tag"}
+    newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:kintai-backend:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-backend:tag"}
   - name: kintai-frontend
-    newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:kintai-frontend-staging:name"}
-    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-frontend-staging:tag"}
+    newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:kintai-frontend:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:kintai-frontend:tag"}
 resources:
   - ../base
 configMapGenerator:
@@ -17,4 +17,4 @@ configMapGenerator:
     behavior: merge
     literals:
       - POSTGRES_NAME=kintai_staging
-      - BACKEND_HOST=kintai-backend-staging.default.svc.cluster.local
+      - BACKEND_HOST=kintai-backend.default.svc.cluster.local
