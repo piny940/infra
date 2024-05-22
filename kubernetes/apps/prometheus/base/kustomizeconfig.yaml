@@ -1,0 +1,7 @@
+nameReferences:
+  - kind: ServiceAccount
+    fieldSpecs:
+      - kind: HelmRelease
+        path: alertmanager/serviceAccount/name
+      - kind: HelmRelease
+        path: prometheus/serviceAccount/name
