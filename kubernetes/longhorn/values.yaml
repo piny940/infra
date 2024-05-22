@@ -10,3 +10,5 @@ csi:
   provisionerReplicaCount: 1
   resizerReplicaCount: 1
   snapshotterReplicaCount: 1
+defaultSettings:
+  storageReservedPercentageForDefaultDisk: 5
