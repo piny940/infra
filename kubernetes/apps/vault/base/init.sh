@@ -1,16 +1,5 @@
 # コマンドは1つずつ実行する
-
-source .env
-export K8S_ENV
-
-PREFIX=""
-POD_NAME=vault-0
-if [ "${K8S_ENV}" = "staging" ]; then
-  PREFIX="stg-"
-  POD_NAME=stg-$POD_NAME
-fi
-
-CLUSTER_KEY=$(kubectl exec $POD_NAME -n vault -- vault operator init \
+CLUSTER_KEY=$(kubectl exec vault-0 -n vault -- vault operator init \
                 -key-shares=1 \
                 -key-threshold=1 \
                 -format=json)
@@ -23,12 +12,12 @@ fi
 echo $CLUSTRE_KEY > ~/cluster-keys.json
 
 VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ~/cluster-keys.json)
-kubectl exec $POD_NAME -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
-export VAULT_ADDR="https://${PREFIX}vault.piny940.com"
+kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
+export VAULT_ADDR=https://vault.piny940.com
 jq -r ".root_token" ~/cluster-keys.json | vault login -
 vault auth enable kubernetes
 export SA_SECRET_NAME=$(kubectl get secrets -n vault --output=json \
-    | jq -r ".items[].metadata | select(.name|startswith('${PREFIX}vault-auth-')).name")
+    | jq -r '.items[].metadata | select(.name|startswith("vault-auth-")).name')
 export SA_JWT_TOKEN=$(kubectl get secret -n vault $SA_SECRET_NAME \
     --output 'go-template={{ .data.token }}' | base64 --decode)
 export SA_CA_CRT=$(kubectl config view --raw --minify --flatten \
