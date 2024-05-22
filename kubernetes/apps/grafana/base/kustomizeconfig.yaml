@@ -1,0 +1,5 @@
+nameReference:
+  - kind: ExternalSecret
+    fieldSpecs:
+      - kind: HelmRelease
+        path: spec/values/admin/existingSecret

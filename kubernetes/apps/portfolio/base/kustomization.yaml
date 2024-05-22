@@ -24,3 +24,5 @@ configMapGenerator:
       - DB_SSLMODE=disable
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
+configurations:
+  - kustomizeconfig.yaml

@@ -18,3 +18,5 @@ configMapGenerator:
       - SERVER_HOST=
       - SERVER_PORT=8080
       - SLACK_CLIENT_ID=5473329502838.6559415455783
+configurations:
+  - kustomizeconfig.yaml
