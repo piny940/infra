@@ -13,5 +13,6 @@ configMapGenerator:
   - name: external-dns-conf
     behavior: merge
     literals:
+      - OWNER_ID=production
       - CF_TUNNEL_ID=8efba9e1-5cf9-4b9a-abb1-c4ff97e640ba
       - CF_ACCOUNT_ID=66f329cedfe902cbfc395f9f5850122a

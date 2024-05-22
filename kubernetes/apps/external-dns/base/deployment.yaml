@@ -21,7 +21,13 @@ spec:
             - --source=ingress
             - --domain-filter=piny940.com
             - --provider=cloudflaretunnel
+            - --txt-owner-id=$(OWNER_ID)
           env:
+            - name: OWNER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: external-dns-conf
+                  key: OWNER_ID
             - name: CF_API_TOKEN
               valueFrom:
                 secretKeyRef:
