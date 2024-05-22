@@ -6,8 +6,3 @@ commonLabels:
 resources:
   - ../base
   - ingress.yaml
-patches:
-  - target:
-      kind: HelmRelease
-      name: grafana
-    path: helm.yaml
