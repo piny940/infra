@@ -5,8 +5,8 @@ commonLabels:
   env: staging
 images:
   - name: external-dns
-    newName: ghcr.io/piny940/external-dns # {"$imagepolicy": "default:external-dns-staging:name"}
-    newTag: 20240504030500 # {"$imagepolicy": "default:external-dns-staging:tag"}
+    newName: ghcr.io/piny940/external-dns # {"$imagepolicy": "default:external-dns:name"}
+    newTag: 20240504030500 # {"$imagepolicy": "default:external-dns:tag"}
 resources:
   - ../base
 configMapGenerator:

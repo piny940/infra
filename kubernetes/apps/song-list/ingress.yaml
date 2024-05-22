@@ -9,7 +9,7 @@ spec:
         - song-list-app.piny940.com
       secretName: cluster-tls
     - hosts:
-        - song-list-staging.piny940.com
+        - song-list.piny940.com
       secretName: cluster-tls
   rules:
     - host: song-list-app.piny940.com
@@ -22,13 +22,13 @@ spec:
                 name: song-list-frontend
                 port:
                   number: 4400
-    - host: song-list-staging.piny940.com
+    - host: song-list.piny940.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: song-list-frontend-staging
+                name: song-list-frontend
                 port:
                   number: 4400

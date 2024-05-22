@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-admin-staging
+  name: portfolio-admin
 spec:
   imageRepositoryRef:
     name: portfolio-admin
@@ -15,7 +15,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-app-staging
+  name: portfolio-app
 spec:
   imageRepositoryRef:
     name: portfolio-app
@@ -29,7 +29,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-backend-staging
+  name: portfolio-backend
 spec:
   imageRepositoryRef:
     name: portfolio-backend
@@ -43,7 +43,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: portfolio-updater-staging
+  name: portfolio-updater
 spec:
   imageRepositoryRef:
     name: portfolio-updater
