@@ -16,3 +16,5 @@ configMapGenerator:
       - POSTGRES_SSLMODE=disable
       - POSTGRES_NAME=
       - BACKEND_HOST=
+configurations:
+  - kustomizeconfig.yaml

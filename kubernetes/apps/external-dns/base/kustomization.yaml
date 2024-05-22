@@ -12,3 +12,5 @@ configMapGenerator:
       - OWNER_ID=
       - CF_TUNNEL_ID=
       - CF_ACCOUNT_ID=
+configurations:
+  - kustomizeconfig.yaml

@@ -17,10 +17,12 @@ resources:
 configMapGenerator:
   - name: portfolio-conf
     literals:
-      - BACKEND_HOST=http://portfolio-backend.default.svc.cluster.local:8080
+      - BACKEND_HOST=
       - DB_HOST=postgres-cluster.database.svc.cluster.local
       - DB_PORT=5432
       - DB_NAME=
       - DB_SSLMODE=disable
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
+configurations:
+  - kustomizeconfig.yaml

@@ -1,15 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
+namePrefix: stg-
 commonLabels:
   env: staging
 images:
   - name: clubroom-backend
-    newName: ghcr.io/piny940/clubroom-backend # {"$imagepolicy": "default:clubroom-backend:name"}
-    newTag: 1.0.15 # {"$imagepolicy": "default:clubroom-backend:tag"}
+    newName: ghcr.io/piny940/clubroom-backend # {"$imagepolicy": "default:stg-clubroom-backend:name"}
+    newTag: 1.0.15 # {"$imagepolicy": "default:stg-clubroom-backend:tag"}
   - name: clubroom-frontend
-    newName: ghcr.io/piny940/clubroom-frontend # {"$imagepolicy": "default:clubroom-frontend:name"}
-    newTag: 1.0.15 # {"$imagepolicy": "default:clubroom-frontend:tag"}
+    newName: ghcr.io/piny940/clubroom-frontend # {"$imagepolicy": "default:stg-clubroom-frontend:name"}
+    newTag: 1.0.15 # {"$imagepolicy": "default:stg-clubroom-frontend:tag"}
 resources:
   - ../base
   - ingress.yaml
@@ -18,3 +19,4 @@ configMapGenerator:
     behavior: merge
     literals:
       - POSTGRES_NAME=clubroom_staging
+      - BACKEND_HOST=http://stg-clubroom-backend.default.svc.cluster.local:3000
