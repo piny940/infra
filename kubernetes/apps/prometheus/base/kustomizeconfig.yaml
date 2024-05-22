@@ -1,4 +1,4 @@
-nameReferences:
+nameReference:
   - kind: ServiceAccount
     fieldSpecs:
       - kind: HelmRelease
