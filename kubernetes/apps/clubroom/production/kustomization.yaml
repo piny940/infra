@@ -18,3 +18,4 @@ configMapGenerator:
     behavior: merge
     literals:
       - POSTGRES_NAME=clubroom_production
+      - BACKEND_HOST=http://clubroom-backend.default.svc.cluster.local:3000

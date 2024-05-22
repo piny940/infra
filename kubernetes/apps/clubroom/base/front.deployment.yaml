@@ -21,4 +21,7 @@ spec:
             - containerPort: 4400
           env:
             - name: BACKEND_HOST
-              value: http://clubroom-backend.default.svc.cluster.local:3000
+              valueFrom:
+                configMapKeyRef:
+                  name: clubroom-conf
+                  key: BACKEND_HOST
