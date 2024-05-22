@@ -8,5 +8,5 @@ resources:
 patches:
   - target:
       kind: HelmRelease
-      name: grafana
+      name: kube-prometheus-stack
     path: helm.yaml
