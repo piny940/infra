@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./kubernetes/apps/image-update
+  path: ./kubernetes/apps/image-update/production
   prune: true
   sourceRef:
     kind: GitRepository
