@@ -15,20 +15,7 @@ images:
     newTag: 1.0.19 # {"$imagepolicy": "default:portfolio-backend:tag"}
   - name: ghcr.io/piny940/portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater:name"}
-    newTag: 1.0.19 # {"$imagepolicy": "default:portfolio-updater:tag"}
-patches:
-  - target:
-      kind: Deployment
-      name: portfolio-app
-    path: app.deployment-overlay.yaml
-  - target:
-      kind: Deployment
-      name: portfolio-backend
-    path: back.deployment-overlay.yaml
-  - target:
-      kind: CronJob
-      name: portfolio-updater
-    path: updater.cronjob-overlay.yaml
+    newTag: main-4a5634efeb1276cc0508d5ddc26973328ff0f49f-133 # {"$imagepolicy": "default:portfolio-updater:tag"}
 resources:
   - ../base
   - ingress.yaml
