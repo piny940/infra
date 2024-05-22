@@ -5,3 +5,5 @@ resources:
   - helm.yaml
   - service-account.yaml
   - secret.yaml
+configurations:
+  - kustomizeconfig.yaml

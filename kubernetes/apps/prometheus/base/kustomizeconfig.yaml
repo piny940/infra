@@ -5,3 +5,7 @@ nameReference:
         path: alertmanager/serviceAccount/name
       - kind: HelmRelease
         path: prometheus/serviceAccount/name
+  - kind: HelmRepository
+    fieldSpecs:
+      - kind: HelmRelease
+        path: spec/chart/sourceRef/name
