@@ -34,22 +34,22 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: portfolio-conf
-                  key: POSTGRES_HOST
+                  key: DB_HOST
             - name: DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: portfolio-conf
-                  key: POSTGRES_PORT
+                  key: DB_PORT
             - name: DB_NAME
               valueFrom:
                 configMapKeyRef:
                   name: portfolio-conf
-                  key: POSTGRES_NAME
+                  key: DB_NAME
             - name: DB_SSLMODE
               valueFrom:
                 configMapKeyRef:
                   name: portfolio-conf
-                  key: POSTGRES_SSLMODE
+                  key: DB_SSLMODE
             - name: API_TOKEN
               valueFrom:
                 secretKeyRef:
