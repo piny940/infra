@@ -9,5 +9,6 @@ resources:
 configMapGenerator:
   - name: external-dns-conf
     literals:
+      - OWNER_ID=
       - CF_TUNNEL_ID=
       - CF_ACCOUNT_ID=
