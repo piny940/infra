@@ -4,8 +4,8 @@ commonLabels:
   env: production
 resources:
   - ../base
-configMapGenerator:
-  - name: flux-alerts-conf
-    behavior: merge
-    literals:
-      - ENV=production
+patches:
+  - target:
+      kind: Alert
+      name: slack-alert
+    path: slack-alert.yaml

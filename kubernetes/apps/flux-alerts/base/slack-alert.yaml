@@ -6,7 +6,6 @@ metadata:
 spec:
   summary: "Flux alert"
   eventMetadata:
-    env: "production"
     cluster: "home-cluster"
     region: "kyoto/japan"
   providerRef:

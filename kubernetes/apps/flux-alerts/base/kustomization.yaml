@@ -4,7 +4,3 @@ resources:
   - external-secret.yaml
   - provider.yaml
   - slack-alert.yaml
-configMapGenerator:
-  - name: flux-alerts-conf
-    literals:
-      - ENV=
