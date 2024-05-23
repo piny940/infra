@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./kubernetes/apps/flux-alerts
+  path: ./kubernetes/apps/flux-alerts/staging
   prune: true
   sourceRef:
     kind: GitRepository
