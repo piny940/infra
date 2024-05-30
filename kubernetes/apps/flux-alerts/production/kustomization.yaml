@@ -4,3 +4,4 @@ commonLabels:
   env: production
 resources:
   - ../base
+  - slack-alert.yaml
