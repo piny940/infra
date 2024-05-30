@@ -3,3 +3,7 @@ nameReference:
     fieldSpecs:
       - kind: Deployment
         path: spec/template/spec/containers/env/valueFrom/secretKeyRef/name
+  - kind: ImageRepository
+    fieldSpecs:
+      - kind: ImagePolicy
+        path: spec/imageRepositoryRef/name
