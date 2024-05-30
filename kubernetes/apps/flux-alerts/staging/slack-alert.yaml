@@ -4,22 +4,7 @@ metadata:
   name: slack-alert
   namespace: flux-system
 spec:
-  summary: "Flux alert"
   eventMetadata:
-    cluster: "home-cluster"
-    region: "kyoto/japan"
     env: staging
-  providerRef:
-    name: slack-bot
-  eventSeverity: info
-  eventSources:
-    - kind: GitRepository
-      name: "*"
-    - kind: Kustomization
-      name: "*"
-    - kind: HelmRepository
-      name: "*"
-      namespace: "*"
-    - kind: HelmRelease
-      name: "*"
-      namespace: "*"
+patches:
+  - path: slack-alert.yaml

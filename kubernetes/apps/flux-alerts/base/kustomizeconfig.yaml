@@ -3,3 +3,7 @@ nameReference:
     fieldSpecs:
       - kind: Provider
         path: spec/secretRef/name
+  - kind: Provider
+    fieldSpecs:
+      - kind: Alert
+        path: spec/providerRef/name

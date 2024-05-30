@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - external-secret.yaml
   - provider.yaml
+  - slack-alert.yaml
 configurations:
   - kustomizeconfig.yaml
