@@ -1,0 +1,5 @@
+nameReference:
+  - kind: ExternalSecret
+    fieldSpecs:
+      - kind: Provider
+        path: spec/secretRef/name
