@@ -40,6 +40,13 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+    extraVolumes:
+      - name: pods-metrics
+        configMap:
+          name: pods-metrics
+    extraVolumeMounts:
+      - name: pods-metrics
+        mountPath: /var/lib/grafana/dashboards/default
     persistence:
       enabled: true
       type: pvc
