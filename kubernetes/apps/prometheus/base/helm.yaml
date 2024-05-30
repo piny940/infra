@@ -23,7 +23,6 @@ spec:
     alertmanager:
       enabled: true
       serviceAccount:
-        create: false
         name: prometheus
       alertmanagerSpec:
         replicas: 1
@@ -64,7 +63,6 @@ spec:
       enabled: true
     prometheus:
       serviceAccount:
-        create: false
         name: prometheus
       ingress:
         enabled: true
