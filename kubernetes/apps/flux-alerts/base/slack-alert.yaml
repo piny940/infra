@@ -8,20 +8,11 @@ spec:
   eventMetadata:
     cluster: "home-cluster"
     region: "kyoto/japan"
-    env: production
   providerRef:
     name: slack-bot
   eventSeverity: info
   eventSources:
     - kind: GitRepository
       name: "*"
-      namespace: "*"
     - kind: Kustomization
       name: "*"
-      namespace: "*"
-    - kind: HelmRepository
-      name: "*"
-      namespace: "*"
-    - kind: HelmRelease
-      name: "*"
-      namespace: "*"
