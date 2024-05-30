@@ -22,8 +22,6 @@ spec:
   values:
     alertmanager:
       enabled: true
-      serviceAccount:
-        name: prometheus
       alertmanagerSpec:
         replicas: 1
         storage:
@@ -62,8 +60,6 @@ spec:
     prometheus-node-exporter:
       enabled: true
     prometheus:
-      serviceAccount:
-        name: prometheus
       ingress:
         enabled: true
         annotations:
