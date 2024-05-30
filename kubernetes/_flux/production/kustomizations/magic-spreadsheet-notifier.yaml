@@ -4,7 +4,7 @@ metadata:
   name: magic-spreadsheet-notifier
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/apps/magic-spreadsheet-notifier/production
   prune: true
   sourceRef:

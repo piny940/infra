@@ -4,7 +4,7 @@ metadata:
   name: metallb-ipaddress
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/apps/metallb-ipaddress
   prune: true
   sourceRef:

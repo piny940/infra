@@ -4,7 +4,7 @@ metadata:
   name: clubroom
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/apps/clubroom/staging
   prune: true
   sourceRef:

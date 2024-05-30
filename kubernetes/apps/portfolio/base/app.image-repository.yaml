@@ -4,4 +4,4 @@ metadata:
   name: portfolio-app
 spec:
   image: ghcr.io/piny940/portfolio-app
-  interval: 10m
+  interval: 1m

@@ -4,7 +4,7 @@ metadata:
   name: prometheus
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/apps/prometheus/production
   prune: true
   sourceRef:

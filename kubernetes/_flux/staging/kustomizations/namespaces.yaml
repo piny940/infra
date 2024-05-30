@@ -4,7 +4,7 @@ metadata:
   name: namespaces
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/namespaces
   prune: true
   sourceRef:

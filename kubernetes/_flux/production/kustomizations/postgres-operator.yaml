@@ -4,7 +4,7 @@ metadata:
   name: postgres-operator
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/apps/postgres-operator
   prune: true
   sourceRef:
