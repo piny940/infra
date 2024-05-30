@@ -50,6 +50,11 @@ spec:
                 configMapKeyRef:
                   name: portfolio-conf
                   key: DB_SSLMODE
+            - name: DB_MIGRATIONS_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: portfolio-conf
+                  key: DB_MIGRATIONS_DIR
             - name: API_TOKEN
               valueFrom:
                 secretKeyRef:
