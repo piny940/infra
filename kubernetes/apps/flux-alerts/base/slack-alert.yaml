@@ -8,6 +8,7 @@ spec:
   eventMetadata:
     cluster: "home-cluster"
     region: "kyoto/japan"
+    env: production
   providerRef:
     name: slack-bot
   eventSeverity: info

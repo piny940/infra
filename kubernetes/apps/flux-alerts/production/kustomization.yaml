@@ -4,8 +4,3 @@ commonLabels:
   env: production
 resources:
   - ../base
-patches:
-  - target:
-      kind: Alert
-      name: slack-alert
-    path: slack-alert.yaml
