@@ -5,8 +5,4 @@ commonLabels:
   env: staging
 resources:
   - ../base
-patches:
-  - target:
-      kind: Alert
-      name: slack-alert
-    path: slack-alert.yaml
+  - slack-alert.yaml
