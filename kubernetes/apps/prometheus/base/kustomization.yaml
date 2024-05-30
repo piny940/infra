@@ -4,5 +4,6 @@ namespace: default
 resources:
   - basic-auth.yaml
   - helm.yaml
+  - service-account.yaml
 configurations:
   - kustomizeconfig.yaml
