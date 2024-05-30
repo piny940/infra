@@ -4,4 +4,4 @@ metadata:
   name: portfolio-admin
 spec:
   image: ghcr.io/piny940/portfolio-admin
-  interval: 10m
+  interval: 1m

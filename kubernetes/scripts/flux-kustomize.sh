@@ -8,8 +8,8 @@ metadata:
   name: ${app}
   namespace: flux-system
 spec:
-  interval: 10m0s
-  path: "./kubernetes/${path}"
+  interval: 3m
+  path: ./kubernetes/${path}
   prune: true
   sourceRef:
     kind: GitRepository

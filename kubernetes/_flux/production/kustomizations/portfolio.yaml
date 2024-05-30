@@ -4,7 +4,7 @@ metadata:
   name: portfolio
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 3m
   path: ./kubernetes/apps/portfolio/production
   prune: true
   sourceRef:
