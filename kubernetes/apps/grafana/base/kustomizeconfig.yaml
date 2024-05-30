@@ -7,3 +7,7 @@ nameReference:
     fieldSpecs:
       - kind: HelmRelease
         path: spec/chart/spec/sourceRef/name
+  - kind: ConfigMap
+    fieldSpecs:
+      - kind: HelmRelease
+        path: spec/values/extraVolumes/configMap/name
