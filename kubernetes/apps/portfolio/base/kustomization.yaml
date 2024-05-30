@@ -22,6 +22,7 @@ configMapGenerator:
       - DB_PORT=5432
       - DB_NAME=
       - DB_SSLMODE=disable
+      - DB_MIGRATIONS_DIR=db/migrations
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
 configurations:
