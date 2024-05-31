@@ -34,6 +34,7 @@ spec:
             url: https://default-es-http.elastic-system.svc.cluster.local:9200
             jsonData:
               tlsSkipVerify: true
+              timeField: "@timestamp"
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
