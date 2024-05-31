@@ -4,6 +4,7 @@ namespace: monitoring
 resources:
   - daemonset.yaml
   - external-secret.yaml
+  - service-account.yaml
 configMapGenerator:
   - name: fluentd-conf
     literals:
