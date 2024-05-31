@@ -52,6 +52,11 @@ spec:
                 configMapKeyRef:
                   name: fluentd-conf
                   key: FLUENT_ELASTICSEARCH_SSL_VERIFY
+            - name: FLUENT_ELASTICSEARCH_SSL_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: fluentd-conf
+                  key: FLUENT_ELASTICSEARCH_SSL_VERSION
             - name: FLUENT_ELASTICSEARCH_USER
               valueFrom:
                 configMapKeyRef:
