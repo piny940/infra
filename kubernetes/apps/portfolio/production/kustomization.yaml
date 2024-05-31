@@ -12,10 +12,10 @@ images:
     newTag: 1.0.0-20240530081355 # {"$imagepolicy": "default:portfolio-app:tag"}
   - name: portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend:name"}
-    newTag: 1.0.20 # {"$imagepolicy": "default:portfolio-backend:tag"}
+    newTag: 1.0.21 # {"$imagepolicy": "default:portfolio-backend:tag"}
   - name: portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater:name"}
-    newTag: 1.0.20 # {"$imagepolicy": "default:portfolio-updater:tag"}
+    newTag: 1.0.21 # {"$imagepolicy": "default:portfolio-updater:tag"}
 resources:
   - ../base
   - ingress.yaml
