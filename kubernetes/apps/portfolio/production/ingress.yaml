@@ -6,7 +6,7 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - xwww.piny940.com
+        - www.piny940.com
       secretName: cluster-tls
     - hosts:
         - portfolio-backend.piny940.com
@@ -15,7 +15,7 @@ spec:
         - portfolio-admin.piny940.com
       secretName: cluster-tls
   rules:
-    - host: xwww.piny940.com
+    - host: www.piny940.com
       http:
         paths:
           - path: /
