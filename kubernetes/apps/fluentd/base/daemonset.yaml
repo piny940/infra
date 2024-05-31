@@ -67,6 +67,8 @@ spec:
                 secretKeyRef:
                   name: fluentd-secret
                   key: FLUENT_ELASTICSEARCH_PASSWORD
+            - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+              value: "/^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>[FP]) (?<log>.*)$/"
           resources:
             limits:
               memory: 200Mi
@@ -79,9 +81,9 @@ spec:
             - name: dockercontainerlogdirectory
               mountPath: /var/log/pods
               readOnly: true
-            - name: config-volume
-              mountPath: /fluentd/etc/fluent.conf
-              subPath: fluent.conf
+            # - name: config-volume
+            #   mountPath: /fluentd/etc/fluent.conf
+            #   subPath: fluent.conf
       terminationGracePeriodSeconds: 30
       volumes:
         - name: varlog
