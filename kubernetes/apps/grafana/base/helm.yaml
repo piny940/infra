@@ -32,9 +32,6 @@ spec:
             type: elasticsearch
             access: proxy
             url: https://elasticsearch-master.monitoring.svc.cluster.local:9200
-            basicAuth: true
-            basicAuthUser: elastic
-            basicAuthPassword: 53VfwQ4Mr32B0SK40N57XKKb
             jsonData:
               tlsSkipVerify: true
     dashboardProviders:
