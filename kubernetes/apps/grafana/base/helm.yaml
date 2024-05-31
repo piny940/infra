@@ -35,6 +35,8 @@ spec:
             basicAuth: true
             basicAuthUser: elastic
             basicAuthPassword: ${ELASTIC_PASSWORD}
+            jsonData:
+              tlsAuth: false
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
