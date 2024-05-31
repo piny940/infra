@@ -6,6 +6,7 @@ metadata:
     app: song-list-backend
 spec:
   replicas: 1
+  restartPolicy: Always
   selector:
     matchLabels:
       app: song-list-backend
@@ -14,7 +15,6 @@ spec:
       labels:
         app: song-list-backend
     spec:
-      restartPolicy: Always
       containers:
         - name: app
           image: song-list-backend
