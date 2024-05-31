@@ -105,3 +105,7 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: BACKEND_HOST
+      initContainers:
+        - name: db-migrate
+          image: song-list-backend
+          command: ["bundle", "exec", "rails", "db:migrate"]
