@@ -6,13 +6,13 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - song-list-app.piny940.com
+        - stg-song-list.piny940.com
       secretName: cluster-tls
     - hosts:
-        - song-list.piny940.com
+        - stg-song-list-backend.piny940.com
       secretName: cluster-tls
   rules:
-    - host: song-list-app.piny940.com
+    - host: stg-song-list.piny940.com
       http:
         paths:
           - path: /
@@ -22,13 +22,13 @@ spec:
                 name: song-list-frontend
                 port:
                   number: 4400
-    - host: song-list.piny940.com
+    - host: stg-song-list-backend.piny940.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: song-list-frontend
+                name: song-list-backend
                 port:
-                  number: 4400
+                  number: 3000

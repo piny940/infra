@@ -9,11 +9,12 @@ resources:
   - front.service.yaml
   - image-repository.yaml
 configMapGenerator:
-  - name: kintai-conf
+  - name: song-list-conf
     literals:
       - POSTGRES_HOST=postgres-cluster.database.svc.cluster.local
       - POSTGRES_PORT=5432
       - POSTGRES_SSLMODE=disable
+      - GOOGLE_BUCKET=dev-piny940
       - POSTGRES_NAME=
       - BACKEND_HOST=
 configurations:

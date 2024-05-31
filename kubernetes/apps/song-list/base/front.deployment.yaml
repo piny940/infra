@@ -21,4 +21,7 @@ spec:
             - containerPort: 4400
           env:
             - name: BACKEND_HOST
-              value: song-list-backend.default.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: BACKEND_HOST

@@ -11,10 +11,13 @@ images:
     newName: ghcr.io/piny940/song-list-frontend:1.0.1 # {"$imagepolicy": "default:song-list-frontend:name"}
     newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:song-list-frontend:tag"}
 resources:
-  - ../base
+  []
+  # - ../base
+  # - ingress.yaml
+  # - image-policy.yaml
 configMapGenerator:
-  - name: kintai-conf
+  - name: song-list-conf
     behavior: merge
     literals:
-      - POSTGRES_NAME=kintai
-      - BACKEND_HOST=kintai-backend.default.svc.cluster.local
+      - POSTGRES_NAME=song_list_production
+      - BACKEND_HOST=song-list-backend.default.svc.cluster.local

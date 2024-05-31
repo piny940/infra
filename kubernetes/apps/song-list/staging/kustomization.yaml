@@ -5,17 +5,19 @@ namePrefix: stg-
 commonLabels:
   env: staging
 images:
-  - name: kintai-backend
-    newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:stg-kintai-backend:name"}
-    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:stg-kintai-backend:tag"}
-  - name: kintai-frontend
-    newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:stg-kintai-frontend:name"}
-    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:stg-kintai-frontend:tag"}
+  - name: song-list-backend
+    newName: ghcr.io/piny940/song-list-backend # {"$imagepolicy": "default:stg-song-list-backend:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:stg-song-list-backend:tag"}
+  - name: song-list-frontend
+    newName: ghcr.io/piny940/song-list-frontend # {"$imagepolicy": "default:stg-song-list-frontend:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
 resources:
   - ../base
+  - ingress.yaml
+  - image-policy.yaml
 configMapGenerator:
-  - name: kintai-conf
+  - name: song-list-conf
     behavior: merge
     literals:
-      - POSTGRES_NAME=kintai_staging
-      - BACKEND_HOST=stg-kintai-backend.default.svc.cluster.local
+      - POSTGRES_NAME=song_list_staging
+      - BACKEND_HOST=stg-song-list-backend.default.svc.cluster.local
