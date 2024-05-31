@@ -3,8 +3,18 @@ kind: Kustomization
 namespace: default
 commonLabels:
   env: production
+images:
+  - name: song-list-backend
+    newName: ghcr.io/piny940/song-list-backend:1.0.1 # {"$imagepolicy": "default:song-list-backend:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:song-list-backend:tag"}
+  - name: song-list-frontend
+    newName: ghcr.io/piny940/song-list-frontend:1.0.1 # {"$imagepolicy": "default:song-list-frontend:name"}
+    newTag: main-8dd87cde0b268274a78d350757d7fb88b1e4a62c-2 # {"$imagepolicy": "default:song-list-frontend:tag"}
 resources:
-  - back.deployment.yaml
-  - back.service.yaml
-  - front.deployment.yaml
-  - front.service.yaml
+  - ../base
+configMapGenerator:
+  - name: kintai-conf
+    behavior: merge
+    literals:
+      - POSTGRES_NAME=kintai
+      - BACKEND_HOST=kintai-backend.default.svc.cluster.local
