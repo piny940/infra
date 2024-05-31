@@ -1,29 +1,24 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: song-list-backend
-spec:
-  image: ghcr.io/piny940/song-list-backend
-  interval: 10m
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: song-list-backend
 spec:
   imageRepositoryRef:
     name: song-list-backend
+  filterTags:
+    pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
+    extract: "$ts"
   policy:
-    semver:
-      range: 1.0.x
+    numerical:
+      order: asc
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: song-list-backend
+  name: song-list-frontend
 spec:
   imageRepositoryRef:
-    name: song-list-backend
+    name: song-list-frontend
   filterTags:
     pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
     extract: "$ts"

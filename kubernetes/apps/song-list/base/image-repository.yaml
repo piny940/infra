@@ -1,0 +1,15 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: song-list-backend
+spec:
+  image: ghcr.io/piny940/song-list-backend
+  interval: 3m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: song-list-frontend
+spec:
+  image: ghcr.io/piny940/song-list-frontend
+  interval: 3m

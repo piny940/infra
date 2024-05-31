@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/song-list-backend:1.0.1 # {"$imagepolicy": "default:song-list-backend"}
+          image: song-list-backend
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -31,13 +31,25 @@ spec:
                   name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
             - name: POSTGRES_HOST
-              value: postgres-cluster.database.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_HOST
             - name: POSTGRES_PORT
-              value: "5432"
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_PORT
             - name: POSTGRES_NAME
-              value: kintai_production
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_NAME
             - name: POSTGRES_SSLMODE
-              value: disable
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_SSLMODE
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
@@ -49,7 +61,10 @@ spec:
                   name: song-list-secret
                   key: google-json
             - name: GOOGLE_BUCKET
-              value: dev-piny940
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: GOOGLE_BUCKET
             - name: GOOGLE_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -86,4 +101,11 @@ spec:
                   name: song-list-secret
                   key: admin-password
             - name: RAILS_HOST
-              value: https://song-list-app.piny940.com
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: BACKEND_HOST
+      initContainers:
+        - name: db-migrate
+          image: song-list-backend
+          command: ["bundle", "exec", "rails", "db:migrate"]

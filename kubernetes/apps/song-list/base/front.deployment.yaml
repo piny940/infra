@@ -16,9 +16,12 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/piny940/song-list-frontend:1.0.1 # {"$imagepolicy": "default:song-list-frontend"}
+          image: song-list-frontend
           ports:
             - containerPort: 4400
           env:
             - name: BACKEND_HOST
-              value: song-list-backend.default.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: BACKEND_HOST

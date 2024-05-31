@@ -1,0 +1,21 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: song-list-backend
+spec:
+  imageRepositoryRef:
+    name: song-list-backend
+  policy:
+    semver:
+      range: 1.0.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: song-list-frontend
+spec:
+  imageRepositoryRef:
+    name: song-list-frontend
+  policy:
+    semver:
+      range: 1.0.x

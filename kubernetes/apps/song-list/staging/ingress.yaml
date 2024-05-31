@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: song-list
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - stg-song-list.piny940.com
+      secretName: cluster-tls
+    - hosts:
+        - stg-song-list-backend.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: stg-song-list.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: song-list-frontend
+                port:
+                  number: 4400
+    - host: stg-song-list-backend.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: song-list-backend
+                port:
+                  number: 3000
