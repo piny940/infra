@@ -79,6 +79,9 @@ spec:
             - name: dockercontainerlogdirectory
               mountPath: /var/log/pods
               readOnly: true
+            - name: config-volume
+              mountPath: /fluentd/etc/fluent.conf
+              subPath: fluent.conf
       terminationGracePeriodSeconds: 30
       volumes:
         - name: varlog
@@ -87,3 +90,6 @@ spec:
         - name: dockercontainerlogdirectory
           hostPath:
             path: /var/log/pods
+        - name: config-volume
+          configMap:
+            name: config-volume
