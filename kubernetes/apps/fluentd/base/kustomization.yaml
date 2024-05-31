@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+resources:
+  - daemonset.yaml
+  - external-secret.yaml
+configMapGenerator:
+  - name: fluentd-conf
+    literals:
+      - FLUENT_ELASTICSEARCH_HOST=default-es-http.elastic-system.svc.cluster.local
+      - FLUENT_ELASTICSEARCH_PORT=9200
+      - FLUENT_ELASTICSEARCH_SCHEME=http
+      - FLUENT_ELASTICSEARCH_SSL_VERIFY="false"
+      - FLUENT_ELASTICSEARCH_USER=elastic
