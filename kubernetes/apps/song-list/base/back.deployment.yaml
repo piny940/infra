@@ -14,8 +14,8 @@ spec:
       labels:
         app: song-list-backend
     spec:
+      restartPolicy: Always
       containers:
-        restartPolicy: Always
         - name: app
           image: song-list-backend
           ports:
