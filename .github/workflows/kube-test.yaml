@@ -41,6 +41,8 @@ jobs:
           before=$(ls _flux/**/*)
           bash scripts/flux-kustomize.sh
           after=$(ls _flux/**/*)
+          echo "Before: $before"
+          echo "After: $after"
           diff=$(diff <(echo ${before}) <(echo ${after}))
           echo $diff
           if [ -z "$diff" ]; then
