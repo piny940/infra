@@ -90,6 +90,6 @@ spec:
         - name: dockercontainerlogdirectory
           hostPath:
             path: /var/log/pods
-        # - name: config-volume
-        #   configMap:
-        #     name: config-volume
+        - name: config-volume
+          configMap:
+            name: config-volume
