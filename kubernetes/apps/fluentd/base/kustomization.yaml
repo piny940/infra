@@ -10,7 +10,7 @@ configMapGenerator:
     literals:
       - FLUENT_ELASTICSEARCH_HOST=default-es-http.elastic-system.svc.cluster.local
       - FLUENT_ELASTICSEARCH_PORT=9200
-      - FLUENT_ELASTICSEARCH_SCHEME=http
+      - FLUENT_ELASTICSEARCH_SCHEME=https
       - FLUENT_ELASTICSEARCH_SSL_VERIFY=true
       - FLUENT_ELASTICSEARCH_USER=elastic
       - FLUENT_ELASTICSEARCH_SSL_VERSION=TLSv1_2
