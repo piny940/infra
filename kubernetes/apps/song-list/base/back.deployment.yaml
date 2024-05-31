@@ -15,6 +15,7 @@ spec:
         app: song-list-backend
     spec:
       containers:
+        restartPolicy: Always
         - name: app
           image: song-list-backend
           ports:
