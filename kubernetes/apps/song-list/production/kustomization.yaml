@@ -14,9 +14,9 @@ resources: []
 # - ../base
 # - ingress.yaml
 # - image-policy.yaml
-configMapGenerator:
-  - name: song-list-conf
-    behavior: merge
-    literals:
-      - POSTGRES_NAME=song_list_production
-      - BACKEND_HOST=song-list-backend.default.svc.cluster.local
+# configMapGenerator:
+#   - name: song-list-conf
+#     behavior: merge
+#     literals:
+#       - POSTGRES_NAME=song_list_production
+#       - BACKEND_HOST=song-list-backend.default.svc.cluster.local
