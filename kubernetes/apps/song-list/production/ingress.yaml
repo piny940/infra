@@ -6,10 +6,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - song-list-app.piny940.com
+        - prd-song-list.piny940.com
       secretName: cluster-tls
     - hosts:
-        - song-list-backend.piny940.com
+        - prd-song-list-backend.piny940.com
       secretName: cluster-tls
   rules:
     - host: prd-song-list.piny940.com
