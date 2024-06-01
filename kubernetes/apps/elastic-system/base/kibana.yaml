@@ -1,0 +1,13 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: default
+spec:
+  version: 8.13.4
+  count: 1
+  elasticsearchRef:
+    name: default
+  http:
+    service:
+      spec:
+        type: ClusterIP
