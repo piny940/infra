@@ -17,6 +17,7 @@ spec:
       containers:
         - name: app
           image: song-list-backend
+          command: ["bundle", "exec", "sidekiq"]
           env:
             - name: RAILS_ENV
               valueFrom:
