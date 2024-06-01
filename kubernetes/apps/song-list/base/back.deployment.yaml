@@ -114,3 +114,44 @@ spec:
         - name: db-migrate
           image: song-list-backend
           command: ["bundle", "exec", "rails", "db:migrate"]
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_HOST
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_PORT
+            - name: POSTGRES_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_NAME
+            - name: POSTGRES_SSLMODE
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: POSTGRES_SSLMODE
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: session-secret
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: REDIS_HOST
