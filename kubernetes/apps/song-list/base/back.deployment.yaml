@@ -20,6 +20,11 @@ spec:
           ports:
             - containerPort: 3000
           env:
+            - name: RAILS_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: RAILS_ENV
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -110,11 +115,21 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: REDIS_HOST
+            - name: RAILS_LOG_TO_STDOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: RAILS_LOG_TO_STDOUT
       initContainers:
         - name: db-migrate
           image: song-list-backend
           command: ["bundle", "exec", "rails", "db:migrate"]
           env:
+            - name: RAILS_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: RAILS_ENV
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -155,3 +170,8 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: REDIS_HOST
+            - name: RAILS_LOG_TO_STDOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: RAILS_LOG_TO_STDOUT
