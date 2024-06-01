@@ -15,7 +15,7 @@ configMapGenerator:
       - POSTGRES_PORT=5432
       - POSTGRES_SSLMODE=disable
       - GOOGLE_BUCKET=dev-piny940
-      - REDIS_HOST=redis.database.svc.cluster.local
+      - REDIS_HOST=redis-replicas.database.svc.cluster.local
       - POSTGRES_NAME=
       - BACKEND_HOST=
 configurations:
