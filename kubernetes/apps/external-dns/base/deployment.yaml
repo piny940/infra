@@ -43,3 +43,13 @@ spec:
                 configMapKeyRef:
                   name: external-dns-conf
                   key: CF_ACCOUNT_ID
+            - name: SLACK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: external-dns-secret
+                  key: slack-token
+            - name: SLACK_CHANNEL
+              valueFrom:
+                configMapKeyRef:
+                  name: external-dns-conf
+                  key: SLACK_CHANNEL
