@@ -4,3 +4,4 @@ commonLabels:
   env: staging
 resources:
   - ../base
+  - ingress.yaml

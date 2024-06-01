@@ -5,3 +5,4 @@ resources:
   - https://download.elastic.co/downloads/eck/2.12.1/crds.yaml
   - https://download.elastic.co/downloads/eck/2.12.1/operator.yaml
   - elastic-search.yaml
+  - kibana.yaml
