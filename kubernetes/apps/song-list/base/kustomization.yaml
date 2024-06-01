@@ -8,6 +8,7 @@ resources:
   - front.deployment.yaml
   - front.service.yaml
   - image-repository.yaml
+  - sidekiq.deployment.yaml
 configMapGenerator:
   - name: song-list-conf
     literals:
