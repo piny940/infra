@@ -17,3 +17,4 @@ configMapGenerator:
       - OWNER_ID=staging
       - CF_TUNNEL_ID=d2dd618d-4dd7-467b-a41a-41b5b1985dfe
       - CF_ACCOUNT_ID=66f329cedfe902cbfc395f9f5850122a
+      - SLACK_CHANNEL=C07655VCH9P
