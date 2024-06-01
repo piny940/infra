@@ -50,7 +50,7 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: POSTGRES_SSLMODE
-            - name: SESSION_SECRET
+            - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
                   name: song-list-secret
@@ -105,6 +105,11 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: BACKEND_HOST
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: REDIS_HOST
       initContainers:
         - name: db-migrate
           image: song-list-backend
