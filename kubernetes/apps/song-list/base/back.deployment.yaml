@@ -115,6 +115,11 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: REDIS_HOST
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: redis-password
             - name: RAILS_LOG_TO_STDOUT
               valueFrom:
                 configMapKeyRef:
