@@ -65,7 +65,7 @@ spec:
         create: true
     replica:
       kind: StatefulSet
-      replicaCount: 3
+      replicaCount: 1
       containerPorts:
         redis: 6379
       startupProbe:
