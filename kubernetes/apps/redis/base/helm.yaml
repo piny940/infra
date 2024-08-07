@@ -24,9 +24,7 @@ spec:
         name: bitnami
   values:
     auth:
-      enabled: true
-      existingSecret: redis-secret
-      existingSecretPasswordKey: PASSWORD
+      enabled: false
     master:
       count: 1
       livenessProbe:
