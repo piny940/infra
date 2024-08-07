@@ -55,6 +55,11 @@ spec:
                 configMapKeyRef:
                   name: song-list-conf
                   key: POSTGRES_SSLMODE
+            - name: SERVER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: SERVER_NAME
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
