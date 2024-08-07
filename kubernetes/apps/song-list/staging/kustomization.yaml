@@ -21,3 +21,4 @@ configMapGenerator:
     literals:
       - POSTGRES_NAME=song_list_staging
       - BACKEND_HOST=stg-song-list-backend.default.svc.cluster.local
+      - SERVER_NAME=cherry
