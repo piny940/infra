@@ -4,8 +4,14 @@ metadata:
   name: helm-alert
   namespace: flux-system
 spec:
+  summary: "Flux alert"
   eventMetadata:
     env: staging
+    cluster: "home-cluster"
+    region: "kyoto/japan"
+  providerRef:
+    name: slack-bot
+  eventSeverity: info
   eventSources:
     - kind: HelmRelease
       name: "*"
