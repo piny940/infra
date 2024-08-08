@@ -49,3 +49,20 @@ jobs:
             echo "Changes detected"
             exit 1
           fi
+  helm-alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd kubernetes/
+          before=$(cat apps/flux-alerts/*/helm-alert.yaml)
+          bash scripts/flux-helm-alert.sh
+          after=$(cat apps/flux-alerts/*/helm-alert.yaml)
+          diff=$(diff <(echo ${before}) <(echo ${after}))
+          if [ -z "$diff" ]; then
+            echo "No changes detected"
+            exit 0
+          else
+            echo "Changes detected"
+            exit 1
+          fi
