@@ -24,7 +24,7 @@ spec:
       enabled: true
       config:
         route:
-          group_by: ["default"]
+          group_by: ["pod-not-healthy"]
           group_wait: 30s
           group_interval: 5m
           repeat_interval: 12h
