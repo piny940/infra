@@ -113,7 +113,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: song-list-conf
-                  key: BACKEND_HOST
+                  key: RAILS_HOST
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:

@@ -21,3 +21,4 @@ configMapGenerator:
       - POSTGRES_NAME=song_list_production
       - BACKEND_HOST=song-list-backend.default.svc.cluster.local
       - SERVER_NAME=peach
+      - RAILS_HOST=prd-song-list-backend.piny940.com
