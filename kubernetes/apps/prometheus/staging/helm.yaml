@@ -4,6 +4,18 @@ metadata:
   name: kube-prometheus-stack
 spec:
   values:
+    alertmanager:
+      config:
+        receivers:
+          - name: slack
+            slack_configs:
+              - api_url: https://slack.com/api/chat.postMessage
+                channel: C07655VCH9P
+                send_resolved: true
+                http_config:
+                  authorization:
+                    type: Bearer
+                    credentials_file: /etc/alertmanager/secrets/alertmanager-bot-token
     prometheus:
       ingress:
         hosts:
