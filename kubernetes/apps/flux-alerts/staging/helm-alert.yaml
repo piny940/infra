@@ -4,7 +4,7 @@ metadata:
   name: helm-alert
   namespace: flux-system
 spec:
-  summary: "Flux alert"
+  summary: "Helm alert"
   eventMetadata:
     env: staging
     cluster: "home-cluster"
@@ -15,4 +15,28 @@ spec:
   eventSources:
     - kind: HelmRelease
       name: "*"
+      namespace: database
+    - kind: HelmRelease
+      name: "*"
+      namespace: external-secrets
+    - kind: HelmRelease
+      name: "*"
+      namespace: ingress-nginx
+    - kind: HelmRelease
+      name: "*"
+      namespace: longhorn-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: metallb-system
+    - kind: HelmRelease
+      name: "*"
       namespace: monitoring
+    - kind: HelmRelease
+      name: "*"
+      namespace: prometheus
+    - kind: HelmRelease
+      name: "*"
+      namespace: vault
+    - kind: HelmRelease
+      name: "*"
+      namespace: velero
