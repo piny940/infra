@@ -30,7 +30,7 @@ spec:
           repeat_interval: 12h
           receiver: slack
         receivers:
-          - name: "slack"
+          - name: slack
             slack_configs: []
       alertmanagerSpec:
         replicas: 1
