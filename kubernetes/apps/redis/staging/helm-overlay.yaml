@@ -6,6 +6,6 @@ metadata:
 spec:
   chart:
     spec:
-      version: 19.x
+      version: 19.5.x
   test:
     enable: true
