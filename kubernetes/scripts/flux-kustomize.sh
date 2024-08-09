@@ -28,23 +28,17 @@ createKustomization() {
   fi
 
   # StagingとProductionの区別がない場合
-  if [ ! -e "./apps/$app/production" ]; then
+  if [ ! -e "./apps/$app/base" ]; then
     kustomization $app "apps/$app" > $file_path
     return
   fi
 
-  # Baseがない場合はまだ非対応
-  if [ ! -e "./apps/$app/base" ]; then
+  # $envディレクトリが存在しない場合は何もしない
+  if [ ! -e "./apps/$app/$env" ]; then
     return
   fi
 
-  # $envディレクトリが存在しない場合はProductionをデプロイ
-  if [ ! -e "./apps/$app/$env" ]; then
-    target="apps/$app/production"
-  else
-    target="apps/$app/$env"
-  fi
-
+  target="apps/$app/$env"
   kustomization $app $target > $file_path
 }
 
