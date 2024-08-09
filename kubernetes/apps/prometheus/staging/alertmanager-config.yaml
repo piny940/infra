@@ -14,7 +14,7 @@ spec:
   receivers:
     - name: "slack"
       slackConfigs:
-        - apiUrl: https://slack.com/api/chat.postMessage
+        - apiURL: https://slack.com/api/chat.postMessage
           channel: C07655VCH9P
           sendResolved: true
           httpConfig:
