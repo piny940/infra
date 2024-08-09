@@ -10,10 +10,6 @@ spec:
           matchLabels:
             alertmanagerConfig: slack-alert
     prometheus:
-      prometheusSpec:
-        ruleSelector:
-          matchLabels:
-            role: alert-rules
       ingress:
         hosts:
           - stg-prometheus.piny940.com
