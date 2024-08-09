@@ -1,0 +1,12 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: grafana
+      version: 7.x
+  test:
+    enable: true
