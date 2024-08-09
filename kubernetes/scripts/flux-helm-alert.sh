@@ -13,7 +13,7 @@ spec:
     cluster: \"home-cluster\"
     region: \"kyoto/japan\"
   providerRef:
-    name: slack-bot
+    name: githubdispatch
   eventSeverity: info
   eventSources:"
 }
