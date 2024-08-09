@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 3m
-  path: ./kubernetes/apps/postgresql
+  path: ./kubernetes/apps/postgresql/staging
   prune: true
   sourceRef:
     kind: GitRepository
