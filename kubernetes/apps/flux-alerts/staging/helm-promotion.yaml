@@ -1,3 +1,30 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: github-token
+  namespace: flux-system
+spec:
+  secretStoreRef:
+    name: vault-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 1m
+  data:
+    - secretKey: token
+      remoteRef:
+        key: flux
+        property: github-dispatch-token
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: githubdispatch
+  namespace: flux-system
+spec:
+  type: githubdispatch
+  address: https://github.com/piny940/infra
+  secretRef:
+    name: github-token
+---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
