@@ -2,7 +2,7 @@ name: helm-promotion
 on:
   repository_dispatch:
     types:
-      - HelmRelease/redis.database
+      - HelmRelease/*
 permissions:
   contents: write
   pull-requests: write
@@ -17,13 +17,12 @@ jobs:
         with:
           ref: main
       # Parse the event metadata to determine the chart version deployed on staging.
-      - name: Log metadata
-        run: |
-          echo ${{ toJSON(github.event.client_payload) }}
-      - name: Get chart version from staging
+      - name: Get chart info from staging
         id: staging
         run: |
+          NAME=${{ github.event.client_payload.involvedObject.name }}
           VERSION=$(echo ${{ github.event.client_payload.metadata.revision }} | cut -d '@' -f1)
+          echo NAME=${NAME} >> $GITHUB_OUTPUT
           echo VERSION=${VERSION} >> $GITHUB_OUTPUT
       # Patch the chart version in the production Helm release manifest.
       - name: Set chart version in production
@@ -32,15 +31,17 @@ jobs:
           CHART_VERSION: ${{ steps.staging.outputs.version }}
         run: |
           echo "set chart version to ${CHART_VERSION}"
-          yq eval '.spec.chart.spec.version=env(CHART_VERSION)' -i ./kubernetes/apps/redis/production/helm-overlay.yaml
+          path=find ./kubernetes/apps/*/production/*helm*.yaml -type f -print | xargs grep "name: ${{ steps.staging.outputs.name }}$" | cut -d':' -f1
+          echo $path
+          yq eval '.spec.chart.spec.version=env(CHART_VERSION)' -i $path
       # Open a Pull Request if an upgraded is needed in production.
       - name: Open promotion PR
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: flux-helm-promotion
+          branch: flux-helm-promotion/${{ steps.staging.outputs.name }}/${{ steps.staging.outputs.version}}
           delete-branch: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update demo to v${{ steps.staging.outputs.version }}
-          title: Promote demo release to v${{ steps.staging.outputs.version }}
+          commit-message: Update ${{ steps.staging.outputs.name }} to v${{ steps.staging.outputs.version }}
+          title: Promote ${{ steps.staging.outputs.name }} release to v${{ steps.staging.outputs.version }}
           body: |
-            Promote demo release on production to v${{ steps.staging.outputs.version }}
+            Promote ${{ steps.staging.outputs.name }} release on production to v${{ steps.staging.outputs.version }}
