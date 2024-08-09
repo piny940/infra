@@ -3,6 +3,7 @@ kind: PrometheusRule
 metadata:
   name: pod-not-ready
   labels:
+    app: pod-not-ready
     prometheus: default
     role: alert-rules
 spec:
