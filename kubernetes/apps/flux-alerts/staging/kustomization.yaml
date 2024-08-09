@@ -6,7 +6,6 @@ resources:
   - ../base
   - github-token.yaml
   - githubdispatch.yaml
-  - helm-alert.yaml
   - helm-promotion.yaml
 patches:
   - path: slack-alert.yaml
