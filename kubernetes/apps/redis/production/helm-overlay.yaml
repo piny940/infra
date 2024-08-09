@@ -6,4 +6,4 @@ metadata:
 spec:
   chart:
     spec:
-      version: 19.5.5
+      version: 19.6.4
