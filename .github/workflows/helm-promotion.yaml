@@ -17,6 +17,9 @@ jobs:
         with:
           ref: main
       # Parse the event metadata to determine the chart version deployed on staging.
+      - name: Log metadata
+        run: |
+          echo ${{ github.event.client_payload }}
       - name: Get chart version from staging
         id: staging
         run: |
