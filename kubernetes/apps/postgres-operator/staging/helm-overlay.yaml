@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgres-operator
+  namespace: database
+spec:
+  chart:
+    spec:
+      version: 1.x
+  test:
+    enable: true

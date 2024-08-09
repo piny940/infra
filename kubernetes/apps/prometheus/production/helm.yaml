@@ -3,6 +3,9 @@ kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
 spec:
+  chart:
+    spec:
+      version: 58.6.0
   values:
     prometheus:
       ingress:
