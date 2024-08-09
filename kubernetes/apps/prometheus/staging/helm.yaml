@@ -10,6 +10,14 @@ spec:
           matchLabels:
             alertmanagerConfig: slack-alert
     prometheus:
+      prometheusSpec:
+        ruleSelector:
+          matchExpressions:
+            - key: app
+              values:
+                - kube-prometheus-stack
+                - pod-not-ready
+              operator: In
       ingress:
         hosts:
           - stg-prometheus.piny940.com
