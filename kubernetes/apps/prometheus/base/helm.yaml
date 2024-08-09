@@ -33,17 +33,6 @@ spec:
               resources:
                 requests:
                   storage: 2Gi
-        volumes:
-          - name: secret
-            secret:
-              secretName: alertmanager-secret
-              items:
-                - key: alertmanager-bot-token
-                  path: alertmanager-bot-token
-        volumeMounts:
-          - name: secret
-            mountPath: /etc/alertmanager/secrets
-            readOnly: true
         resources:
           requests:
             memory: 400Mi
