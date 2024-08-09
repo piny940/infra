@@ -13,13 +13,13 @@ jobs:
       github.event.client_payload.metadata.env == 'staging' &&
       github.event.client_payload.severity == 'info'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: main
       # Parse the event metadata to determine the chart version deployed on staging.
       - name: Log metadata
         run: |
-          echo ${{ github.event.client_payload }}
+          echo ${{ toJSON(github.event.client_payload) }}
       - name: Get chart version from staging
         id: staging
         run: |
@@ -35,7 +35,7 @@ jobs:
           yq eval '.spec.chart.spec.version=env(CHART_VERSION)' -i ./kubernetes/apps/redis/production/helm-overlay.yaml
       # Open a Pull Request if an upgraded is needed in production.
       - name: Open promotion PR
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           branch: flux-helm-promotion
           delete-branch: true
