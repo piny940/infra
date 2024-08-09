@@ -2,7 +2,7 @@ name: helm-promotion
 on:
   repository_dispatch:
     types:
-      - HelmRelease/*
+      - HelmRelease/redis.database
 permissions:
   contents: write
   pull-requests: write
