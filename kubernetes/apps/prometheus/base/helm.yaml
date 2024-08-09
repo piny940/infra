@@ -22,16 +22,6 @@ spec:
   values:
     alertmanager:
       enabled: true
-      config:
-        route:
-          group_by: ["namespace"]
-          group_wait: 30s
-          group_interval: 5m
-          repeat_interval: 12h
-          receiver: slack
-        receivers:
-          - name: slack
-            slack_configs: []
       alertmanagerSpec:
         replicas: 1
         storage:
