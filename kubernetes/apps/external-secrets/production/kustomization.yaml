@@ -5,3 +5,5 @@ commonLabels:
   env: production
 resources:
   - ../base
+patches:
+  - path: helm-overlay.yaml
