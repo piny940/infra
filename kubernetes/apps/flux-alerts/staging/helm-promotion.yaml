@@ -40,7 +40,7 @@ spec:
     region: kyoto/japan
   eventSeverity: info
   inclusionList:
-    - ".*.upgrade.*succeeded.*"
+    - ".*.test.*succeeded.*"
   eventSources:
     - kind: HelmRelease
       name: "*"
