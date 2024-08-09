@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 3m
-  path: ./kubernetes/apps/metallb-system
+  path: ./kubernetes/apps/metallb-system/staging
   prune: true
   sourceRef:
     kind: GitRepository

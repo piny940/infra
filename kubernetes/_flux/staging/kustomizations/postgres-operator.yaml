@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 3m
-  path: ./kubernetes/apps/postgres-operator
+  path: ./kubernetes/apps/postgres-operator/staging
   prune: true
   sourceRef:
     kind: GitRepository

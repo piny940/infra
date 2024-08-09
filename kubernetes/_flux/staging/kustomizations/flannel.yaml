@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 3m
-  path: ./kubernetes/apps/flannel
+  path: ./kubernetes/apps/flannel/staging
   prune: true
   sourceRef:
     kind: GitRepository
