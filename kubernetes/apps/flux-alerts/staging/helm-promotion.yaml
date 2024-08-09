@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   providerRef:
-    name: githubdispatch
+    name: slack-bot
   summary: "Trigger promotion"
   eventMetadata:
     env: staging
