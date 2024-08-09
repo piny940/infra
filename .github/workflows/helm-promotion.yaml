@@ -31,7 +31,7 @@ jobs:
           CHART_VERSION: ${{ steps.staging.outputs.version }}
         run: |
           echo "set chart version to ${CHART_VERSION}"
-          FILE_PATH=find ./kubernetes/apps/*/production/*helm*.yaml -type f -print | xargs grep "name: ${{ steps.staging.outputs.name }}$" | cut -d':' -f1
+          FILE_PATH=$(find ./kubernetes/apps/*/production/*helm*.yaml -type f -print | xargs grep "name: ${{ steps.staging.outputs.name }}$" | cut -d':' -f1)
           yq eval '.spec.chart.spec.version=env(CHART_VERSION)' -i $FILE_PATH
       # Open a Pull Request if an upgraded is needed in production.
       - name: Open promotion PR
