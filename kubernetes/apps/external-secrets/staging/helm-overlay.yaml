@@ -1,11 +1,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: metallb
+  name: external-secrets
+  namespace: external-secrets
 spec:
+  interval: 10m
   chart:
     spec:
-      chart: metallb
+      chart: external-secrets
       version: 0.x
   test:
     enable: true

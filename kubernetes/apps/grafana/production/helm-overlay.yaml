@@ -1,11 +1,10 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: metallb
+  name: grafana
 spec:
+  interval: 10m
   chart:
     spec:
-      chart: metallb
-      version: 0.x
-  test:
-    enable: true
+      chart: grafana
+      version: 7.3.11
