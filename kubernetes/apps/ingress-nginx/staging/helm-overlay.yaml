@@ -1,11 +1,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: metallb
+  name: ingress-nginx
 spec:
+  interval: 10m
   chart:
     spec:
-      chart: metallb
-      version: 0.x
+      version: 4.x
   test:
     enable: true
