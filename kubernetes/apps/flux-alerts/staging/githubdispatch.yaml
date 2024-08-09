@@ -1,0 +1,10 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: githubdispatch
+  namespace: flux-system
+spec:
+  type: githubdispatch
+  address: https://github.com/piny940/infra
+  secretRef:
+    name: github-token

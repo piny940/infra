@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: github-token
+  namespace: flux-system
+spec:
+  secretStoreRef:
+    name: vault-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 1m
+  data:
+    - secretKey: token
+      remoteRef:
+        key: flux
+        property: github-dispatch-token

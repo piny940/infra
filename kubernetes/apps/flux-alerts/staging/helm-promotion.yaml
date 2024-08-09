@@ -1,0 +1,44 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: helm-promotion
+  namespace: flux-system
+spec:
+  providerRef:
+    name: githubdispatch
+  summary: "Trigger promotion"
+  eventMetadata:
+    env: staging
+    cluster: home-cluster
+    region: kyoto/japan
+  eventSeverity: info
+  inclusionList:
+    - ".*.upgrade.*succeeded.*"
+  eventSources:
+    - kind: HelmRelease
+      name: "*"
+      namespace: database
+    - kind: HelmRelease
+      name: "*"
+      namespace: external-secrets
+    - kind: HelmRelease
+      name: "*"
+      namespace: ingress-nginx
+    - kind: HelmRelease
+      name: "*"
+      namespace: longhorn-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: metallb-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: monitoring
+    - kind: HelmRelease
+      name: "*"
+      namespace: prometheus
+    - kind: HelmRelease
+      name: "*"
+      namespace: vault
+    - kind: HelmRelease
+      name: "*"
+      namespace: velero
