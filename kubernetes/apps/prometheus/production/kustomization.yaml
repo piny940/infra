@@ -7,6 +7,4 @@ resources:
   - ../base
 patches:
   - target:
-      kind: HelmRelease
-      name: kube-prometheus-stack
     path: helm.yaml

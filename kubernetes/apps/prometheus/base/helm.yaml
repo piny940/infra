@@ -23,6 +23,9 @@ spec:
     alertmanager:
       enabled: true
       alertmanagerSpec:
+        alertmanagerConfigSelector:
+          matchLabels:
+            alertmanagerConfig: slack-alert
         replicas: 1
         storage:
           volumeClaimTemplate:
@@ -73,6 +76,13 @@ spec:
               - prometheus.piny940.com
             secretName: cluster-tls
       prometheusSpec:
+        ruleSelector:
+          matchExpressions:
+            - key: app
+              values:
+                - kube-prometheus-stack
+                - pod-not-ready
+              operator: In
         scrapeInterval: 30s
         replicas: 1
         resources:

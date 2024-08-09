@@ -5,6 +5,5 @@ commonLabels:
   env: staging
 resources:
   - ../base
-  - alertmanager-config.yaml
 patches:
   - path: helm.yaml
