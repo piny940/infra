@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: default
+  labels:
+    alertmanagerConfig: default
+spec:
+  receivers:
+    - name: "slack"
+      slack_configs:
+        - api_url: https://slack.com/api/chat.postMessage
+          channel: C07655VCH9P
+          send_resolved: true
+          http_config:
+            authorization:
+              type: Bearer
+              credentials_file: /etc/alertmanager/secrets/alertmanager-bot-token
