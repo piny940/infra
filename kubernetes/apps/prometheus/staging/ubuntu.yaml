@@ -16,6 +16,5 @@ spec:
     spec:
       serviceAccount: kube-prometheus-stack-prometheus
       containers:
-        - name: ubuntu
-          image: ubuntu
-          command: [/bin/sh]
+        - name: app
+          image: ghcr.io/piny940/portfolio-admin
