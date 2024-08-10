@@ -18,3 +18,4 @@ spec:
       containers:
         - name: ubuntu
           image: ubuntu
+          command: /bin/sh
