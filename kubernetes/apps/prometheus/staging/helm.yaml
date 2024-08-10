@@ -22,10 +22,10 @@ spec:
         receivers:
           - name: "slack"
             slack_configs:
-              - apiURL:
+              - api_url:
                   name: alertmanager-secret
                   key: alertmanager-webhook-url
-                sendResolved: true
+                send_resolved: true
       ingress:
         annotations:
           nginx.ingress.kubernetes.io/auth-type: basic
