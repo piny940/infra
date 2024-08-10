@@ -10,10 +10,6 @@ spec:
     enable: true
   values:
     alertmanager:
-      alertmanagerSpec:
-        alertmanagerConfiguration:
-          name: slack-alert
-        alertmanagerConfigSelector: null
       ingress:
         hosts:
           - stg-alertmanager.piny940.com

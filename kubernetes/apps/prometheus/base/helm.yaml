@@ -28,9 +28,8 @@ spec:
           nginx.ingress.kubernetes.io/auth-secret: basic-auth
         ingressClassName: nginx
       alertmanagerSpec:
-        alertmanagerConfigSelector:
-          matchLabels:
-            alertmanagerConfig: slack-alert
+        alertmanagerConfiguration:
+          name: slack-alert
         replicas: 1
         storage:
           volumeClaimTemplate:
