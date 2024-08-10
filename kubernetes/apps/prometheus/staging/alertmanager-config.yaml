@@ -13,9 +13,8 @@ spec:
     receiver: "slack"
     routes:
       - receiver: "null"
-        matchers:
-          - name: severity
-            value: "none"
+        match:
+          severity: none
   receivers:
     - name: "null"
     - name: "slack"
