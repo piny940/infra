@@ -66,6 +66,14 @@ spec:
       enabled: true
     prometheus-node-exporter:
       enabled: true
+    kubeControllerManager:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeScheduler:
+      enabled: false
     prometheus:
       ingress:
         enabled: true
