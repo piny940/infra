@@ -9,6 +9,15 @@ spec:
   test:
     enable: true
   values:
+    alertmanager:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - stg-alertmanager.piny940.com
+        tls:
+          - hosts:
+              - stg-alertmanager.piny940.com
     prometheus:
       ingress:
         hosts:
