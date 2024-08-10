@@ -10,6 +10,10 @@ spec:
     enable: true
   values:
     prometheus:
+      prometheusSpec:
+        alertingEndpoints:
+          - name: kube-prometheus-stack-alertmanager
+            port: 9093
       ingress:
         hosts:
           - stg-prometheus.piny940.com
