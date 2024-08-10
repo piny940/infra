@@ -23,6 +23,9 @@ spec:
       enabled: true
       ingress:
         enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: basic-auth
         ingressClassName: nginx
       alertmanagerSpec:
         alertmanagerConfigSelector:
