@@ -11,21 +11,9 @@ spec:
   values:
     alertmanager:
       alertmanagerSpec:
+        alertmanagerConfiguration:
+          name: slack-alert
         alertmanagerConfigSelector: null
-      config:
-        route:
-          group_by: []
-          group_wait: 30s
-          group_interval: 5m
-          repeat_interval: 12h
-          receiver: slack
-        receivers:
-          - name: "slack"
-            slack_configs:
-              - api_url:
-                  name: alertmanager-secret
-                  key: alertmanager-webhook-url
-                send_resolved: true
       ingress:
         annotations:
           nginx.ingress.kubernetes.io/auth-type: basic
