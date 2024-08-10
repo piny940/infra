@@ -14,7 +14,7 @@ spec:
       labels:
         app: ubuntu-test
     spec:
-      serviceAccount: prometheus
+      serviceAccount: kube-prometheus-stack-prometheus
       containers:
         - name: ubuntu
           image: ubuntu
