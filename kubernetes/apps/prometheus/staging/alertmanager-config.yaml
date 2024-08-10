@@ -14,7 +14,8 @@ spec:
     routes:
       - receiver: "null"
         matchers:
-          - alertname = "Watchdog"
+          - name: alertname
+            value: Watchdog
   receivers:
     - name: "null"
     - name: "slack"
