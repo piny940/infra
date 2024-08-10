@@ -11,6 +11,9 @@ spec:
   values:
     alertmanager:
       ingress:
+        annotations:
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: basic-auth
         hosts:
           - stg-alertmanager.piny940.com
         tls:
