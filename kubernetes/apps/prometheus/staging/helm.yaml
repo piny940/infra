@@ -16,6 +16,14 @@ spec:
         tls:
           - hosts:
               - stg-alertmanager.piny940.com
+    kubeControllerManager:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeScheduler:
+      enabled: false
     prometheus:
       ingress:
         hosts:
