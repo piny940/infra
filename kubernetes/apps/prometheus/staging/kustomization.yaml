@@ -7,4 +7,3 @@ resources:
   - ../base
 patches:
   - path: helm.yaml
-  - path: alertmanager-config.yaml
