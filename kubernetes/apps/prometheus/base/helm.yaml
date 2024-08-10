@@ -21,6 +21,9 @@ spec:
   values:
     alertmanager:
       enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: nginx
       alertmanagerSpec:
         alertmanagerConfigSelector:
           matchLabels:
