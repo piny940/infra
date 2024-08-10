@@ -12,9 +12,9 @@ spec:
     repeatInterval: 12h
     receiver: "slack"
     routes:
-      - match:
-          severity: none
-        receiver: "null"
+      - receiver: "null"
+        matchers:
+          - severity="none"
   receivers:
     - name: "null"
     - name: "slack"
