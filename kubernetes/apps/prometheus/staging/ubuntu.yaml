@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-test
+  labels:
+    app: ubuntu-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-test
+  template:
+    metadata:
+      labels:
+        app: ubuntu-test
+    spec:
+      serviceAccount: prometheus
+      containers:
+        - name: ubuntu
+          image: ubuntu
