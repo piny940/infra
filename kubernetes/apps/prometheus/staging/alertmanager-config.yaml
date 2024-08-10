@@ -16,6 +16,7 @@ spec:
         matchers:
           - name: alertname
             value: Watchdog
+            matchType: "="
   receivers:
     - name: "null"
     - name: "slack"
