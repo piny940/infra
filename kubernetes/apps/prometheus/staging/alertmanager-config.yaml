@@ -13,7 +13,7 @@ spec:
     receiver: "slack"
     routes:
       - receiver: "null"
-        match:
+        matchers:
           - name: alertname
             value: Watchdog
             matchType: "="
