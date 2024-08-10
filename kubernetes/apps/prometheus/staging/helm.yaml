@@ -21,7 +21,7 @@ spec:
           receiver: slack
         receivers:
           - name: "slack"
-            slackConfigs:
+            slack_configs:
               - apiURL:
                   name: alertmanager-secret
                   key: alertmanager-webhook-url

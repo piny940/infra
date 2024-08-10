@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "kubernetes"
+    },
+    {
+      "path": "service-monitor"
+    },
+  ],
+  "settings": {}
+}
