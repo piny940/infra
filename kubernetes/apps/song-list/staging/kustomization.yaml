@@ -15,6 +15,7 @@ resources:
   - ../base
   - ingress.yaml
   - image-policy.yaml
+  - jobs/fetch-past.yaml
 configMapGenerator:
   - name: song-list-conf
     behavior: merge
