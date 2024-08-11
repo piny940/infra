@@ -29,6 +29,9 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Install dependencies
+        run: |
+          cd service-monitor && pip3 install -r service-monitor/requirements.txt -t .
       - name: lambda update
         run: |
           pip3 install awscli
