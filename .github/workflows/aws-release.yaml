@@ -1,8 +1,6 @@
-name: AWS Lambda Deploy
+name: AWS Lambda Release
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
