@@ -17,6 +17,7 @@ resources:
   - ingress.yaml
   - image-policy.yaml
   - sidekiq.deployment.yaml
+  - jobs/fetch-past.yaml
 configMapGenerator:
   - name: song-list-conf
     behavior: merge

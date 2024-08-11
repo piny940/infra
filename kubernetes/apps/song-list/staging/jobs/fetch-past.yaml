@@ -1,23 +1,17 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: song-list-sidekiq
-  labels:
-    app: song-list-sidekiq
+  name: fetch-past
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: song-list-sidekiq
   template:
-    metadata:
-      labels:
-        app: song-list-sidekiq
     spec:
       containers:
-        - name: app
-          image: song-list-backend
-          command: ["bundle", "exec", "sidekiq"]
+        - name: ubuntu
+          image: ghcr.io/piny940/song-list-backend:ubuntu-1.0.2
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "bundle exec rails channels:create_all_videos"
           envFrom:
             - configMapRef:
                 name: song-list-conf
@@ -77,8 +71,14 @@ spec:
                 secretKeyRef:
                   name: song-list-secret
                   key: admin-password
+            - name: RAILS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: song-list-conf
+                  key: RAILS_HOST
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: song-list-secret
                   key: redis-password
+      restartPolicy: Never
