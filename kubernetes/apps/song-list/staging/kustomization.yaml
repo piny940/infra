@@ -25,3 +25,5 @@ configMapGenerator:
       - RAILS_HOST=stg-song-list-backend.piny940.com
 configurations:
   - kustomizeconfig.yaml
+patches:
+  - path: front.deployment.yaml
