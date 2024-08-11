@@ -1,8 +1,6 @@
 name: AWS Lambda Staging
 on:
   push:
-    branches:
-      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
