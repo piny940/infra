@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: ubuntu
-          image: ghcr.io/piny940/song-list-backend:ubuntu-1.0.1
+          image: ghcr.io/piny940/song-list-backend:ubuntu-1.0.2
           command:
             - "/bin/sh"
             - "-c"
