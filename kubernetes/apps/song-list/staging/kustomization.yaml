@@ -13,12 +13,10 @@ images:
     newTag: main-2c8a29f32f2d57c6ca05ecf3de7a7e5833897ce4-29 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
 resources:
   - ../base
-  - back.deployment.yaml
   - ingress.yaml
   - image-policy.yaml
   - sidekiq.deployment.yaml
   - external-secret.yaml
-  - jobs/fetch-past.yaml
 configMapGenerator:
   - name: song-list-conf
     behavior: merge

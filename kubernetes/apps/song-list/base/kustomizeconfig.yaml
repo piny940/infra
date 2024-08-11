@@ -4,9 +4,15 @@ nameReference:
       - kind: Deployment
         path: spec/template/spec/containers/env/valueFrom/secretKeyRef/name
       - kind: Deployment
+        path: spec/template/spec/containers/envFrom/secretRef/name
+      - kind: Deployment
         path: spec/template/spec/initContainers/env/valueFrom/secretKeyRef/name
+      - kind: Deployment
+        path: spec/template/spec/initContainers/envFrom/secretRef/name
       - kind: Job
         path: spec/template/spec/containers/env/valueFrom/secretKeyRef/name
+      - kind: Job
+        path: spec/template/spec/containers/envFrom/secretRef/name
   - kind: ImageRepository
     fieldSpecs:
       - kind: ImagePolicy

@@ -12,12 +12,9 @@ images:
     newTag: 1.0.2 # {"$imagepolicy": "default:song-list-frontend:tag"}
 resources:
   - ../base
-  - back.deployment.yaml
   - ingress.yaml
   - image-policy.yaml
-  - sidekiq.deployment.yaml
   - external-secret.yaml
-  - jobs/fetch-past.yaml
 configMapGenerator:
   - name: song-list-conf
     behavior: merge
