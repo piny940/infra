@@ -23,7 +23,3 @@ configMapGenerator:
       - BACKEND_HOST=stg-song-list-backend.default.svc.cluster.local
       - SERVER_NAME=cherry
       - RAILS_HOST=stg-song-list-backend.piny940.com
-configurations:
-  - kustomizeconfig.yaml
-patches:
-  - path: front.deployment.yaml
