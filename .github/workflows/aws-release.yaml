@@ -1,6 +1,9 @@
 name: AWS Lambda Release
 on:
   push:
+    paths:
+      - "service-monitor/**"
+      - ".github/workflows/aws-release.yaml"
     branches:
       - main
 jobs:
