@@ -8,8 +8,7 @@ spec:
       containers:
         - name: ubuntu
           image: ghcr.io/piny940/song-list-backend:ubuntu-1.0.1
-          command:
-            ["/bin/sh", "-c", '"bundle exec rails channels:create_all_videos"']
+          command: ["/bin/sh", "-c", '"bundle exec rails channels:create_all_videos"']
           env:
             - name: RAILS_ENV
               valueFrom:
