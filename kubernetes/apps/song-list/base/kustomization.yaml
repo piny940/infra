@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: default
 resources:
   - back.service.yaml
-  - external-secret.yaml
   - front.deployment.yaml
   - front.service.yaml
   - image-repository.yaml

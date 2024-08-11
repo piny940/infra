@@ -17,6 +17,7 @@ resources:
   - ingress.yaml
   - image-policy.yaml
   - sidekiq.deployment.yaml
+  - external-secret.yaml
   - jobs/fetch-past.yaml
 configMapGenerator:
   - name: song-list-conf

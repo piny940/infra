@@ -15,6 +15,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: song-list-conf
+            - secretRef:
+                name: song-list-secret
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -26,59 +28,4 @@ spec:
                 secretKeyRef:
                   name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: session-secret
-            - name: GOOGLE_JSON
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: google-json
-            - name: GOOGLE_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: google-api-key
-            - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: openai-api-key
-            - name: SPOTIFY_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: spotify-client-id
-            - name: SPOTIFY_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: spotify-client-secret
-            - name: SLACK_WEBHOOK_URL
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: slack-webhook-url
-            - name: ADMIN_USER
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: admin-user
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: admin-password
-            - name: RAILS_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: song-list-conf
-                  key: RAILS_HOST
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: song-list-secret
-                  key: redis-password
       restartPolicy: Never
