@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: song-list-backend
+  labels:
+    app: song-list-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: song-list-backend
+  template:
+    metadata:
+      labels:
+        app: song-list-backend
+    spec:
+      containers:
+        - name: app
+          image: song-list-backend
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: song-list-conf
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: session-secret
+            - name: GOOGLE_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: google-json
+            - name: GOOGLE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: google-api-key
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: openai-api-key
+            - name: SPOTIFY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: spotify-client-id
+            - name: SPOTIFY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: spotify-client-secret
+            - name: SLACK_WEBHOOK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: slack-webhook-url
+            - name: ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: admin-user
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: admin-password
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: redis-password
+      initContainers:
+        - name: db-migrate
+          image: song-list-backend
+          command: ["bundle", "exec", "rails", "db:migrate"]
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: session-secret
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: song-list-secret
+                  key: redis-password
