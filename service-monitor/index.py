@@ -17,7 +17,7 @@ def notify_slack():
   client.chat_postMessage(channel=channel, text='Alert Manager is down! :fire:')
 
 
-def handler():
+def handler(*_):
   path = os.getenv('HEALTH_CHECK_URL')
   if path == None:
     print('HEALTH_CHECK_URL environment variable is not set')
