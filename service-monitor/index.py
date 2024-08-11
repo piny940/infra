@@ -29,6 +29,8 @@ if path == None:
 print('Checking health of service...')
 res = requests.get(path)
 
-if res.status_code != 200:
+if res.status_code == 200:
+  print("Service is up and running")
+else:
   notify_slack()
   print('Service is down. Alert sent to slack')
