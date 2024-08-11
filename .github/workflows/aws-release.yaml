@@ -1,6 +1,11 @@
 name: AWS Lambda Release
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - "service-monitor/**"
+      - ".github/workflows/aws-release.yaml"
+    branches:
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest

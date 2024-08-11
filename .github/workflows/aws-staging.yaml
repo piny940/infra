@@ -1,8 +1,9 @@
 name: AWS Lambda Staging
 on:
   push:
-    branches:
-      - main
+    paths:
+      - "service-monitor/**"
+      - ".github/workflows/aws-staging.yaml"
 jobs:
   deploy:
     runs-on: ubuntu-latest
