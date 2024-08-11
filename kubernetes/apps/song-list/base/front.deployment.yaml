@@ -19,9 +19,6 @@ spec:
           image: song-list-frontend
           ports:
             - containerPort: 4400
-          env:
-            - name: BACKEND_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: song-list-conf
-                  key: BACKEND_HOST
+          envFrom:
+            - configMapRef:
+                name: song-list-conf

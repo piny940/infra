@@ -6,13 +6,13 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - stg-song-list-app.piny940.com
+        - stg-song-list.piny940.com
       secretName: cluster-tls
     - hosts:
         - stg-song-list-backend.piny940.com
       secretName: cluster-tls
   rules:
-    - host: stg-song-list-app.piny940.com
+    - host: stg-song-list.piny940.com
       http:
         paths:
           - path: /

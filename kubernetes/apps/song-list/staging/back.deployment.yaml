@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: song-list-backend
+  labels:
+    app: song-list-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: song-list-backend
+  template:
+    metadata:
+      labels:
+        app: song-list-backend
+    spec:
+      containers:
+        - name: app
+          image: song-list-backend
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: song-list-conf
+            - secretRef:
+                name: song-list-secret
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+      initContainers:
+        - name: db-migrate
+          image: song-list-backend
+          command: ["bundle", "exec", "rails", "db:migrate"]
+          envFrom:
+            - configMapRef:
+                name: song-list-conf
+            - secretRef:
+                name: song-list-secret
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password

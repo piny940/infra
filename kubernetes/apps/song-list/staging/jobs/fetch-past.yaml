@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fetch-past
+spec:
+  template:
+    spec:
+      containers:
+        - name: ubuntu
+          image: ghcr.io/piny940/song-list-backend:ubuntu-1.0.2
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "bundle exec rails channels:create_all_videos"
+          envFrom:
+            - configMapRef:
+                name: song-list-conf
+            - secretRef:
+                name: song-list-secret
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+      restartPolicy: Never
