@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-all-setlists
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: song-list-backend
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "bundle exec rails videos:create_all_setlists"
+          envFrom:
+            - configMapRef:
+                name: song-list-conf
+            - secretRef:
+                name: song-list-secret
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+      restartPolicy: Never
