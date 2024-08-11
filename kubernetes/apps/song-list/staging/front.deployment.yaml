@@ -12,7 +12,7 @@ spec:
           image: song-list-frontend
           ports:
             - containerPort: 4400
-          env: []
+          env: null
           envFrom:
             - configMapRef:
                 name: song-list-conf
