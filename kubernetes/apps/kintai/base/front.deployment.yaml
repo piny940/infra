@@ -22,7 +22,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: kintai-conf
-          env:
           livenessProbe:
             httpGet:
               path: /
