@@ -36,10 +36,23 @@ spec:
             editable: false
             options:
               path: /var/lib/grafana/dashboards/default
+          - name: pods-details
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: false
+            options:
+              path: /var/lib/grafana/dashboards/pods-details
     extraVolumes:
       - name: pods-metrics
         configMap:
           name: pods-metrics
+      - name: pod-details
+        configMap:
+          name: pod-details
     extraVolumeMounts:
       - name: pods-metrics
         mountPath: /var/lib/grafana/dashboards/default
+      - name: pod-details
+        mountPath: /var/lib/grafana/dashboards/pod-details

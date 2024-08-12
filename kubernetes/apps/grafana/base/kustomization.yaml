@@ -10,3 +10,6 @@ configMapGenerator:
   - name: pods-metrics
     files:
       - dashboards/pods-metrics.json
+  - name: pod-details
+    files:
+      - dashboards/pod-details.json
