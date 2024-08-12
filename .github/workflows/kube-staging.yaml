@@ -18,8 +18,8 @@ jobs:
           ref: main
       - name: Set flux branch to current branch
         run: |
-          echo "set flux branch to ${GITHUB_REF_NAME}"
-          yq eval '.spec.ref.branch = "${GITHUB_REF_NAME}"' -i kubernetes/_flux/staging/flux-system/git-repository.yaml
+          echo "set flux branch to ${{ github.ref_name }}"
+          yq eval '.spec.ref.branch = "${{ github.ref_name }}"' -i kubernetes/_flux/staging/flux-system/git-repository.yaml
       # Open a Pull Request if an upgraded is needed in production.
       - name: Open promotion PR
         uses: peter-evans/create-pull-request@v6
