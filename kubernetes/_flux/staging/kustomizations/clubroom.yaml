@@ -1,16 +1,3 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
-metadata:
-  name: clubroom-git
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  ref:
-    branch: main
-  secretRef:
-    name: flux-system
-  url: ssh://git@github.com/piny940/infra
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -22,5 +9,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: clubroom-git
+    name: apps-git
     namespace: flux-system
