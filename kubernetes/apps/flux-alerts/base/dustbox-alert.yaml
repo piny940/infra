@@ -1,7 +1,7 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
-  name: slack-alert
+  name: dustbox-alert
   namespace: flux-system
 spec:
   summary: "Flux alert"
@@ -9,8 +9,8 @@ spec:
     cluster: "home-cluster"
     region: "kyoto/japan"
   providerRef:
-    name: slack-bot
+    name: dustbox
   eventSeverity: info
   eventSources:
-    - kind: Kustomization
+    - kind: GitRepository
       name: "*"
