@@ -34,7 +34,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         id: open_pr
         with:
-          branch: fluxcd/staging-promotion/${{ github.ref_name }}/${{ github.sha }}
+          branch: fluxcd/staging-promotion/${{ github.ref_name }}
           delete-branch: true
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update flux staging branch to ${{ github.ref_name }}
