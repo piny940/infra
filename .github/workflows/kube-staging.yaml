@@ -32,6 +32,7 @@ jobs:
           title: Update flux staging branch to ${{ github.ref_name }}
           body: |
             Update flux staging branch to ${{ github.ref_name }}
+            Triggered by commit ${{ github.sha }}
       # - name: Enable auto-merge for FluxCD PRs
       #   run: gh pr merge --auto --merge "$PR_URL"
       #   env:
