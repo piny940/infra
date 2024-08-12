@@ -10,3 +10,15 @@ spec:
       version: 7.x
   test:
     enable: true
+  values:
+    dashboardProviders:
+      dashboardproviders.yaml:
+        providers:
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
