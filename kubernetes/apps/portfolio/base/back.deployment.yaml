@@ -19,6 +19,9 @@ spec:
           image: portfolio-backend
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: portfolio-conf
           env:
             - name: DB_USER
               valueFrom:
@@ -30,31 +33,6 @@ spec:
                 secretKeyRef:
                   name: default.portfolio.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
-            - name: DB_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: DB_HOST
-            - name: DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: DB_PORT
-            - name: DB_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: DB_NAME
-            - name: DB_SSLMODE
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: DB_SSLMODE
-            - name: DB_MIGRATIONS_DIR
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: DB_MIGRATIONS_DIR
             - name: API_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -65,11 +43,6 @@ spec:
                 secretKeyRef:
                   name: portfolio-secret
                   key: jwt-secret
-            - name: ADMIN_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: ADMIN_ID
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:

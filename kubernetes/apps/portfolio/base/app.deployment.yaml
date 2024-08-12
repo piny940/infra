@@ -19,14 +19,12 @@ spec:
           image: portfolio-app
           ports:
             - containerPort: 4400
+          envFrom:
+            - configMapRef:
+                name: portfolio-conf
           env:
             - name: BACKEND_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: portfolio-secret
                   key: backend-api-token
-            - name: BACKEND_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: BACKEND_HOST

@@ -12,17 +12,15 @@ spec:
           containers:
             - name: portfolio-updater
               image: portfolio-updater
+              envFrom:
+                - configMapRef:
+                    name: portfolio-conf
               env:
                 - name: QIITA_API_TOKEN
                   valueFrom:
                     secretKeyRef:
                       name: portfolio-secret
                       key: qiita-api-token
-                - name: BACKEND_HOST
-                  valueFrom:
-                    configMapKeyRef:
-                      name: portfolio-conf
-                      key: BACKEND_HOST
                 - name: BACKEND_TOKEN
                   valueFrom:
                     secretKeyRef:
@@ -33,9 +31,4 @@ spec:
                     secretKeyRef:
                       name: portfolio-secret
                       key: slack-oauth-token
-                - name: SLACK_CHANNEL_ID
-                  valueFrom:
-                    configMapKeyRef:
-                      name: portfolio-conf
-                      key: SLACK_CHANNEL_ID
           restartPolicy: OnFailure
