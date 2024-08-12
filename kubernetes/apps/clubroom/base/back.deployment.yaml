@@ -22,6 +22,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: clubroom-conf
+            - secretRef:
+                name: clubroom-secret
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -33,13 +35,3 @@ spec:
                 secretKeyRef:
                   name: default.clubroom.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
-            - name: GOOGLE_JSON
-              valueFrom:
-                secretKeyRef:
-                  name: clubroom-secret
-                  key: google-json
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: clubroom-secret
-                  key: secret-key-base
