@@ -6,3 +6,4 @@ resources:
   - ../base
 patches:
   - path: slack-alert.yaml
+  - path: dustbox-alert.yaml

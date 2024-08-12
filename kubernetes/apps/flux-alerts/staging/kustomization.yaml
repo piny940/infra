@@ -7,3 +7,4 @@ resources:
   - helm-promotion.yaml
 patches:
   - path: slack-alert.yaml
+  - path: dustbox-alert.yaml

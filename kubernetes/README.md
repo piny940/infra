@@ -4,6 +4,11 @@
 bash scripts/flux-kustomize.sh
 ```
 
+## 開発
+
+- GitHub に push すると staging 環境に更新が走る
+- Merge すると staging・production の両方に更新が走る
+
 ## k8s クラスタの立て方
 
 ### 事前準備
