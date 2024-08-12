@@ -19,12 +19,9 @@ spec:
           image: kintai-frontend
           ports:
             - containerPort: 4400
-          env:
-            - name: BACKEND_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: kintai-conf
-                  key: BACKEND_HOST
+          envFrom:
+            - configMapRef:
+                name: kintai-conf
           livenessProbe:
             httpGet:
               path: /

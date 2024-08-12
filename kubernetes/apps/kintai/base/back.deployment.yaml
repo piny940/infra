@@ -19,6 +19,9 @@ spec:
           image: kintai-backend
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: kintai-conf
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -30,26 +33,6 @@ spec:
                 secretKeyRef:
                   name: default.kintai.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
-            - name: POSTGRES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: kintai-conf
-                  key: POSTGRES_HOST
-            - name: POSTGRES_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: kintai-conf
-                  key: POSTGRES_PORT
-            - name: POSTGRES_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: kintai-conf
-                  key: POSTGRES_NAME
-            - name: POSTGRES_SSLMODE
-              valueFrom:
-                configMapKeyRef:
-                  name: kintai-conf
-                  key: POSTGRES_SSLMODE
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
