@@ -19,6 +19,11 @@ spec:
           image: clubroom-backend
           ports:
             - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: clubroom-conf
+            - secretRef:
+                name: clubroom-secret
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -30,48 +35,3 @@ spec:
                 secretKeyRef:
                   name: default.clubroom.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
-            - name: POSTGRES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: POSTGRES_HOST
-            - name: POSTGRES_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: POSTGRES_PORT
-            - name: POSTGRES_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: POSTGRES_NAME
-            - name: POSTGRES_SSLMODE
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: POSTGRES_SSLMODE
-            - name: GOOGLE_JSON
-              valueFrom:
-                secretKeyRef:
-                  name: clubroom-secret
-                  key: google-json
-            - name: GOOGLE_BUCKET
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: GOOGLE_BUCKET
-            - name: RAILS_HOSTS
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: RAILS_HOSTS
-            - name: RAILS_ENV
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: RAILS_ENV
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: clubroom-secret
-                  key: secret-key-base

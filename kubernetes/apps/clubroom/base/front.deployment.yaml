@@ -19,9 +19,6 @@ spec:
           image: clubroom-frontend
           ports:
             - containerPort: 4400
-          env:
-            - name: BACKEND_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: clubroom-conf
-                  key: BACKEND_HOST
+          envFrom:
+            - configMapRef:
+                name: clubroom-conf
