@@ -6,7 +6,3 @@ resources:
   - helm.yaml
 configurations:
   - kustomizeconfig.yaml
-configMapGenerator:
-  - name: pods-metrics
-    files:
-      - dashboards/pods-metrics.json
