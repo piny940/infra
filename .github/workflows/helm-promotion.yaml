@@ -38,7 +38,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         id: open_pr
         with:
-          branch: flux-helm-promotion/${{ steps.staging.outputs.name }}/${{ steps.staging.outputs.version}}
+          branch: fluxcd/helm-promotion/${{ steps.staging.outputs.name }}/${{ steps.staging.outputs.version}}
           delete-branch: true
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update ${{ steps.staging.outputs.name }} to v${{ steps.staging.outputs.version }}

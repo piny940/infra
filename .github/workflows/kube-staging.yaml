@@ -1,0 +1,39 @@
+name: kube-staging
+on:
+  push:
+    branches-ignore:
+      - fluxcd/**
+    paths:
+      - "kubernetes/**"
+      - ".github/workflows/kube-staging.yaml"
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Set flux branch to current branch
+        run: |
+          echo "set flux branch to ${GITHUB_REF_NAME}"
+          yq eval '.spec.ref.branch = "${GITHUB_REF_NAME}"' -i kubernetes/_flux/staging/flux-system/git-repository.yaml
+      # Open a Pull Request if an upgraded is needed in production.
+      - name: Open promotion PR
+        uses: peter-evans/create-pull-request@v6
+        id: open_pr
+        with:
+          branch: fluxcd/staging-promotion/${{ github.ref_name }}/${{ github.sha }}
+          delete-branch: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update flux staging branch to ${{ github.ref_name }}
+          title: Update flux staging branch to ${{ github.ref_name }}
+          body: |
+            Update flux staging branch to ${{ github.ref_name }}
+      # - name: Enable auto-merge for FluxCD PRs
+      #   run: gh pr merge --auto --merge "$PR_URL"
+      #   env:
+      #     PR_URL: ${{ steps.open_pr.outputs.pull-request-url }}
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
