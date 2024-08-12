@@ -19,9 +19,6 @@ spec:
           image: portfolio-admin
           ports:
             - containerPort: 4400
-          env:
-            - name: BACKEND_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: portfolio-conf
-                  key: BACKEND_HOST
+          envFrom:
+            - configMapRef:
+                name: portfolio-conf
