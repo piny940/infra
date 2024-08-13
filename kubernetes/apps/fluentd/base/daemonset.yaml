@@ -40,8 +40,8 @@ spec:
                 secretKeyRef:
                   name: fluentd-secret
                   key: FLUENT_ELASTICSEARCH_PASSWORD
-            # - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
-            #   value: "/^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>[FP]) (?<log>.*)$/"
+                  # - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+                  #   value: "/^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>[FP]) (?<log>.*)$/"
           resources:
             limits:
               memory: 200Mi
