@@ -3,7 +3,7 @@ kind: Kibana
 metadata:
   name: default
 spec:
-  version: 8.13.4
+  version: 8.15.0
   count: 1
   elasticsearchRef:
     name: default
@@ -13,7 +13,7 @@ spec:
         - name: kibana
           resources:
             requests:
-              memory: 1Gi
+              memory: 500Mi
               cpu: 0.5
             limits:
               memory: 2.5Gi
@@ -22,3 +22,6 @@ spec:
     service:
       spec:
         type: ClusterIP
+    tls:
+      selfSignedCertificate:
+        disabled: true

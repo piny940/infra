@@ -3,7 +3,7 @@ kind: Elasticsearch
 metadata:
   name: default
 spec:
-  version: 8.13.4
+  version: 8.15.0
   nodeSets:
     - name: default
       count: 1
@@ -27,11 +27,6 @@ spec:
                   value: "10"
       config:
         node.store.allow_mmap: false
-        xpack.security.authc:
-          anonymous:
-            username: anonymous
-            roles: superuser
-            authz_exception: true
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
