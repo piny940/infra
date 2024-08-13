@@ -58,6 +58,10 @@ spec:
               mountPath: /fluentd/etc/tail_container_parse.conf
               readOnly: true
               subPath: tail_container_parse.conf
+            - name: config-volume
+              mountPath: /fluentd/etc/conf.d/dedot_filter.conf
+              readOnly: true
+              subPath: dedot_filter.conf
       terminationGracePeriodSeconds: 30
       volumes:
         - name: varlog

@@ -18,3 +18,4 @@ configMapGenerator:
   - name: config-volume
     files:
       - conf/tail_container_parse.conf
+      - conf/dedot_filter.conf
