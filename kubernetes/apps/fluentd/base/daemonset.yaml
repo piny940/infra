@@ -55,11 +55,11 @@ spec:
               mountPath: /var/log/pods
               readOnly: true
             - name: config-volume
-              mountPath: /fluentd/etc/conf.d/tail_container_parse.conf
+              mountPath: /fluentd/etc/tail_container_parse.conf
               readOnly: true
               subPath: tail_container_parse.conf
             - name: config-volume
-              mountPath: /fluentd/etc/conf.d/fluent.conf
+              mountPath: /fluentd/etc/fluent.conf
               readOnly: true
               subPath: fluent.conf
       terminationGracePeriodSeconds: 30
