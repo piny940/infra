@@ -27,48 +27,21 @@ spec:
       containers:
         - name: fluentd
           image: fluent/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
+          envFrom:
+            - configMapRef:
+                name: fluentd-conf
           env:
             - name: K8S_NODE_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            - name: FLUENT_ELASTICSEARCH_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: fluentd-conf
-                  key: FLUENT_ELASTICSEARCH_HOST
-            - name: FLUENT_ELASTICSEARCH_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: fluentd-conf
-                  key: FLUENT_ELASTICSEARCH_PORT
-            - name: FLUENT_ELASTICSEARCH_SCHEME
-              valueFrom:
-                configMapKeyRef:
-                  name: fluentd-conf
-                  key: FLUENT_ELASTICSEARCH_SCHEME
-            - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
-              valueFrom:
-                configMapKeyRef:
-                  name: fluentd-conf
-                  key: FLUENT_ELASTICSEARCH_SSL_VERIFY
-            - name: FLUENT_ELASTICSEARCH_SSL_VERSION
-              valueFrom:
-                configMapKeyRef:
-                  name: fluentd-conf
-                  key: FLUENT_ELASTICSEARCH_SSL_VERSION
-            - name: FLUENT_ELASTICSEARCH_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: fluentd-conf
-                  key: FLUENT_ELASTICSEARCH_USER
             - name: FLUENT_ELASTICSEARCH_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: fluentd-secret
                   key: FLUENT_ELASTICSEARCH_PASSWORD
-            - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
-              value: "/^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>[FP]) (?<log>.*)$/"
+            # - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+            #   value: "/^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>[FP]) (?<log>.*)$/"
           resources:
             limits:
               memory: 200Mi
@@ -81,9 +54,6 @@ spec:
             - name: dockercontainerlogdirectory
               mountPath: /var/log/pods
               readOnly: true
-            - name: config-volume
-              mountPath: /fluentd/etc/fluent.conf
-              subPath: fluent.conf
       terminationGracePeriodSeconds: 30
       volumes:
         - name: varlog
