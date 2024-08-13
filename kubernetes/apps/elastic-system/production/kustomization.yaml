@@ -5,3 +5,6 @@ commonLabels:
   env: production
 resources:
   - ../base
+  - ingress.yaml
+patches:
+  - path: kibana.yaml
