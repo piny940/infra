@@ -55,7 +55,7 @@ spec:
               mountPath: /var/log/pods
               readOnly: true
             - name: config-volume
-              mountPath: /fluentd/etc/conf.d/custom.conf
+              mountPath: /fluentd/etc/fluent.conf
               subPath: fluent.conf
       terminationGracePeriodSeconds: 30
       volumes:
