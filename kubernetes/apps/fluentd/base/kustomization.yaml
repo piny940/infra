@@ -14,3 +14,6 @@ configMapGenerator:
       - FLUENT_ELASTICSEARCH_SSL_VERIFY=false
       - FLUENT_ELASTICSEARCH_USER=elastic
       - FLUENT_ELASTICSEARCH_SSL_VERSION=TLSv1_2
+  - name: config-volume
+    files:
+      - fluent.conf
