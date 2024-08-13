@@ -16,4 +16,5 @@ configMapGenerator:
       - FLUENT_ELASTICSEARCH_SSL_VERSION=TLSv1_2
   - name: config-volume
     files:
-      - fluent.conf
+      - conf/fluent.conf
+      - conf/tail_container_parse.conf
