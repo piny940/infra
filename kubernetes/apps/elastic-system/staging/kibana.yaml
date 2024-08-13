@@ -1,0 +1,7 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: default
+spec:
+  config:
+    server.publicBaseUrl: https://stg-kibana.piny940.com
