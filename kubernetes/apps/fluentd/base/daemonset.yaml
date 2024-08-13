@@ -58,10 +58,10 @@ spec:
               mountPath: /fluentd/etc/tail_container_parse.conf
               readOnly: true
               subPath: tail_container_parse.conf
-            - name: config-volume
-              mountPath: /fluentd/etc/fluent.conf
-              readOnly: true
-              subPath: fluent.conf
+            # - name: config-volume
+            #   mountPath: /fluentd/etc/fluent.conf
+            #   readOnly: true
+            #   subPath: fluent.conf
       terminationGracePeriodSeconds: 30
       volumes:
         - name: varlog
