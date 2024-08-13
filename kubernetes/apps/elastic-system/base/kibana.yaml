@@ -7,6 +7,17 @@ spec:
   count: 1
   elasticsearchRef:
     name: default
+  podTemplate:
+    spec:
+      containers:
+        - name: kibana
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 0.5
+            limits:
+              memory: 2.5Gi
+              cpu: 2
   http:
     service:
       spec:
