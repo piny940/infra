@@ -22,7 +22,7 @@ spec:
                 name: song-list-frontend
                 port:
                   number: 4400
-    - host: prd-song-list-backend.piny940.com
+    - host: song-list-backend.piny940.com
       http:
         paths:
           - path: /
