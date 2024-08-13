@@ -19,11 +19,6 @@ spec:
     spec:
       serviceAccountName: fluentd
       serviceAccount: fluentd
-      # tolerations:
-      #   - key: node-role.kubernetes.io/control-plane
-      #     effect: NoSchedule
-      #   - key: node-role.kubernetes.io/master
-      #     effect: NoSchedule
       containers:
         - name: fluentd
           image: fluent/fluentd-kubernetes-daemonset:v1.17-debian-elasticsearch8-1
@@ -40,8 +35,6 @@ spec:
                 secretKeyRef:
                   name: fluentd-secret
                   key: FLUENT_ELASTICSEARCH_PASSWORD
-                  # - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
-                  #   value: "/^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>[FP]) (?<log>.*)$/"
           resources:
             limits:
               memory: 200Mi
