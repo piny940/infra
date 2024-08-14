@@ -36,8 +36,6 @@ spec:
                   name: fluentd-secret
                   key: FLUENT_ELASTICSEARCH_PASSWORD
           resources:
-            limits:
-              memory: 200Mi
             requests:
               cpu: 100m
               memory: 200Mi
