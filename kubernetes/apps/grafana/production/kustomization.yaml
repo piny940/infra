@@ -9,9 +9,7 @@ resources:
 patches:
   - path: helm-overlay.yaml
 configMapGenerator:
-  - name: pods-metrics
+  - name: dashboard-files
     files:
       - dashboards/pods-metrics.json
-  - name: pod-details
-    files:
       - dashboards/pod-details.json
