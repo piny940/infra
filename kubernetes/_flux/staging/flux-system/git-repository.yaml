@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: fluentd-conf
+    branch: song-list-rails-host
   secretRef:
     name: flux-system
   url: ssh://git@github.com/piny940/infra
