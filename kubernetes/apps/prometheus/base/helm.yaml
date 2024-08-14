@@ -41,7 +41,11 @@ spec:
                 requests:
                   storage: 2Gi
         resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
           requests:
+            cpu: 500m
             memory: 400Mi
     server:
       persistentVolume:
@@ -53,8 +57,8 @@ spec:
       replicaCount: 1
       resources:
         limits:
-          cpu: 500m
-          memory: 512Mi
+          cpu: "1"
+          memory: 1Gi
         requests:
           cpu: 500m
           memory: 512Mi
@@ -98,6 +102,9 @@ spec:
         scrapeInterval: 30s
         replicas: 1
         resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
           requests:
             memory: 400Mi
         storageSpec:
