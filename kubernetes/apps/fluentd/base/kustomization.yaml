@@ -14,6 +14,7 @@ configMapGenerator:
       - FLUENT_ELASTICSEARCH_SSL_VERIFY=false
       - FLUENT_ELASTICSEARCH_USER=elastic
       - FLUENT_ELASTICSEARCH_SSL_VERSION=TLSv1_2
+      - FLUENT_ELASTICSEARCH_RELOAD_ON_FAILURE=false
       - FLUENT_ELASTICSEARCH_LOG_ES_400_REASON=true
   - name: config-volume
     files:
