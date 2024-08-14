@@ -188,7 +188,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 16,
+        "w": 9,
         "x": 8,
         "y": 1
       },
@@ -223,6 +223,105 @@
         }
       ],
       "title": "Pod Status",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 7,
+        "x": 17,
+        "y": 1
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": ["lastNotNull"],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "kube_pod_container_status_restarts_total{namespace=~\"$namespace\", pod=~\"$pod\", container=~\"$container\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 2,
+          "legendFormat": "{{ container }}",
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "title": "Pod Restart",
       "type": "timeseries"
     },
     {
@@ -860,48 +959,19 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "type": "elasticsearch",
+        "uid": "P16D960E3412550E7"
       },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "inspect": false
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -913,48 +983,95 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "short"
+          }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "kubernetes.container_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 118
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "@timestamp"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 235
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 5,
+        "h": 18,
         "w": 24,
         "x": 0,
         "y": 22
       },
-      "id": 12,
+      "id": 37,
       "options": {
-        "legend": {
-          "calcs": ["lastNotNull"],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "10.4.3",
       "targets": [
         {
+          "alias": "",
+          "bucketAggs": [],
           "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "type": "elasticsearch",
+            "uid": "P16D960E3412550E7"
           },
-          "expr": "kube_pod_container_status_restarts_total{namespace=~\"$namespace\", pod=~\"$pod\", container=~\"$container\"}",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
-          "legendFormat": "{{ container }}",
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "limit": "500"
+              },
+              "type": "logs"
+            }
+          ],
+          "query": "kubernetes.pod_name:\"$pod\"",
           "refId": "A",
-          "step": 2
+          "timeField": "@timestamp"
         }
       ],
-      "title": "Pod Restart",
-      "type": "timeseries"
+      "title": "Pod log",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "includeByName": {
+              "@timestamp": true,
+              "kubernetes.container_name": true,
+              "log": true
+            },
+            "indexByName": {
+              "@timestamp": 0,
+              "kubernetes.container_name": 1,
+              "log": 2
+            }
+          }
+        }
+      ],
+      "type": "table"
     }
   ],
   "refresh": "10s",
@@ -966,8 +1083,8 @@
         "allValue": "",
         "current": {
           "selected": false,
-          "text": "longhorn-system",
-          "value": "longhorn-system"
+          "text": "default",
+          "value": "default"
         },
         "datasource": {
           "type": "prometheus",
@@ -993,8 +1110,8 @@
       {
         "current": {
           "selected": false,
-          "text": "engine-image-ei-5cefaf2b-4bqmg",
-          "value": "engine-image-ei-5cefaf2b-4bqmg"
+          "text": "stg-kintai-frontend-8547b9cd46-7xskd",
+          "value": "stg-kintai-frontend-8547b9cd46-7xskd"
         },
         "datasource": {
           "type": "prometheus",
@@ -1044,11 +1161,22 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "P16D960E3412550E7"
+        },
+        "filters": [],
+        "hide": 0,
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1069,6 +1197,6 @@
   "timezone": "browser",
   "title": "Pod詳細",
   "uid": "GlXkUBGiz",
-  "version": 5,
+  "version": 12,
   "weekStart": ""
 }
