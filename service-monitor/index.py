@@ -17,15 +17,30 @@ def notify_slack():
   client.chat_postMessage(channel=channel, text='Alert Manager is down! :fire:')
 
 
+def check(path):
+  res = requests.get(path)
+  if res.status_code == 200:
+    return True
+  else:
+    return False
+
+
 def handler(*_):
   path = os.getenv('HEALTH_CHECK_URL')
   if path == None:
     print('HEALTH_CHECK_URL environment variable is not set')
     exit(1)
-  print('Checking health of service...')
-  res = requests.get(path)
 
-  if res.status_code == 200:
+  check_count = int(os.getenv('CHECK_COUNT') or '3')
+  ok = False
+
+  print('Checking health of service...')
+  for _ in range(check_count):
+    ok = check(path)
+    if ok:
+      break
+
+  if ok:
     print("Service is up and running")
   else:
     notify_slack()
