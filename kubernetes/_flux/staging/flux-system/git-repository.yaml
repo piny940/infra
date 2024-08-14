@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: song-list-rails-host
+    branch: main
   secretRef:
     name: flux-system
   url: ssh://git@github.com/piny940/infra
