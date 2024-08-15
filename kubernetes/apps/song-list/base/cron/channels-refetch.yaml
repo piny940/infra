@@ -13,6 +13,10 @@ spec:
           containers:
             - name: refetch
               image: song-list-backend
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "bundle exec rails channels:refetch"
               envFrom:
                 - configMapRef:
                     name: song-list-conf
