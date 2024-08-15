@@ -13,6 +13,10 @@ nameReference:
         path: spec/template/spec/containers/env/valueFrom/secretKeyRef/name
       - kind: Job
         path: spec/template/spec/containers/envFrom/secretRef/name
+      - kind: CronJob
+        path: spec/jobTemplate/spec/template/spec/containers/envFrom/secretRef/name
+      - kind: CronJob
+        path: spec/jobTemplate/spec/template/spec/containers/env/valueFrom/secretKeyRef/name
   - kind: ImageRepository
     fieldSpecs:
       - kind: ImagePolicy

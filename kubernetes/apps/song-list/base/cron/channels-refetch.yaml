@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: song-list-channels-refetch
+spec:
+  schedule: "20 18 * * *"
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 100
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: refetch
+              image: song-list-backend
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "bundle exec rails channels:refetch"
+              envFrom:
+                - configMapRef:
+                    name: song-list-conf
+                - secretRef:
+                    name: song-list-secret
+              env:
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                      key: username
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
+                      key: password
