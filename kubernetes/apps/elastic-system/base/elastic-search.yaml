@@ -4,6 +4,7 @@ metadata:
   name: default
 spec:
   version: 8.15.0
+  volumeClaimDeletePolicy: DeleteOnScaledownOnly
   nodeSets:
     - name: default
       count: 1
