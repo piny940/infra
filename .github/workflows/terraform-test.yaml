@@ -42,22 +42,13 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Plan
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && echo $(terraform plan) > ../../result.txt
+        run: |
+          cd ${{ matrix.svc }}/${{ matrix.env }}
+          echo $(terraform plan) > ../../result.txt
+          msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
+          echo $msg | gh pr comment ${{ github.event.number }} --body-file -
         continue-on-error: true
         id: plan
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      - name: Comment Success
-        env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ ! failure() }}
-        run: |
-          msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
-          echo $msg | gh pr comment ${{ github.event.number }} --body-file -
-      - name: Comment Failure
-        if: failure()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          msg="# Terraform plan for ${{ matrix.env }} failed. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
-          echo $msg | gh pr comment ${{ github.event.number }} --body-file -
