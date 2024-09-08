@@ -47,7 +47,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Comment Success
-        if: ! failure()
+        if: ${{ ! failure() }}
         run: |
           gh pr comment ${{ github.event.number }} --body "# Terraform plan for ${{ matrix.env }} completed successfully. \n\n```${{ steps.plan.outputs.result }}```"
       - name: Comment Failure
