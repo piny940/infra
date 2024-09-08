@@ -27,37 +27,31 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        svc: [gcp]
         env: [staging]
+    environment: ${{ matrix.env }}
+    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-      - name: Set crd
-        id: setcrd
-        run: |
-          if [ "${{ matrix.env }}" == "staging" ]; then
-            echo GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_STAGING }} >> "$GITHUB_OUTPUT"
-          else
-            echo GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_PRODUCTION }} >> "$GITHUB_OUTPUT"
-          EOS
-          fi
       - name: Terraform Init
-        run: cd gcp/${{ matrix.env }} && terraform init
+        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform init
         env:
-          GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Plan
-        run: cd gcp/${{ matrix.env }} && echo result=$(terraform plan) >> "$GITHUB_OUTPUT"
+        run: cd ${{ matrix.svc }}/${{ matrix.env }} && echo result=$(terraform plan) >> "$GITHUB_OUTPUT"
         continue-on-error: true
         id: plan
         env:
-          GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Comment Success
-        if: (!failure()) && (!cancelled()) && github.event_name == 'pull_request'
+        if: ! failure()
         run: |
           gh pr comment ${{ github.event.number }} --body "# Terraform plan for ${{ matrix.env }} completed successfully. \n\n```${{ steps.plan.outputs.result }}```"
       - name: Comment Failure
-        if: (failure()) && github.event_name == 'pull_request'
+        if: failure()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
