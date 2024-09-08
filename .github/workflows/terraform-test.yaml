@@ -53,7 +53,11 @@ jobs:
         if: ${{ ! failure() }}
         run: |
           cat <<EOS > msg
-          # Terraform plan for ${{ matrix.env }} completed successfully. \n\n```\n${{ steps.plan.outputs.result }}\n```
+          # Terraform plan for ${{ matrix.env }} completed successfully.
+
+          ```
+          ${{ steps.plan.outputs.result }}
+          ```
           EOS
           gh pr comment ${{ github.event.number }} --body "$(cat msg)"
       - name: Comment Failure
@@ -62,5 +66,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat <<EOS > msg
-          # Terraform plan for ${{ matrix.env }} failed. \n\n```\n${{ steps.plan.outputs.result }}\n```
+          # Terraform plan for ${{ matrix.env }} failed.
+
+          ```
+          ${{ steps.plan.outputs.result }}
+          ```
           EOS
+          exit 1
