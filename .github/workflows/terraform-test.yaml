@@ -13,6 +13,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  pull-requests: write
 jobs:
   format:
     runs-on: ubuntu-latest
@@ -47,12 +48,14 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Comment Success
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ ! failure() }}
         run: |
           gh pr comment ${{ github.event.number }} --body "# Terraform plan for ${{ matrix.env }} completed successfully. \n\n```${{ steps.plan.outputs.result }}```"
       - name: Comment Failure
         if: failure()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr comment ${{ github.event.number }} --body "# Terraform plan for ${{ matrix.env }} failed. \n\n```${{ steps.plan.outputs.result }}```"
