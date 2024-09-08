@@ -39,9 +39,13 @@ jobs:
       id: setcrd
       run: |
         if [ "${{ matrix.env }}" == "staging" ]; then
-          echo 'GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_STAGING }}' >> "$GITHUB_OUTPUT"
+          cat <<EOS >> "$GITHUB_OUTPUT"
+          GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_STAGING }}
+          EOS
         else
-          echo 'GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_PROD }}' >> "$GITHUB_OUTPUT"
+          cat <<EOS >> "$GITHUB_OUTPUT"
+          GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_PRODUCTION }}
+          EOS
         fi
     - name: Terraform Init
       run: cd gcp/${{ matrix.env }} && terraform init
