@@ -30,17 +30,24 @@ jobs:
     strategy:
       matrix:
         env: [staging]
-    environment: ${{ matrix.env }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
+    - name: Set crd
+      id: setcrd
+      run: |
+        if [ "${{ matrix.env }}" == "staging" ]; then
+          echo GOOGLE_CREDENTIALS=$GOOGLE_CREDENTIALS_STAGING >> $GITHUB_OUTPUT
+        else
+          echo GOOGLE_CREDENTIALS=$GOOGLE_CREDENTIALS_PROD >> $GITHUB_OUTPUT
+        fi
     - name: Terraform Init
       run: cd gcp/${{ matrix.env }} && terraform init
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
     - name: Terraform Plan
       run: cd gcp/${{ matrix.env }} && terraform plan
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
