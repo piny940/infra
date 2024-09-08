@@ -41,11 +41,11 @@ jobs:
         if [ "${{ matrix.env }}" == "staging" ]; then
           cat <<EOS >> "$GITHUB_OUTPUT"
           GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_STAGING }}
-          EOS
+        EOS
         else
           cat <<EOS >> "$GITHUB_OUTPUT"
           GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_PRODUCTION }}
-          EOS
+        EOS
         fi
     - name: Terraform Init
       run: cd gcp/${{ matrix.env }} && terraform init
