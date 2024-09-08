@@ -7,14 +7,12 @@ on:
   push:
     paths:
       - "gcp/**"
-      - ".github/workflows/aws-staging.yaml"
+      - ".github/workflows/terraform-test.yaml"
     branches:
       - main
-
 permissions:
   id-token: write
   contents: read
-
 jobs:
   format:
     runs-on: ubuntu-latest
@@ -31,24 +29,36 @@ jobs:
       matrix:
         env: [staging]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-    - name: Set crd
-      id: setcrd
-      run: |
-        if [ "${{ matrix.env }}" == "staging" ]; then
-          echo GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_STAGING }} >> "$GITHUB_OUTPUT"
-        else
-          echo GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_PRODUCTION }} >> "$GITHUB_OUTPUT"
-        EOS
-        fi
-    - name: Terraform Init
-      run: cd gcp/${{ matrix.env }} && terraform init
-      env:
-        GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
-    - name: Terraform Plan
-      run: cd gcp/${{ matrix.env }} && terraform plan
-      env:
-        GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+      - name: Set crd
+        id: setcrd
+        run: |
+          if [ "${{ matrix.env }}" == "staging" ]; then
+            echo GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_STAGING }} >> "$GITHUB_OUTPUT"
+          else
+            echo GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS_PRODUCTION }} >> "$GITHUB_OUTPUT"
+          EOS
+          fi
+      - name: Terraform Init
+        run: cd gcp/${{ matrix.env }} && terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
+      - name: Terraform Plan
+        run: cd gcp/${{ matrix.env }} && echo result=$(terraform plan) >> "$GITHUB_OUTPUT"
+        continue-on-error: true
+        id: plan
+        env:
+          GOOGLE_CREDENTIALS: ${{ steps.setcrd.outputs.GOOGLE_CREDENTIALS }}
+      - name: Comment Success
+        if: (!failure()) && (!cancelled()) && github.event_name == 'pull_request'
+        run: |
+          gh pr comment ${{ github.event.number }} --body "# Terraform plan for ${{ matrix.env }} completed successfully. \n\n```${{ steps.plan.outputs.result }}```"
+      - name: Comment Failure
+        if: (failure()) && github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment ${{ github.event.number }} --body "# Terraform plan for ${{ matrix.env }} failed. \n\n```${{ steps.plan.outputs.result }}```"
