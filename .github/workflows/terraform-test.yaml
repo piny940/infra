@@ -44,10 +44,9 @@ jobs:
       - name: Terraform Plan
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
-          echo $(terraform plan) > ../../result.txt
+          echo $(terraform plan) > result.txt
           msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
           echo $msg | gh pr comment ${{ github.event.number }} --body-file -
-        continue-on-error: true
         id: plan
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
