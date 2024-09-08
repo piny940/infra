@@ -1,0 +1,25 @@
+name: Test Terraform
+on:
+  pull_request:
+    paths:
+      - "gcp/**"
+      - ".github/workflows/terraform-test.yaml"
+  push:
+    paths:
+      - "gcp/**"
+      - ".github/workflows/aws-staging.yaml"
+    branches:
+      - main
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.5
+      - name: Terraform fmt
+        run: terraform fmt -check -recursive

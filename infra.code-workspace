@@ -7,6 +7,9 @@
       "path": "kubernetes"
     },
     {
+      "path": "gcp"
+    },
+    {
       "path": "service-monitor"
     },
   ],
