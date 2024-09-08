@@ -44,8 +44,8 @@ jobs:
       - name: Terraform Plan
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
-          echo $(terraform plan) > result.txt
-          msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
+          result=$(terraform plan)
+          msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$result\n\`\`\`"
           echo $msg | gh pr comment ${{ github.event.number }} --body-file -
         id: plan
         env:
