@@ -10,12 +10,14 @@ on:
       - ".github/workflows/aws-staging.yaml"
     branches:
       - main
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   format:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -23,3 +25,22 @@ jobs:
           terraform_version: 1.9.5
       - name: Terraform fmt
         run: terraform fmt -check -recursive
+  plan:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [staging]
+    environment: ${{ matrix.env }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+    - name: Terraform Init
+      run: cd gcp/${{ matrix.env }} && terraform init
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Terraform Plan
+      run: cd gcp/${{ matrix.env }} && terraform plan
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
