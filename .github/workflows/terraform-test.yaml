@@ -53,11 +53,11 @@ jobs:
         if: ${{ ! failure() }}
         run: |
           msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
-          gh pr comment ${{ github.event.number }} --body "$msg"
+          echo $msg | gh pr comment ${{ github.event.number }} --body-file -
       - name: Comment Failure
         if: failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           msg="# Terraform plan for ${{ matrix.env }} failed. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
-          gh pr comment ${{ github.event.number }} --body "$msg"
+          echo $msg | gh pr comment ${{ github.event.number }} --body-file -
