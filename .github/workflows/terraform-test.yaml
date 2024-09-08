@@ -42,7 +42,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Plan
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && echo $(terraform plan) > result.txt
+        run: cd ${{ matrix.svc }}/${{ matrix.env }} && echo $(terraform plan) > ../result.txt
         continue-on-error: true
         id: plan
         env:
@@ -59,5 +59,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          msg="# Terraform plan for ${{ matrix.env }} failed. \n\n```\n$(cat result.txt)\n\`\`\`"
+          msg="# Terraform plan for ${{ matrix.env }} failed. \n\n\`\`\`\n$(cat result.txt)\n\`\`\`"
           gh pr comment ${{ github.event.number }} --body "$msg"
