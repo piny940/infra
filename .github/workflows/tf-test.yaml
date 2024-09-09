@@ -74,7 +74,7 @@ jobs:
             \`\`\`"
           fi
           if [[ ${{ matrix.env }} == 'staging' ]]; then
-            msg="$msg"\nPlease apply the changes to the staging environment using the [Terraform apply workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/tf-apply.yaml)
+            msg='"$msg"\nPlease apply the changes to the staging environment using the [Terraform apply workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/tf-apply.yaml)'
           fi
           echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
         env:
