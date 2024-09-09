@@ -1,0 +1,35 @@
+name: Terraform Apply
+on:
+  push:
+    paths:
+      - "gcp/**"
+      - ".github/workflows/terraform-apply.yaml"
+      - ".github/actions/tf-apply/**"
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  stg-apply:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Apply
+        uses: ./.github/actions/tf-apply
+        with:
+          env: staging
+  apply:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Apply
+        uses: ./.github/actions/tf-apply
+        with:
+          env: production

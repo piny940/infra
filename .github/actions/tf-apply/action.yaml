@@ -1,0 +1,22 @@
+inputs:
+  env:
+    description: "Environment to deploy to"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+    - name: Terraform Init
+      run: cd terraform/${{ inputs.env }} && terraform init
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Terraform Plan
+      run: cd terraform/${{ inputs.env }} && terraform plan -no-color -input=false > plan.txt
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Terraform Apply
+      run: cd terraform/${{ inputs.env }} && terraform apply -auto-approve
+      id: tf-apply
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
