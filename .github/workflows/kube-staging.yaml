@@ -30,7 +30,7 @@ jobs:
       # Open a Pull Request if an upgraded is needed in production.
       - name: Open promotion PR
         if: ${{ steps.check_branch.outputs.CURRENT_BRANCH != github.ref_name }}
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         id: open_pr
         with:
           branch: fluxcd/staging-promotion/${{ github.ref_name }}
