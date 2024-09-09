@@ -1,4 +1,4 @@
 module "clubroom" {
-  source = "../../modules/clubroom"
+  source = "../modules/clubroom"
   env    = "staging"
 }
