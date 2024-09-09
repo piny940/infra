@@ -44,7 +44,7 @@ jobs:
       - name: Terraform Plan
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
-          result=$(terraform plan)
+          result=$(terraform plan -no-color)
           msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$result\n\`\`\`"
           printf "%s" "$msg" | gh pr comment ${{ github.event.number }} --body-file -
         env:
