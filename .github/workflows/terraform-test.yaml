@@ -52,7 +52,13 @@ jobs:
           result=$(cat plan.txt)
           pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
           summary=$(echo $result | grep -oE $pattern | hexdump -C)
-          if [ $(echo $result | grep -oE $pattern) != NULL ]; then
+          if [ $(echo $result | grep -oE $pattern) == NULL ]; then
+            msg="# Terraform plan for ${{ matrix.env }}
+            
+            \`\`\`
+            $result
+            \`\`\`"
+          else
             msg="# Terraform plan for ${{ matrix.env }}
             
             \`\`\`
@@ -67,8 +73,8 @@ jobs:
             \`\`\`
 
             </details>"
-            echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
           fi
+          echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
