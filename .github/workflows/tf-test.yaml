@@ -2,12 +2,12 @@ name: Test Terraform
 on:
   pull_request:
     paths:
-      - "gcp/**"
-      - ".github/workflows/terraform-test.yaml"
+      - "terraform/**"
+      - ".github/workflows/tf-test.yaml"
   push:
     paths:
-      - "gcp/**"
-      - ".github/workflows/terraform-test.yaml"
+      - "terraform/**"
+      - ".github/workflows/tf-test.yaml"
     branches:
       - main
 permissions:

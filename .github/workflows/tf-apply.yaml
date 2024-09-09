@@ -2,8 +2,8 @@ name: Terraform Apply
 on:
   push:
     paths:
-      - "gcp/**"
-      - ".github/workflows/terraform-apply.yaml"
+      - "terraform/**"
+      - ".github/workflows/tf-apply.yaml"
       - ".github/actions/tf-apply/**"
     branches:
       - main
