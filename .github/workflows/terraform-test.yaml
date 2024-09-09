@@ -48,7 +48,7 @@ jobs:
           msg="# Terraform plan for ${{ matrix.env }}
           
           \`\`\`
-          $(echo $result | grep "Plan: ")
+          $(echo $result | grep -E "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy")
           \`\`\`
 
           <details>
