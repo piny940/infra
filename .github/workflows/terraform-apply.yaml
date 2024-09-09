@@ -3,7 +3,8 @@ on:
   push:
     paths:
       - "gcp/**"
-      - ".github/workflows/terraform-test.yaml"
+      - ".github/workflows/terraform-apply.yaml"
+      - ".github/actions/tf-apply/**"
     branches:
       - main
 permissions:
@@ -12,26 +13,11 @@ permissions:
 jobs:
   apply:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        svc: [gcp]
-        env: [staging, production]
-    environment: ${{ matrix.env }}
+    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-      - name: Terraform Init
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform init
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      - name: Terraform Plan
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform plan -no-color -input=false > plan.txt
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Apply
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform apply -auto-approve
-        id: tf-apply
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        uses: ./.github/actions/tf-apply
+        with:
+          env: production

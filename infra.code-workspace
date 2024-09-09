@@ -7,7 +7,7 @@
       "path": "kubernetes"
     },
     {
-      "path": "gcp"
+      "path": "terraform"
     },
     {
       "path": "service-monitor"
