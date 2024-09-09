@@ -19,7 +19,7 @@ resource "google_storage_bucket" "terraform_remote_backend" {
   uniform_bucket_level_access = true
 }
 
-resource "local_file" "default" {
+resource "local_file" "backend" {
   file_permission = "0644"
   filename        = "${path.module}/backend.tf"
 
