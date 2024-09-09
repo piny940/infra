@@ -50,8 +50,9 @@ jobs:
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
           result=$(cat plan.txt)
-          summary=$(echo $result | grep -oE "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy" | hexdump -C)
-          if [ -n $summary ]; then
+          pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
+          summary=$(echo $result | grep -oE $pattern | hexdump -C)
+          if [ $(echo $result | grep -oE $pattern) != NULL ]; then
             msg="# Terraform plan for ${{ matrix.env }}
             
             \`\`\`
