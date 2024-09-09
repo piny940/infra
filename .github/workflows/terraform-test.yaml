@@ -45,7 +45,7 @@ jobs:
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
           result=$(terraform plan -no-color)
-          msg="# Terraform plan for ${{ matrix.env }} completed successfully.
+          msg="# Terraform plan for ${{ matrix.env }}
           
           \`\`\`
           $result
