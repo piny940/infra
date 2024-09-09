@@ -28,7 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        svc: [gcp]
         env: [staging, production]
     environment: ${{ matrix.env }}
     if: github.event_name == 'pull_request'
@@ -38,17 +37,17 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
       - name: Terraform Init
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform init
+        run: cd terraform/${{ matrix.env }} && terraform init
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Plan
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform plan -no-color -input=false > plan.txt
+        run: cd terraform/${{ matrix.env }} && terraform plan -no-color -input=false > plan.txt
         continue-on-error: true
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Comment PR
         run: |
-          cd ${{ matrix.svc }}/${{ matrix.env }}
+          cd terraform/${{ matrix.env }}
           result=$(cat plan.txt)
           pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
           if [[ ${result} =~ ${pattern} ]]; then
