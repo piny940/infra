@@ -42,7 +42,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Plan
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform plan -out=plan.txt -no-color -input=false
+        run: cd ${{ matrix.svc }}/${{ matrix.env }} && echo $(terraform plan -no-color -input=false) > plan.txt
         continue-on-error: true
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
@@ -53,7 +53,7 @@ jobs:
           msg="# Terraform plan for ${{ matrix.env }}
           
           \`\`\`
-          $(echo $result | grep -oE "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy" | hexdump -C)
+          $(echo $result | grep -oE "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy")
           \`\`\`
 
           <details>
