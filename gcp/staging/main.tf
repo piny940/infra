@@ -1,8 +1,8 @@
 provider "google" {
   project = "stg-piny940"
   default_labels = {
-    service     = "staging"
-    environment = "Stage"
+    service     = "home-cluster"
+    environment = "staging"
   }
 }
 
