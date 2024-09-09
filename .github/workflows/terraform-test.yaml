@@ -51,25 +51,23 @@ jobs:
           cd ${{ matrix.svc }}/${{ matrix.env }}
           result=$(cat plan.txt)
           summary=$(echo $result | grep -oE "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy")
-          if [ -z "$summary" ]; then
-            echo "No changes detected."
-            exit 0
+          if [ -n $summary ]; then
+            msg="# Terraform plan for ${{ matrix.env }}
+            
+            \`\`\`
+            $summary
+            \`\`\`
+
+            <details>
+            <summary>Terraform Plan Details</summary>
+
+            \`\`\`
+            $result
+            \`\`\`
+
+            </details>"
+            echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
           fi
-          msg="# Terraform plan for ${{ matrix.env }}
-          
-          \`\`\`
-          $summary
-          \`\`\`
-
-          <details>
-          <summary>Terraform Plan Details</summary>
-
-          \`\`\`
-          $result
-          \`\`\`
-
-          </details>"
-          echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
