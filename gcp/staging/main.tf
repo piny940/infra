@@ -1,5 +1,9 @@
 provider "google" {
   project = "stg-piny940"
+  default_labels = {
+    Service     = "staging"
+    Environment = "Stage"
+  }
 }
 
 resource "google_compute_network" "vpc_network" {
