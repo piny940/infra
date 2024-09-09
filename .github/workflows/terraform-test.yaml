@@ -50,10 +50,15 @@ jobs:
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
           result=$(cat plan.txt)
+          summary=$(echo $result | grep -oE "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy")
+          if [ -z "$summary" ]; then
+            echo "No changes detected."
+            exit 0
+          fi
           msg="# Terraform plan for ${{ matrix.env }}
           
           \`\`\`
-          $(echo $result | grep -oE "Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy")
+          $summary
           \`\`\`
 
           <details>
