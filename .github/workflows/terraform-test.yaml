@@ -45,7 +45,11 @@ jobs:
         run: |
           cd ${{ matrix.svc }}/${{ matrix.env }}
           result=$(terraform plan -no-color)
-          msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$result\n\`\`\`"
+          msg="# Terraform plan for ${{ matrix.env }} completed successfully.
+          
+          \`\`\`
+          $result
+          \`\`\`"
           echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
