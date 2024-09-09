@@ -42,7 +42,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform Plan
-        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform plan -out=../../plan.txt -no-color -input=false
+        run: cd ${{ matrix.svc }}/${{ matrix.env }} && terraform plan -out=plan.txt -no-color -input=false
         continue-on-error: true
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
