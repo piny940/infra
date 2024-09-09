@@ -35,7 +35,7 @@ jobs:
           yq eval '.spec.chart.spec.version=env(CHART_VERSION)' -i $FILE_PATH
       # Open a Pull Request if an upgraded is needed in production.
       - name: Open promotion PR
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         id: open_pr
         with:
           branch: fluxcd/helm-promotion/${{ steps.staging.outputs.name }}/${{ steps.staging.outputs.version}}
