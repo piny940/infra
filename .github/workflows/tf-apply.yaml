@@ -1,5 +1,6 @@
 name: Terraform Apply
 on:
+  pull_request: # for debug
   push:
     paths:
       - "gcp/**"
