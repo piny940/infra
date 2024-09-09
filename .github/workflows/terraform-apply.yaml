@@ -36,13 +36,3 @@ jobs:
         id: tf-apply
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      - name: Slack Notification Failure
-        if: steps.tf-apply.outcome == 'failure'
-        run: |
-          cd ${{ matrix.svc }}/${{ matrix.env }}
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Terraform apply failed for ${{ matrix.env }} \n\`\`\` $(cat plan.txt) \`\`\`"}' ${{ secrets.SLACK_WEBHOOK }}
-      - name: Slack Notification Success
-        if: steps.tf-apply.outcome == 'success'
-        run: |
-          cd ${{ matrix.svc }}/${{ matrix.env }}
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Terraform apply succeeded for ${{ matrix.env }} \n\`\`\` $(cat plan.txt) \`\`\`"}' ${{ secrets.SLACK_WEBHOOK }}
