@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         svc: [gcp]
-        env: [staging]
+        env: [staging, production]
     environment: ${{ matrix.env }}
     steps:
       - name: Checkout

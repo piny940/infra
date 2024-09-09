@@ -1,13 +1,13 @@
 provider "google" {
-  project = "stg-piny940"
+  project = "prd-piny940"
   default_labels = {
     service     = "home-cluster"
-    environment = "staging"
+    environment = "production"
   }
 }
 
 resource "google_storage_bucket" "terraform_remote_backend" {
-  name     = "stg-terraform-remote-backend.piny940.com"
+  name     = "terraform-remote-backend.piny940.com"
   location = "US"
 
   force_destroy               = false
@@ -17,6 +17,6 @@ resource "google_storage_bucket" "terraform_remote_backend" {
 
 terraform {
   backend "gcs" {
-    bucket = "stg-terraform-remote-backend.piny940.com"
+    bucket = "terraform-remote-backend.piny940.com"
   }
 }
