@@ -46,8 +46,7 @@ jobs:
           cd ${{ matrix.svc }}/${{ matrix.env }}
           result=$(terraform plan)
           msg="# Terraform plan for ${{ matrix.env }} completed successfully. \n\n\`\`\`\n$result\n\`\`\`"
-          echo $msg | gh pr comment ${{ github.event.number }} --body-file -
-        id: plan
+          printf "%s" "$msg" | gh pr comment ${{ github.event.number }} --body-file -
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
