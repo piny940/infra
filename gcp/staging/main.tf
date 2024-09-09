@@ -34,7 +34,6 @@ resource "google_compute_instance" "sample_vm" {
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
-
     access_config {
       # Include this section to give the VM an external IP address
     }
