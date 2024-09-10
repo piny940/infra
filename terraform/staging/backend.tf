@@ -1,11 +1,3 @@
-provider "google" {
-  project = "stg-piny940"
-  default_labels = {
-    service     = "home-cluster"
-    environment = "staging"
-  }
-}
-
 resource "google_storage_bucket" "terraform_remote_backend" {
   name     = "stg-terraform-remote-backend.piny940.com"
   location = "US"
