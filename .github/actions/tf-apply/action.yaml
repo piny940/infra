@@ -2,27 +2,31 @@ inputs:
   env:
     description: "Environment to deploy to"
     required: true
-  google_credentials:
-    description: "Slack webhook URL"
+  gcp_project:
+    description: "GCP Project ID"
+    required: true
+  gcp_project_number:
+    description: "GCP Project Number"
     required: true
 runs:
   using: composite
   steps:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
+    - id: "gcp-auth"
+      name: "Authenticate to Google Cloud"
+      uses: "google-github-actions/auth@v2"
+      with:
+        create_credentials_file: true
+        workload_identity_provider: "projects/${{ inputs.gcp_project_number }}/locations/global/workloadIdentityPools/default/providers/terraform-github-actions"
+        service_account: "terraform-github-action@${{ inputs.gcp_project }}.iam.gserviceaccount.com"
     - name: Terraform Init
       run: cd terraform/${{ inputs.env }} && terraform init
       shell: bash
-      env:
-        GOOGLE_CREDENTIALS: ${{ inputs.google_credentials }}
     - name: Terraform Plan
       run: cd terraform/${{ inputs.env }} && terraform plan -no-color -input=false > plan.txt
       shell: bash
-      env:
-        GOOGLE_CREDENTIALS: ${{ inputs.google_credentials }}
     - name: Terraform Apply
       run: cd terraform/${{ inputs.env }} && terraform apply -auto-approve
       id: tf-apply
       shell: bash
-      env:
-        GOOGLE_CREDENTIALS: ${{ inputs.google_credentials }}

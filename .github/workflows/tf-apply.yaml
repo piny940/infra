@@ -22,7 +22,8 @@ jobs:
         uses: ./.github/actions/tf-apply
         with:
           env: staging
-          google_credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
+          gcp_project: ${{ vars.gcp_project }}
+          gcp_project_number: ${{ vars.gcp_project_number }}
   apply:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -34,4 +35,5 @@ jobs:
         uses: ./.github/actions/tf-apply
         with:
           env: production
-          google_credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
+          gcp_project: ${{ vars.gcp_project }}
+          gcp_project_number: ${{ vars.gcp_project_number }}
