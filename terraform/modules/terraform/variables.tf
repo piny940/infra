@@ -10,7 +10,7 @@ variable "project" {
   type = string
 }
 variable "project_number" {
-  type = string
+  type = number
 }
 variable "workload_identity_pool_id" {
   type = string
