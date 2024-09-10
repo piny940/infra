@@ -1,11 +1,15 @@
-# module "terraform" {
-#   source                    = "../modules/terraform"
-#   env                       = local.env
-#   project                   = local.project
-#   project_number            = local.project_number
-#   workload_identity_pool_id = local.workload_identity_pool_id
-#   repo                      = local.repo
-# }
+module "workload_identity_pool" {
+  source  = "../modules/workload_identity_pool"
+  project = local.project
+}
+module "terraform" {
+  source                    = "../modules/terraform"
+  env                       = local.env
+  project                   = local.project
+  project_number            = local.project_number
+  workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
+  repo                      = local.repo
+}
 module "clubroom" {
   source = "../modules/clubroom"
   env    = "production"
