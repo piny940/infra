@@ -6,11 +6,15 @@ variable "env" {
     error_message = "value must be either 'staging' or 'production'"
   }
 }
-
 variable "project" {
   type = string
 }
-
-locals {
-  repo = "piny940/infra"
+variable "project_number" {
+  type = string
+}
+variable "workload_identity_pool_id" {
+  type = string
+}
+variable "repo" {
+  type = string
 }

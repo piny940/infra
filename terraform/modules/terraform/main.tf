@@ -1,21 +1,3 @@
-resource "google_iam_workload_identity_pool" "default" {
-  workload_identity_pool_id = "default"
-}
-
-resource "google_iam_workload_identity_pool_provider" "terraform_github_actions" {
-  workload_identity_pool_id          = google_iam_workload_identity_pool.default.workload_identity_pool_id
-  workload_identity_pool_provider_id = "terraform-github-actions"
-  display_name                       = "Terrform GitHub Actions"
-  description                        = "for Terraform GitHub Actions"
-  attribute_condition                = format("assertion.repository == \"%s\" && assertion.environment == \"%s\"", local.repo, var.env)
-  attribute_mapping = {
-    "google.subject" = "assertion.repository"
-  }
-  oidc {
-    issuer_uri = "https://token.actions.githubusercontent.com"
-  }
-}
-
 resource "google_service_account" "terraform_github_actions" {
   account_id                   = "terraform-github-actions"
   display_name                 = "Terraform GitHub Actions"
@@ -23,12 +5,30 @@ resource "google_service_account" "terraform_github_actions" {
 }
 resource "google_project_iam_member" "terraform_github_actions_workload_identity_user" {
   project = var.project
-  member  = google_service_account.terraform_github_actions.email
+  member  = "ServiceAccount:${google_service_account.terraform_github_actions.email}"
+  role    = "roles/editor"
+}
+resource "google_project_iam_member" "terraform_github_actions_workload_identity_user" {
+  project = var.project
+  member  = "ServiceAccount:${google_service_account.terraform_github_actions.email}"
   role    = "roles/iam.workloadIdentityUser"
 }
 
-resource "google_project_iam_member" "terraform_github_actions_workload_identity_user" {
-  project = var.project
-  member  = google_service_account.terraform_github_actions.email
-  role    = "roles/editor"
+resource "google_iam_workload_identity_pool_provider" "terraform_github_actions" {
+  workload_identity_pool_id          = var.workload_identity_pool_id
+  workload_identity_pool_provider_id = "terraform-github-actions"
+  display_name                       = "Terrform GitHub Actions"
+  description                        = "for Terraform GitHub Actions"
+  attribute_condition                = "assertion.repository == \"${var.repo}\" && assertion.environment == \"${var.env}\""
+  attribute_mapping = {
+    "google.subject" = "assertion.sub"
+  }
+  oidc {
+    issuer_uri = "https://token.actions.githubusercontent.com"
+  }
+}
+resource "google_service_account_iam_member" "terraform_github_actions_workload_identity_user" {
+  service_account_id = google_service_account.terraform_github_actions.id
+  role    = "roles/iam.workloadIdentityUser"
+  member = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:${var.repo}:environment:${var.env}"
 }
