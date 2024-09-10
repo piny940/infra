@@ -1,6 +1,6 @@
 locals {
-  env = "staging"
-  repo = "piny940/infra"
+  env            = "staging"
+  repo           = "piny940/infra"
   project_number = 645068243364
-  project = "stg-piny940"
+  project        = "stg-piny940"
 }

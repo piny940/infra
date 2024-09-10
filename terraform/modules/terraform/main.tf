@@ -29,6 +29,6 @@ resource "google_iam_workload_identity_pool_provider" "terraform_github_actions"
 }
 resource "google_service_account_iam_member" "terraform_github_actions_workload_identity_user" {
   service_account_id = google_service_account.terraform_github_actions.id
-  role    = "roles/iam.workloadIdentityUser"
-  member = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:${var.repo}:environment:${var.env}"
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:${var.repo}:environment:${var.env}"
 }
