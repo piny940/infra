@@ -5,12 +5,12 @@ resource "google_service_account" "terraform_github_actions" {
 }
 resource "google_project_iam_member" "terraform_github_actions_editor" {
   project = var.project
-  member  = "ServiceAccount:${google_service_account.terraform_github_actions.email}"
-  role    = "roles/editor"
+  member  = "serviceAccount:${google_service_account.terraform_github_actions.email}"
+  role    = "roles/owner"
 }
 resource "google_project_iam_member" "terraform_github_actions_workload_identity_user" {
   project = var.project
-  member  = "ServiceAccount:${google_service_account.terraform_github_actions.email}"
+  member  = "serviceAccount:${google_service_account.terraform_github_actions.email}"
   role    = "roles/iam.workloadIdentityUser"
 }
 
