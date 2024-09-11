@@ -3,7 +3,7 @@ resource "google_service_account" "terraform_github_actions" {
   display_name                 = "Terraform GitHub Actions"
   create_ignore_already_exists = true
 }
-resource "google_project_iam_member" "terraform_github_actions_editor" {
+resource "google_project_iam_member" "terraform_github_actions_owner" {
   project = var.project
   member  = "serviceAccount:${google_service_account.terraform_github_actions.email}"
   role    = "roles/owner"
