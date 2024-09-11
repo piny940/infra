@@ -43,7 +43,7 @@ jobs:
           project_id: ${{ vars.GCP_PROJECT }}
           create_credentials_file: true
           workload_identity_provider: "projects/${{ vars.GCP_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/pool/providers/terraform-github-actions"
-          service_account: "terraform-github-action@${{ vars.GCP_PROJECT }}.iam.gserviceaccount.com"
+          service_account: "terraform-github-actions@${{ vars.GCP_PROJECT }}.iam.gserviceaccount.com"
       - name: Terraform Init
         run: cd terraform/${{ matrix.env }} && terraform init
       - name: Terraform Plan
