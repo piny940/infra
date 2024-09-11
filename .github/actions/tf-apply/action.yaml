@@ -18,7 +18,7 @@ runs:
       uses: "google-github-actions/auth@v2"
       with:
         create_credentials_file: true
-        workload_identity_provider: "projects/${{ inputs.gcp_project_number }}/locations/global/workloadIdentityPools/default/providers/terraform-github-actions"
+        workload_identity_provider: "projects/${{ inputs.gcp_project_number }}/locations/global/workloadIdentityPools/pool/providers/terraform-github-actions"
         service_account: "terraform-github-action@${{ inputs.gcp_project }}.iam.gserviceaccount.com"
     - name: Terraform Init
       run: cd terraform/${{ inputs.env }} && terraform init
