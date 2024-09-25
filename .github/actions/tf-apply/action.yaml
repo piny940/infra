@@ -17,7 +17,7 @@ runs:
       name: "Authenticate to Google Cloud"
       uses: "google-github-actions/auth@v2"
       with:
-        project_id: ${{ vars.GCP_PROJECT }}
+        project_id: ${{ inputs.gcp_project }}
         create_credentials_file: true
         workload_identity_provider: "projects/${{ inputs.gcp_project_number }}/locations/global/workloadIdentityPools/pool/providers/terraform-github-actions"
         service_account: "terraform-github-actions@${{ inputs.gcp_project }}.iam.gserviceaccount.com"
