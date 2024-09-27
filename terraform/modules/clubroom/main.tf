@@ -13,7 +13,7 @@ resource "google_service_account" "clubroom" {
 resource "google_project_iam_member" "clubroom_storage_object_user" {
   project = var.project
   member  = "serviceAccount:${google_service_account.clubroom.email}"
-  role    = "roles/storage.objectCreator"
+  role    = "roles/storage.objectUser"
 }
 resource "google_project_iam_member" "clubroom_workload_identity_user" {
   project = var.project
