@@ -6,7 +6,7 @@ resource "google_secret_manager_secret" "home_kubernetes_cluster_jwks" {
 }
 data "google_secret_manager_secret_version" "home_kubernetes_cluster_jwks" {
   secret  = google_secret_manager_secret.home_kubernetes_cluster_jwks.secret_id
-  version = "v1"
+  version = "1"
 }
 resource "google_iam_workload_identity_pool_provider" "home_kubernetes" {
   workload_identity_pool_id          = var.workload_identity_pool_id
