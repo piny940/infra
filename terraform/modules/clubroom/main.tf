@@ -15,6 +15,11 @@ resource "google_project_iam_member" "clubroom_storage_object_user" {
   member  = "serviceAccount:${google_service_account.clubroom.email}"
   role    = "roles/storage.objectUser"
 }
+resource "google_project_iam_member" "clubroom_service_account_token_creator" {
+  project = var.project
+  member  = "serviceAccount:${google_service_account.clubroom.email}"
+  role    = "roles/iam.serviceAccountTokenCreator"
+}
 resource "google_project_iam_member" "clubroom_workload_identity_user" {
   project = var.project
   member  = "serviceAccount:${google_service_account.clubroom.email}"
