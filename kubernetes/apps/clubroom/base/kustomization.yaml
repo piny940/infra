@@ -20,5 +20,6 @@ configMapGenerator:
       - RAILS_HOSTS=0.0.0.0/0
       - RAILS_ENV=production
       - BACKEND_HOST=
+      - RAILS_LOG_TO_STDOUT=true
 configurations:
   - kustomizeconfig.yaml
