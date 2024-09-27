@@ -5,9 +5,18 @@ resource "google_storage_bucket" "clubroom" {
   public_access_prevention    = "inherited"
   uniform_bucket_level_access = true
 }
-
-resource "google_project_iam_member" "clubroom_k8s_storage_object_user" {
+resource "google_service_account" "clubroom" {
+  account_id                   = "clubroom"
+  display_name                 = "Clubroom"
+  create_ignore_already_exists = true
+}
+resource "google_project_iam_member" "clubroom_storage_object_user" {
   project = var.project
+  member  = "serviceAccount:${google_service_account.clubroom.email}"
   role    = "roles/storage.objectUser"
-  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:${local.prefix}clubroom"
+}
+resource "google_service_account_iam_member" "terraform_github_actions_workload_identity_user" {
+  service_account_id = google_service_account.clubroom.id
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:${local.prefix}clubroom"
 }
