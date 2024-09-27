@@ -49,7 +49,8 @@ jobs:
       - name: Terraform Plan
         run: cd terraform/${{ matrix.env }} && terraform plan -no-color -input=false > plan.txt
         continue-on-error: true
-      - name: Comment PR
+      - name: Create Message
+        id: CreateMessage
         run: |
           cd terraform/${{ matrix.env }}
           result=$(cat plan.txt)
@@ -82,6 +83,11 @@ jobs:
             $result
             \`\`\`"
           fi
-          echo "$msg" | gh pr comment ${{ github.event.number }} --body-file -
+          echo "$msg"
+      - name: Comment PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: Terraform Plan for ${{ matrix.env }}
+          message: ${{ steps.CreateMessage.outputs.msg }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
