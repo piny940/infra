@@ -78,7 +78,9 @@ jobs:
             msg+="\`\`\`\n"
           fi
 
-          echo "MSG=$msg" >> "$GITHUB_OUTPUT"
+          {
+            echo "MSG=$msg"
+          } >> "$GITHUB_ENV"
       - name: Comment PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
