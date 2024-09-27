@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: default
 resources:
   - back.deployment.yaml
-  - back.image-policy.yaml
+  - back.image-repository.yaml
   - back.service.yaml
   - front.deployment.yaml
-  - front.image-policy.yaml
+  - front.image-repository.yaml
   - front.service.yaml
   - external-secret.yaml
 configMapGenerator:

@@ -1,0 +1,27 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: clubroom-backend
+spec:
+  imageRepositoryRef:
+    name: clubroom-backend
+  filterTags:
+    pattern: "^main-[a-z0-9]+-(?P<seq>[0-9]+)$"
+    extract: "$seq"
+  policy:
+    numerical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: clubroom-frontend
+spec:
+  imageRepositoryRef:
+    name: clubroom-frontend
+  filterTags:
+    pattern: "^main-[a-z0-9]+-(?P<seq>[0-9]+)$"
+    extract: "$seq"
+  policy:
+    numerical:
+      order: asc
