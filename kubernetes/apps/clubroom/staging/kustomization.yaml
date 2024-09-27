@@ -13,6 +13,7 @@ images:
     newTag: 1.0.16 # {"$imagepolicy": "default:stg-clubroom-frontend:tag"}
 resources:
   - ../base
+  - image-policy.yaml
   - ingress.yaml
 configMapGenerator:
   - name: clubroom-conf

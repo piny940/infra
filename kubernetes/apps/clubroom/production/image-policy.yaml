@@ -1,10 +1,13 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
+kind: ImagePolicy
 metadata:
-  name: clubroom-frontend
+  name: clubroom-backend
 spec:
-  image: ghcr.io/piny940/clubroom-frontend
-  interval: 10m
+  imageRepositoryRef:
+    name: clubroom-backend
+  policy:
+    semver:
+      range: 1.0.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
