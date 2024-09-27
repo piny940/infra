@@ -13,9 +13,9 @@ resource "google_service_account" "clubroom" {
 resource "google_project_iam_member" "clubroom_storage_object_user" {
   project = var.project
   member  = "serviceAccount:${google_service_account.clubroom.email}"
-  role    = "roles/storage.objectUser"
+  role    = "roles/storage.objectCreator"
 }
-resource "google_service_account_iam_member" "terraform_github_actions_workload_identity_user" {
+resource "google_service_account_iam_member" "ksa_workload_identity_user" {
   service_account_id = google_service_account.clubroom.id
   role               = "roles/iam.workloadIdentityUser"
   member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:${local.prefix}clubroom"
