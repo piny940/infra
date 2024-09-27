@@ -56,7 +56,7 @@ jobs:
           result=$(cat plan.txt)
           pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
           {
-            echo "MSG="
+            printf "MSG="
             if [[ ${result} =~ ${pattern} ]]; then
               summary=$(echo "$result" | grep -oE "$pattern")
               printf "# Terraform plan for ${{ matrix.env }}\n\n"
