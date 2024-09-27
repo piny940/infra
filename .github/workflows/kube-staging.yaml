@@ -1,8 +1,15 @@
 name: kube-staging
 on:
-  push:
+  pull_request:
     branches-ignore:
       - fluxcd/**
+    paths:
+      - "kubernetes/**"
+      - "!kubernetes/_flux/**"
+      - ".github/workflows/kube-staging.yaml"
+  push:
+    branches:
+      - main
     paths:
       - "kubernetes/**"
       - "!kubernetes/_flux/**"
