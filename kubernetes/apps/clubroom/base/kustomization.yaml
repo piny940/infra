@@ -20,6 +20,7 @@ configMapGenerator:
       - RAILS_HOSTS=0.0.0.0/0
       - RAILS_ENV=production
       - BACKEND_HOST=
+      - GOOGLE_BUCKET=
       - RAILS_LOG_TO_STDOUT=true
   - name: workload-identity-credential-configuration
 configurations:
