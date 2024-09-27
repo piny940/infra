@@ -50,9 +50,9 @@ spec:
           projected:
             sources:
               - serviceAccountToken:
-                audience: https://iam.googleapis.com/projects/645068243364/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
-                expirationSeconds: 3600
-                path: token
+                  audience: https://iam.googleapis.com/projects/645068243364/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
+                  expirationSeconds: 3600
+                  path: token
         - name: workload-identity-credential-configuration
           configMap:
             name: workload-identity-credential-configuration
