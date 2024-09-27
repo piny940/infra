@@ -25,4 +25,4 @@ configMapGenerator:
   - name: workload-identity-credential-configuration
     behavior: merge
     files:
-      - workload-identity-credential-configuration.json
+      - gcp-credential-configuration.json
