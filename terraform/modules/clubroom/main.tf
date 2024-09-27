@@ -20,11 +20,6 @@ resource "google_project_iam_member" "clubroom_service_account_token_creator" {
   member  = "serviceAccount:${google_service_account.clubroom.email}"
   role    = "roles/iam.serviceAccountTokenCreator"
 }
-resource "google_project_iam_member" "clubroom_workload_identity_user" {
-  project = var.project
-  member  = "serviceAccount:${google_service_account.clubroom.email}"
-  role    = "roles/iam.workloadIdentityUser"
-}
 resource "google_service_account_iam_member" "ksa_workload_identity_user" {
   service_account_id = google_service_account.clubroom.id
   role               = "roles/iam.workloadIdentityUser"
