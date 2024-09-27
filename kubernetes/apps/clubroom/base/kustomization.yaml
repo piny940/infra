@@ -23,6 +23,7 @@ configMapGenerator:
       - BACKEND_HOST=
       - GOOGLE_BUCKET=
       - GOOGLE_PROJECT_ID=
+      - GOOGLE_GSA_EMAIL=
   - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml
