@@ -9,5 +9,5 @@ resource "google_storage_bucket" "clubroom" {
 resource "google_project_iam_member" "clubroom_k8s_storage_object_user" {
   project = var.project
   role    = "roles/storage.objectUser"
-  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:clubroom"
+  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:${local.prefix}clubroom"
 }
