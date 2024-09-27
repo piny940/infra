@@ -9,6 +9,7 @@ resources:
   - front.image-repository.yaml
   - front.service.yaml
   - external-secret.yaml
+  - service-account.yaml
 configMapGenerator:
   - name: clubroom-conf
     literals:
