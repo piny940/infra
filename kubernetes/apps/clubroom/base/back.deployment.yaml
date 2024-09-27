@@ -46,7 +46,7 @@ spec:
               mountPath: /etc/workload-identity
               readOnly: true
       volumes:
-        - name: workload-identity-credential-configuration
+        - name: token
           projected:
             sources:
               - serviceAccountToken:
