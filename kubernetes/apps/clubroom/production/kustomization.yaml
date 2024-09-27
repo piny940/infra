@@ -20,4 +20,4 @@ configMapGenerator:
     literals:
       - POSTGRES_NAME=clubroom_production
       - BACKEND_HOST=http://clubroom-backend.default.svc.cluster.local:3000
-      - GOOGLE_BUCKET=stg-clubroom.piny940.com
+      - GOOGLE_BUCKET=clubroom.piny940.com
