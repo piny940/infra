@@ -19,9 +19,10 @@ configMapGenerator:
       - POSTGRES_SSLMODE=disable
       - RAILS_HOSTS=0.0.0.0/0
       - RAILS_ENV=production
+      - RAILS_LOG_TO_STDOUT=true
       - BACKEND_HOST=
       - GOOGLE_BUCKET=
-      - RAILS_LOG_TO_STDOUT=true
+      - GOOGLE_PROJECT_ID=
   - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml

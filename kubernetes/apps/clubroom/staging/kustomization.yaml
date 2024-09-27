@@ -22,6 +22,7 @@ configMapGenerator:
       - POSTGRES_NAME=clubroom_staging
       - BACKEND_HOST=http://stg-clubroom-backend.default.svc.cluster.local:3000
       - GOOGLE_BUCKET=clubroom.piny940.com
+      - GOOGLE_PROJECT_ID=stg-piny940
   - name: workload-identity-credential-configuration
     behavior: merge
     files:
