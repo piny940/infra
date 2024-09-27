@@ -21,5 +21,6 @@ configMapGenerator:
       - RAILS_ENV=production
       - BACKEND_HOST=
       - RAILS_LOG_TO_STDOUT=true
+  - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml

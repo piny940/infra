@@ -21,3 +21,7 @@ configMapGenerator:
     literals:
       - POSTGRES_NAME=clubroom_staging
       - BACKEND_HOST=http://stg-clubroom-backend.default.svc.cluster.local:3000
+  - name: workload-identity-credential-configuration
+    behavior: merge
+    files:
+      - workload-identity-credential-configuration.json
