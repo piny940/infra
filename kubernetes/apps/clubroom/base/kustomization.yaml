@@ -16,7 +16,6 @@ configMapGenerator:
       - POSTGRES_PORT=5432
       - POSTGRES_NAME=
       - POSTGRES_SSLMODE=disable
-      - GOOGLE_BUCKET=dev-piny940
       - RAILS_HOSTS=0.0.0.0/0
       - RAILS_ENV=production
       - BACKEND_HOST=
