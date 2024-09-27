@@ -18,6 +18,9 @@ module "kube_workload_identity" {
   workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
 }
 module "clubroom" {
-  source = "../modules/clubroom"
-  env    = "production"
+  source                    = "../modules/clubroom"
+  env                       = "production"
+  project                   = local.project
+  project_number            = local.project_number
+  workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
 }
