@@ -55,39 +55,35 @@ jobs:
           cd terraform/${{ matrix.env }}
           result=$(cat plan.txt)
           pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
-          if [[ ${result} =~ ${pattern} ]]; then
-            summary=$(echo "$result" | grep -oE "$pattern")
-            msg="# Terraform plan for ${{ matrix.env }}
-            
-            \`\`\`
-            $summary
-            \`\`\`
+          {
+            echo "MSG="
+            if [[ ${result} =~ ${pattern} ]]; then
+              summary=$(echo "$result" | grep -oE "$pattern")
+              printf "# Terraform plan for ${{ matrix.env }}\n\n"
+              printf "\`\`\`\n"
+              printf "$summary\n"
+              printf "\`\`\`\n\n"
+              printf "<details>\n"
+              printf "<summary>Terraform Plan Details</summary>\n\n"
+              printf "\`\`\`\n"
+              printf "$result\n"
+              printf "\`\`\`\n\n"
+              printf "</details>\n"
 
-            <details>
-            <summary>Terraform Plan Details</summary>
-
-            \`\`\`
-            $result
-            \`\`\`
-
-            </details>"
-
-            if [[ ${{ matrix.env }} == 'staging' ]]; then
-              msg="${msg}
-          Please apply the changes to the staging environment using the [Terraform apply workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/tf-apply.yaml)"
+              if [[ ${{ matrix.env }} == 'staging' ]]; then
+                printf "Please apply the changes to the staging environment using the [Terraform apply workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/tf-apply.yaml)\n"
+              fi
+            else
+              printf "# Terraform plan for ${{ matrix.env }}\n\n"
+              printf "\`\`\`\n"
+              printf "$result\n"
+              printf "\`\`\`\n"
             fi
-          else
-            msg="# Terraform plan for ${{ matrix.env }}
-            
-            \`\`\`
-            $result
-            \`\`\`"
-          fi
-          echo "$msg"
+          } >> "$GITHUB_OUTPUT"
       - name: Comment PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: Terraform Plan for ${{ matrix.env }}
-          message: ${{ steps.CreateMessage.outputs.msg }}
+          message: ${{ steps.CreateMessage.outputs.MSG }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
