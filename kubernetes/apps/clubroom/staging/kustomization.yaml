@@ -21,3 +21,10 @@ configMapGenerator:
     literals:
       - POSTGRES_NAME=clubroom_staging
       - BACKEND_HOST=http://stg-clubroom-backend.default.svc.cluster.local:3000
+      - GOOGLE_BUCKET=stg-clubroom.piny940.com
+      - GOOGLE_PROJECT_ID=stg-piny940
+      - GOOGLE_GSA_EMAIL=clubroom@stg-piny940.iam.gserviceaccount.com
+  - name: workload-identity-credential-configuration
+    behavior: merge
+    files:
+      - gcp-credential-configuration.json

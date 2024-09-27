@@ -9,6 +9,7 @@ resources:
   - front.image-repository.yaml
   - front.service.yaml
   - external-secret.yaml
+  - service-account.yaml
 configMapGenerator:
   - name: clubroom-conf
     literals:
@@ -16,10 +17,13 @@ configMapGenerator:
       - POSTGRES_PORT=5432
       - POSTGRES_NAME=
       - POSTGRES_SSLMODE=disable
-      - GOOGLE_BUCKET=dev-piny940
       - RAILS_HOSTS=0.0.0.0/0
       - RAILS_ENV=production
-      - BACKEND_HOST=
       - RAILS_LOG_TO_STDOUT=true
+      - BACKEND_HOST=
+      - GOOGLE_BUCKET=
+      - GOOGLE_PROJECT_ID=
+      - GOOGLE_GSA_EMAIL=
+  - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml

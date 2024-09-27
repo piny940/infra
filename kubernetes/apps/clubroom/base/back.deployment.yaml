@@ -14,6 +14,7 @@ spec:
       labels:
         app: clubroom-backend
     spec:
+      serviceAccountName: clubroom
       containers:
         - name: app
           image: clubroom-backend
@@ -35,3 +36,23 @@ spec:
                 secretKeyRef:
                   name: default.clubroom.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/workload-identity/gcp-credential-configuration.json
+          volumeMounts:
+            - name: token
+              mountPath: /var/run/service-account
+              readOnly: true
+            - name: workload-identity-credential-configuration
+              mountPath: /etc/workload-identity
+              readOnly: true
+      volumes:
+        - name: token
+          projected:
+            sources:
+              - serviceAccountToken:
+                  audience: https://iam.googleapis.com/projects/645068243364/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
+                  expirationSeconds: 3600
+                  path: token
+        - name: workload-identity-credential-configuration
+          configMap:
+            name: workload-identity-credential-configuration
