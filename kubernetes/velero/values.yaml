@@ -1,6 +1,6 @@
 image:
   repository: velero/velero
-  tag: v1.13.0
+  tag: v1.13.2
   pullPolicy: IfNotPresent
 resources:
   requests:
