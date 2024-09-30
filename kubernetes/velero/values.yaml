@@ -37,6 +37,7 @@ configuration:
         key: gcp
   features: EnableCSI
   defaultSnapshotMoveData: true
+  defaultVolumesToFsBackup: true
 deployNodeAgent: true
 nodeAgent:
   podVolumePath: /var/lib/kubelet/pods
