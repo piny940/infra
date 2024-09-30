@@ -194,7 +194,8 @@ kubectl apply -k namespaces
 ### flannel をインストール
 
 ```bash
-kubectl apply -k apps/flannel
+env=staging
+kubectl apply -k apps/flannel/$env
 ```
 
 reboot が必要(多分)
@@ -215,6 +216,11 @@ Pod が起動するまで少し時間がかかる(多分)
 
 ```bash
 sh longhorn/install.sh
+```
+
+```bash
+env=staging
+kubectl apply -k apps/snapshot-crd/$env
 ```
 
 ### バックアップを復元
