@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: 436/merge
+    branch: 446/merge
   secretRef:
     name: flux-system
   url: ssh://git@github.com/piny940/infra
