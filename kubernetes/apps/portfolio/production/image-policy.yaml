@@ -17,11 +17,8 @@ spec:
   imageRepositoryRef:
     name: portfolio-app
   policy:
-    numerical:
-      order: asc
-  filterTags:
-    pattern: "^1.0.0-(?P<ts>[0-9]+)$"
-    extract: "$ts"
+    semver:
+      range: 1.0.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
