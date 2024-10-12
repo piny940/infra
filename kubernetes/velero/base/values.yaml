@@ -16,14 +16,17 @@ initContainers:
       - mountPath: /target
         name: plugins
 configuration:
-  backupStorageLocation:
-    - name: default
-      provider: velero.io/gcp
-      bucket: velero-piny940
-      credential:
-        name: google-credentials
-        key: gcp
   defaultVolumesToFsBackup: true
+  extraEnvVars:
+    - name: GOOGLE_APPLICATION_CREDENTIALS
+      value: /etc/workload-identity/gcp-credential-configuration.json
+extraVolumeMounts:
+  - name: token
+    mountPath: /var/run/service-account
+    readOnly: true
+  - name: workload-identity-credential-configuration
+    mountPath: /etc/workload-identity
+    readOnly: true
 deployNodeAgent: true
 backupsEnabled: true
 snapshotsEnabled: false
