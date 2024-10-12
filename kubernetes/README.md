@@ -233,16 +233,11 @@ GCP の鍵をローカルから送信(初回のみ)
 scp credentials-velero.json hostname:~/credentials-velero.json
 ```
 
-Secret を作成
-
-```bash
-kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/credentials-velero.json
-```
-
 Velero をインストール
 
 ```bash
-sh velero/install.sh
+env=staging
+sh velero/$env/install.sh
 ```
 
 次のコマンドで、バックアップが sync されているのを確認する。
