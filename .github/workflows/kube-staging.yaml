@@ -1,6 +1,8 @@
 name: kube-staging
 on:
   push:
+    branches-ignore:
+      - fluxcd/**
     paths:
       - "kubernetes/**"
       - "!kubernetes/_flux/**"
