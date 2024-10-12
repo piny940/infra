@@ -3,6 +3,7 @@ on:
   pull_request:
     branches-ignore:
       - fluxcd/**
+      - "[0-9]+/merge"
     paths:
       - "kubernetes/**"
       - "!kubernetes/_flux/**"
