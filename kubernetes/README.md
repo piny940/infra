@@ -212,17 +212,6 @@ sudo swapoff -a
 
 Pod が起動するまで少し時間がかかる(多分)
 
-### longhorn をインストール
-
-```bash
-sh longhorn/install.sh
-```
-
-```bash
-env=staging
-kubectl apply -k apps/snapshot-crd/$env
-```
-
 ### バックアップを復元
 
 参考: https://velero.io/docs/v1.13/restore-reference/

@@ -18,8 +18,7 @@ initContainers:
 configuration:
   defaultVolumesToFsBackup: true
   extraEnvVars:
-    - name: GOOGLE_APPLICATION_CREDENTIALS
-      value: /etc/workload-identity/gcp-credential-configuration.json
+    GOOGLE_APPLICATION_CREDENTIALS: /etc/workload-identity/gcp-credential-configuration.json
 extraVolumeMounts:
   - name: token
     mountPath: /var/run/service-account
