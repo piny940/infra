@@ -227,12 +227,6 @@ kubectl apply -k apps/snapshot-crd/$env
 
 参考: https://velero.io/docs/v1.13/restore-reference/
 
-GCP の鍵をローカルから送信(初回のみ)
-
-```bash
-scp credentials-velero.json hostname:~/credentials-velero.json
-```
-
 Velero をインストール
 
 ```bash
