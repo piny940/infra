@@ -25,6 +25,8 @@ configuration:
         key: gcp
   defaultVolumesToFsBackup: true
 deployNodeAgent: true
+backupsEnabled: true
+snapshotsEnabled: false
 nodeAgent:
   podVolumePath: /var/lib/kubelet/pods
   resources:
