@@ -29,14 +29,6 @@ configuration:
       credential:
         name: google-credentials
         key: gcp
-  volumeSnapshotLocation:
-    - name: default
-      provider: velero.io/gcp
-      credential:
-        name: google-credentials
-        key: gcp
-  features: EnableCSI
-  defaultSnapshotMoveData: true
   defaultVolumesToFsBackup: true
 deployNodeAgent: true
 nodeAgent:
@@ -52,4 +44,3 @@ schedules:
     template:
       labels:
         app: velero-backup-daily
-      snapshotVolumes: true
