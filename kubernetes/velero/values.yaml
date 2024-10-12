@@ -10,12 +10,6 @@ resources:
     cpu: 1000m
     memory: 512Mi
 initContainers:
-  - name: velero-plugin-for-csi
-    image: velero/velero-plugin-for-csi:v0.7.1
-    imagePullPolicy: IfNotPresent
-    volumeMounts:
-      - mountPath: /target
-        name: plugins
   - name: velero-plugin-for-gcp
     image: velero/velero-plugin-for-gcp:v1.9.1
     volumeMounts:
