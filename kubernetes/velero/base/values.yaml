@@ -19,6 +19,10 @@ configuration:
   defaultVolumesToFsBackup: true
   extraEnvVars:
     GOOGLE_APPLICATION_CREDENTIALS: /etc/workload-identity/gcp-credential-configuration.json
+serviceAccount:
+  server:
+    create: true
+    name: velero
 extraVolumeMounts:
   - name: token
     mountPath: /var/run/service-account
