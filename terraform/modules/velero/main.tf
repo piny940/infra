@@ -24,5 +24,5 @@ resource "google_project_iam_member" "velero_service_account_token_creator" {
 resource "google_service_account_iam_member" "ksa_velero_workload_identity_user" {
   service_account_id = google_service_account.velero.id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:velero:${local.prefix}velero"
+  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:velero:velero"
 }
