@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: 451/merge
+    branch: fix-kube-staging
   secretRef:
     name: flux-system
   url: ssh://git@github.com/piny940/infra
