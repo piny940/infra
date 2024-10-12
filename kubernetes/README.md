@@ -212,6 +212,48 @@ sudo swapoff -a
 
 Pod が起動するまで少し時間がかかる(多分)
 
+### Workload Identity 連携を設定
+
+`cluster-jwks.json` を作成
+
+```bash
+kubectl get --raw /openid/v1/jwks > $HOME/cluster-jwks.json
+```
+
+ローカルにダウンロード（ローカルで実行）
+
+```bash
+env=staging
+scp {hostname}:cluster-jwks.json "$env"-cluster-jwks.json
+```
+
+GCP にアップロード（ローカルで実行）
+
+```bash
+# staging環境
+env=staging
+secret=home-kubernetes-cluster-jwks
+project=stg-piny940
+for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project) do
+  gcloud secrets versions destroy $version --secret=$secret --project=$project
+done
+gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project=$project
+
+# production環境
+env=production
+secret=home-kubernetes-cluster-jwks
+project=prd-piny940
+for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project) do
+  gcloud secrets versions destroy $version --secret=$secret --project=$project
+done
+gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project=$project
+```
+
+`kube_workload_identity` で secret のバージョンを変更する
+
+- staging: [/terraform/staging/main.tf](/terraform/staging/main.tf)
+- production: [/terraform/production/main.tf](/terraform/production/main.tf)
+
 ### バックアップを復元
 
 参考: https://velero.io/docs/v1.13/restore-reference/

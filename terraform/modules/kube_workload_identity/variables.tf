@@ -15,3 +15,6 @@ variable "project_number" {
 variable "workload_identity_pool_id" {
   type = string
 }
+variable "home_kubernetes_cluster_jwks_secret_version" {
+  type = string
+}

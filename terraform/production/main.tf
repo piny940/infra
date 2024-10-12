@@ -11,11 +11,12 @@ module "terraform" {
   repo                      = local.repo
 }
 module "kube_workload_identity" {
-  source                    = "../modules/kube_workload_identity"
-  env                       = local.env
-  project                   = local.project
-  project_number            = local.project_number
-  workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
+  source                                      = "../modules/kube_workload_identity"
+  env                                         = local.env
+  project                                     = local.project
+  project_number                              = local.project_number
+  workload_identity_pool_id                   = module.workload_identity_pool.workload_identity_pool_id
+  home_kubernetes_cluster_jwks_secret_version = "1"
 }
 module "clubroom" {
   source                    = "../modules/clubroom"
