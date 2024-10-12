@@ -13,4 +13,4 @@ extraVolumes:
             path: token
   - name: workload-identity-credential-configuration
     configMap:
-      name: stg-velero-workload-identity-credential-configuration
+      name: velero-workload-identity-credential-configuration
