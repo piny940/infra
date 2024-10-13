@@ -16,7 +16,7 @@ module "kube_workload_identity" {
   project                                     = local.project
   project_number                              = local.project_number
   workload_identity_pool_id                   = module.workload_identity_pool.workload_identity_pool_id
-  home_kubernetes_cluster_jwks_secret_version = "3"
+  home_kubernetes_cluster_jwks_secret_version = "4"
 }
 module "clubroom" {
   source                    = "../modules/clubroom"
