@@ -4,7 +4,7 @@ metadata:
   name: flannel
   namespace: flux-system
 spec:
-  interval: 3m
+  interval: 24h
   path: ./kubernetes/apps/flannel/staging
   prune: true
   sourceRef:
