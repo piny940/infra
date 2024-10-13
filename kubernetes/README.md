@@ -270,7 +270,7 @@ scp ~/$env-velero-credentials.json {hostname}:velero-credentials.json
 鍵を作成
 
 ```bash
-kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/credentials-velero.json
+kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/velero-credentials.json
 ```
 
 Velero をインストール
