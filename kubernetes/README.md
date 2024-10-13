@@ -160,6 +160,13 @@ CNI の設定やらの残骸を削除
 sudo rm /etc/cni/net.d/*
 ```
 
+コードが最新になっていることを確認
+
+```bash
+cd infra/kubernetes
+git pull
+```
+
 ```bash
 sudo kubeadm init --config kubeadm-config.yaml
 ```
