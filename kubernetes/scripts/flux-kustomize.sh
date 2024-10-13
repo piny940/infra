@@ -13,7 +13,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: apps-git
     namespace: flux-system" 
 }
 
@@ -52,6 +52,8 @@ for dir in `ls -d apps/*/`; do
   app=$(echo $dir | sed -e 's:apps/::g' | sed -e 's:/::g')
 
   for env in staging production; do
-    createKustomization $app $env
+    if [ ! -e "_flux/$env/kustomizations/$app.yaml" ]; then
+      createKustomization $app $env
+    fi
   done
 done
