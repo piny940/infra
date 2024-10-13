@@ -234,7 +234,8 @@ GCP にアップロード（ローカルで実行）
 env=staging
 secret=home-kubernetes-cluster-jwks
 project=stg-piny940
-for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project) do
+for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project)
+do
   gcloud secrets versions destroy $version --secret=$secret --project=$project
 done
 gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project=$project
@@ -243,7 +244,8 @@ gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project
 env=production
 secret=home-kubernetes-cluster-jwks
 project=prd-piny940
-for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project) do
+for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project)
+do
   gcloud secrets versions destroy $version --secret=$secret --project=$project
 done
 gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project=$project
@@ -274,11 +276,27 @@ velero get backup
 バックアップを復元する
 
 ```bash
-velero restore create --include-cluster-resources --from-backup {backup-name}
+velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system --from-backup {backup-name}
 ```
 
-- `kubectl apply -k namespaces`
-- `bash init_flux.sh`
+### FluxCD のセットアップ
+
+```bash
+env=staging
+kubectl -n flux-system delete secret flux-system
+flux bootstrap git \
+  --components-extra=image-reflector-controller,image-automation-controller \
+  --url=ssh://git@github.com/piny940/infra \
+  --branch=main \
+  --private-key-file=/home/$(whoami)/.ssh/ed25519 \
+  --path=kubernetes/_flux/$env
+```
+
+### Vault のセットアップ
+
+[apps/vault/README.md](apps/vault/README.md)に従う
+
+### 補足
 
 バックアップから復元しない場合
 https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov-file
