@@ -292,7 +292,20 @@ velero get backup
 velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system --from-backup {backup-name}
 ```
 
+### Vault のセットアップ
+
+vault の key をアップロード（ローカルで実行）（初回のみ）
+
+```bash
+env=staging
+scp ~/$env-cluster-keys.json {hostname}:cluster-keys.json
+```
+
+[apps/vault/README.md](apps/vault/README.md)に従う
+
 ### FluxCD のセットアップ
+
+バックアップからの復元が終わるまで待って実行
 
 ```bash
 env=staging
@@ -304,10 +317,6 @@ flux bootstrap git \
   --private-key-file=/home/$(whoami)/.ssh/ed25519 \
   --path=kubernetes/_flux/$env
 ```
-
-### Vault のセットアップ
-
-[apps/vault/README.md](apps/vault/README.md)に従う
 
 ### 補足
 
