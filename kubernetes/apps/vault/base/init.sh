@@ -1,29 +1,31 @@
 # コマンドは1つずつ実行する
+
+# 初回のみ
 CLUSTER_KEY=$(kubectl exec vault-0 -n vault -- vault operator init \
                 -key-shares=1 \
                 -key-threshold=1 \
                 -format=json)
-
 if [ -z "${CLUSTER_KEY}" ]; then
   echo "CLUSTER_KEY is not set"
-  exit 1
 fi
+echo $CLUSTRE_KEY > ~/cluster-keys.json
+
+# 以下2回目以降も実行
 source .env
 export K8S_ENV
 PREFIX=""
-if [ K8S_ENV == "staging" ]; then
+if [ $K8S_ENV == "staging" ]; then
     PREFIX="stg-"
 fi
-
-
-
-echo $CLUSTRE_KEY > ~/cluster-keys.json
 
 VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ~/cluster-keys.json)
 kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
 export VAULT_ADDR="https://${PREFIX}vault.piny940.com"
 jq -r ".root_token" ~/cluster-keys.json | vault login -
+
+# この行は初回のみ
 vault auth enable kubernetes
+
 export SA_SECRET_NAME=$(kubectl get secrets -n vault --output=json \
     | jq -r '.items[].metadata | select(.name|startswith("vault-auth-")).name')
 export SA_JWT_TOKEN=$(kubectl get secret -n vault $SA_SECRET_NAME \
