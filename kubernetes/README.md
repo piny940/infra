@@ -260,6 +260,19 @@ gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project
 
 参考: https://velero.io/docs/v1.13/restore-reference/
 
+鍵をアップロード（ローカルで実行）（初回のみ）
+
+```bash
+env=staging
+scp ~/$env-velero-credentials.json {hostname}:velero-credentials.json
+```
+
+鍵を作成
+
+```bash
+kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/credentials-velero.json
+```
+
 Velero をインストール
 
 ```bash

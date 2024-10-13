@@ -17,19 +17,6 @@ initContainers:
         name: plugins
 configuration:
   defaultVolumesToFsBackup: true
-  extraEnvVars:
-    GOOGLE_APPLICATION_CREDENTIALS: /etc/workload-identity/gcp-credential-configuration.json
-serviceAccount:
-  server:
-    create: true
-    name: velero
-extraVolumeMounts:
-  - name: token
-    mountPath: /var/run/service-account
-    readOnly: true
-  - name: workload-identity-credential-configuration
-    mountPath: /etc/workload-identity
-    readOnly: true
 deployNodeAgent: true
 backupsEnabled: true
 snapshotsEnabled: false

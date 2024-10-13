@@ -3,14 +3,6 @@ configuration:
     - name: default
       provider: velero.io/gcp
       bucket: velero-cluster-backup.piny940.com
-extraVolumes:
-  - name: token
-    projected:
-      sources:
-        - serviceAccountToken:
-            audience: https://iam.googleapis.com/projects/1056391010239/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
-            expirationSeconds: 3600
-            path: token
-  - name: workload-identity-credential-configuration
-    configMap:
-      name: velero-workload-identity-credential-configuration
+      credential:
+        name: google-credentials
+        key: gcp
