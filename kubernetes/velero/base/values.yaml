@@ -1,6 +1,6 @@
 image:
   repository: velero/velero
-  tag: v1.13.0
+  tag: v1.13.2
   pullPolicy: IfNotPresent
 resources:
   requests:
@@ -10,34 +10,16 @@ resources:
     cpu: 1000m
     memory: 512Mi
 initContainers:
-  - name: velero-plugin-for-csi
-    image: velero/velero-plugin-for-csi:v0.7.1
-    imagePullPolicy: IfNotPresent
-    volumeMounts:
-      - mountPath: /target
-        name: plugins
   - name: velero-plugin-for-gcp
     image: velero/velero-plugin-for-gcp:v1.9.1
     volumeMounts:
       - mountPath: /target
         name: plugins
 configuration:
-  backupStorageLocation:
-    - name: default
-      provider: velero.io/gcp
-      bucket: velero-piny940
-      credential:
-        name: google-credentials
-        key: gcp
-  volumeSnapshotLocation:
-    - name: default
-      provider: velero.io/gcp
-      credential:
-        name: google-credentials
-        key: gcp
-  features: EnableCSI
-  defaultSnapshotMoveData: true
+  defaultVolumesToFsBackup: true
 deployNodeAgent: true
+backupsEnabled: true
+snapshotsEnabled: false
 nodeAgent:
   podVolumePath: /var/lib/kubelet/pods
   resources:
@@ -51,4 +33,3 @@ schedules:
     template:
       labels:
         app: velero-backup-daily
-      snapshotVolumes: true

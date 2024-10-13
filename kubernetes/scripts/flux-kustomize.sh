@@ -43,8 +43,9 @@ createKustomization() {
 }
 
 for env in staging production; do
-  rm -f _flux/$env/kustomizations/*.yaml
-  kustomization "namespaces" "namespaces" > _flux/$env/kustomizations/namespaces.yaml
+  if [ ! -e "_flux/$env/kustomizations/namespaces.yaml" ]; then
+    kustomization "namespaces" "namespaces" > _flux/$env/kustomizations/namespaces.yaml
+  fi
 done
 for dir in `ls -d apps/*/`; do
   # apps/xx/ -> xx

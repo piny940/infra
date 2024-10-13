@@ -194,7 +194,8 @@ kubectl apply -k namespaces
 ### flannel をインストール
 
 ```bash
-kubectl apply -k apps/flannel
+env=staging
+kubectl apply -k apps/flannel/$env
 ```
 
 reboot が必要(多分)
@@ -211,32 +212,72 @@ sudo swapoff -a
 
 Pod が起動するまで少し時間がかかる(多分)
 
-### longhorn をインストール
+### Workload Identity 連携を設定
+
+`cluster-jwks.json` を作成
 
 ```bash
-sh longhorn/install.sh
+kubectl get --raw /openid/v1/jwks > $HOME/cluster-jwks.json
 ```
+
+ローカルにダウンロード（ローカルで実行）
+
+```bash
+env=staging
+scp {hostname}:cluster-jwks.json "$env"-cluster-jwks.json
+```
+
+GCP にアップロード（ローカルで実行）
+
+```bash
+# staging環境
+env=staging
+secret=home-kubernetes-cluster-jwks
+project=stg-piny940
+for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project)
+do
+  gcloud secrets versions destroy $version --secret=$secret --project=$project
+done
+gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project=$project
+
+# production環境
+env=production
+secret=home-kubernetes-cluster-jwks
+project=prd-piny940
+for version in $(gcloud secrets versions list home-kubernetes-cluster-jwks --format="value(name)" --project=$project)
+do
+  gcloud secrets versions destroy $version --secret=$secret --project=$project
+done
+gcloud secrets versions add $secret --data-file=$env-cluster-jwks.json --project=$project
+```
+
+`kube_workload_identity` で secret のバージョンを変更する
+
+- staging: [/terraform/staging/main.tf](/terraform/staging/main.tf)
+- production: [/terraform/production/main.tf](/terraform/production/main.tf)
 
 ### バックアップを復元
 
 参考: https://velero.io/docs/v1.13/restore-reference/
 
-GCP の鍵をローカルから送信(初回のみ)
+鍵をアップロード（ローカルで実行）（初回のみ）
 
 ```bash
-scp credentials-velero.json hostname:~/credentials-velero.json
+env=staging
+scp ~/$env-velero-credentials.json {hostname}:velero-credentials.json
 ```
 
-Secret を作成
+鍵を作成
 
 ```bash
-kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/credentials-velero.json
+kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/velero-credentials.json
 ```
 
 Velero をインストール
 
 ```bash
-sh velero/install.sh
+env=staging
+sh velero/$env/install.sh
 ```
 
 次のコマンドで、バックアップが sync されているのを確認する。
@@ -248,11 +289,27 @@ velero get backup
 バックアップを復元する
 
 ```bash
-velero restore create --include-cluster-resources --from-backup {backup-name}
+velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system --from-backup {backup-name}
 ```
 
-- `kubectl apply -k namespaces`
-- `bash init_flux.sh`
+### FluxCD のセットアップ
+
+```bash
+env=staging
+kubectl -n flux-system delete secret flux-system
+flux bootstrap git \
+  --components-extra=image-reflector-controller,image-automation-controller \
+  --url=ssh://git@github.com/piny940/infra \
+  --branch=main \
+  --private-key-file=/home/$(whoami)/.ssh/ed25519 \
+  --path=kubernetes/_flux/$env
+```
+
+### Vault のセットアップ
+
+[apps/vault/README.md](apps/vault/README.md)に従う
+
+### 補足
 
 バックアップから復元しない場合
 https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov-file
@@ -266,12 +323,3 @@ https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov
 - longhorn のために iscsid 入れた？
 - `.env` は正しい？
 - コマンドを実行してるディレクトリ(`pwd`)は正しい？
-
-## FluxCD のセットアップ
-
-- `.env`に必要な情報を記入する
-- [scripts/init_flux.sh](scripts/init_flux.sh)に従う
-
-## Vault のセットアップ
-
-- [scripts/init_vault.sh](scripts/init_vault.sh)に従う
