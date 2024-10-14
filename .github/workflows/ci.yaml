@@ -106,6 +106,6 @@ jobs:
         uses: ./.github/actions/tf-plan
         with:
           env: "staging"
-          gcp-project: ${{ vars.STG_GCP_PROJECT}}
+          gcp-project: ${{ vars.STG_GCP_PROJECT }}
           gcp-project-number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}

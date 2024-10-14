@@ -13,6 +13,7 @@ inputs:
     required: true
 
 runs:
+  using: composite
   steps:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -25,11 +26,14 @@ runs:
         service_account: "terraform-github-actions@${{ inputs.gcp-project }}.iam.gserviceaccount.com"
     - name: Terraform Init
       run: cd terraform/${{ inputs.env }} && terraform init
+      shell: bash
     - name: Terraform Plan
       run: cd terraform/${{ inputs.env }} && terraform plan -no-color -input=false > plan.txt
+      shell: bash
       continue-on-error: true
     - name: Create Message
       id: CreateMessage
+      shell: bash
       run: |
         cd terraform/${{ inputs.env }}
         result=$(cat plan.txt)
@@ -58,6 +62,7 @@ runs:
         } >> "$GITHUB_ENV"
     - name: Comment PR
       uses: marocchino/sticky-pull-request-comment@v2
+      shell: bash
       with:
         header: Terraform Plan for ${{ inputs.env }}
         message: ${{ env.comment }}
