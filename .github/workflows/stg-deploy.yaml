@@ -73,7 +73,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Successfully switched target branch to hoge: <https://example.com|View request>"
+                    "text": "Successfully switched target branch to ${{ github.ref_name }}: <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}>"
                   }
                 }
               ]
