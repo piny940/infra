@@ -71,6 +71,7 @@ jobs:
         if: success()
         uses: slackapi/slack-github-action@v1
         with:
+          channel-id: ${{ vars.SLACK_CHANNEL_ID }}
           payload: |
             {
               "attachments": [{
@@ -85,8 +86,7 @@ jobs:
               }]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
 
   service-monitor:
     runs-on: ubuntu-latest
