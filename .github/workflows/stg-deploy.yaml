@@ -73,13 +73,13 @@ jobs:
         with:
           payload: |
             {
-              "color": "good",
+              "color": "#36d399",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Successfully switched target branch to ${{ github.head_ref }}: <${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.pr_number.outputs.PR_NUMBER }}>"
+                    "text": "Successfully switched target branch to `${{ github.head_ref }}` : <${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.pr_number.outputs.PR_NUMBER }}>"
                   }
                 }
               ]
