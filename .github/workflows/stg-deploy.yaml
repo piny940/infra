@@ -69,20 +69,20 @@ jobs:
         id: pr_number
       - name: notify success to slack
         if: success()
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: slackapi/slack-github-action@v1
         with:
           payload: |
             {
-              "color": "#36d399",
-              "blocks": [
-                {
+              "attachments": [{
+                "color": "#36d399",
+                "blocks": [{
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
                     "text": "Successfully switched target branch to `${{ github.head_ref }}` : <${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.pr_number.outputs.PR_NUMBER }}>"
                   }
-                }
-              ]
+                }]
+              }]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
