@@ -50,8 +50,6 @@ jobs:
     if: needs.filter.outputs.kube == 'true'
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
       - name: Set flux branch to current branch
         id: set-flux-branch
         run: |
