@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flux-target-updater
+  labels:
+    app: flux-target-updater
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flux-target-updater
+  template:
+    metadata:
+      labels:
+        app: flux-target-updater
+    spec:
+      serviceAccountName: flux-target-updater
+      containers:
+        - name: app
+          image: flux-target-updater
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: flux-target-updater-conf
+            - secretRef:
+                name: flux-target-updater-secret

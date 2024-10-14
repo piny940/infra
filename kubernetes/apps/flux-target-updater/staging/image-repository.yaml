@@ -1,0 +1,7 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: flux-target-updater
+spec:
+  image: ghcr.io/piny940/flux-target-updater
+  interval: 3m

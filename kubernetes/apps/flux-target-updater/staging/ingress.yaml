@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flux-target-updater
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - stg-flux-target-updater.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: stg-flux-target-updater.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flux-target-updater
+                port:
+                  number: 8080
