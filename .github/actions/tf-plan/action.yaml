@@ -9,7 +9,7 @@ inputs:
     description: "GCP Project Number"
     required: true
   gh-token:
-    description: "GitHub Token
+    description: "GitHub Token"
     required: true
 
 runs:
