@@ -21,7 +21,8 @@ resource "google_iam_workload_identity_pool_provider" "terraform_github_actions"
   description                        = "for Terraform GitHub Actions"
   attribute_condition                = "assertion.repository == \"${var.repo}\""
   attribute_mapping = {
-    "google.subject" = "\"github::repo:\" + assertion.repository"
+    "google.subject"   = "assertion.subject"
+    "attribute.ghrepo" = "assertion.subject.split(':')[1]"
   }
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
@@ -30,5 +31,5 @@ resource "google_iam_workload_identity_pool_provider" "terraform_github_actions"
 resource "google_service_account_iam_member" "terraform_github_actions_workload_identity_user" {
   service_account_id = google_service_account.terraform_github_actions.id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/github::repo:${var.repo}"
+  member             = "principalSet://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/attribute.ghrepo/${var.repo}"
 }
