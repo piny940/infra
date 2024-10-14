@@ -61,9 +61,10 @@ func main() {
 	}
 
 	server := http.Server{
-		Addr:    ":" + conf.Port,
-		Handler: http.HandlerFunc(handle),
+		Addr: ":" + conf.Port,
 	}
+	http.HandleFunc("/", healthz)
+	http.HandleFunc("/update", update)
 
 	slog.Info(fmt.Sprintf("Starting server http://localhost:%s", conf.Port))
 	if err := server.ListenAndServe(); err != nil {
@@ -111,7 +112,11 @@ func newDynamicClient(conf *Config) (dynamic.Interface, error) {
 	return client, nil
 }
 
-func handle(w http.ResponseWriter, r *http.Request) {
+func healthz(w http.ResponseWriter, _ *http.Request) {
+	w.Write([]byte("ok"))
+}
+
+func update(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		slog.Info(fmt.Sprintf("Not found: %s", r.URL.Path))
