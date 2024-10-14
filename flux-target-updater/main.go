@@ -63,7 +63,7 @@ func main() {
 	server := http.Server{
 		Addr: ":" + conf.Port,
 	}
-	http.HandleFunc("/", healthz)
+	http.HandleFunc("/healthz", healthz)
 	http.HandleFunc("/branch", handleBranch)
 
 	slog.Info(fmt.Sprintf("Starting server http://localhost:%s", conf.Port))
