@@ -1,0 +1,56 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: read
+jobs:
+  path-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      kube: ${{ steps.path-filter.outputs.kube }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny:paths-filter@v3
+        id: path-filter
+        with:
+          filters: |
+            kube:
+              - "kubernetes/**"
+              - "!kubernetes/_flux/**"
+  kube-yamlfmt:
+    runs-on: ubuntu-latest
+    needs: path-filter
+    if: needs.path-filter.outputs.kube == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "^1.22.1"
+      - name: Install yamlfmt
+        run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
+      - name: Yamlfmt
+        run: yamlfmt -lint kubernetes/
+  kube-flux:
+    runs-on: ubuntu-latest
+    needs: path-filter
+    if: needs.path-filter.outputs.kube == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd kubernetes/
+          before=$(ls _flux/**/*)
+          bash scripts/flux-kustomize.sh
+          after=$(ls _flux/**/*)
+          diff=$(diff <(echo ${before}) <(echo ${after}))
+          if [ -z "$diff" ]; then
+            echo "No changes detected"
+            exit 0
+          else
+            echo "Changes detected"
+            exit 1
+          fi
