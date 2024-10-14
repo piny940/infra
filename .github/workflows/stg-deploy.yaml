@@ -75,7 +75,7 @@ jobs:
           if [ ${{ github.event_name }} == 'pull_request' ]; then
             echo "link=${{ github.event.pull_request.html_url }}" >> $GITHUB_OUTPUT
           else
-            eco "link=${{ github.event.repository.html_url }}/commit/${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "link=${{ github.event.repository.html_url }}/commit/${{ github.sha }}" >> $GITHUB_OUTPUT
           fi
         id: create-link
       - name: notify success to slack
