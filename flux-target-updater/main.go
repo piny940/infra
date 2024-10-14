@@ -64,7 +64,7 @@ func main() {
 		Addr: ":" + conf.Port,
 	}
 	http.HandleFunc("/", healthz)
-	http.HandleFunc("/update", update)
+	http.HandleFunc("/branch", handleBranch)
 
 	slog.Info(fmt.Sprintf("Starting server http://localhost:%s", conf.Port))
 	if err := server.ListenAndServe(); err != nil {
@@ -112,16 +112,13 @@ func newDynamicClient(conf *Config) (dynamic.Interface, error) {
 	return client, nil
 }
 
-func healthz(w http.ResponseWriter, _ *http.Request) {
+func healthz(w http.ResponseWriter, r *http.Request) {
+	slog.Info(fmt.Sprintf("%s %s", r.Method, r.URL.Path))
 	w.Write([]byte("ok"))
 }
 
-func update(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		slog.Info(fmt.Sprintf("Not found: %s", r.URL.Path))
-		return
-	}
+func handleBranch(w http.ResponseWriter, r *http.Request) {
+	slog.Info(fmt.Sprintf("%s %s", r.Method, r.URL.Path))
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		slog.Info(fmt.Sprintf("Method not allowed: %s", r.Method))

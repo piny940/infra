@@ -45,6 +45,7 @@ jobs:
               - ".github/workflows/stg-deploy.yaml"
   kube:
     runs-on: ubuntu-latest
+    environment: staging
     needs: filter
     if: needs.filter.outputs.kube == 'true'
     steps:
@@ -52,6 +53,7 @@ jobs:
         with:
           ref: main
       - name: Set flux branch to current branch
+        id: set-flux-branch
         run: |
           curl --request POST \
             --header 'Content-Type: application/json' \
@@ -61,7 +63,27 @@ jobs:
                 "name": "apps-git",
                 "namespace": "flux-system"
             }' \
-            https://stg-flux-target-updater.piny940.com/
+            https://stg-flux-target-updater.piny940.com/branch
+      - name: notify success to slack
+        if: success()
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {
+              "color": "good",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Successfully switched target branch to hoge: <https://example.com|View request>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
   service-monitor:
     runs-on: ubuntu-latest
