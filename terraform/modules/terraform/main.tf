@@ -21,8 +21,8 @@ resource "google_iam_workload_identity_pool_provider" "terraform_github_actions"
   description                        = "for Terraform GitHub Actions"
   attribute_condition                = "assertion.repository == \"${var.repo}\""
   attribute_mapping = {
-    "google.subject"   = "assertion.subject"
-    "attribute.ghrepo" = "assertion.subject.split(':')[1]"
+    "google.subject"   = "assertion.sub"
+    "attribute.ghrepo" = "assertion.sub.split(':')[1]"
   }
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
