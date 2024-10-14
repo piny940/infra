@@ -1,6 +1,6 @@
 name: Auto PR
 on:
-  push:
+  pull_request:
 jobs:
   fluxcd:
     if: ${{ github.actor == 'fluxcdbot' }}
