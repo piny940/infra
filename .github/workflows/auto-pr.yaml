@@ -3,7 +3,6 @@ on:
   push:
 jobs:
   fluxcd:
-    name: Open PR to main
     if: ${{ github.actor == 'fluxcdbot' }}
     runs-on: ubuntu-latest
     steps:
