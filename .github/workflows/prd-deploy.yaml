@@ -36,6 +36,23 @@ jobs:
               - "flux-target-updater/**"
               - ".github/workflows/stg-deploy.yaml"
 
+  tf-apply:
+    runs-on: ubuntu-latest
+    needs: path-filter
+    if: needs.path-filter.outputs.tf == 'true'
+    strategy:
+      matrix:
+        env: [staging, production]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Apply
+        uses: ./.github/actions/tf-apply
+        with:
+          env: ${{ matrix.env }}
+          gcp_project: ${{ vars.GCP_PROJECT }}
+          gcp_project_number: ${{ vars.GCP_PROJECT_NUMBER }}
+
   service-monitor:
     runs-on: ubuntu-latest
     needs: path-filter

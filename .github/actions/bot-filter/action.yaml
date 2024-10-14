@@ -1,0 +1,20 @@
+inputs:
+  actor:
+    description: "Actor to filter"
+    required: true
+outputs:
+  is-bot:
+    description: "Is the actor a bot?"
+    value: ${{ steps.filter-bot.outputs.is-bot }}
+runs:
+  using: composite
+  steps:
+    - name: Filter Bot
+      shell: bash
+      id: filter-bot
+      run: |
+        if echo ${{ inputs.actor }} | grep -qx bot; then
+          echo "is-bot=true" >> $GITHUB_OUTPUT
+        else
+          echo "is-bot=false" >> $GITHUB_OUTPUT
+        fi
