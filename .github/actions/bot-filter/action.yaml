@@ -10,6 +10,8 @@ runs:
   using: composite
   steps:
     - name: Filter Bot
+      shell: bash
+      id: filter-bot
       run: |
         if echo ${{ inputs.actor }} | grep -qx bot; then
           echo "is-bot=true" >> $GITHUB_OUTPUT
