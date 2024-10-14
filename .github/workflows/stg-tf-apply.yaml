@@ -1,0 +1,19 @@
+name: Terraform Apply
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  stg-apply:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Apply
+        uses: ./.github/actions/tf-apply
+        with:
+          env: staging
+          gcp_project: ${{ vars.GCP_PROJECT }}
+          gcp_project_number: ${{ vars.GCP_PROJECT_NUMBER }}
