@@ -3,6 +3,6 @@ kind: Kustomization
 labels:
   - includeSelectors: true
     pairs:
-      env: staging
+      env: production
 resources:
   - ../base
