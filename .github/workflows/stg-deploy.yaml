@@ -53,14 +53,15 @@ jobs:
           ref: main
       - name: Set flux branch to current branch
         run: |
-          curl --location 'https://stg-flux-target-updater.piny940.com/' \
+          curl --request POST \
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}' \
             --data '{
                 "ref": "${{ github.head_ref }}",
                 "name": "apps-git",
                 "namespace": "flux-system"
-            }'
+            }' \
+            https://stg-flux-target-updater.piny940.com/
 
   service-monitor:
     runs-on: ubuntu-latest
