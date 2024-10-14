@@ -51,7 +51,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Get current branch
-        run: echo "branch=$(echo $GITHUB_REF | cut -d'/' -f3)" >> $GITHUB_OUTPUT
+        run: |
+          if [ ${{ github.event_name }} == 'pull_request' ]; then
+            echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${{ github.ref }}" >> $GITHUB_OUTPUT
+          fi
         id: get-branch
       - name: Set flux branch to current branch
         id: set-flux-branch
