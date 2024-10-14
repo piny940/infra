@@ -9,14 +9,19 @@ permissions:
   contents: read
   pull-requests: write
 jobs:
-  path-filter:
+  filter:
     runs-on: ubuntu-latest
     outputs:
       kube: ${{ steps.path-filter.outputs.kube }}
       tf: ${{ steps.path-filter.outputs.tf }}
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/bot-filter
+        id: bot-filter
+        with:
+          input: ${{ github.actor }}
       - uses: dorny/paths-filter@v3
+        if: steps.bot-filter.outputs.is_bot == 'false'
         id: path-filter
         with:
           filters: |
@@ -48,8 +53,8 @@ jobs:
   #         done
   kube-yamlfmt:
     runs-on: ubuntu-latest
-    needs: path-filter
-    if: needs.path-filter.outputs.kube == 'true'
+    needs: filter
+    if: needs.filter.outputs.kube == 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
@@ -61,8 +66,8 @@ jobs:
         run: yamlfmt -lint kubernetes/
   kube-flux:
     runs-on: ubuntu-latest
-    needs: path-filter
-    if: needs.path-filter.outputs.kube == 'true'
+    needs: filter
+    if: needs.filter.outputs.kube == 'true'
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -81,8 +86,8 @@ jobs:
 
   tf-format:
     runs-on: ubuntu-latest
-    needs: path-filter
-    if: needs.path-filter.outputs.tf == 'true'
+    needs: filter
+    if: needs.filter.outputs.tf == 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -92,8 +97,8 @@ jobs:
         run: terraform fmt -check -recursive
   tf-plan:
     runs-on: ubuntu-latest
-    needs: path-filter
-    if: needs.path-filter.outputs.tf == 'true' && github.event_name == 'pull_request'
+    needs: filter
+    if: needs.filter.outputs.tf == 'true' && github.event_name == 'pull_request'
     strategy:
       matrix:
         env: [staging, production]
