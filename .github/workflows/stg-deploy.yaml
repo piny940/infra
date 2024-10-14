@@ -91,7 +91,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Successfully switched target branch to `${{ steps.get-branch.outputs.branch }}` : <${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.create-link.outputs.link }}>"
+                    "text": "Successfully switched target branch to `${{ steps.get-branch.outputs.branch }}` : <${{ steps.create-link.outputs.link }}>"
                   }
                 }]
               }]
