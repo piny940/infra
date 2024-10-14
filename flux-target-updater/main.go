@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"time"
 
 	fluxv1 "github.com/fluxcd/source-controller/api/v1"
 	"github.com/joho/godotenv"
@@ -144,9 +143,15 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	branch := data["ref"].(string)
 	target := data["name"].(string)
 	ns := data["namespace"].(string)
-	updateTarget(r.Context(), branch, target, ns)
+	err := updateTarget(r.Context(), branch, target, ns)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		slog.Error(fmt.Sprintf("Internal Server Error: %v", err))
+		return
+	}
 
-	w.Write([]byte("Hello, World!"))
+	slog.Info(fmt.Sprintf("Successfully updated branch target of %s in namespace %s to %s", target, ns, branch))
+	w.Write([]byte(fmt.Sprintf("Successfully updated branch target of %s in namespace %s to %s", target, ns, branch)))
 }
 
 func updateTarget(ctx context.Context, branch, target, ns string) error {
@@ -183,8 +188,6 @@ func updateTarget(ctx context.Context, branch, target, ns string) error {
 		slog.Error(fmt.Sprintf("Failed to marshal JSON: %v", err))
 		return err
 	}
-	fmt.Println(string(json))
-	time.Sleep(20 * time.Second)
 	_, err = dynamicClient.Resource(gvr).Namespace(ns).
 		Patch(ctx, target, types.MergePatchType, json, metav1.PatchOptions{
 			FieldManager: FIELD_MANAGER,
@@ -193,7 +196,5 @@ func updateTarget(ctx context.Context, branch, target, ns string) error {
 		slog.Error(fmt.Sprintf("Failed to patch GitRepository %s in namespace %s: %v", target, ns, err))
 		return err
 	}
-
-	slog.Info(fmt.Sprintf("Successfully updated branch target of %s in namespace %s to %s", target, ns, branch))
 	return nil
 }
