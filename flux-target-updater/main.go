@@ -11,10 +11,9 @@ import (
 )
 
 type Config struct {
-	Debug         bool   `default:"false"`
-	Port          string `default:"8080"`
-	Token         string `required:"true"`
-	KubeAPIServer string `required:"true" envconfig:"KUBE_API_SERVER"`
+	Debug bool   `default:"false"`
+	Port  string `default:"8080"`
+	Token string `required:"true"`
 }
 
 func main() {
