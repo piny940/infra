@@ -15,7 +15,7 @@ jobs:
       kube: ${{ steps.path-filter.outputs.kube }}
     steps:
       - uses: actions/checkout@v4
-      - uses: dorny:paths-filter@v3
+      - uses: dorny/paths-filter@v3
         id: path-filter
         with:
           filters: |
