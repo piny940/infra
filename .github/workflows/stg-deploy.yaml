@@ -1,9 +1,6 @@
 name: Staging Deploy
 on:
-  pull_request:
   push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -59,7 +56,7 @@ jobs:
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}' \
             --data '{
-                "ref": "${{ github.head_ref }}",
+                "ref": "${{ github.ref_name }}",
                 "name": "apps-git",
                 "namespace": "flux-system"
             }' \
