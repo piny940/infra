@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+  - includeSelectors: true
+    pairs:
+      env: staging
+namePrefix: stg-
+images:
+  - name: flux-target-updater
+    newName: ghcr.io/piny940/flux-target-updater # {"$imagepolicy": "default:flux-target-updater:name"}
+    newTag: main-80d089f276de0967fdaa0022bbe89b6dd0655640-16 # {"$imagepolicy": "default:flux-target-updater:tag"}
+resources:
+  - ../base
+  - deployment.yaml
+  - image-policy.yaml
+  - image-repository.yaml
+  - ingress.yaml
+  - service-account.yaml
+  - service.yaml
