@@ -1,6 +1,9 @@
 name: Staging Deploy
 on:
+  pull_request:
   push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -56,11 +59,14 @@ jobs:
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}' \
             --data '{
-                "ref": "${{ github.ref_name }}",
+                "ref": "${{ github.head_ref }}",
                 "name": "apps-git",
                 "namespace": "flux-system"
             }' \
             https://stg-flux-target-updater.piny940.com/branch
+      - name: Get PR number
+        run: echo "PR_NUMBER=$(jq --raw-output .pull_request.number $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+        id: pr_number
       - name: notify success to slack
         if: success()
         uses: slackapi/slack-github-action@v1.27.0
@@ -73,7 +79,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Successfully switched target branch to ${{ github.ref_name }}: <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}>"
+                    "text": "Successfully switched target branch to ${{ github.head_ref }}: <${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.pr_number.outputs.PR_NUMBER }}>"
                   }
                 }
               ]
