@@ -55,7 +55,7 @@ jobs:
           if [ ${{ github.event_name }} == 'pull_request' ]; then
             echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
           else
-            echo "branch=${{ github.ref }}" >> $GITHUB_OUTPUT
+            echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
           fi
         id: get-branch
       - name: Set flux branch to current branch
