@@ -21,7 +21,7 @@ jobs:
         with:
           actor: ${{ github.actor }}
       - uses: dorny/paths-filter@v3
-        if: steps.bot-filter.outputs.is_bot == 'false'
+        if: steps.bot-filter.outputs.is-bot == 'false'
         id: path-filter
         with:
           filters: |
