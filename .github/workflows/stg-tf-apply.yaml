@@ -16,5 +16,5 @@ jobs:
         uses: ./.github/actions/tf-apply
         with:
           env: staging
-          gcp_project: ${{ vars.GCP_PROJECT }}
-          gcp_project_number: ${{ vars.GCP_PROJECT_NUMBER }}
+          gcp_project: ${{ vars.STG_GCP_PROJECT }}
+          gcp_project_number: ${{ vars.STG_GCP_PROJECT_NUMBER }}

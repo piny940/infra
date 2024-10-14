@@ -49,10 +49,6 @@ runs:
             printf "$result\n"
             printf "\`\`\`\n\n"
             printf "</details>\n"
-
-            if [[ ${{ inputs.env }} == 'staging' ]]; then
-              printf "Please apply the changes to the staging environment using the [Terraform apply workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/tf-apply.yaml)\n"
-            fi
           else
             printf "# Terraform plan for ${{ inputs.env }}\n\n"
             printf "\`\`\`\n"
