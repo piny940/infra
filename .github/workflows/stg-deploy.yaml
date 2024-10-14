@@ -50,8 +50,14 @@ jobs:
     if: needs.filter.outputs.kube == 'true'
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
+      - name: Get current branch
+        run: |
+          if [ ${{ github.event_name }} == 'pull_request' ]; then
+            echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${{ github.ref }}" >> $GITHUB_OUTPUT
+          fi
+        id: get-branch
       - name: Set flux branch to current branch
         id: set-flux-branch
         run: |
@@ -59,14 +65,19 @@ jobs:
             --header 'Content-Type: application/json' \
             --header 'Authorization: Bearer ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}' \
             --data '{
-                "ref": "${{ github.head_ref }}",
+                "ref": "${{ steps.get-branch.outputs.branch }}",
                 "name": "apps-git",
                 "namespace": "flux-system"
             }' \
             https://stg-flux-target-updater.piny940.com/branch
-      - name: Get PR number
-        run: echo "PR_NUMBER=$(jq --raw-output .pull_request.number $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
-        id: pr_number
+      - name: Create link
+        run: |
+          if [ ${{ github.event_name }} == 'pull_request' ]; then
+            echo "link=${{ github.event.pull_request.html_url }}" >> $GITHUB_OUTPUT
+          else
+            eco "link=${{ github.event.repository.html_url }}/commit/${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
+        id: create-link
       - name: notify success to slack
         if: success()
         uses: slackapi/slack-github-action@v1
@@ -80,7 +91,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Successfully switched target branch to `${{ github.head_ref }}` : <${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.pr_number.outputs.PR_NUMBER }}>"
+                    "text": "Successfully switched target branch to `${{ steps.get-branch.outputs.branch }}` : <${{ steps.create-link.outputs.link }}>"
                   }
                 }]
               }]
