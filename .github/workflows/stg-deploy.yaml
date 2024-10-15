@@ -82,7 +82,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Deploy
-        uses: ./github/actions/service-monitor-deploy
+        uses: ./.github/actions/service-monitor-deploy
         with:
           func-name: stgCheckHealthiness
           region: ${{ secrets.AWS_REGION }}
@@ -95,7 +95,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Deploy
-        uses: ./github/actions/service-monitor-deploy
+        uses: ./.github/actions/service-monitor-deploy
         with:
           func-name: stgCheckHealthiness
           region: ${{ secrets.AWS_REGION }}
