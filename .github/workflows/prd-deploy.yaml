@@ -57,23 +57,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: configure-aws-credentials
-        uses: aws-actions/configure-aws-credentials@master
+      - name: Deploy
+        uses: ./github/actions/service-monitor-deploy
         with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
-          role-session-name: GitHubActions
-      - name: get-caller-identity is allowed to run on role.
-        run: aws sts get-caller-identity
-      - name: setup-python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-      - name: Install dependencies
-        run: |
-          cd service-monitor && pip3 install -r requirements.txt -t .
-      - name: lambda update
-        run: |
-          pip3 install awscli
-          cd service-monitor && zip -r package.zip ./*
-          aws lambda update-function-code --function-name checkHealthiness --zip-file fileb://package.zip --publish
+          func-name: checkHealthiness
+          region: ${{ secrets.AWS_REGION }}
+          role-arn: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
