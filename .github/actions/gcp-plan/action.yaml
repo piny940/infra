@@ -25,17 +25,17 @@ runs:
         workload_identity_provider: "projects/${{ inputs.gcp-project-number }}/locations/global/workloadIdentityPools/pool/providers/github-actions"
         service_account: "terraform-github-actions@${{ inputs.gcp-project }}.iam.gserviceaccount.com"
     - name: Terraform Init
-      run: cd terraform/${{ inputs.env }} && terraform init
+      run: cd gcp/${{ inputs.env }} && terraform init
       shell: bash
     - name: Terraform Plan
-      run: cd terraform/${{ inputs.env }} && terraform plan -no-color -input=false > plan.txt
+      run: cd gcp/${{ inputs.env }} && terraform plan -no-color -input=false > plan.txt
       shell: bash
       continue-on-error: true
     - name: Create Message
       id: CreateMessage
       shell: bash
       run: |
-        cd terraform/${{ inputs.env }}
+        cd gcp/${{ inputs.env }}
         result=$(cat plan.txt)
         pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
         {
@@ -53,7 +53,7 @@ runs:
             printf "\`\`\`\n\n"
             printf "</details>\n"
           else
-            printf "# Terraform plan for ${{ inputs.env }}\n\n"
+            printf "# GCP plan for ${{ inputs.env }}\n\n"
             printf "\`\`\`\n"
             printf "$result\n"
             printf "\`\`\`\n"
@@ -63,7 +63,7 @@ runs:
     - name: Comment PR
       uses: marocchino/sticky-pull-request-comment@v2
       with:
-        header: Terraform Plan for ${{ inputs.env }}
+        header: GCP Plan for ${{ inputs.env }}
         message: ${{ env.comment }}
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
