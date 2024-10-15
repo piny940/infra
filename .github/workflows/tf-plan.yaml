@@ -1,0 +1,88 @@
+name: Terraform Plan
+on:
+  pull_request:
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    outputs:
+      gcp: ${{ steps.path-filter.outputs.gcp }}
+      aws: ${{ steps.path-filter.outputs.aws }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/bot-filter
+        id: bot-filter
+        with:
+          actor: ${{ github.actor }}
+      - uses: dorny/paths-filter@v3
+        if: steps.bot-filter.outputs.is-bot == 'false'
+        id: path-filter
+        with:
+          filters: |
+            gcp:
+              - "gcp/**"
+              - ".github/workflows/ci.yaml"
+            aws:
+              - "aws/**"
+              - ".github/workflows/ci.yaml"
+
+  gcp-plan-prd:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.gcp == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Plan
+        uses: ./.github/actions/gcp-plan
+        with:
+          env: "production"
+          gcp-project: ${{ vars.PRD_GCP_PROJECT }}
+          gcp-project-number: ${{ vars.PRD_GCP_PROJECT_NUMBER }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+  gcp-plan-stg:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.gcp == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Plan
+        uses: ./.github/actions/gcp-plan
+        with:
+          env: "staging"
+          gcp-project: ${{ vars.STG_GCP_PROJECT }}
+          gcp-project-number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+  aws-plan-prd:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.aws == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Plan
+        uses: ./.github/actions/aws-plan
+        with:
+          env: "production"
+          aws-region: ${{ vars.AWS_REGION }}
+          aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+  aws-plan-stg:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.aws == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Plan
+        uses: ./.github/actions/aws-plan
+        with:
+          env: "staging"
+          aws-region: ${{ vars.AWS_REGION }}
+          aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
