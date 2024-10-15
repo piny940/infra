@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -43,88 +42,64 @@ jobs:
             fluxupd:
               - "flux-target-updater/**"
               - ".github/workflows/stg-deploy.yaml"
+
   kube:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.kube == 'true'
+    environment: staging # 管理者の承認を必要とする
+    if: needs.filter.outputs.kube == 'true' && github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
-      - name: Get current branch
-        run: |
-          if [ ${{ github.event_name }} == 'pull_request' ]; then
-            echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
-          else
-            echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          fi
-        id: get-branch
-      - name: Set flux branch to current branch
-        id: set-flux-branch
-        run: |
-          curl --request POST \
-            --header 'Content-Type: application/json' \
-            --header 'Authorization: Bearer ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}' \
-            --data '{
-                "ref": "${{ steps.get-branch.outputs.branch }}",
-                "name": "apps-git",
-                "namespace": "flux-system"
-            }' \
-            https://stg-flux-target-updater.piny940.com/branch
-      - name: Create link
-        run: |
-          if [ ${{ github.event_name }} == 'pull_request' ]; then
-            echo "link=${{ github.event.pull_request.html_url }}" >> $GITHUB_OUTPUT
-          else
-            echo "link=${{ github.event.repository.html_url }}/commit/${{ github.sha }}" >> $GITHUB_OUTPUT
-          fi
-        id: create-link
-      - name: notify success to slack
-        if: success()
-        uses: slackapi/slack-github-action@v1
+      - name: Deploy
+        uses: ./.github/actions/kube-deploy-stg
         with:
-          channel-id: ${{ vars.STG_SLACK_CHANNEL_ID }}
-          payload: |
-            {
-              "attachments": [{
-                "color": "#36d399",
-                "blocks": [{
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Successfully switched target branch to `${{ steps.get-branch.outputs.branch }}` : <${{ steps.create-link.outputs.link }}>"
-                  }
-                }]
-              }]
-            }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
+          slack-bot-token: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
+          slack-channel-id: ${{ vars.STG_SLACK_CHANNEL_ID }}
+          target-branch: ${{ github.head_ref }}
+          flux-target-updater-token: ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}
+          action-link: ${{ github.event.pull_request.html_url }}
+  kube-main:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.kube == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        uses: ./.github/actions/kube-deploy-stg
+        with:
+          slack-bot-token: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
+          slack-channel-id: ${{ vars.STG_SLACK_CHANNEL_ID }}
+          target-branch: main
+          flux-target-updater-token: ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}
+          action-link: ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
 
   service-monitor:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.svcmtr == 'true'
+    if: needs.filter.outputs.svcmtr == 'true' && github.event_name == 'pull_request'
+    environment: staging # 管理者の承認を必要とする
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: configure-aws-credentials
-        uses: aws-actions/configure-aws-credentials@master
+      - name: Deploy
+        uses: ./github/actions/service-monitor-deploy
         with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
-          role-session-name: GitHubActions
-      - name: get-caller-identity is allowed to run on role.
-        run: aws sts get-caller-identity
-      - name: setup-python
-        uses: actions/setup-python@v5
+          func-name: stgCheckHealthiness
+          region: ${{ secrets.AWS_REGION }}
+          role-arn: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
+  service-monitor-main:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.svcmtr == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        uses: ./github/actions/service-monitor-deploy
         with:
-          python-version: "3.x"
-      - name: Install dependencies
-        run: |
-          cd service-monitor && pip3 install -r requirements.txt -t .
-      - name: lambda update
-        run: |
-          pip3 install awscli
-          cd service-monitor && zip -r package.zip ./*
-          aws lambda update-function-code --function-name stgCheckHealthiness --zip-file fileb://package.zip --publish
+          func-name: stgCheckHealthiness
+          region: ${{ secrets.AWS_REGION }}
+          role-arn: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
 
   fluxupd:
     runs-on: ubuntu-latest

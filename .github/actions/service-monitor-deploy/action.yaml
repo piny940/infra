@@ -1,0 +1,36 @@
+inputs:
+  func-name:
+    description: "Name of the function to deploy"
+    required: true
+  aws-region:
+    description: "AWS region"
+    required: true
+  aws-update-health-check-arn:
+    description: "ARN of the role to assume to update health check"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: configure-aws-credentials
+      uses: aws-actions/configure-aws-credentials@master
+      with:
+        aws-region: ${{ inputs.aws-region }}
+        role-to-assume: ${{ inputs.aws-update-health-check-arn }}
+        role-session-name: GitHubActions
+    - name: get-caller-identity is allowed to run on role.
+      shell: bash
+      run: aws sts get-caller-identity
+    - name: setup-python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+    - name: Install dependencies
+      shell: bash
+      run: |
+        cd service-monitor && pip3 install -r requirements.txt -t .
+    - name: lambda update
+      shell: bash
+      run: |
+        pip3 install awscli
+        cd service-monitor && zip -r package.zip ./*
+        aws lambda update-function-code --function-name ${{ inputs.func-name }} --zip-file fileb://package.zip --publish
