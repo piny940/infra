@@ -71,7 +71,7 @@ data "aws_iam_policy_document" "event_bridge" {
     ]
 
     resources = [
-      aws_lambda_function.test_lambda.arn,
+      aws_lambda_function.service-monitor.arn
     ]
   }
 }
