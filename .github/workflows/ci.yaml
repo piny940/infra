@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       kube: ${{ steps.path-filter.outputs.kube }}
-      tf: ${{ steps.path-filter.outputs.tf }}
+      gcp: ${{ steps.path-filter.outputs.gcp }}
       aws: ${{ steps.path-filter.outputs.aws }}
     steps:
       - uses: actions/checkout@v4
@@ -29,8 +29,8 @@ jobs:
             kube:
               - "kubernetes/**"
               - ".github/workflows/ci.yaml"
-            tf:
-              - "terraform/**"
+            gcp:
+              - "gcp/**"
               - ".github/workflows/ci.yaml"
             aws:
               - "aws/**"
@@ -91,7 +91,7 @@ jobs:
   tf-format:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.tf == 'true'
+    if: needs.filter.outputs.aws == 'true' || needs.filter.outputs.gcp == 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -99,60 +99,38 @@ jobs:
           terraform_version: 1.9.5
       - name: Terraform fmt
         run: terraform fmt -check -recursive
-  tf-plan-prd:
+  gcp-plan:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.tf == 'true' && github.event_name == 'pull_request'
+    if: needs.filter.outputs.gcp == 'true' && github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        env: ["production", "staging"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Terraform Plan
-        uses: ./.github/actions/tf-plan
+        uses: ./.github/actions/gcp-plan
         with:
-          env: "production"
+          env: ${{ matrix.env }}
           gcp-project: ${{ vars.PRD_GCP_PROJECT }}
           gcp-project-number: ${{ vars.PRD_GCP_PROJECT_NUMBER }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
-  tf-plan-stg:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.tf == 'true' && github.event_name == 'pull_request'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Terraform Plan
-        uses: ./.github/actions/tf-plan
-        with:
-          env: "staging"
-          gcp-project: ${{ vars.STG_GCP_PROJECT }}
-          gcp-project-number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
-  aws-plan-prd:
+  aws-plan:
     runs-on: ubuntu-latest
     needs: filter
     if: needs.filter.outputs.aws == 'true' && github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        env: ["production", "staging"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Terraform Plan
         uses: ./.github/actions/aws-plan
         with:
-          env: "production"
-          aws-region: ${{ vars.AWS_REGION }}
-          aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
-  aws-plan-stg:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.aws == 'true' && github.event_name == 'pull_request'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Terraform Plan
-        uses: ./.github/actions/aws-plan
-        with:
-          env: "staging"
+          env: ${{ matrix.env }}
           aws-region: ${{ vars.AWS_REGION }}
           aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
