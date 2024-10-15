@@ -43,3 +43,7 @@ resource "aws_iam_role_policy_attachment" "github_actions_iam_full_access" {
   role       = aws_iam_role.github_actions.name
   policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
 }
+resource "aws_iam_role_policy_attachment" "github_actions_scheduler_full_access" {
+  role       = aws_iam_role.github_actions.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEventBridgeSchedulerFullAccess"
+}
