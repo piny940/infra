@@ -65,7 +65,7 @@ runs:
     - name: Comment PR
       uses: marocchino/sticky-pull-request-comment@v2
       with:
-        header: Terraform Plan for ${{ inputs.env }}
+        header: AWS Terraform Plan for ${{ inputs.env }}
         message: ${{ env.comment }}
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
