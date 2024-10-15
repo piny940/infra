@@ -19,7 +19,7 @@ runs:
       with:
         project_id: ${{ inputs.gcp_project }}
         create_credentials_file: true
-        workload_identity_provider: "projects/${{ inputs.gcp_project_number }}/locations/global/workloadIdentityPools/pool/providers/github-actions"
+        workload_identity_provider: "projects/${{ inputs.gcp_project_number }}/locations/global/workloadIdentityPools/pool/providers/repo-github-actions"
         service_account: "terraform-github-actions@${{ inputs.gcp_project }}.iam.gserviceaccount.com"
     - name: Terraform Init
       run: cd gcp/${{ inputs.env }} && terraform init
