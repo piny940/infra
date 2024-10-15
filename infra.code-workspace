@@ -10,6 +10,9 @@
       "path": "terraform"
     },
     {
+      "path": "aws"
+    },
+    {
       "path": "service-monitor"
     },
     {
