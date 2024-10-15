@@ -1,0 +1,71 @@
+inputs:
+  env:
+    description: "Environment to deploy to"
+    required: true
+  aws-region:
+    description: "AWS region"
+    required: true
+  aws-role-arn:
+    description: "ARN of the role to assume to update health check"
+    required: true
+  gh-token:
+    description: "GitHub Token"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+    - name: configure-aws-credentials
+      uses: aws-actions/configure-aws-credentials@master
+      with:
+        aws-region: ${{ inputs.aws-region }}
+        role-to-assume: ${{ inputs.aws-role-arn }}
+        role-session-name: GitHubActions
+    - name: get-caller-identity is allowed to run on role.
+      shell: bash
+      run: aws sts get-caller-identity
+    - name: Terraform Init
+      run: cd aws/${{ inputs.env }} && terraform init
+      shell: bash
+    - name: Terraform Plan
+      run: cd aws/${{ inputs.env }} && terraform plan -no-color -input=false > plan.txt
+      shell: bash
+      continue-on-error: true
+    - name: Create Message
+      id: CreateMessage
+      shell: bash
+      run: |
+        cd aws/${{ inputs.env }}
+        result=$(cat plan.txt)
+        pattern="Plan: [0-9]+ to add, [0-9]+ to change, [0-9]+ to destroy"
+        {
+          echo "comment<<EOF"
+          if [[ ${result} =~ ${pattern} ]]; then
+            summary=$(echo "$result" | grep -oE "$pattern")
+            printf "# AWS plan for ${{ inputs.env }}\n\n"
+            printf "\`\`\`\n"
+            printf "$summary\n"
+            printf "\`\`\`\n\n"
+            printf "<details>\n"
+            printf "<summary>Terraform Plan Details</summary>\n\n"
+            printf "\`\`\`\n"
+            printf "$result\n"
+            printf "\`\`\`\n\n"
+            printf "</details>\n"
+          else
+            printf "# AWS plan for ${{ inputs.env }}\n\n"
+            printf "\`\`\`\n"
+            printf "$result\n"
+            printf "\`\`\`\n"
+          fi
+          echo "EOF"
+        } >> "$GITHUB_ENV"
+    - name: Comment PR
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        header: AWS Plan for ${{ inputs.env }}
+        message: ${{ env.comment }}
+      env:
+        GH_TOKEN: ${{ inputs.gh-token }}
