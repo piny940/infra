@@ -128,6 +128,20 @@ jobs:
           gcp-project-number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
+  aws-plan-prd:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.aws == 'true' && github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Terraform Plan
+        uses: ./.github/actions/aws-plan
+        with:
+          env: "production"
+          aws-region: ${{ vars.AWS_REGION }}
+          aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
   aws-plan-stg:
     runs-on: ubuntu-latest
     needs: filter
