@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Terraform Apply
-        uses: ./.github/actions/tf-apply
+        uses: ./.github/actions/gcp-apply
         with:
           env: production
           gcp_project: ${{ vars.PRD_GCP_PROJECT }}
