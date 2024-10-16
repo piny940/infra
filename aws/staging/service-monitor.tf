@@ -25,6 +25,12 @@ data "archive_file" "dummy" {
 data "aws_ssm_parameter" "health_check_url" {
   name = "/stg-service-monitor/health-check-url"
 }
+data "aws_ssm_parameter" "basic_auth_user" {
+  name = "/stg-service-monitor/basic-auth-user"
+}
+data "aws_ssm_parameter" "basic_auth_password" {
+  name = "/stg-service-monitor/basic-auth-password"
+}
 data "aws_ssm_parameter" "slack_api_token" {
   name = "/stg-service-monitor/slack-api-token"
 }
@@ -39,9 +45,11 @@ resource "aws_lambda_function" "service-monitor" {
 
   environment {
     variables = {
-      HEALTH_CHECK_URL = data.aws_ssm_parameter.health_check_url.value
-      SLACK_API_TOKEN  = data.aws_ssm_parameter.slack_api_token.value
-      SLACK_CHANNEL    = local.slack_channel
+      HEALTH_CHECK_URL    = data.aws_ssm_parameter.health_check_url.value
+      BASIC_AUTH_USER     = data.aws_ssm_parameter.basic_auth_user.value
+      BASIC_AUTH_PASSWORD = data.aws_ssm_parameter.basic_auth_password.value
+      SLACK_API_TOKEN     = data.aws_ssm_parameter.slack_api_token.value
+      SLACK_CHANNEL       = local.slack_channel
     }
   }
 }
