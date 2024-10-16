@@ -5,7 +5,7 @@ inputs:
   gcp-project:
     description: "GCP Project ID"
     required: true
-  gcp-project_number:
+  gcp-project-number:
     description: "GCP Project Number"
     required: true
 runs:
@@ -19,7 +19,7 @@ runs:
       with:
         project_id: ${{ inputs.gcp-project }}
         create_credentials_file: true
-        workload_identity_provider: "projects/${{ inputs.gcp-project_number }}/locations/global/workloadIdentityPools/pool/providers/repo-github-actions"
+        workload_identity_provider: "projects/${{ inputs.gcp-project-number }}/locations/global/workloadIdentityPools/pool/providers/repo-github-actions"
         service_account: "terraform-github-actions@${{ inputs.gcp-project }}.iam.gserviceaccount.com"
     - name: Terraform Init
       run: cd gcp/${{ inputs.env }} && terraform init
