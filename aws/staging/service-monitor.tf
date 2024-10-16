@@ -22,6 +22,16 @@ data "archive_file" "dummy" {
     filename = "dummy.txt"
   }
 }
+resource "google_secret_manager_secret" "service_monitor" {
+  secret_id = "stg-service-monitor"
+  replication {
+    auto {}
+  }
+}
+# data "google_secret_manager_secret_version" "service_monitor" {
+#   secret  = google_secret_manager_secret.service_monitor.secret_id
+#   version = "1"
+# }
 resource "aws_lambda_function" "service-monitor" {
   function_name = "stg-service-monitor"
   description   = "Service monitor of staging home cluster"
