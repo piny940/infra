@@ -74,7 +74,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: Deploy
-        uses: ./github/actions/service-monitor-deploy
+        uses: ./.github/actions/service-monitor-deploy
         with:
           func-name: stg-service-monitor
           aws-region: ${{ secrets.AWS_REGION }}

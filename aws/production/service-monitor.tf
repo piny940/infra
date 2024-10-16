@@ -22,6 +22,12 @@ data "archive_file" "dummy" {
     filename = "dummy.txt"
   }
 }
+data "aws_ssm_parameter" "health_check_url" {
+  name = "/service-monitor/health-check-url"
+}
+data "aws_ssm_parameter" "slack_api_token" {
+  name = "/service-monitor/slack-api-token"
+}
 resource "aws_lambda_function" "service-monitor" {
   function_name = "service-monitor"
   description   = "Service monitor of staging home cluster"
@@ -33,8 +39,8 @@ resource "aws_lambda_function" "service-monitor" {
 
   environment {
     variables = {
-      HEALTH_CHECK_URL = ""
-      SLACK_API_TOKEN  = ""
+      HEALTH_CHECK_URL = data.aws_ssm_parameter.health_check_url.value
+      SLACK_API_TOKEN  = data.aws_ssm_parameter.slack_api_token.value
       SLACK_CHANNEL    = local.slack_channel
     }
   }
