@@ -12,8 +12,8 @@ resources:
   - ingress.yaml
 images:
   - name: k8s-status-badge
-    newName: ghcr.io/piny940/k8s-status-badge # {"$imagepolicy": "default:k8s-status-badge:name"}
-    newTag: 1.0.0 # {"$imagepolicy": "default:k8s-status-badge:tag"}
+    newName: ghcr.io/piny940/k8s-status-badge # {"$imagepolicy": "default:stg-k8s-status-badge:name"}
+    newTag: stg-cfe5b7dc2da7259a2b5779603be306f137d81da5-4 # {"$imagepolicy": "default:stg-k8s-status-badge:tag"}
 configMapGenerator:
   - name: k8s-status-badge-conf
     behavior: merge
