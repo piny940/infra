@@ -9,5 +9,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: apps-git
+    name: flux-system
     namespace: flux-system
