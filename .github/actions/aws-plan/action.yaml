@@ -8,12 +8,6 @@ inputs:
   aws-role-arn:
     description: "ARN of the role to assume to update health check"
     required: true
-  gcp-project:
-    description: "GCP Project ID"
-    required: true
-  gcp-project-number:
-    description: "GCP Project Number"
-    required: true
   gh-token:
     description: "GitHub Token"
     required: true
@@ -23,13 +17,6 @@ runs:
   steps:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
-    - name: Authenticate to Google Cloud # secret managerだけはGCPを使うため必要
-      uses: "google-github-actions/auth@v2"
-      with:
-        project_id: ${{ inputs.gcp-project }}
-        create_credentials_file: true
-        workload_identity_provider: "projects/${{ inputs.gcp-project-number }}/locations/global/workloadIdentityPools/pool/providers/repo-github-actions"
-        service_account: "terraform-github-actions@${{ inputs.gcp-project }}.iam.gserviceaccount.com"
     - name: configure-aws-credentials
       uses: aws-actions/configure-aws-credentials@master
       with:

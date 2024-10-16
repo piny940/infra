@@ -65,8 +65,6 @@ jobs:
           env: "production"
           aws-region: ${{ vars.AWS_REGION }}
           aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
-          gcp-project: ${{ vars.PRD_GCP_PROJECT }}
-          gcp-project-number: ${{ vars.PRD_GCP_PROJECT_NUMBER }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
   service-monitor:
     runs-on: ubuntu-latest
