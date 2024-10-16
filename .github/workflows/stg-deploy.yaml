@@ -181,6 +181,8 @@ jobs:
           env: "staging"
           aws-region: ${{ vars.AWS_REGION }}
           aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          gcp_project: ${{ vars.STG_GCP_PROJECT }}
+          gcp_project_number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
   aws-apply-main:
     runs-on: ubuntu-latest
@@ -195,4 +197,6 @@ jobs:
           env: "staging"
           aws-region: ${{ vars.AWS_REGION }}
           aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          gcp_project: ${{ vars.STG_GCP_PROJECT }}
+          gcp_project_number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
