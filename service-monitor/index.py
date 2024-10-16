@@ -1,9 +1,10 @@
 import requests
 import os
+import base64
 from slack_sdk import WebClient
 
 
-def notify_slack():
+def notify_slack(msg):
   slack_token = os.getenv('SLACK_API_TOKEN')
   if slack_token == None:
     print('SLACK_API_TOKEN environment variable is not set')
@@ -14,15 +15,18 @@ def notify_slack():
   if channel == None:
     print('SLACK_CHANNEL environment variable is not set')
     exit(1)
-  client.chat_postMessage(channel=channel, text='Alert Manager is down! :fire:')
+  client.chat_postMessage(channel=channel, text='Alert Manager is down! :fire:\n```' + msg + '```')
 
 
 def check(path):
-  res = requests.get(path)
+  user = os.getenv('BASIC_AUTH_USER')
+  password = os.getenv('BASIC_AUTH_PASSWORD')
+  auth = base64.b64encode(f'{user}:{password}'.encode('utf-8'))
+  res = requests.get(path, headers={'Authorization': f'Basic {auth.decode("utf-8")}'})
   if res.status_code == 200:
-    return True
+    return True, None
   else:
-    return False
+    return False, res.text
 
 
 def handler(*_):
@@ -36,12 +40,12 @@ def handler(*_):
 
   print('Checking health of service...')
   for _ in range(check_count):
-    ok = check(path)
+    ok, msg = check(path)
     if ok:
       break
 
   if ok:
     print("Service is up and running")
   else:
-    notify_slack()
+    notify_slack(msg)
     print('Service is down. Alert sent to slack')
