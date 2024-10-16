@@ -31,15 +31,7 @@ resource "aws_iam_role" "github_actions" {
     ]
   })
 }
-resource "aws_iam_role_policy_attachment" "github_actions_lambda_full_access" {
+resource "aws_iam_role_policy_attachment" "github_actions_administrator" {
   role       = aws_iam_role.github_actions.name
-  policy_arn = "arn:aws:iam::aws:policy/AWSLambda_FullAccess"
-}
-resource "aws_iam_role_policy_attachment" "github_actions_s3_full_access" {
-  role       = aws_iam_role.github_actions.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-}
-resource "aws_iam_role_policy_attachment" "github_actions_iam_full_access" {
-  role       = aws_iam_role.github_actions.name
-  policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
