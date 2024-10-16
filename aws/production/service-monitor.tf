@@ -22,6 +22,12 @@ data "archive_file" "dummy" {
     filename = "dummy.txt"
   }
 }
+data "aws_ssm_parameter" "health_check_url" {
+  name = "/service-monitor/health-check-url"
+}
+data "aws_ssm_parameter" "slack_api_token" {
+  name = "/service-monitor/slack-api-token"
+}
 resource "aws_lambda_function" "service-monitor" {
   function_name = "service-monitor"
   description   = "Service monitor of staging home cluster"
