@@ -23,16 +23,16 @@ data "archive_file" "dummy" {
   }
 }
 data "aws_ssm_parameter" "health_check_url" {
-  name = "/stg-service-monitor/health-check-url"
+  name = "/stg-service-monitor/health-check-url/v1"
 }
 data "aws_ssm_parameter" "basic_auth_user" {
-  name = "/stg-service-monitor/basic-auth-user"
+  name = "/stg-service-monitor/basic-auth-user/v1"
 }
 data "aws_ssm_parameter" "basic_auth_password" {
-  name = "/stg-service-monitor/basic-auth-password"
+  name = "/stg-service-monitor/basic-auth-password/v1"
 }
 data "aws_ssm_parameter" "slack_api_token" {
-  name = "/stg-service-monitor/slack-api-token"
+  name = "/stg-service-monitor/slack-api-token/v1"
 }
 resource "aws_lambda_function" "service-monitor" {
   function_name = "stg-service-monitor"
