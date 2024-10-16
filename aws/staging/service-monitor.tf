@@ -77,7 +77,7 @@ data "aws_iam_policy_document" "event_bridge" {
 }
 resource "aws_scheduler_schedule" "service-monitor" {
   name                         = "stg-service-monitor"
-  schedule_expression          = "cron(0/5 * * * ? *)"
+  schedule_expression          = "rate(5 minutes)"
   schedule_expression_timezone = "Asia/Tokyo"
 
   flexible_time_window {

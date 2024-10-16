@@ -88,9 +88,9 @@ jobs:
       - name: Deploy
         uses: ./.github/actions/service-monitor-deploy
         with:
-          func-name: stgCheckHealthiness
+          func-name: stg-service-monitor
           aws-region: ${{ secrets.AWS_REGION }}
-          aws-update-health-check-arn: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
+          aws-update-health-check-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
   service-monitor-main:
     runs-on: ubuntu-latest
     needs: filter
@@ -101,9 +101,9 @@ jobs:
       - name: Deploy
         uses: ./.github/actions/service-monitor-deploy
         with:
-          func-name: stgCheckHealthiness
+          func-name: stg-service-monitor
           aws-region: ${{ secrets.AWS_REGION }}
-          aws-update-health-check-arn: ${{ secrets.AWS_UPDATE_HEALTH_CHECK_ARN }}
+          aws-update-health-check-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
 
   fluxupd:
     runs-on: ubuntu-latest
