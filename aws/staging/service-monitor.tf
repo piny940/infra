@@ -22,16 +22,12 @@ data "archive_file" "dummy" {
     filename = "dummy.txt"
   }
 }
-resource "google_secret_manager_secret" "service_monitor" {
-  secret_id = "stg-service-monitor"
-  replication {
-    auto {}
-  }
+data "aws_ssm_parameter" "health_check_url" {
+  name = "/stg-service-monitor/health-check-url"
 }
-# data "google_secret_manager_secret_version" "service_monitor" {
-#   secret  = google_secret_manager_secret.service_monitor.secret_id
-#   version = "1"
-# }
+data "aws_ssm_parameter" "slack_api_token" {
+  name = "/stg-service-monitor/slack-api-token"
+}
 resource "aws_lambda_function" "service-monitor" {
   function_name = "stg-service-monitor"
   description   = "Service monitor of staging home cluster"
@@ -43,8 +39,8 @@ resource "aws_lambda_function" "service-monitor" {
 
   environment {
     variables = {
-      HEALTH_CHECK_URL = ""
-      SLACK_API_TOKEN  = ""
+      HEALTH_CHECK_URL = data.aws_ssm_parameter.health_check_url.value
+      SLACK_API_TOKEN  = data.aws_ssm_parameter.slack_api_token.value
       SLACK_CHANNEL    = local.slack_channel
     }
   }
