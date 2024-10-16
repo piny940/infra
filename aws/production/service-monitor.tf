@@ -39,8 +39,8 @@ resource "aws_lambda_function" "service-monitor" {
 
   environment {
     variables = {
-      HEALTH_CHECK_URL = ""
-      SLACK_API_TOKEN  = ""
+      HEALTH_CHECK_URL = data.aws_ssm_parameter.health_check_url.value
+      SLACK_API_TOKEN  = data.aws_ssm_parameter.slack_api_token.value
       SLACK_CHANNEL    = local.slack_channel
     }
   }
