@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-status-badge
+  labels:
+    app: k8s-status-badge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-status-badge
+  template:
+    metadata:
+      labels:
+        app: k8s-status-badge
+    spec:
+      serviceAccountName: k8s-status-badge
+      containers:
+        - name: app
+          image: k8s-status-badge
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: k8s-status-badge-conf
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 5

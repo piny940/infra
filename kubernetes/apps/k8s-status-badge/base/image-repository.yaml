@@ -1,0 +1,7 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: k8s-status-badge
+spec:
+  image: ghcr.io/piny940/k8s-status-badge
+  interval: 3m
