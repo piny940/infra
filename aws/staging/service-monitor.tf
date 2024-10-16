@@ -56,7 +56,7 @@ resource "aws_iam_role" "event_bridge" {
   })
 }
 
-# Event Bridge
+# Shedule
 resource "aws_iam_role_policy" "event_bridge" {
   name   = "stg-service-monitor-event-bridge"
   role   = aws_iam_role.event_bridge.name
@@ -88,4 +88,15 @@ resource "aws_scheduler_schedule" "service-monitor" {
     arn      = aws_lambda_function.service-monitor.arn
     role_arn = aws_iam_role.event_bridge.arn
   }
+}
+
+# Log
+resource "aws_iam_role_policy_attachment" "service-monitor" {
+  role       = aws_iam_role.service-monitor.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+resource "aws_cloudwatch_log_group" "service-monitor" {
+  name              = "/aws/lambda/${aws_lambda_function.service-monitor.function_name}"
+  retention_in_days = 3
+  skip_destroy      = false
 }
