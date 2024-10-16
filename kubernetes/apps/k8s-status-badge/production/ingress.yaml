@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-status-badge
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - k8s-status-badge.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: k8s-status-badge.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: k8s-status-badge
+                port:
+                  number: 8080
