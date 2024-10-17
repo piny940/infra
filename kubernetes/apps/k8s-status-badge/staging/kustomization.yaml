@@ -13,7 +13,7 @@ resources:
 images:
   - name: k8s-status-badge
     newName: ghcr.io/piny940/k8s-status-badge # {"$imagepolicy": "default:stg-k8s-status-badge:name"}
-    newTag: stg-17d4515722304cb7be81fb14fadf867ef6046770-9 # {"$imagepolicy": "default:stg-k8s-status-badge:tag"}
+    newTag: stg-8aace3efa57fcef01acce45cc4f6f695dec3d012-10 # {"$imagepolicy": "default:stg-k8s-status-badge:tag"}
 configMapGenerator:
   - name: k8s-status-badge-conf
     behavior: merge
