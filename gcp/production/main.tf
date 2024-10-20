@@ -43,9 +43,8 @@ module "velero" {
   project_number            = local.project_number
   workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
 }
-module "auth" {
-  source  = "../modules/auth"
-  env     = local.env
-  project = local.project
-}
-
+# module "auth" {
+#   source  = "../modules/auth"
+#   env     = local.env
+#   project = local.project
+# }
