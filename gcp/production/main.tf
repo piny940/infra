@@ -1,3 +1,14 @@
+resource "google_project_service" "default" {
+  project = local.project
+  for_each = toset([
+    "cloudbilling.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "firebase.googleapis.com",
+    # Enabling the ServiceUsage API allows the new project to be quota checked from now on.
+    "serviceusage.googleapis.com",
+  ])
+  service = each.key
+}
 module "workload_identity_pool" {
   source  = "../modules/workload_identity_pool"
   project = local.project
@@ -32,3 +43,9 @@ module "velero" {
   project_number            = local.project_number
   workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
 }
+module "auth" {
+  source  = "../modules/auth"
+  env     = local.env
+  project = local.project
+}
+
