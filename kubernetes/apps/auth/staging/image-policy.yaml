@@ -11,3 +11,17 @@ spec:
   policy:
     numerical:
       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: auth-frontend
+spec:
+  imageRepositoryRef:
+    name: auth-frontend
+  filterTags:
+    pattern: "^stg-[a-z0-9]+-(?P<seq>[0-9]+)$"
+    extract: "$seq"
+  policy:
+    numerical:
+      order: asc
