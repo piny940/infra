@@ -20,5 +20,6 @@ configMapGenerator:
       - SERVER_ALLOW_ORIGINS=
       - API_LOGIN_URL=
       - API_APPROVE_URL=
+      - NEXT_PUBLIC_BACKEND_URL=
 configurations:
   - kustomizeconfig.yaml
