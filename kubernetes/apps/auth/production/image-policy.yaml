@@ -9,3 +9,15 @@ spec:
   policy:
     semver:
       range: 1.0.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: auth-frontend
+  namespace: default
+spec:
+  imageRepositoryRef:
+    name: auth-frontend
+  policy:
+    semver:
+      range: 1.0.x
