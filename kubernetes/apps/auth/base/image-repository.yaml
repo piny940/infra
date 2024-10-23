@@ -9,7 +9,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: auth
+  name: auth-frontend
 spec:
   image: ghcr.io/piny940/auth-frontend
   interval: 3m
