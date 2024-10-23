@@ -1,0 +1,11 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: postgres-cluster
+spec:
+  databases:
+    kintai_production: default.kintai
+    portfolio_production: default.portfolio
+    song_list_production: default.song-list
+    clubroom_production: default.clubroom
+    auth: default.auth

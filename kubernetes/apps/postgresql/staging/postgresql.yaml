@@ -4,8 +4,8 @@ metadata:
   name: postgres-cluster
 spec:
   databases:
-    kintai_production: null
-    portfolio_production: null
-    song_list_production: null
-    clubroom_production: null
     clubroom_staging: default.clubroom
+    kintai_staging: default.kintai
+    portfolio_staging: default.portfolio
+    song_list_staging: default.song-list
+    auth_staging: default.auth
