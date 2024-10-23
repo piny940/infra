@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - auth.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: auth.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: auth
+                port:
+                  number: 8080
