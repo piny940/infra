@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+labels:
+  - includeSelectors: true
+    pairs:
+      env: staging
+namePrefix: stg-
+resources:
+  - ../base
+  - image-policy.yaml
+  - ingress.yaml
+images:
+  - name: auth
+    newName: ghcr.io/piny940/auth-backend # {"$imagepolicy": "default:stg-auth:name"}
+    newTag: stg-8aace3efa57fcef01acce45cc4f6f695dec3d012-10 # {"$imagepolicy": "default:stg-auth:tag"}
+configMapGenerator:
+  - name: auth-conf
+    behavior: merge
+    literals:
+      - ENV=staging
