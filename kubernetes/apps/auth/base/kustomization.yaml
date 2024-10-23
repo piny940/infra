@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - back.deployment.yaml
+  - back.service.yaml
+  - external-secret.yaml
   - front.deployment.yaml
   - image-repository.yaml
-  - back.service.yaml
   - front.service.yaml
 configMapGenerator:
   - name: auth-conf
     literals:
-      - DB_USER=auth
       - DB_HOST=postgres-cluster.database.svc.cluster.local
       - DB_PORT=5432
       - DB_NAME=auth
