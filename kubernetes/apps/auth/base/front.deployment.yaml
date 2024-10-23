@@ -1,23 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth
+  name: auth-frontend
   labels:
-    app: auth
+    app: auth-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: auth-frontend
   template:
     metadata:
       labels:
-        app: auth
+        app: auth-frontend
     spec:
-      serviceAccountName: auth
       containers:
         - name: app
-          image: auth
+          image: auth-frontend
           ports:
             - containerPort: 8080
           envFrom:
@@ -26,14 +25,14 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8080
+              port: 3000
             failureThreshold: 3
             initialDelaySeconds: 15
             periodSeconds: 20
           readinessProbe:
             httpGet:
               path: /healthz
-              port: 8080
+              port: 3000
             failureThreshold: 3
             initialDelaySeconds: 5
             periodSeconds: 5

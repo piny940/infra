@@ -3,5 +3,13 @@ kind: ImageRepository
 metadata:
   name: auth
 spec:
-  image: ghcr.io/piny940/auth
+  image: ghcr.io/piny940/auth-backend
+  interval: 3m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: auth
+spec:
+  image: ghcr.io/piny940/auth-frontend
   interval: 3m
