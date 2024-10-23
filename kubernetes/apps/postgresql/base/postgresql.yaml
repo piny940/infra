@@ -17,14 +17,8 @@ spec:
       - createdb
     default.clubroom:
       - createdb
-  databases:
-    kintai_production: default.kintai
-    kintai_staging: default.kintai
-    portfolio_production: default.portfolio
-    portfolio_staging: default.portfolio
-    song_list_production: default.song-list
-    song_list_staging: default.song-list
-    clubroom_production: default.clubroom
+    default.auth:
+      - createdb
   postgresql:
     version: "15"
   patroni:
