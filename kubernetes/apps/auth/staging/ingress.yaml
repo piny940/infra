@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: auth
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   tls:
@@ -14,7 +15,7 @@ spec:
     - host: stg-auth.piny940.com
       http:
         paths:
-          - path: /api/v1
+          - path: /api/v1(/|$)(.*)
             pathType: Prefix
             backend:
               service:
