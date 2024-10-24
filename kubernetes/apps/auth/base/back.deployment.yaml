@@ -22,6 +22,19 @@ spec:
           envFrom:
             - configMapRef:
                 name: auth-conf
+            - secretRef:
+                name: auth-secret
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: default.auth.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: default.auth.postgres-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
           livenessProbe:
             httpGet:
               path: /healthz
