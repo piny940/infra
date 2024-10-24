@@ -21,6 +21,7 @@ configMapGenerator:
   - name: auth-conf
     behavior: merge
     literals:
+      - DB_NAME=auth_staging
       - SERVER_URL=https://stg-auth.piny940.com/api/v1
       - API_LOGIN_URL=https://stg-auth.piny940.com/
       - API_APPROVE_URL=https://stg-auth.piny940.com/approve
