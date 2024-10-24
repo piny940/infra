@@ -22,7 +22,25 @@ spec:
                 name: auth
                 port:
                   number: 8080
-          - path: (/|$)(.*)
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-frontend
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - stg-auth.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: stg-auth.piny940.com
+      http:
+        paths:
+          - path: /(.*)
             pathType: Prefix
             backend:
               service:
