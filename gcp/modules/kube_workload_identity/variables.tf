@@ -18,3 +18,6 @@ variable "workload_identity_pool_id" {
 variable "home_kubernetes_cluster_jwks_secret_version" {
   type = string
 }
+variable "cluster_jwks" {
+  type = string
+}
