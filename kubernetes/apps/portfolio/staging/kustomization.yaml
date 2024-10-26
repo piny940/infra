@@ -33,11 +33,20 @@ configMapGenerator:
     behavior: merge
     files:
       - gcp-credential-configuration.json
-vars:
-  - name: GOOGLE_PROJECT_NUMBER
-    objref:
+replacements:
+  - source:
+      fieldPath: data.GOOGLE_PROJECT_NUMBER
       kind: ConfigMap
       name: portfolio-conf
-      apiVersion: v1
-    fieldref:
-      fieldpath: data.GOOGLE_PROJECT_NUMBER
+      version: v1
+    targets:
+      - fieldPaths:
+          - spec.template.spec.volumes.0.projected.sources.0.serviceAccountToken.audience
+        options:
+          delimiter: /
+          index: 4
+        select:
+          group: apps
+          version: v1
+          kind: Deployment
+          name: portfolio-backend

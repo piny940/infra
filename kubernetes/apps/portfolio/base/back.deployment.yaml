@@ -60,7 +60,7 @@ spec:
           projected:
             sources:
               - serviceAccountToken:
-                  audience: https://iam.googleapis.com/projects/$(GOOGLE_PROJECT_NUMBER)/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
+                  audience: https://iam.googleapis.com/projects/GOOGLE_PROJECT_NUMBER_PLACEHOLDER/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
                   expirationSeconds: 3600
                   path: token
         - name: workload-identity-credential-configuration
