@@ -12,6 +12,7 @@ resources:
   - back.image-repository.yaml
   - back.service.yaml
   - external-secret.yaml
+  - service-account.yaml
   - updater.cronjob.yaml
   - updater.image-repository.yaml
 configMapGenerator:
