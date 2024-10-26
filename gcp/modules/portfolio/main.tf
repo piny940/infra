@@ -5,6 +5,11 @@ resource "google_storage_bucket" "portfolio" {
   public_access_prevention    = "inherited"
   uniform_bucket_level_access = true
 }
+resource "google_storage_bucket_iam_binding" "portfolio_public_access" {
+  bucket  = google_storage_bucket.portfolio.name
+  role    = "roles/storage.objectViewer"
+  members = ["allUsers"]
+}
 resource "google_service_account" "portfolio" {
   account_id                   = "portfolio"
   display_name                 = "Portfolio"
