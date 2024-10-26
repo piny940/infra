@@ -1,13 +1,3 @@
-resource "google_secret_manager_secret" "home_kubernetes_cluster_jwks" {
-  secret_id = "home-kubernetes-cluster-jwks"
-  replication {
-    auto {}
-  }
-}
-data "google_secret_manager_secret_version" "home_kubernetes_cluster_jwks" {
-  secret  = google_secret_manager_secret.home_kubernetes_cluster_jwks.secret_id
-  version = var.home_kubernetes_cluster_jwks_secret_version
-}
 resource "google_iam_workload_identity_pool_provider" "home_kubernetes" {
   workload_identity_pool_id          = var.workload_identity_pool_id
   workload_identity_pool_provider_id = "home-kubernetes"
@@ -18,6 +8,6 @@ resource "google_iam_workload_identity_pool_provider" "home_kubernetes" {
   }
   oidc {
     issuer_uri = "https://kubernetes.default.svc.cluster.local"
-    jwks_json  = data.google_secret_manager_secret_version.home_kubernetes_cluster_jwks.secret_data
+    jwks_json  = var.cluster_jwks
   }
 }
