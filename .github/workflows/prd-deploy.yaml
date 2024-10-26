@@ -29,8 +29,8 @@ jobs:
             svcmtr:
               - "service-monitor/**"
               - ".github/workflows/prd-deploy.yaml"
-            tf:
-              - "terraform/**"
+            gcp:
+              - "gcp/**"
               - ".github/workflows/prd-deploy.yaml"
             aws:
               - "aws/**"
