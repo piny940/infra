@@ -14,6 +14,7 @@ spec:
       labels:
         app: portfolio-backend
     spec:
+      serviceAccount: portfolio
       containers:
         - name: app
           image: portfolio-backend
@@ -48,3 +49,21 @@ spec:
                 secretKeyRef:
                   name: portfolio-secret
                   key: admin-password
+          volumeMounts:
+            - name: token
+              mountPath: /var/run/service-account
+              readOnly: true
+            - name: workload-identity-credential-configuration
+              mountPath: /etc/workload-identity
+              readOnly: true
+      volumes:
+        - name: token
+          projected:
+            sources:
+              - serviceAccountToken:
+                  audience: https://iam.googleapis.com/projects/GOOGLE_PROJECT_NUMBER_PLACEHOLDER/locations/global/workloadIdentityPools/pool/providers/home-kubernetes
+                  expirationSeconds: 3600
+                  path: token
+        - name: workload-identity-credential-configuration
+          configMap:
+            name: workload-identity-credential-configuration

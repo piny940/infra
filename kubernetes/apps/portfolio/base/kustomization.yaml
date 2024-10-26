@@ -12,6 +12,7 @@ resources:
   - back.image-repository.yaml
   - back.service.yaml
   - external-secret.yaml
+  - service-account.yaml
   - updater.cronjob.yaml
   - updater.image-repository.yaml
 configMapGenerator:
@@ -25,5 +26,9 @@ configMapGenerator:
       - DB_MIGRATIONS_DIR=db/migrations
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
+      - GOOGLE_APPLICATION_CREDENTIALS=/etc/workload-identity/gcp-credential-configuration.json
+      - GOOGLE_BUCKET_NAME=
+      - GOOGLE_PROJECT_NUMBER=
+  - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml

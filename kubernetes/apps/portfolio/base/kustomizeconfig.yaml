@@ -9,3 +9,6 @@ nameReference:
     fieldSpecs:
       - kind: ImagePolicy
         path: spec/imageRepositoryRef/name
+varReference:
+  - kind: Deployment
+    path: spec/template/spec/volumes/projected/sources/serviceAccountToken/audience

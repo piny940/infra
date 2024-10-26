@@ -27,3 +27,26 @@ configMapGenerator:
       - BACKEND_HOST=http://portfolio-backend.default.svc.cluster.local:8080
       - DB_NAME=portfolio_production
       - SLACK_CHANNEL_ID=C06EQE53RA8
+      - GOOGLE_BUCKET_NAME=portfolio.piny940.com
+      - GOOGLE_PROJECT_NUMBER=1056391010239
+  - name: workload-identity-credential-configuration
+    behavior: merge
+    files:
+      - gcp-credential-configuration.json
+replacements:
+  - source:
+      fieldPath: data.GOOGLE_PROJECT_NUMBER
+      kind: ConfigMap
+      name: portfolio-conf
+      version: v1
+    targets:
+      - fieldPaths:
+          - spec.template.spec.volumes.0.projected.sources.0.serviceAccountToken.audience
+        options:
+          delimiter: /
+          index: 4
+        select:
+          group: apps
+          version: v1
+          kind: Deployment
+          name: portfolio-backend
