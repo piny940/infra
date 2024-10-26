@@ -22,7 +22,7 @@ resource "google_project_iam_member" "portfolio_workload_identity_user" {
 }
 resource "google_project_iam_member" "all_users_storage_object_viewer" {
   project = var.project
-  member  = "allUsers"
+  member  = "user:allUsers"
   role    = "roles/storage.objectViewer"
 }
 resource "google_service_account_iam_member" "ksa_workload_identity_user" {
