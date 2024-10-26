@@ -20,11 +20,6 @@ resource "google_project_iam_member" "portfolio_workload_identity_user" {
   member  = "serviceAccount:${google_service_account.portfolio.email}"
   role    = "roles/iam.workloadIdentityUser"
 }
-resource "google_project_iam_member" "all_users_storage_object_viewer" {
-  project = var.project
-  member  = "user:allUsers"
-  role    = "roles/storage.objectViewer"
-}
 resource "google_service_account_iam_member" "ksa_workload_identity_user" {
   service_account_id = google_service_account.portfolio.id
   role               = "roles/iam.workloadIdentityUser"

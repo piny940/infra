@@ -5,6 +5,11 @@ module "workload_identity_pool" {
 data "local_file" "cluster_jwks" {
   filename = "${path.module}/cluster-jwks.json"
 }
+resource "google_project_iam_member" "all_users_storage_object_viewer" {
+  project = local.project
+  member  = "allUsers"
+  role    = "roles/storage.objectViewer"
+}
 module "terraform" {
   source                    = "../modules/terraform"
   env                       = local.env
