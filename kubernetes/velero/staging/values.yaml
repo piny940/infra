@@ -6,3 +6,6 @@ configuration:
       credential:
         name: google-credentials
         key: gcp
+schedules:
+  backup-daily:
+    schedule: "48 3 * * 0"
