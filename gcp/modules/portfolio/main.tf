@@ -23,7 +23,7 @@ resource "google_project_iam_member" "portfolio_storage_object_user" {
 resource "google_project_iam_member" "portfolio_workload_identity_user" {
   project = var.project
   member  = "serviceAccount:${google_service_account.portfolio.email}"
-  role    = "roles/iam.workloadIdentityUser"
+  role    = "roles/iam.serviceAccountTokenCreator"
 }
 resource "google_service_account_iam_member" "ksa_workload_identity_user" {
   service_account_id = google_service_account.portfolio.id
