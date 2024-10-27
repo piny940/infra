@@ -58,12 +58,7 @@ spec:
               readOnly: true
         - name: example
           image: google/cloud-sdk:alpine
-          command:
-            [
-              "/bin/sh",
-              "-c",
-              "gcloud auth login --cred-file $GOOGLE_APPLICATION_CREDENTIALS && gcloud auth list && sleep 600",
-            ]
+          command: ["/bin/sh", "-c", "gcloud auth login --cred-file $GOOGLE_APPLICATION_CREDENTIALS && gcloud auth list && sleep 600"]
           volumeMounts:
             - name: token
               mountPath: "/var/run/service-account"
