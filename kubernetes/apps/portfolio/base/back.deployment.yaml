@@ -56,6 +56,24 @@ spec:
             - name: workload-identity-credential-configuration
               mountPath: /etc/workload-identity
               readOnly: true
+        - name: example
+          image: google/cloud-sdk:alpine
+          command:
+            [
+              "/bin/sh",
+              "-c",
+              "gcloud auth login --cred-file $GOOGLE_APPLICATION_CREDENTIALS && gcloud auth list && sleep 600",
+            ]
+          volumeMounts:
+            - name: token
+              mountPath: "/var/run/service-account"
+              readOnly: true
+            - name: workload-identity-credential-configuration
+              mountPath: "/etc/workload-identity"
+              readOnly: true
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/etc/workload-identity/credential-configuration.json"
       volumes:
         - name: token
           projected:
