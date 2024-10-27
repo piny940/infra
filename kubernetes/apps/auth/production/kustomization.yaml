@@ -12,10 +12,10 @@ resources:
 images:
   - name: auth
     newName: ghcr.io/piny940/auth-backend # {"$imagepolicy": "default:auth:name"}
-    newTag: 1.0.7 # {"$imagepolicy": "default:auth:tag"}
+    newTag: 1.0.8 # {"$imagepolicy": "default:auth:tag"}
   - name: auth-frontend
     newName: ghcr.io/piny940/auth-frontend # {"$imagepolicy": "default:auth-frontend:name"}
-    newTag: 1.0.6 # {"$imagepolicy": "default:auth-frontend:tag"}
+    newTag: 1.0.8 # {"$imagepolicy": "default:auth-frontend:tag"}
 configMapGenerator:
   - name: auth-conf
     behavior: merge
