@@ -47,3 +47,25 @@ spec:
                 name: auth-frontend
                 port:
                   number: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-example
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - auth-example.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: auth-example.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-example
+                port:
+                  number: 3000
