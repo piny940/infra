@@ -26,7 +26,6 @@ configMapGenerator:
       - NEXT_PUBLIC_API_URL=
       - NEXT_PUBLIC_APP_URL=
       - SERVER_PUBLIC_KEY=
-
       # TODO
       - NEXT_PUBLIC_CLIENT_ID=
       - CLIENT_SECRET=
