@@ -42,6 +42,7 @@ jobs:
   gcp-apply:
     runs-on: ubuntu-latest
     needs: path-filter
+    environment: production
     if: needs.path-filter.outputs.gcp == 'true'
     steps:
       - name: Checkout
@@ -55,6 +56,7 @@ jobs:
   aws-apply:
     runs-on: ubuntu-latest
     needs: path-filter
+    environment: production
     if: needs.path-filter.outputs.aws == 'true'
     steps:
       - name: Checkout
@@ -70,6 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: path-filter
     if: needs.path-filter.outputs.svcmtr == 'true'
+    environment: production
     steps:
       - name: checkout
         uses: actions/checkout@v4
