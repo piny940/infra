@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-example
+  labels:
+    app: auth-example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-example
+  template:
+    metadata:
+      labels:
+        app: auth-example
+    spec:
+      containers:
+        - name: app
+          image: auth-example
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: auth-conf
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   failureThreshold: 3
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   failureThreshold: 3
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
