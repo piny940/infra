@@ -32,13 +32,13 @@ configMapGenerator:
       - NEXT_PUBLIC_APP_URL=https://auth-example.piny940.com
       - |
         SERVER_PUBLIC_KEY=-----BEGIN PUBLIC KEY-----
-        MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAu9Cf1nLJUKkg+F9J4AU4
-        q6UkQV0uqSM2nqHlw8V9IhtIVMUERT+H1S4HcN9ftik0LB25Sw1JFc2BScBCDmfp
-        Fr3sIcUAhnquN77Z/Zgj/O0Td7wPdSXgf0Pn5EO+QHKYgcqmZ4dtyMn5ZztDiAxP
-        bKv7Ac4QpFZ/aWtPdzO4iMBr6rVmmh1JjfB9pAurV++7kh2ZKUH8JBmxa1/CKXeh
-        n+2QVbPgqr/jxdaR8fEC4PrgXuTruG86FeJNke8+SrpiDh9A9JeFQZXA1pmsSTFg
-        rOq5fSl/FEWLPANREj5+1q1wPOl2KEC1SILcadtZCzttophzqTgzAZUNtQP0/Iob
-        EGi1D6pCMK2Bwr7uQnbis+M4BazeXlLH9WGZgeOYmj8C3IW2lLTAHOfUicIyHlWX
-        zXAdUfDMbVn+E985cd0qpdXoq/6UPT448FAn+eR4tn1IfcfcsUkiuDrevFiIGyAi
-        83ZqAPwkyzXSGa08AgXxgE56o0GmgvpSy9jcrLhnR6J1AgMBAAE=
+        MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAhJ6MjlSpFVrr4C0Pp3pg
+        PuYkOiGOuae7/4gfa4nhJ3OvpGR6C2K38eJIIEYlgtGBJSXrqlSZ8Hif/l/68qcS
+        Q0KODb+SYmFxwBAGrFp2zRXCt8x4frJ/kqAjQqYq1lCdqtslc0mcGpRsCo9CIp2A
+        bbl3fIOxpAmjrZo4HFaRewV9MxbenBjS4SBLPoKsGn6SbzfwaruJzcOh828XqSyE
+        pgznpMs6ywDi3mXWPqzdEP/lSsSCFsM4hf6DVkVgATcCZlFlavd/lakXTW/+4MeD
+        82RZyAMCZ+sfEBwvK5A6hi0ab0wxmrGFyIUkz1MJtqFSO+x2upNwtBQ05rQ9DFJ0
+        wW8wWvKOqKTnf2XvWsLyke3eX0X1c0k0pF3bNrtLiYzSLkijVkPj8dFqJhPwl2p5
+        fneI2Wv9EFwGZB9CyODEYMGY9kRq+n+AxYt0linAufyzY1bEc8pn0SYd2yClDDXg
+        RZ5cX8PWy7Er7bjYcIAOyHFStXvvbFBa08+k/NUSpF9pAgMBAAE=
         -----END PUBLIC KEY-----
