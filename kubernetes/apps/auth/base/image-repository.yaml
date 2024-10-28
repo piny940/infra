@@ -13,3 +13,11 @@ metadata:
 spec:
   image: ghcr.io/piny940/auth-frontend
   interval: 3m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: auth-example
+spec:
+  image: ghcr.io/piny940/auth-example
+  interval: 3m
