@@ -8,4 +8,4 @@ configuration:
         key: gcp
 schedules:
   backup-daily:
-    schedule: "48 3 * * *"
+    schedule: "48 3 */2 * *"
