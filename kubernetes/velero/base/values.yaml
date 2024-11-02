@@ -32,3 +32,5 @@ schedules:
     template:
       labels:
         app: velero-backup-daily
+      excludeNamespaces:
+        - velero
