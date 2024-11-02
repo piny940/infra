@@ -12,5 +12,5 @@ velero backup create --from-schedule velero-backup-daily
 
 ```bash
 env=staging
-helm upgrade velero vmware-tanzu/velero --namespace velero --values velero/base/values.yaml --values velero/staging/values.yaml --version 6.7.0
+helm upgrade velero vmware-tanzu/velero --namespace velero --values velero/base/values.yaml --values velero/$env/values.yaml --version 6.7.0
 ```
