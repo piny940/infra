@@ -2,7 +2,7 @@ configuration:
   backupStorageLocation:
     - name: default
       provider: velero.io/gcp
-      bucket: velero-cluster-backup.piny940.com
+      bucket: velero-backup.piny940.com
       credential:
         name: google-credentials
         key: gcp
