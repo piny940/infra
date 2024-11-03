@@ -28,6 +28,6 @@ resource "google_project_iam_member" "portfolio_service_account_token_creator" {
 resource "google_service_account_iam_member" "ksa_workload_identity_user" {
   service_account_id = google_service_account.portfolio.id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:${local.prefix}portfolio"
+  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/system:serviceaccount:default:${local.prefix}portfolio-backend"
 }
 
