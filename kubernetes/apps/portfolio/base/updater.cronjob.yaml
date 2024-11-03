@@ -9,6 +9,7 @@ spec:
       activeDeadlineSeconds: 100
       template:
         spec:
+          serviceAccountName: portfolio-updater
           containers:
             - name: portfolio-updater
               image: portfolio-updater

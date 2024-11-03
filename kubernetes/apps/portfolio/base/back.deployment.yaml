@@ -14,7 +14,7 @@ spec:
       labels:
         app: portfolio-backend
     spec:
-      serviceAccountName: portfolio
+      serviceAccountName: portfolio-backend
       containers:
         - name: app
           image: portfolio-backend
