@@ -1,10 +1,10 @@
 resource "google_storage_bucket" "velero" {
-  name     = "${local.prefix}velero-cluster-backup.piny940.com"
+  name     = "${local.prefix}velero-backup.piny940.com"
   location = "us-central1"
 
   public_access_prevention    = "inherited"
   uniform_bucket_level_access = true
-  storage_class               = "NEARLINE"
+  storage_class               = "STANDARD"
 }
 resource "google_service_account" "velero" {
   account_id                   = "velero"
