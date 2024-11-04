@@ -29,6 +29,7 @@ configMapGenerator:
       - DB_NAME=portfolio_staging
       - GOOGLE_BUCKET_NAME=stg-portfolio.piny940.com
       - GOOGLE_PROJECT_NUMBER=645068243364
+      - AUTH_OIDC_SUB=system:serviceaccount:default:stg-portfolio-app,system:serviceaccount:default:stg-portfolio-updater
   - name: workload-identity-credential-configuration
     behavior: merge
     files:
