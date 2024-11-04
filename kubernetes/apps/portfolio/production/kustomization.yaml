@@ -29,6 +29,7 @@ configMapGenerator:
       - SLACK_CHANNEL_ID=C06EQE53RA8
       - GOOGLE_BUCKET_NAME=portfolio.piny940.com
       - GOOGLE_PROJECT_NUMBER=1056391010239
+      - AUTH_OIDC_SUB=system:serviceaccount:default:portfolio-app,system:serviceaccount:default:portfolio-updater
   - name: workload-identity-credential-configuration
     behavior: merge
     files:

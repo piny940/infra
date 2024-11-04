@@ -26,7 +26,7 @@ configMapGenerator:
       - DB_SSLMODE=disable
       - DB_MIGRATIONS_DIR=db/migrations
       - AUTH_LOCAL=false
-      - AUTH_OIDC_SUB=system:serviceaccount:default:portfolio-app,system:serviceaccount:default:portfolio-updater
+      - AUTH_OIDC_SUB=
       - SKIP_AUTH=false
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
