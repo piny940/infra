@@ -28,10 +28,9 @@ configMapGenerator:
       - API_LOGIN_URL=https://auth.piny940.com/
       - API_APPROVE_URL=https://auth.piny940.com/approve
       - OAUTH_ISSUER=https://auth.piny940.com
-      - NEXT_PUBLIC_API_URL=https://auth.piny940.com/api/v1
-      - NEXT_PUBLIC_APP_URL=https://auth-example.piny940.com
+      - OAUTH_RSA_KEY_ID=N2fuPC3ZjxukoRmF51Vbm5d4N8UYfgcmRvYt5m
       - |
-        SERVER_PUBLIC_KEY=-----BEGIN PUBLIC KEY-----
+        OAUTH_RSA_PUBLIC_KEY=-----BEGIN PUBLIC KEY-----
         MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAhJ6MjlSpFVrr4C0Pp3pg
         PuYkOiGOuae7/4gfa4nhJ3OvpGR6C2K38eJIIEYlgtGBJSXrqlSZ8Hif/l/68qcS
         Q0KODb+SYmFxwBAGrFp2zRXCt8x4frJ/kqAjQqYq1lCdqtslc0mcGpRsCo9CIp2A
@@ -42,3 +41,5 @@ configMapGenerator:
         fneI2Wv9EFwGZB9CyODEYMGY9kRq+n+AxYt0linAufyzY1bEc8pn0SYd2yClDDXg
         RZ5cX8PWy7Er7bjYcIAOyHFStXvvbFBa08+k/NUSpF9pAgMBAAE=
         -----END PUBLIC KEY-----
+      - NEXT_PUBLIC_API_URL=https://auth.piny940.com/api/v1
+      - NEXT_PUBLIC_APP_URL=https://auth-example.piny940.com
