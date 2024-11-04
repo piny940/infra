@@ -22,6 +22,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: auth-conf
+            - secretRef:
+                name: auth-example-secret
           # livenessProbe:
           #   httpGet:
           #     path: /healthz

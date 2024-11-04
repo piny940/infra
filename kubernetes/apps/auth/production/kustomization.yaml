@@ -43,3 +43,4 @@ configMapGenerator:
         -----END PUBLIC KEY-----
       - NEXT_PUBLIC_API_URL=https://auth.piny940.com/api/v1
       - NEXT_PUBLIC_APP_URL=https://auth-example.piny940.com
+      - NEXT_PUBLIC_CLIENT_ID=2S0umxZi3FpudChL
