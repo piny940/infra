@@ -19,7 +19,7 @@ configMapGenerator:
   - name: portfolio-conf
     literals:
       - BACKEND_HOST=
-      - TOKEN_PATH=/var/run/secrets/kubernetes.io/serviceaccount/token
+      - TOKEN_PATH=/var/run/service-account/token
       - DB_HOST=postgres-cluster.database.svc.cluster.local
       - DB_PORT=5432
       - DB_NAME=
