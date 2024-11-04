@@ -19,11 +19,15 @@ configMapGenerator:
   - name: portfolio-conf
     literals:
       - BACKEND_HOST=
+      - TOKEN_PATH=/var/run/secrets/kubernetes.io/serviceaccount/token
       - DB_HOST=postgres-cluster.database.svc.cluster.local
       - DB_PORT=5432
       - DB_NAME=
       - DB_SSLMODE=disable
       - DB_MIGRATIONS_DIR=db/migrations
+      - AUTH_LOCAL=false
+      - AUTH_OIDC_SUB=system:serviceaccount:default:portfolio-app,system:serviceaccount:default:portfolio-updater
+      - SKIP_AUTH=false
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
       - GOOGLE_APPLICATION_CREDENTIALS=/etc/workload-identity/gcp-credential-configuration.json

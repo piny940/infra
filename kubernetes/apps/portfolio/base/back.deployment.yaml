@@ -39,7 +39,12 @@ spec:
                 secretKeyRef:
                   name: portfolio-secret
                   key: backend-api-token
-            - name: JWT_SECRET
+            - name: JWT_SECRET # TODO: delete
+              valueFrom:
+                secretKeyRef:
+                  name: portfolio-secret
+                  key: jwt-secret
+            - name: AUTH_JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: portfolio-secret
