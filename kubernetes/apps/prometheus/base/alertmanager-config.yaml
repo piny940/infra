@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: slack-alert
+  name: default
   labels:
-    alertmanagerConfig: slack-alert
+    alertmanagerConfig: default
 spec:
   route:
     groupBy: ["job"]
@@ -11,12 +11,12 @@ spec:
     groupInterval: 5m
     repeatInterval: 12h
     receiver: "slack"
-    # routes:
-    #   - receiver: "null"
-    #     matchers:
-    #       - name: alertname
-    #         value: Watchdog
-    #         matchType: "="
+    routes:
+      - receiver: "null"
+        matchers:
+          - name: alertname
+            value: Watchdog
+            matchType: "="
   receivers:
     - name: "null"
     - name: "slack"

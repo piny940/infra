@@ -29,7 +29,7 @@ spec:
         ingressClassName: nginx
       alertmanagerSpec:
         alertmanagerConfiguration:
-          name: slack-alert
+          name: default
         replicas: 1
         storage:
           volumeClaimTemplate:
