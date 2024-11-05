@@ -4,5 +4,5 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
 
-  # not manage with flux
-  # - git-repository.yaml
+# not manage with flux
+# - git-repository.yaml
