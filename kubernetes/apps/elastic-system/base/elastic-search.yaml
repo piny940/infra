@@ -36,5 +36,5 @@ spec:
               - ReadWriteOnce
             resources:
               requests:
-                storage: 20Gi
+                storage: ES_VOLUME_SIZE_PLACEHOLDER
             storageClassName: longhorn

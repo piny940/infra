@@ -6,3 +6,14 @@ resources:
   - https://download.elastic.co/downloads/eck/2.14.0/operator.yaml
   - elastic-search.yaml
   - kibana.yaml
+configMapGenerator:
+  - name: elastic-conf
+    literals:
+      - KIBANA_SERVER_URL=
+      - LOGS_TTL=30d
+      - ES_VOLUME_SIZE=20Gi
+  - name: init-kibana-conf
+    files:
+      - scripts/deletion-ilm.sh
+configurations:
+  - kustomizeconfig.yaml
