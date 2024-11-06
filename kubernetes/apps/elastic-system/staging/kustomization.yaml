@@ -6,5 +6,21 @@ commonLabels:
 resources:
   - ../base
   - ingress.yaml
-patches:
-  - path: kibana.yaml
+configMapGenerator:
+  - name: elastic-conf
+    behavior: merge
+    literals:
+      - KIBANA_SERVER_URL=https://stg-kibana.piny940.com
+replacements:
+  - source:
+      version: v1
+      kind: ConfigMap
+      name: elastic-conf
+      fieldPath: data.KIBANA_SERVER_URL
+    targets:
+      - select:
+          group: kibana.k8s.elastic.co
+          version: v1
+          kind: Kibana
+        fieldPaths:
+          - spec.config.[server.publicBaseUrl]

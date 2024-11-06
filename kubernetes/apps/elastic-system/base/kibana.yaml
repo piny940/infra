@@ -3,6 +3,8 @@ kind: Kibana
 metadata:
   name: default
 spec:
+  config:
+    server.publicBaseUrl: KIBANA_SERVER_URL_PLACEHOLDER
   version: 8.15.0
   count: 1
   elasticsearchRef:

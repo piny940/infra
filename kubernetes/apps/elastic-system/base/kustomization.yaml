@@ -6,3 +6,7 @@ resources:
   - https://download.elastic.co/downloads/eck/2.14.0/operator.yaml
   - elastic-search.yaml
   - kibana.yaml
+configMapGenerator:
+  - name: elastic-conf
+    literals:
+      - KIBANA_SERVER_URL=
