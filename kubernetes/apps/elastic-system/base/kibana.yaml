@@ -18,10 +18,10 @@ spec:
           command:
             - "/bin/sh"
             - "-c"
-            - "sleep 300"
+            - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
           volumeMounts:
             - name: init-scripts
-              mountPath: /mnt/elastic-internal/scripts
+              mountPath: /mnt/elastic-internal/deletion-ilm.sh
               subPath: deletion-ilm.sh
           env:
             - name: LOGS_TTL
