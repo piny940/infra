@@ -16,7 +16,9 @@ spec:
           image: alpine/curl:latest
           imagePullPolicy: IfNotPresent
           command:
-            ["bash", "-c", "/mnt/elastic-internal/scripts/deletion-ilm.sh"]
+            - "bash"
+            - "-c"
+            - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
           volumeMounts:
             - name: init-scripts
               mountPath: /mnt/elastic-internal/scripts
