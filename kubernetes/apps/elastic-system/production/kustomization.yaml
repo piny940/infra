@@ -11,6 +11,7 @@ configMapGenerator:
     behavior: merge
     literals:
       - KIBANA_SERVER_URL=https://kibana.piny940.com
+      - LOGS_TTL=90d
 replacements:
   - source:
       version: v1

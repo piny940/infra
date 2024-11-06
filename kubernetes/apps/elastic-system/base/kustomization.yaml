@@ -10,3 +10,9 @@ configMapGenerator:
   - name: elastic-conf
     literals:
       - KIBANA_SERVER_URL=
+      - LOGS_TTL=30d
+  - name: init-kibana-conf
+    files:
+      - scripts/deletion-ilm.sh
+configurations:
+  - kustomizeconfig.yaml
