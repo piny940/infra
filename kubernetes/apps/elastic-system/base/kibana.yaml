@@ -21,7 +21,7 @@ spec:
             - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
           volumeMounts:
             - name: init-scripts
-              mountPath: /mnt/elastic-internal/deletion-ilm.sh
+              mountPath: /mnt/elastic-internal/scripts/deletion-ilm.sh
               subPath: deletion-ilm.sh
           env:
             - name: LOGS_TTL
