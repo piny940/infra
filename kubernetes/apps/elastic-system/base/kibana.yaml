@@ -16,8 +16,7 @@ spec:
           image: alpine/curl:latest
           imagePullPolicy: IfNotPresent
           command:
-            - "sleep 300"
-            # - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
+            - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
           volumeMounts:
             - name: init-scripts
               mountPath: /mnt/elastic-internal/scripts
