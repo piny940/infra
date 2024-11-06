@@ -4,7 +4,7 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
   \"policy\": {
     \"phases\": {
       \"delete\": {
-        \"min_age\": ${LOGS_TTL},
+        \"min_age\": \"${LOGS_TTL}\",
         \"actions\": {
           \"delete\": {}
         }
