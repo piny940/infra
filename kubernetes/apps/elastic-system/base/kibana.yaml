@@ -18,7 +18,7 @@ spec:
           command:
             - "/bin/sh"
             - "-c"
-            - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
+            - "sleep 300"
           volumeMounts:
             - name: init-scripts
               mountPath: /mnt/elastic-internal/scripts
