@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: elastic-system
 resources:
-  - https://download.elastic.co/downloads/eck/2.14.0/crds.yaml
-  - https://download.elastic.co/downloads/eck/2.14.0/operator.yaml
+  # - https://download.elastic.co/downloads/eck/2.14.0/crds.yaml
+  # - https://download.elastic.co/downloads/eck/2.14.0/operator.yaml
   - elastic-search.yaml
   - kibana.yaml
 configMapGenerator:
@@ -11,6 +11,7 @@ configMapGenerator:
     literals:
       - KIBANA_SERVER_URL=
       - LOGS_TTL=30d
+      - ES_VOLUME_SIZE=20Gi
   - name: init-kibana-conf
     files:
       - scripts/deletion-ilm.sh

@@ -12,6 +12,7 @@ configMapGenerator:
     literals:
       - KIBANA_SERVER_URL=https://kibana.piny940.com
       - LOGS_TTL=90d
+      - ES_VOLUME_SIZE=30Gi
 replacements:
   - source:
       version: v1
@@ -25,3 +26,15 @@ replacements:
           kind: Kibana
         fieldPaths:
           - spec.config.[server.publicBaseUrl]
+  - source:
+      version: v1
+      kind: ConfigMap
+      name: elastic-conf
+      fieldPath: data.ES_VOLUME_SIZE
+    targets:
+      - select:
+          group: elasticsearch.k8s.elastic.co
+          version: v1
+          kind: Elasticsearch
+        fieldPaths:
+          - spec.nodeSets.0.volumeClaimTemplates.0.spec.resources.requests.storage
