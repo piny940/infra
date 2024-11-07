@@ -3,6 +3,8 @@ nameReference:
     fieldSpecs:
       - kind: HelmRelease
         path: spec/values/admin/existingSecret
+      - kind: HelmRelease
+        path: spec/values/sidecar/datasources/envFromSecret
   - kind: HelmRepository
     fieldSpecs:
       - kind: HelmRelease
