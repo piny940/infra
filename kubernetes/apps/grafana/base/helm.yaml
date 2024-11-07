@@ -19,6 +19,31 @@ spec:
         kind: HelmRepository
         name: grafana
   values:
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: "Prometheus"
+            type: prometheus
+            access: proxy
+            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+          - name: "Elastic Search"
+            type: elasticsearch
+            access: proxy
+            url: https://default-es-http.elastic-system.svc.cluster.local:9200
+            jsonData:
+              tlsSkipVerify: true
+              timeField: "@timestamp"
+            basicAuth: true
+            basicAuthUser: elastic
+            withCredentials: true
+            secureJsonData:
+              basicAuthPassword: $ELASTIC_PASSWORD
+    envValueFrom:
+      ELASTIC_PASSWORD:
+        secretKeyRef:
+          name: grafana-secret
+          key: ELASTIC_PASSWORD
     persistence:
       enabled: true
       type: pvc

@@ -3,6 +3,8 @@ nameReference:
     fieldSpecs:
       - kind: HelmRelease
         path: spec/values/admin/existingSecret
+      - kind: HelmRelease
+        path: spec/values/envValueFrom/ELASTIC_PASSWORD/secretKeyRef/name
   - kind: HelmRepository
     fieldSpecs:
       - kind: HelmRelease
