@@ -39,10 +39,11 @@ spec:
             withCredentials: true
             secureJsonData:
               basicAuthPassword: $ELASTIC_PASSWORD
-    sidecar:
-      datasources:
-        enabled: true
-        envFromSecret: grafana-secret
+    envValueFrom:
+      ELASTIC_PASSWORD:
+        secretKeyRef:
+          name: grafana-secret
+          key: ELASTIC_PASSWORD
     persistence:
       enabled: true
       type: pvc

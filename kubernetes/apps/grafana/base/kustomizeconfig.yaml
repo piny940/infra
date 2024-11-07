@@ -4,7 +4,7 @@ nameReference:
       - kind: HelmRelease
         path: spec/values/admin/existingSecret
       - kind: HelmRelease
-        path: spec/values/sidecar/datasources/envFromSecret
+        path: spec/values/envValueFrom/ELASTIC_PASSWORD/secretKeyRef/name
   - kind: HelmRepository
     fieldSpecs:
       - kind: HelmRelease
