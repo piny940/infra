@@ -41,9 +41,9 @@ configMapGenerator:
   - name: portfolio-admin-conf
     literals:
       - BACKEND_HOST=
-      - NEXT_PUBLIC_APP_URL=https://portfolio-admin.piny940.com
-      - NEXT_PUBLIC_AUTH_SERVER_URL=https://auth.piny940.com
-      - NEXT_PUBLIC_CLIENT_ID=
+      - APP_URL=https://portfolio-admin.piny940.com
+      - AUTH_SERVER_URL=https://auth.piny940.com
+      - CLIENT_ID=
   - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml

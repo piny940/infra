@@ -37,9 +37,9 @@ configMapGenerator:
     behavior: merge
     literals:
       - BACKEND_HOST=http://stg-portfolio-backend.default.svc.cluster.local:8080
-      - NEXT_PUBLIC_APP_URL=https://stg-portfolio-admin.piny940.com
-      - NEXT_PUBLIC_AUTH_SERVER_URL=https://stg-auth.piny940.com
-      - NEXT_PUBLIC_CLIENT_ID=068kYMJglne3X0Xr
+      - APP_URL=https://stg-portfolio-admin.piny940.com
+      - AUTH_SERVER_URL=https://stg-auth.piny940.com
+      - CLIENT_ID=068kYMJglne3X0Xr
   - name: workload-identity-credential-configuration
     behavior: merge
     files:
