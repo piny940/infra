@@ -2,13 +2,13 @@ service:
   ui:
     type: ClusterIP
 persistence:
-  defaultClassReplicaCount: 1
+  defaultClassReplicaCount: 3
 longhornUI:
   replicas: 1
 csi:
-  attacherReplicaCount: 1
-  provisionerReplicaCount: 1
-  resizerReplicaCount: 1
-  snapshotterReplicaCount: 1
+  attacherReplicaCount: 3
+  provisionerReplicaCount: 3
+  resizerReplicaCount: 3
+  snapshotterReplicaCount: 3
 defaultSettings:
   storageReservedPercentageForDefaultDisk: 5
