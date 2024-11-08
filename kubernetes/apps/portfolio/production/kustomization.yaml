@@ -38,7 +38,7 @@ configMapGenerator:
     literals:
       - BACKEND_HOST=http://portfolio-backend.default.svc.cluster.local:8080
       - APP_URL=https://portfolio-admin.piny940.com
-      - AUTH_SERVER_URL=https://auth.piny940.com
+      - AUTH_SERVER_URL=https://auth.piny940.com/api/v1
       - CLIENT_ID=cSPn6obFNacAnuMT
   - name: workload-identity-credential-configuration
     behavior: merge
