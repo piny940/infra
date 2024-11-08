@@ -95,6 +95,14 @@ disabled_plugins = []
 sudo systemctl restart containerd
 ```
 
+### flannel のための設定(初回のみ)
+
+```bash
+echo "br_netfilter" | sudo tee /etc/modules-load.d/br_netfilter.conf
+echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-ip6tables=1" | sudo tee -a /etc/sysctl.conf
+```
+
 ### longhorn のための設定(初回のみ)
 
 ```bash
@@ -309,6 +317,26 @@ kubectl apply -f _flux/staging/flux-system/git-repository.yaml
 バックアップから復元しない場合
 https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov-file
 を入れる必要がある
+
+## ノードの追加方法
+
+マスターノードでトークン・証明書を作成
+
+```bash
+kubeadm token create
+```
+
+```bash
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt \
+| openssl rsa -pubin -outform der 2>/dev/null \
+| openssl dgst -sha256 -hex | sed 's/^.* //'
+```
+
+ワーカーノードでトークンを使って join
+
+```bash
+sudo kubeadm join {master-ip}:6443 --token {token} --discovery-token-ca-cert-hash sha256:{hash}
+```
 
 ## チェックポイント
 
