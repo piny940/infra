@@ -79,6 +79,6 @@ jobs:
       - name: Deploy
         uses: ./.github/actions/service-monitor-deploy
         with:
-          func-name: stg-service-monitor
+          func-name: service-monitor
           aws-region: ${{ secrets.AWS_REGION }}
           aws-update-health-check-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
