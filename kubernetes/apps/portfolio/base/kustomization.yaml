@@ -33,6 +33,12 @@ configMapGenerator:
       - GOOGLE_APPLICATION_CREDENTIALS=/etc/workload-identity/gcp-credential-configuration.json
       - GOOGLE_BUCKET_NAME=
       - GOOGLE_PROJECT_NUMBER=
+  - name: portfolio-admin-conf
+    literals:
+      - BACKEND_HOST=
+      - NEXT_PUBLIC_APP_URL=https://portfolio-admin.piny940.com
+      - NEXT_PUBLIC_AUTH_SERVER_URL=https://auth.piny940.com
+      - NEXT_PUBLIC_CLIENT_ID=
   - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml

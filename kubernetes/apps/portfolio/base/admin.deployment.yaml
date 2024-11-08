@@ -21,4 +21,6 @@ spec:
             - containerPort: 4400
           envFrom:
             - configMapRef:
-                name: portfolio-conf
+                name: portfolio-admin-conf
+            - secretKeyRef:
+                name: portfolio-admin-secret
