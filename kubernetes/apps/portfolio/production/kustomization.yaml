@@ -31,6 +31,7 @@ configMapGenerator:
       - GOOGLE_PROJECT_NUMBER=1056391010239
       - AUTH_OIDC_SUB=id:2;name:piny940,system:serviceaccount:default:portfolio-app,system:serviceaccount:default:portfolio-updater
       - AUTH_AUTH_SERVER_URL=https://auth.piny940.com/api/v1
+      - AUTH_AUTH_SERVER_ISSUER=https://auth.piny940.com
       - AUTH_AUTH_AUDIENCE=cSPn6obFNacAnuMT
   - name: portfolio-admin-conf
     behavior: merge
