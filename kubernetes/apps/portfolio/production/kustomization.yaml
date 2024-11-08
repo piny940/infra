@@ -33,6 +33,7 @@ configMapGenerator:
       - AUTH_AUTH_SERVER_URL=https://auth.piny940.com/api/v1
       - AUTH_AUTH_AUDIENCE=cSPn6obFNacAnuMT
   - name: portfolio-admin-conf
+    behavior: merge
     literals:
       - BACKEND_HOST=http://portfolio-backend.default.svc.cluster.local:8080
       - NEXT_PUBLIC_APP_URL=https://portfolio-admin.piny940.com
