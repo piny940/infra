@@ -27,6 +27,10 @@ configMapGenerator:
       - DB_MIGRATIONS_DIR=db/migrations
       - AUTH_LOCAL=false
       - AUTH_OIDC_SUB=
+      - AUTH_AUTH_SERVER_URL=
+      - AUTH_AUTH_AUDIENCE=
+      - AUTH_CLUSTER_ISSUER=https://kubernetes.default.svc.cluster.local
+      - AUTH_CLUSTER_AUDIENCE=portfolio.piny940.com
       - SKIP_AUTH=false
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
