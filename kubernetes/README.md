@@ -95,6 +95,13 @@ disabled_plugins = []
 sudo systemctl restart containerd
 ```
 
+### flannel のための設定(初回のみ)
+
+```bash
+sudo modprobe br_netfilter
+sysctl -p /etc/sysctl.conf
+```
+
 ### longhorn のための設定(初回のみ)
 
 ```bash
