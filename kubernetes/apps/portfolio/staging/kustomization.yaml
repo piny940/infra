@@ -29,7 +29,17 @@ configMapGenerator:
       - DB_NAME=portfolio_staging
       - GOOGLE_BUCKET_NAME=stg-portfolio.piny940.com
       - GOOGLE_PROJECT_NUMBER=645068243364
-      - AUTH_OIDC_SUB=system:serviceaccount:default:stg-portfolio-app,system:serviceaccount:default:stg-portfolio-updater
+      - AUTH_OIDC_SUB=id:3;name:piny940,system:serviceaccount:default:stg-portfolio-app,system:serviceaccount:default:stg-portfolio-updater
+      - AUTH_AUTH_SERVER_URL=https://stg-auth.piny940.com/api/v1
+      - AUTH_AUTH_SERVER_ISSUER=https://stg-auth.piny940.com
+      - AUTH_AUTH_AUDIENCE=068kYMJglne3X0Xr
+  - name: portfolio-admin-conf
+    behavior: merge
+    literals:
+      - BACKEND_HOST=http://stg-portfolio-backend.default.svc.cluster.local:8080
+      - APP_URL=https://stg-portfolio-admin.piny940.com
+      - AUTH_SERVER_URL=https://stg-auth.piny940.com/api/v1
+      - CLIENT_ID=068kYMJglne3X0Xr
   - name: workload-identity-credential-configuration
     behavior: merge
     files:

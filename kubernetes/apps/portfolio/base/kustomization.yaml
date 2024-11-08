@@ -27,12 +27,23 @@ configMapGenerator:
       - DB_MIGRATIONS_DIR=db/migrations
       - AUTH_LOCAL=false
       - AUTH_OIDC_SUB=
+      - AUTH_AUTH_SERVER_URL=
+      - AUTH_AUTH_SERVER_ISSUER=
+      - AUTH_AUTH_AUDIENCE=
+      - AUTH_CLUSTER_ISSUER=https://kubernetes.default.svc.cluster.local
+      - AUTH_CLUSTER_AUDIENCE=portfolio.piny940.com
       - SKIP_AUTH=false
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
       - GOOGLE_APPLICATION_CREDENTIALS=/etc/workload-identity/gcp-credential-configuration.json
       - GOOGLE_BUCKET_NAME=
       - GOOGLE_PROJECT_NUMBER=
+  - name: portfolio-admin-conf
+    literals:
+      - BACKEND_HOST=
+      - APP_URL=https://portfolio-admin.piny940.com
+      - AUTH_SERVER_URL=https://auth.piny940.com
+      - CLIENT_ID=
   - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml
