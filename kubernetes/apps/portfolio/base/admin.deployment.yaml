@@ -22,5 +22,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: portfolio-admin-conf
-            - secretKeyRef:
+            - secretRef:
                 name: portfolio-admin-secret
