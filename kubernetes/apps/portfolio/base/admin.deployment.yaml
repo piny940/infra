@@ -24,3 +24,17 @@ spec:
                 name: portfolio-admin-conf
             - secretRef:
                 name: portfolio-admin-secret
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4400
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4400
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 20
