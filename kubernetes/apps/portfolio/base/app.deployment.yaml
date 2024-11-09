@@ -33,6 +33,20 @@ spec:
             - name: token
               mountPath: /var/run/service-account
               readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4400
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4400
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 20
       volumes:
         - name: token
           projected:
