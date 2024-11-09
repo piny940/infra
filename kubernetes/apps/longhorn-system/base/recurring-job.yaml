@@ -3,7 +3,7 @@ kind: RecurringJob
 metadata:
   name: trim-filesystem
 spec:
-  cron: "3 34 * * 0"
+  cron: "3 10 * * *"
   task: "filesystem-trim"
   groups:
     - default
