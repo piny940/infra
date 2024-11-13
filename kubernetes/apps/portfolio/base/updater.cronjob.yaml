@@ -15,18 +15,13 @@ spec:
               image: portfolio-updater
               envFrom:
                 - configMapRef:
-                    name: portfolio-conf
+                    name: portfolio-updater-conf
               env:
                 - name: QIITA_API_TOKEN
                   valueFrom:
                     secretKeyRef:
                       name: portfolio-secret
                       key: qiita-api-token
-                - name: BACKEND_TOKEN
-                  valueFrom:
-                    secretKeyRef:
-                      name: portfolio-secret
-                      key: backend-api-token
                 - name: SLACK_OAUTH_TOKEN
                   valueFrom:
                     secretKeyRef:
