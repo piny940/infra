@@ -22,13 +22,7 @@ spec:
             - containerPort: 4400
           envFrom:
             - configMapRef:
-                name: portfolio-conf
-          env:
-            - name: BACKEND_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: portfolio-secret
-                  key: backend-api-token
+                name: portfolio-app-conf
           volumeMounts:
             - name: token
               mountPath: /var/run/service-account

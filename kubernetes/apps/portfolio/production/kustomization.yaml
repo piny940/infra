@@ -33,6 +33,9 @@ configMapGenerator:
       - AUTH_AUTH_SERVER_URL=https://auth.piny940.com/api/v1
       - AUTH_AUTH_SERVER_ISSUER=https://auth.piny940.com
       - AUTH_AUTH_AUDIENCE=cSPn6obFNacAnuMT
+  - name: portfolio-app-conf
+    literals:
+      - BACKEND_HOST=http://portfolio-backend.default.svc.cluster.local:8080
   - name: portfolio-admin-conf
     behavior: merge
     literals:
@@ -40,6 +43,11 @@ configMapGenerator:
       - APP_URL=https://portfolio-admin.piny940.com
       - AUTH_SERVER_URL=https://auth.piny940.com/api/v1
       - CLIENT_ID=cSPn6obFNacAnuMT
+  - name: portfolio-updater-conf
+    behavior: merge
+    literals:
+      - BACKEND_HOST=http://portfolio-backend.default.svc.cluster.local:8080
+      - SLACK_CHANNEL_ID=C06EQE53RA8
   - name: workload-identity-credential-configuration
     behavior: merge
     files:

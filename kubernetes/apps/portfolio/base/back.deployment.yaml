@@ -34,26 +34,6 @@ spec:
                 secretKeyRef:
                   name: default.portfolio.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
-            - name: API_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: portfolio-secret
-                  key: backend-api-token
-            - name: JWT_SECRET # TODO: delete
-              valueFrom:
-                secretKeyRef:
-                  name: portfolio-secret
-                  key: jwt-secret
-            - name: AUTH_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: portfolio-secret
-                  key: jwt-secret
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: portfolio-secret
-                  key: admin-password
           volumeMounts:
             - name: token
               mountPath: /var/run/service-account

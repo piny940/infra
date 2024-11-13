@@ -18,8 +18,6 @@ resources:
 configMapGenerator:
   - name: portfolio-conf
     literals:
-      - BACKEND_HOST=
-      - TOKEN_PATH=/var/run/service-account/token
       - DB_HOST=postgres-cluster.database.svc.cluster.local
       - DB_PORT=5432
       - DB_NAME=
@@ -34,11 +32,14 @@ configMapGenerator:
       - AUTH_CLUSTER_AUDIENCE=portfolio.piny940.com
       - AUTH_TOKEN_TTL=86400
       - SKIP_AUTH=false
-      - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
       - GOOGLE_APPLICATION_CREDENTIALS=/etc/workload-identity/gcp-credential-configuration.json
       - GOOGLE_BUCKET_NAME=
       - GOOGLE_PROJECT_NUMBER=
+  - name: portfolio-app-conf
+    literals:
+      - TOKEN_PATH=/var/run/service-account/token
+      - BACKEND_HOST=
   - name: portfolio-admin-conf
     literals:
       - BACKEND_HOST=
@@ -46,6 +47,11 @@ configMapGenerator:
       - AUTH_SERVER_URL=https://auth.piny940.com
       - TOKEN_TTL=86400
       - CLIENT_ID=
+  - name: portfolio-updater-conf
+    literals:
+      - TOKEN_PATH=/var/run/service-account/token
+      - BACKEND_HOST=
+      - SLACK_CHANNEL_ID=
   - name: workload-identity-credential-configuration
 configurations:
   - kustomizeconfig.yaml
