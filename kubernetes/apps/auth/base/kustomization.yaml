@@ -23,11 +23,9 @@ configMapGenerator:
       - API_LOGIN_URL=
       - API_APPROVE_URL=
       - OAUTH_ISSUER=
+      - OAUTH_RSA_KEY_ID=
+      - OAUTH_RSA_PUBLIC_KEY=
       - NEXT_PUBLIC_API_URL=
       - NEXT_PUBLIC_APP_URL=
-      - SERVER_PUBLIC_KEY=
-      # TODO
-      - NEXT_PUBLIC_CLIENT_ID=
-      - CLIENT_SECRET=
 configurations:
   - kustomizeconfig.yaml

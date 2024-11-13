@@ -32,6 +32,7 @@ configMapGenerator:
       - AUTH_AUTH_AUDIENCE=
       - AUTH_CLUSTER_ISSUER=https://kubernetes.default.svc.cluster.local
       - AUTH_CLUSTER_AUDIENCE=portfolio.piny940.com
+      - AUTH_TOKEN_TTL=86400
       - SKIP_AUTH=false
       - ADMIN_ID=piny940
       - SLACK_CHANNEL_ID=
@@ -43,6 +44,7 @@ configMapGenerator:
       - BACKEND_HOST=
       - APP_URL=https://portfolio-admin.piny940.com
       - AUTH_SERVER_URL=https://auth.piny940.com
+      - TOKEN_TTL=86400
       - CLIENT_ID=
   - name: workload-identity-credential-configuration
 configurations:
