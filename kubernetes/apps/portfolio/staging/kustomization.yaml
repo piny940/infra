@@ -34,6 +34,7 @@ configMapGenerator:
       - AUTH_AUTH_SERVER_ISSUER=https://stg-auth.piny940.com
       - AUTH_AUTH_AUDIENCE=068kYMJglne3X0Xr
   - name: portfolio-app-conf
+    behavior: merge
     literals:
       - BACKEND_HOST=http://stg-portfolio-backend.default.svc.cluster.local:8080
   - name: portfolio-admin-conf
