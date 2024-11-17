@@ -22,7 +22,11 @@ spec:
         kind: HelmRepository
         name: hashicorp
   values:
+    global:
+      enabled: true
+      tlsDisable: false
     injector:
+      enabled: true
       replicas: 1
       agentDefaults:
         cpuLimit: "500m"
@@ -48,6 +52,22 @@ spec:
         successThreshold: 1
         timeoutSeconds: 5
     server:
+      extraEnvironmentVars:
+        VAULT_CACERT: /vault/userconfig/vault-ha-tls/vault.ca
+        VAULT_TLSCERT: /vault/userconfig/vault-ha-tls/vault.crt
+        VAULT_TLSKEY: /vault/userconfig/vault-ha-tls/vault.key
+      volumes:
+        - name: userconfig-vault-ha-tls
+          secret:
+            defaultMode: 420
+            secretName: vault-ha-tls
+      volumeMounts:
+        - mountPath: /vault/userconfig/vault-ha-tls
+          name: userconfig-vault-ha-tls
+          readOnly: true
+      standalone:
+        enabled: false
+      affinity: ""
       ingress:
         enabled: true
         ingressClassName: nginx
