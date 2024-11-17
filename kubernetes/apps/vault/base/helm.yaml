@@ -26,13 +26,12 @@ spec:
       enabled: true
       tlsDisable: false
     injector:
-      enabled: true
       replicas: 1
-      # agentDefaults:
-      #   cpuLimit: "500m"
-      #   cpuRequest: "250m"
-      #   memLimit: "128Mi"
-      #   memRequest: "64Mi"
+      agentDefaults:
+        cpuLimit: "500m"
+        cpuRequest: "250m"
+        memLimit: "128Mi"
+        memRequest: "64Mi"
       livenessProbe:
         failureThreshold: 2
         initialDelaySeconds: 5
