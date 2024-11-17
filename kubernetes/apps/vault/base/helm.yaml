@@ -67,7 +67,6 @@ spec:
           readOnly: true
       standalone:
         enabled: false
-      affinity: ""
       ingress:
         enabled: true
         ingressClassName: nginx
