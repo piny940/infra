@@ -64,8 +64,6 @@ spec:
         - mountPath: /vault/userconfig/vault-ha-tls
           name: userconfig-vault-ha-tls
           readOnly: true
-      standalone:
-        enabled: false
       ingress:
         enabled: true
         ingressClassName: nginx
