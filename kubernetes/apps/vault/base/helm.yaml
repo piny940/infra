@@ -64,6 +64,19 @@ spec:
         - mountPath: /vault/userconfig/vault-ha-tls
           name: userconfig-vault-ha-tls
           readOnly: true
+      standalone:
+        enabled: true
+        config: |
+          listener "tcp" {
+            address = "[::]:8200"
+            cluster_address = "[::]:8201"
+            tls_cert_file = "/vault/userconfig/vault-ha-tls/vault.crt"
+            tls_key_file  = "/vault/userconfig/vault-ha-tls/vault.key"
+            tls_client_ca_file = "/vault/userconfig/vault-ha-tls/vault.ca"
+          }
+          storage "file" {
+            path = "/vault/data"
+          }
       ingress:
         enabled: true
         ingressClassName: nginx
