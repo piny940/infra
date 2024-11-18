@@ -15,7 +15,8 @@
 ```bash
 export VAULT_K8S_NAMESPACE="vault"
 export VAULT_HELM_RELEASE_NAME="vault"
-export VAULT_SERVICE_NAME="vault-internal"
+export VAULT_SERVICE_NAME="vault"
+export VAULT_INTERNAL_SERVICE_NAME="vault-internal"
 export K8S_CLUSTER_NAME="cluster.local"
 export WORKDIR="/tmp/vault"
 mkdir -p ${WORKDIR}
@@ -51,7 +52,10 @@ DNS.1 = *.${VAULT_SERVICE_NAME}
 DNS.2 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}
 DNS.3 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc
 DNS.4 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.cluster.local
-IP.1 = 127.0.0.1
+DNS.5 = *.${VAULT_INTERNAL_SERVICE_NAME}
+DNS.6 = *.${VAULT_INTERNAL_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}
+DNS.7 = *.${VAULT_INTERNAL_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc
+DNS.8 = *.${VAULT_INTERNAL_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.cluster.local
 IP.1 = 127.0.0.1
 EOF
 openssl req -new -key ${WORKDIR}/vault.key -out ${WORKDIR}/vault.csr -config ${WORKDIR}/vault-csr.conf
@@ -92,11 +96,7 @@ kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.c
 secret を作成
 
 ```bash
-kubectl create secret generic vault-ha-tls \
-  -n $VAULT_K8S_NAMESPACE \
-  --from-file=vault.key=${WORKDIR}/vault.key \
-  --from-file=vault.crt=${WORKDIR}/vault.crt \
-  --from-file=vault.ca=${WORKDIR}/vault.ca
+kubectl create secret generic vault-ha-tls -n $VAULT_K8S_NAMESPACE --from-file=vault.key=${WORKDIR}/vault.key --from-file=vault.crt=${WORKDIR}/vault.crt --from-file=vault.ca=${WORKDIR}/vault.ca
 ```
 
 ### サーバーの設定
@@ -125,7 +125,7 @@ PREFIX="stg-"
 fi
 ```
 
-unseal
+unseal（Pod を再起動するたびに実行する）
 
 ```bash
 VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ~/cluster-keys.json)
