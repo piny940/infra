@@ -83,7 +83,6 @@ spec:
         ingressClassName: nginx
         pathType: Prefix
         annotations:
-          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       dataStorage:
         enabled: true
