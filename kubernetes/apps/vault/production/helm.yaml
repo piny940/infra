@@ -10,8 +10,5 @@ spec:
   values:
     server:
       ingress:
-        tls:
-          - hosts:
-              - vault.piny940.com
         hosts:
           - host: vault.piny940.com

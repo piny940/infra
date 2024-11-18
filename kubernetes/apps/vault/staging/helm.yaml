@@ -12,8 +12,5 @@ spec:
   values:
     server:
       ingress:
-        tls:
-          - hosts:
-              - stg-vault.piny940.com
         hosts:
           - host: stg-vault.piny940.com
