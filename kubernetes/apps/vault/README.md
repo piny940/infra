@@ -48,8 +48,10 @@ extendedKeyUsage = serverAuth, clientAuth
 subjectAltName = @alt_names
 [alt_names]
 DNS.1 = *.${VAULT_SERVICE_NAME}
-DNS.2 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.${K8S_CLUSTER_NAME}
-DNS.3 = *.${VAULT_K8S_NAMESPACE}
+DNS.2 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}
+DNS.3 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc
+DNS.4 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.cluster.local
+IP.1 = 127.0.0.1
 IP.1 = 127.0.0.1
 EOF
 openssl req -new -key ${WORKDIR}/vault.key -out ${WORKDIR}/vault.csr -config ${WORKDIR}/vault-csr.conf
