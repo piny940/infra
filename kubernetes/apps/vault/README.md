@@ -16,7 +16,6 @@
 export VAULT_K8S_NAMESPACE="vault"
 export VAULT_HELM_RELEASE_NAME="vault"
 export VAULT_SERVICE_NAME="vault"
-export VAULT_INTERNAL_SERVICE_NAME="vault-internal"
 export K8S_CLUSTER_NAME="cluster.local"
 export WORKDIR="/tmp/vault"
 mkdir -p ${WORKDIR}
@@ -52,10 +51,10 @@ DNS.1 = *.${VAULT_SERVICE_NAME}
 DNS.2 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}
 DNS.3 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc
 DNS.4 = *.${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.cluster.local
-DNS.5 = *.${VAULT_INTERNAL_SERVICE_NAME}
-DNS.6 = *.${VAULT_INTERNAL_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}
-DNS.7 = *.${VAULT_INTERNAL_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc
-DNS.8 = *.${VAULT_INTERNAL_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.cluster.local
+DNS.5 = ${VAULT_SERVICE_NAME}
+DNS.6 = ${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}
+DNS.7 = ${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc
+DNS.8 = ${VAULT_SERVICE_NAME}.${VAULT_K8S_NAMESPACE}.svc.cluster.local
 IP.1 = 127.0.0.1
 EOF
 openssl req -new -key ${WORKDIR}/vault.key -out ${WORKDIR}/vault.csr -config ${WORKDIR}/vault-csr.conf
@@ -86,16 +85,11 @@ Approve
 kubectl certificate approve vault.svc
 ```
 
-証明書を取得
+証明書から secret を作成
 
 ```bash
 kubectl get csr vault.svc -o jsonpath='{.status.certificate}' | openssl base64 -d -A -out ${WORKDIR}/vault.crt
 kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.certificate-authority-data}' | base64 -d > ${WORKDIR}/vault.ca
-```
-
-secret を作成
-
-```bash
 kubectl create secret generic vault-ha-tls -n $VAULT_K8S_NAMESPACE --from-file=vault.key=${WORKDIR}/vault.key --from-file=vault.crt=${WORKDIR}/vault.crt --from-file=vault.ca=${WORKDIR}/vault.ca
 ```
 
