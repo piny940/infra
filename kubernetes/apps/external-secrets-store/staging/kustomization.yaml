@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: default
 resources:
   - ../base
-  - secret-store.yaml

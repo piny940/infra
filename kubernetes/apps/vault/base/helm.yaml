@@ -22,6 +22,9 @@ spec:
         kind: HelmRepository
         name: hashicorp
   values:
+    global:
+      enabled: true
+      tlsDisable: false
     injector:
       replicas: 1
       agentDefaults:
@@ -48,16 +51,39 @@ spec:
         successThreshold: 1
         timeoutSeconds: 5
     server:
+      extraEnvironmentVars:
+        VAULT_CACERT: /vault/userconfig/vault-tls/vault.ca
+        VAULT_TLSCERT: /vault/userconfig/vault-tls/vault.crt
+        VAULT_TLSKEY: /vault/userconfig/vault-tls/vault.key
+      volumes:
+        - name: userconfig-vault-tls
+          secret:
+            defaultMode: 420
+            secretName: vault-tls
+      volumeMounts:
+        - mountPath: /vault/userconfig/vault-tls
+          name: userconfig-vault-tls
+          readOnly: true
+      standalone:
+        enabled: true
+        config: |
+          ui = true
+          listener "tcp" {
+            address = "[::]:8200"
+            cluster_address = "[::]:8201"
+            tls_cert_file = "/vault/userconfig/vault-tls/vault.crt"
+            tls_key_file  = "/vault/userconfig/vault-tls/vault.key"
+            tls_client_ca_file = "/vault/userconfig/vault-tls/vault.ca"
+          }
+          storage "file" {
+            path = "/vault/data"
+          }
       ingress:
         enabled: true
         ingressClassName: nginx
-        tls:
-          - hosts:
-              - vault.piny940.com
-            secretName: cluster-tls
         pathType: Prefix
-        hosts:
-          - host: vault.piny940.com
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       dataStorage:
         enabled: true
         storageClass: longhorn
