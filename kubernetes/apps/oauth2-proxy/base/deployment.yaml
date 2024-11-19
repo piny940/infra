@@ -29,21 +29,18 @@ spec:
             - --client-secret=${CLIENT_SECRET}
             - --cookie-secret=${COOKIE_SECRET}
             - --provider=github
-            # - --whitelist-domain=.svc.macbook.local
-            # - --cookie-domain=.svc.macbook.local
-            # - --cookie-secure=false
+            - --redirect-url=${SERVER_URL}/oauth2/callback
+            - --cookie-domain=${SERVER_URL}
+            - --cookie-secure=true
+            - --whitelist-domain=*.piny940.com
             # - --email-domain=*
             # - --oidc-issuer-url={{ OIDC_ISSUER }}
             # - --pass-access-token=false
             # - --pass-authorization-header=true
             # - --pass-host-header=true
             # - --pass-user-headers=true
-            # - --redirect-url=http://oauth2-proxy.cicd-system.svc.macbook.local/oauth2/callback
             # - --reverse-proxy=true
             # - --set-xauthrequest=true
             # - --upstream=static://200
-            # - --skip-provider-button=true
-            # - --session-store-type=redis
-            # - --redis-connection-url=redis://localhost:6379
           ports:
             - containerPort: 4180
