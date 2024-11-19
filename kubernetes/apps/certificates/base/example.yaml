@@ -10,8 +10,7 @@ spec:
   usages:
     - server auth
   dnsNames:
-    - example.com
-    - www.example.com
+    - example.svc.cluster.local
   issuerRef:
     name: vault-issuer
     kind: ClusterIssuer
