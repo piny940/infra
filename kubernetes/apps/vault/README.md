@@ -172,8 +172,8 @@ capabilities = ["read", "list"]
 }
 EOF
 vault policy write issuer - <<EOF
-path "pki/*" {
-capabilities = ["read", "list"]
+path "pki_int/sign/cluster-local" {
+capabilities = ["create", "update"]
 }
 EOF
 vault write auth/kubernetes/role/k8s-cluster \
@@ -186,7 +186,7 @@ vault write auth/kubernetes/role/issuer \
  bound_service_account_names=vault-issuer \
  bound_service_account_namespaces=vault \
  policies=issuer \
- ttl=1m
+ ttl=24h
 ```
 
 ## Secret Engine を作成
