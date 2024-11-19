@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: example-com
+  namespace: cert-manager
+spec:
+  secretName: example-com-tls
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  usages:
+    - server auth
+  dnsNames:
+    - example.com
+    - www.example.com
+  issuerRef:
+    name: vault-issuer
+    kind: ClusterIssuer
