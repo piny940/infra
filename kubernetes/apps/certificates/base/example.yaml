@@ -7,7 +7,7 @@ spec:
   secretName: example-com-tls
   duration: 2160h # 90d
   renewBefore: 360h # 15d
-  commonName: example
+  commonName: example.svc.cluster.local
   usages:
     - server auth
   dnsNames:
