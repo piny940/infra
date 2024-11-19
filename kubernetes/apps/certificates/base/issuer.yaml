@@ -8,10 +8,10 @@ spec:
     path: pki/sign/cluster-local
     auth:
       kubernetes:
-        mountPath: kubernetes
+        mountPath: /v1/auth/kubernetes
         role: issuer
         serviceAccountRef:
           name: vault-issuer
-        caBundleSecretRef:
-          name: vault-tls
-          key: vault.ca
+    caBundleSecretRef:
+      name: vault-tls
+      key: vault.ca
