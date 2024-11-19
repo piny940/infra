@@ -217,7 +217,7 @@ vault write pki/roles/vault-vault allowed_domains=vault.vault allow_subdomains=f
 vault secrets enable -path=pki_int pki
 vault secrets tune -max-lease-ttl=43800h pki_int
 vault write -format=json pki_int/intermediate/generate/internal common_name="Vault Intermediate Authority" issuer_name="vault-intermediate" | jq -r '.data.csr' > ${WORKDIR}/pki_intermediate.csr
-vault write pki_int/config/urls issuing_certificates="https://vault.vault:8200/v1/pki/ca" crl_distribution_points="https://vault.vault:8200/v1/pki/crl"
+vault write pki_int/config/urls issuing_certificates="https://vault.vault.svc.cluster.local:8200/v1/pki/ca" crl_distribution_points="https://vault.vault.svc.cluster.local:8200/v1/pki/crl"
 vault write -format=json pki/root/sign-intermediate issuer_ref="root" csr=@${WORKDIR}/pki_intermediate.csr format=pem_bundle ttl="43800h" | jq -r '.data.certificate' > ${WORKDIR}/intermediate.cert.pem
 vault write pki_int/intermediate/set-signed certificate=@${WORKDIR}/intermediate.cert.pem
 vault write pki_int/roles/cluster-local issuer_ref="$(vault read -field=default pki_int/config/issuers)"  allowed_domains="svc.cluster.local" allow_subdomains=true max_ttl="720h"
