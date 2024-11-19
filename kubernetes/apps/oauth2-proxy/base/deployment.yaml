@@ -24,13 +24,13 @@ spec:
                 name: oauth2-proxy-secret
           args:
             - --http-address=0.0.0.0:4180
-            - --github-user=${ALLOWED_USERS}
-            - --client-id=${CLIENT_ID}
-            - --client-secret=${CLIENT_SECRET}
-            - --cookie-secret=${COOKIE_SECRET}
+            - --github-user=$(ALLOWED_USERS)
+            - --client-id=$(CLIENT_ID)
+            - --client-secret=$(CLIENT_SECRET)
+            - --cookie-secret=$(COOKIE_SECRET)
             - --provider=github
-            - --redirect-url=https://${SERVER_FQDN}/oauth2/callback
-            - --cookie-domain=${SERVER_FQDN}
+            - --redirect-url=https://$(SERVER_FQDN)/oauth2/callback
+            - --cookie-domain=$(SERVER_FQDN)
             - --cookie-secure=true
             - --whitelist-domain=*.piny940.com
             # - --email-domain=*
