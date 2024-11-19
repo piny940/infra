@@ -6,9 +6,9 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - stg-oauth2-proxy.piny940.com
+        - SERVER_FQDN_PLACEHOLDER
   rules:
-    - host: stg-oauth2-proxy.piny940.com
+    - host: SERVER_FQDN_PLACEHOLDER
       http:
         paths:
           - path: /
