@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oauth2-proxy
+  name: oauth2-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth2-proxy
+  template:
+    metadata:
+      labels:
+        app: oauth2-proxy
+    spec:
+      containers:
+        - name: oauth2-proxy
+          image: quay.io/oauth2-proxy/oauth2-proxy:v7.2.1
+          envFrom:
+            - configMapRef:
+                name: oauth2-proxy-conf
+            - secretRef:
+                name: oauth2-proxy-secret
+          args:
+            - --http-address=0.0.0.0:4180
+            - --github-user=${ALLOWED_USERS}
+            - --client-id=${CLIENT_ID}
+            - --client-secret=${CLIENT_SECRET}
+            - --cookie-secret=${COOKIE_SECRET}
+            - --provider=github
+            # - --whitelist-domain=.svc.macbook.local
+            # - --cookie-domain=.svc.macbook.local
+            # - --cookie-secure=false
+            # - --email-domain=*
+            # - --oidc-issuer-url={{ OIDC_ISSUER }}
+            # - --pass-access-token=false
+            # - --pass-authorization-header=true
+            # - --pass-host-header=true
+            # - --pass-user-headers=true
+            # - --redirect-url=http://oauth2-proxy.cicd-system.svc.macbook.local/oauth2/callback
+            # - --reverse-proxy=true
+            # - --set-xauthrequest=true
+            # - --upstream=static://200
+            # - --skip-provider-button=true
+            # - --session-store-type=redis
+            # - --redis-connection-url=redis://localhost:6379
+          ports:
+            - containerPort: 4180
