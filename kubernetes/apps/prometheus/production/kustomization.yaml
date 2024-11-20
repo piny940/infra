@@ -13,7 +13,6 @@ configMapGenerator:
     literals:
       - PROMETHEUS_FQDN=prometheus.piny940.com
       - ALERTMANAGER_FQDN=alertmanager.piny940.com
-      - CLIENT_ID=
 replacements:
   - source:
       kind: ConfigMap
