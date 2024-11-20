@@ -4,6 +4,7 @@ namespace: oauth2-proxy
 resources:
   - deployment.yaml
   - external-secret.yaml
+  - image-policy.yaml
   - service.yaml
 configMapGenerator:
   - name: oauth2-proxy-conf
