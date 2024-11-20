@@ -6,6 +6,7 @@ resources:
   - external-secret.yaml
   - helm.yaml
   - oauth-secret.yaml
+  - oauth2-proxy.yaml
   - prometheus-rule.yaml
   - service-account.yaml
 configMapGenerator:
