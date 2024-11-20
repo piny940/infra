@@ -8,7 +8,5 @@ resources:
   - longhorn-system.yaml
   - metallb-system.yaml
   - monitoring.yaml
-  - oauth2-proxy.yaml
-  - prometheus.yaml
   - vault.yaml
   - velero.yaml
