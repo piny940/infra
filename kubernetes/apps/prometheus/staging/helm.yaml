@@ -8,18 +8,3 @@ spec:
       version: 58.x
   test:
     enable: true
-  values:
-    alertmanager:
-      ingress:
-        hosts:
-          - stg-alertmanager.piny940.com
-        tls:
-          - hosts:
-              - stg-alertmanager.piny940.com
-    prometheus:
-      ingress:
-        hosts:
-          - stg-prometheus.piny940.com
-        tls:
-          - hosts:
-              - stg-prometheus.piny940.com

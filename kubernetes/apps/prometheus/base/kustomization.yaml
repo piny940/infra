@@ -5,5 +5,13 @@ resources:
   - basic-auth.yaml
   - external-secret.yaml
   - helm.yaml
+  - oauth-secret.yaml
   - prometheus-rule.yaml
   - service-account.yaml
+  - ../../../components/oauth2-proxy
+configMapGenerator:
+  - name: oauth2-proxy-conf
+    literals:
+      - PROMETHEUS_FQDN=
+      - ALERTMANAGER_FQDN=
+      - CLIENT_ID=
