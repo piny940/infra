@@ -46,7 +46,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /ping
-              port: 4400
+              port: 4180
             failureThreshold: 2
             successThreshold: 1
             initialDelaySeconds: 3
