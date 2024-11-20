@@ -67,7 +67,7 @@ spec:
       - configMapRef:
           name: prometheus-oauth2-proxy-conf
       - secretRef:
-          name: prometheus-oauth2-proxy-secret
+          name: alertmanager-oauth2-proxy-secret
     extraArgs:
       - --http-address=0.0.0.0:4180
       - --github-user=piny940
