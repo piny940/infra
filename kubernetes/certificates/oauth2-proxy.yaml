@@ -2,6 +2,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: cluster-tls
+  namespace: oauth2-proxy
 spec:
   secretStoreRef:
     name: vault-secret-store

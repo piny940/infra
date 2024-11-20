@@ -2,7 +2,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: cluster-tls
-  namespace: external-secrets
+  namespace: default
 spec:
   secretStoreRef:
     name: vault-secret-store
@@ -17,4 +17,3 @@ spec:
       remoteRef:
         key: cluster-tls
         property: tls.key
-

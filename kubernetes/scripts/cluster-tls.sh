@@ -4,6 +4,7 @@ external_secret() {
 kind: ExternalSecret
 metadata:
   name: cluster-tls
+  namespace: $app
 spec:
   secretStoreRef:
     name: vault-secret-store
