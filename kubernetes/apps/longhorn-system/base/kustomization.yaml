@@ -6,3 +6,11 @@ resources:
   - external-secret.yaml
   - recurring-job.yaml
   - volume-snapshot-class.yaml
+  - ../../../components/oauth2-proxy
+  - oauth-secret.yaml
+configMapGenerator:
+  - name: oauth2-proxy-conf
+    behavior: merge
+    literals:
+      - CLIENT_ID=
+      - SERVER_FQDN=

@@ -3,14 +3,13 @@ kind: Kustomization
 namespace: oauth2-proxy
 resources:
   - deployment.yaml
-  - external-secret.yaml
-  - image-policy.yaml
+  - ingress.yaml
   - service.yaml
 configMapGenerator:
   - name: oauth2-proxy-conf
     literals:
       - ALLOWED_USERS=piny940
       - CLIENT_ID=
-      - SERVER_URL=
+      - SERVER_FQDN=
 configurations:
   - kustomizeconfig.yaml

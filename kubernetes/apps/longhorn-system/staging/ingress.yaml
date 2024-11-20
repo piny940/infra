@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - stg-longhorn.piny940.com
+        - SERVER_FQDN_PLACEHOLDER
       secretName: cluster-tls
   rules:
-    - host: stg-longhorn.piny940.com
+    - host: SERVER_FQDN_PLACEHOLDER
       http:
         paths:
           - path: /
