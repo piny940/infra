@@ -64,8 +64,10 @@ spec:
         name: oauth2-proxy
   values:
     envFrom:
+      - configMapRef:
+          name: prometheus-oauth2-proxy-conf
       - secretRef:
-          name: oauth2-proxy-secret
+          name: prometheus-oauth2-proxy-secret
     extraArgs:
       - --http-address=0.0.0.0:4180
       - --github-user=$(ALLOWED_USERS)
