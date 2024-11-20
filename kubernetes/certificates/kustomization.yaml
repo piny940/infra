@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - database.yaml
+  - external-system.yaml
   - external-secrets.yaml
   - ingress-nginx.yaml
   - longhorn-system.yaml
