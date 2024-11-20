@@ -1,0 +1,21 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: oauth2-proxy
+spec:
+  image: quay.io/oauth2-proxy/oauth2-proxy
+  interval: 24h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: oauth2-proxy
+spec:
+  imageRepositoryRef:
+    name: oauth2-proxy
+  policy:
+    semver:
+      range: 7.x.x
+  filterTags:
+    pattern: ^v(?P<semver>[0-9]+\.[0-9]+\.[0-9]+)$
+    extract: $semver
