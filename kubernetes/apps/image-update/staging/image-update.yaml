@@ -20,7 +20,7 @@ spec:
     push:
       branch: fluxcd/image-update
   update:
-    path: ./kubernetes/apps
+    path: ./kubernetes
     strategy: Setters
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -46,5 +46,5 @@ spec:
     push:
       branch: fluxcd/image-update
   update:
-    path: ./kubernetes/apps
+    path: ./kubernetes
     strategy: Setters
