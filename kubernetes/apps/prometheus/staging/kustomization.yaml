@@ -8,7 +8,8 @@ resources:
 patches:
   - path: helm.yaml
 configMapGenerator:
-  - name: oauth2-proxy-conf
+  - name: prometheus-oauth2-proxy-conf
+    behavior: merge
     literals:
       - PROMETHEUS_FQDN=stg-prometheus.piny940.com
       - ALERTMANAGER_FQDN=stg-alertmanager.piny940.com
@@ -17,7 +18,7 @@ replacements:
   - source:
       kind: ConfigMap
       version: v1
-      name: oauth2-proxy-conf
+      name: prometheus-oauth2-proxy-conf
       fieldPath: data.ALERTMANAGER_FQDN
     targets:
       - select:
@@ -30,7 +31,7 @@ replacements:
   - source:
       kind: ConfigMap
       version: v1
-      name: oauth2-proxy-conf
+      name: prometheus-oauth2-proxy-conf
       fieldPath: data.PROMETHEUS_FQDN
     targets:
       - select:
