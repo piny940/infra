@@ -39,6 +39,7 @@ spec:
       - --email-domain=*
     ingress:
       enabled: true
+      className: nginx
       path: /oauth2
       pathType: Prefix
       hosts:
@@ -47,7 +48,6 @@ spec:
         - hosts:
             - PROMETHEUS_FQDN_PLACEHOLDER
           secretName: cluster-tls
-
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -82,6 +82,7 @@ spec:
       - --email-domain=*
     ingress:
       enabled: true
+      className: nginx
       path: /oauth2
       pathType: Prefix
       hosts:
