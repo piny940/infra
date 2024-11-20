@@ -39,7 +39,7 @@ spec:
             - --pass-authorization-header=true
             - --pass-host-header=true
             - --pass-user-headers=true
-            - --reverse-proxy=true
+            # - --reverse-proxy=true
             # - --set-xauthrequest=true
           ports:
             - containerPort: 4180
