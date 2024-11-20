@@ -5,7 +5,6 @@ commonLabels:
   env: staging
 resources:
   - ../base
-  - ingress.yaml
 configMapGenerator:
   - name: oauth2-proxy-conf
     behavior: merge
@@ -23,7 +22,6 @@ replacements:
           group: networking.k8s.io
           version: v1
           kind: Ingress
-          # name: *
         fieldPaths:
           - spec.tls.0.hosts.0
           - spec.rules.0.host

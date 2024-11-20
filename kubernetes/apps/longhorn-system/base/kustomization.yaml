@@ -4,6 +4,7 @@ namespace: longhorn-system
 resources:
   - basic-auth.yaml
   - external-secret.yaml
+  - ingress.yaml
   - recurring-job.yaml
   - volume-snapshot-class.yaml
   - ../../../components/oauth2-proxy
