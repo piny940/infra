@@ -1,0 +1,15 @@
+nameReference:
+  - kind: ExternalSecret
+    fieldSpecs:
+      - kind: Deployment
+        path: spec/template/spec/containers/env/valueFrom/secretKeyRef/name
+      - kind: Deployment
+        path: spec/template/spec/containers/envFrom/secretRef/name
+      - kind: CronJob
+        path: spec/jobTemplate/spec/template/spec/containers/env/valueFrom/secretKeyRef/name
+      - kind: CronJob
+        path: spec/jobTemplate/spec/template/spec/containers/envFrom/secretRef/name
+  - kind: ImageRepository
+    fieldSpecs:
+      - kind: ImagePolicy
+        path: spec/imageRepositoryRef/name
