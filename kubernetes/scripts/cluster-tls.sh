@@ -9,7 +9,7 @@ spec:
   secretStoreRef:
     name: vault-secret-store
     kind: ClusterSecretStore
-  refreshInterval: 10m
+  refreshInterval: 24h
   data:
     - secretKey: tls.crt
       remoteRef:
