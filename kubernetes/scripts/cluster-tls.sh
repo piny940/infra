@@ -18,8 +18,7 @@ spec:
     - secretKey: tls.key
       remoteRef:
         key: cluster-tls
-        property: tls.key
-" > certificates/${app}.yaml
+        property: tls.key" > certificates/${app}.yaml
 }
 
 namespaces=$(cat namespaces/namespaces.yaml| grep -A 2 "kind: Namespace" - | grep "name:" | awk '{print $2}')
