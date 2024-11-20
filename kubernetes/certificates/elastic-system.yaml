@@ -2,7 +2,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: cluster-tls
-  namespace: external-system
+  namespace: elastic-system
 spec:
   secretStoreRef:
     name: vault-secret-store
