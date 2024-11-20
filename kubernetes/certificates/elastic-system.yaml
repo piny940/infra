@@ -2,7 +2,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: cluster-tls
-  namespace: monitoring
+  namespace: external-system
 spec:
   secretStoreRef:
     name: vault-secret-store
