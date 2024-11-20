@@ -25,6 +25,7 @@ replacements:
           group: helm.toolkit.fluxcd.io
           version: v2
           kind: HelmRelease
+          name: kube-prometheus-stack
         fieldPaths:
           - spec.values.alertmanager.ingress.hosts.0
           - spec.values.alertmanager.ingress.tls.0.hosts.0
