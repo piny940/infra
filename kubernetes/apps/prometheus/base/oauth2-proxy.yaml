@@ -32,11 +32,22 @@ spec:
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
       - --provider=github
-      - --redirect-url=https://$(PROMETHEUS_FQDN)oauth2/callback
+      - --redirect-url=https://$(PROMETHEUS_FQDN)/oauth2/callback
       - --cookie-domain=piny940.com
       - --cookie-secure=true
       - --whitelist-domain=*.piny940.com
       - --email-domain=*
+    ingress:
+      enabled: true
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - PROMETHEUS_FQDN_PLACEHOLDER
+      tls:
+        - hosts:
+            - PROMETHEUS_FQDN_PLACEHOLDER
+          secretName: cluster-tls
+
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -67,3 +78,13 @@ spec:
       - --cookie-secure=true
       - --whitelist-domain=*.piny940.com
       - --email-domain=*
+    ingress:
+      enabled: true
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - ALERTMANAGER_FQDN_PLACEHOLDER
+      tls:
+        - hosts:
+            - ALERTMANAGER_FQDN_PLACEHOLDER
+          secretName: cluster-tls

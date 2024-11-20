@@ -38,6 +38,23 @@ replacements:
           group: helm.toolkit.fluxcd.io
           version: v2
           kind: HelmRelease
+          name: kube-prometheus-stack
         fieldPaths:
           - spec.values.prometheus.ingress.hosts.0
           - spec.values.prometheus.ingress.tls.0.hosts.0
+      - select:
+          group: helm.toolkit.fluxcd.io
+          version: v2
+          kind: HelmRelease
+          name: prometheus-oauth2-proxy
+        fieldPaths:
+          - spec.values.ingress.hosts.0
+          - spec.values.ingress.tls.0.hosts.0
+      - select:
+          group: helm.toolkit.fluxcd.io
+          version: v2
+          kind: HelmRelease
+          name: alertmanager-oauth2-proxy
+        fieldPaths:
+          - spec.values.ingress.hosts.0
+          - spec.values.ingress.tls.0.hosts.0
