@@ -10,3 +10,4 @@ registries:
     ref: v4.242.0 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: google/yamlfmt@v0.13.0
+  - name: mikefarah/yq@v4.44.5
