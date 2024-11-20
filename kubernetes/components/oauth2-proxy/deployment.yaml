@@ -38,14 +38,14 @@ spec:
             - containerPort: 4180
           livenessProbe:
             httpGet:
-              path: /ready
+              path: /ping
               port: 4180
             failureThreshold: 5
             initialDelaySeconds: 3
             periodSeconds: 20
           readinessProbe:
             httpGet:
-              path: /ready
+              path: /ping
               port: 4400
             failureThreshold: 2
             successThreshold: 1
