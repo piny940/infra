@@ -5,4 +5,23 @@ commonLabels:
   env: staging
 resources:
   - ../base
-  - ingress.yaml
+configMapGenerator:
+  - name: oauth2-proxy-conf
+    behavior: merge
+    literals:
+      - CLIENT_ID=Ov23liXrw3ZUqVo77bhJ
+      - SERVER_FQDN=stg-longhorn.piny940.com
+replacements:
+  - source:
+      kind: ConfigMap
+      version: v1
+      name: oauth2-proxy-conf
+      fieldPath: data.SERVER_FQDN
+    targets:
+      - select:
+          group: networking.k8s.io
+          version: v1
+          kind: Ingress
+        fieldPaths:
+          - spec.tls.0.hosts.0
+          - spec.rules.0.host
