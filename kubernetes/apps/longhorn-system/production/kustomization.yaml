@@ -9,8 +9,8 @@ configMapGenerator:
   - name: oauth2-proxy-conf
     behavior: merge
     literals:
-      - CLIENT_ID=Ov23liXrw3ZUqVo77bhJ
-      - SERVER_FQDN=stg-longhorn.piny940.com
+      - CLIENT_ID=Ov23liCgdwAQvk1BqWPm
+      - SERVER_FQDN=longhorn.piny940.com
 replacements:
   - source:
       kind: ConfigMap
