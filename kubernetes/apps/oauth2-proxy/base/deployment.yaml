@@ -34,13 +34,13 @@ spec:
             - --cookie-secure=false
             - --whitelist-domain=*.piny940.com
             - --email-domain=*
-            - --upstream=static://200
+            # - --upstream=static://200
             # - --oidc-issuer-url={{ OIDC_ISSUER }}
-            # - --pass-access-token=false
-            # - --pass-authorization-header=true
-            # - --pass-host-header=true
-            # - --pass-user-headers=true
-            # - --reverse-proxy=true
+            - --pass-access-token=false
+            - --pass-authorization-header=true
+            - --pass-host-header=true
+            - --pass-user-headers=true
+            - --reverse-proxy=true
             # - --set-xauthrequest=true
           ports:
             - containerPort: 4180
