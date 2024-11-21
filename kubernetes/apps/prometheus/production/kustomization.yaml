@@ -28,6 +28,14 @@ replacements:
         fieldPaths:
           - spec.values.alertmanager.ingress.hosts.0
           - spec.values.alertmanager.ingress.tls.0.hosts.0
+      - select:
+          group: helm.toolkit.fluxcd.io
+          version: v2
+          kind: HelmRelease
+          name: alertmanager-oauth2-proxy
+        fieldPaths:
+          - spec.values.ingress.hosts.0
+          - spec.values.ingress.tls.0.hosts.0
   - source:
       kind: ConfigMap
       version: v1
@@ -47,14 +55,6 @@ replacements:
           version: v2
           kind: HelmRelease
           name: prometheus-oauth2-proxy
-        fieldPaths:
-          - spec.values.ingress.hosts.0
-          - spec.values.ingress.tls.0.hosts.0
-      - select:
-          group: helm.toolkit.fluxcd.io
-          version: v2
-          kind: HelmRelease
-          name: alertmanager-oauth2-proxy
         fieldPaths:
           - spec.values.ingress.hosts.0
           - spec.values.ingress.tls.0.hosts.0
