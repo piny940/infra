@@ -12,5 +12,11 @@
   "pin": {
     "automerge": true
   },
-  "extends": ["config:recommended"]
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["kustomize**"],
+      "enabled": false
+    }
+  ]
 }
