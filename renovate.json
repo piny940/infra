@@ -12,5 +12,5 @@
   "pin": {
     "automerge": true
   },
-  "extends": ["config:recommended"]
+  "extends": ["config:recommended", ":disableDependencyDashboard"]
 }
