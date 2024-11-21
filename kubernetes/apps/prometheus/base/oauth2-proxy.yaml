@@ -1,0 +1,93 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: oauth2-proxy
+spec:
+  interval: 24h
+  url: https://oauth2-proxy.github.io/manifests
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus-oauth2-proxy
+spec:
+  interval: 10m
+  chart:
+    spec:
+      version: 7.x.x
+      chart: oauth2-proxy
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+  values:
+    envFrom:
+      - configMapRef:
+          name: prometheus-oauth2-proxy-conf
+      - secretRef:
+          name: prometheus-oauth2-proxy-secret
+    extraArgs:
+      - --http-address=0.0.0.0:4180
+      - --github-user=piny940
+      - --client-id=$(CLIENT_ID)
+      - --client-secret=$(CLIENT_SECRET)
+      - --cookie-secret=$(COOKIE_SECRET)
+      - --provider=github
+      - --redirect-url=https://$(PROMETHEUS_FQDN)/oauth2/callback
+      - --cookie-domain=piny940.com
+      - --cookie-secure=true
+      - --whitelist-domain=*.piny940.com
+      - --email-domain=*
+    ingress:
+      enabled: true
+      className: nginx
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - PROMETHEUS_FQDN_PLACEHOLDER
+      tls:
+        - hosts:
+            - PROMETHEUS_FQDN_PLACEHOLDER
+          secretName: cluster-tls
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alertmanager-oauth2-proxy
+spec:
+  interval: 10m
+  chart:
+    spec:
+      version: 7.x.x
+      chart: oauth2-proxy
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+  values:
+    envFrom:
+      - configMapRef:
+          name: prometheus-oauth2-proxy-conf
+      - secretRef:
+          name: alertmanager-oauth2-proxy-secret
+    extraArgs:
+      - --http-address=0.0.0.0:4180
+      - --github-user=piny940
+      - --client-id=$(CLIENT_ID)
+      - --client-secret=$(CLIENT_SECRET)
+      - --cookie-secret=$(COOKIE_SECRET)
+      - --provider=github
+      - --redirect-url=https://$(ALERTMANAGER_FQDN)/oauth2/callback
+      - --cookie-domain=piny940.com
+      - --cookie-secure=true
+      - --whitelist-domain=*.piny940.com
+      - --email-domain=*
+    ingress:
+      enabled: true
+      className: nginx
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - ALERTMANAGER_FQDN_PLACEHOLDER
+      tls:
+        - hosts:
+            - ALERTMANAGER_FQDN_PLACEHOLDER
+          secretName: cluster-tls

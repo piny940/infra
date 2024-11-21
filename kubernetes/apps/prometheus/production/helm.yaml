@@ -6,18 +6,3 @@ spec:
   chart:
     spec:
       version: 58.7.2
-  values:
-    alertmanager:
-      ingress:
-        hosts:
-          - alertmanager.piny940.com
-        tls:
-          - hosts:
-              - alertmanager.piny940.com
-    prometheus:
-      ingress:
-        hosts:
-          - prometheus.piny940.com
-        tls:
-          - hosts:
-              - prometheus.piny940.com
