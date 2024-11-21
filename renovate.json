@@ -12,10 +12,10 @@
   "pin": {
     "automerge": true
   },
-  "extends": ["config:recommended"],
+  "extends": ["config:best-practices"],
   "packageRules": [
     {
-      "matchPackageNames": ["kustomize**"],
+      "matchPackageNames": ["ghcr.io/piny940/**"],
       "enabled": false
     }
   ]
