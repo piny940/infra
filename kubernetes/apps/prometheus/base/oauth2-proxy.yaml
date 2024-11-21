@@ -81,6 +81,7 @@ spec:
       - --whitelist-domain=*.piny940.com
       - --email-domain=*
       - --skip-auth-route=GET=^/-/healthy$
+      - --skip-auth-regex=^/-/healthy$
     ingress:
       enabled: true
       className: nginx
