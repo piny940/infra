@@ -15,7 +15,7 @@
   "extends": ["config:best-practices"],
   "packageRules": [
     {
-      "matchPackageNames": ["ghcr.io/piny940/**"],
+      "matchDatasources": ["kustomize"],
       "enabled": false
     }
   ]
