@@ -48,5 +48,4 @@ runs:
               }]
             }]
           }
-      env:
-        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
+        token: ${{ inputs.slack-bot-token }}
