@@ -1,0 +1,10 @@
+#@ load("@ytt:library", "library")
+#@ load("@ytt:template", "template")
+
+#@ def values():
+name: oauth2-proxy
+#@ end
+
+#@ oauth = library.get("oauth2-proxy").with_data_values(values())
+
+--- #@ template.replace(oauth.eval())
