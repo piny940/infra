@@ -34,18 +34,14 @@ runs:
       if: success()
       uses: slackapi/slack-github-action@v2
       with:
-        channel-id: ${{ inputs.slack-channel-id }}
+        method: chat.postMessage
         payload: |
-          {
-            "attachments": [{
-              "color": "#36d399",
-              "blocks": [{
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "Successfully switched target branch to `${{ inputs.target-branch }}` : <${{ inputs.action-link }}>"
-                }
-              }]
-            }]
-          }
+          channel: ${{ inputs.slack-channel-id }}
+          attachments:
+            - color: "#36d399"
+              blocks:
+                - type: section
+                  text:
+                    type: mrkdwn
+                    text: "Successfully switched target branch to `${{ inputs.target-branch }}` : <${{ inputs.action-link }}>"
         token: ${{ inputs.slack-bot-token }}
