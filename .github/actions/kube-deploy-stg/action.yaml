@@ -34,6 +34,7 @@ runs:
       if: success()
       uses: slackapi/slack-github-action@v2
       with:
+        method: chat.postMessage
         payload: |
           channel: ${{ inputs.slack-channel-id }}
           attachments:
