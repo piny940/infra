@@ -3,7 +3,8 @@ description: Setup aqua
 
 runs:
   using: composite
-  steps:    - uses: actions/cache@v3.3.1
+  steps:
+    - uses: actions/cache@v3.3.1
       with:
         path: ~/.local/share/aquaproj-aqua
         key: v1-aqua-installer-${{runner.os}}-${{runner.arch}}-${{hashFiles('aqua.yaml')}}
@@ -12,3 +13,4 @@ runs:
     - uses: aquaproj/aqua-installer@v3.0.1
       with:
         aqua_version: v2.28.0
+        working_directory: kubernetes
