@@ -2,9 +2,10 @@
 #@ load("@ytt:template", "template")
 
 #@ def values():
-name: oauth2-proxy
+name: longhorn-oauth2-proxy
+serverFQDN: longhorn.piny940.com
+secretKey: longhorn
 #@ end
 
 #@ oauth = library.get("oauth2-proxy").with_data_values(values())
-
 --- #@ template.replace(oauth.eval())

@@ -1,0 +1,8 @@
+#@data/values-schema
+---
+#@schema/validation min_len=1
+name: ""
+#@schema/validation min_len=1
+serverFQDN: ""
+#@schema/validation min_len=1
+secretKey: ""
