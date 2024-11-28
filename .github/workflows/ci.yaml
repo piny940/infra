@@ -65,6 +65,17 @@ jobs:
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
       - name: Yamlfmt
         run: yamlfmt -lint kubernetes/
+  kube-ytt:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.kube == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-aqua
+      - name: Ytt
+        run: cd kubernetes && bash scripts/ytt.sh
+      - run: if [ -n "$(git status --porcelain)" ]; then git diff; exit 1; fi
+
   kube-flux:
     runs-on: ubuntu-latest
     needs: filter
