@@ -2,16 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: longhorn-system
 resources:
-  - basic-auth.yaml
   - external-secret.yaml
   - ingress.yaml
   - recurring-job.yaml
   - volume-snapshot-class.yaml
-  - ../../../components/oauth2-proxy
-  - oauth-secret.yaml
-configMapGenerator:
-  - name: oauth2-proxy-conf
-    behavior: merge
-    literals:
-      - CLIENT_ID=
-      - SERVER_FQDN=
