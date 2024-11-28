@@ -5,6 +5,7 @@ commonLabels:
   env: staging
 resources:
   - ../base
+  - gen/oauth.yaml
 configMapGenerator:
   - name: oauth2-proxy-conf
     behavior: merge
