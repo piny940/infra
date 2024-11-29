@@ -1,9 +1,0 @@
-nameReference:
-  - kind: ExternalSecret
-    fieldSpecs:
-      - kind: HelmRelease
-        path: spec/values/envFrom/secretRef/name
-  - kind: ConfigMap
-    fieldSpecs:
-      - kind: HelmRelease
-        path: spec/values/envFrom/configMapRef/name
