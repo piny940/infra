@@ -18,7 +18,7 @@ replacements:
   - source:
       kind: ConfigMap
       version: v1
-      name: prometheus-oauth2-proxy-conf
+      name: prometheus-conf
       fieldPath: data.ALERTMANAGER_FQDN
     targets:
       - select:
@@ -32,7 +32,7 @@ replacements:
   - source:
       kind: ConfigMap
       version: v1
-      name: prometheus-oauth2-proxy-conf
+      name: prometheus-conf
       fieldPath: data.PROMETHEUS_FQDN
     targets:
       - select:
