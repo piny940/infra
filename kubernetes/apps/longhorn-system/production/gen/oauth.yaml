@@ -55,7 +55,7 @@ spec:
       - --provider=github
       - --redirect-url=https://longhorn.piny940.com/oauth2/callback
       - --cookie-domain=longhorn.piny940.com
-      - --whitelist-domain=longhorn.piny940.com
+      - --whitelist-domain=*.piny940.com
       - --email-domain=*
       - --cookie-secure=true
     ingress:
