@@ -1,0 +1,143 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: alertmanager-oauth2-proxy-secret
+spec:
+  secretStoreRef:
+    name: vault-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 1m
+  data:
+    - secretKey: COOKIE_SECRET
+      remoteRef:
+        key: alertmanager
+        property: oauth-cookie-secret
+    - secretKey: CLIENT_ID
+      remoteRef:
+        key: alertmanager
+        property: oauth-client-id
+    - secretKey: CLIENT_SECRET
+      remoteRef:
+        key: alertmanager
+        property: oauth-client-secret
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: alertmanager-oauth2-proxy
+spec:
+  interval: 24h
+  url: https://oauth2-proxy.github.io/manifests
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alertmanager-oauth2-proxy
+spec:
+  interval: 10m
+  chart:
+    spec:
+      version: 7.x.x
+      chart: oauth2-proxy
+      sourceRef:
+        kind: HelmRepository
+        name: alertmanager-oauth2-proxy
+  values:
+    envFrom:
+      - secretRef:
+          name: alertmanager-oauth2-proxy-secret
+    extraArgs:
+      - --http-address=0.0.0.0:4180
+      - --github-user=piny940
+      - --client-id=$(CLIENT_ID)
+      - --client-secret=$(CLIENT_SECRET)
+      - --cookie-secret=$(COOKIE_SECRET)
+      - --provider=github
+      - --redirect-url=https://alertmanager.piny940.com/oauth2/callback
+      - --cookie-domain=piny940.com
+      - --cookie-secure=true
+      - --whitelist-domain=*.piny940.com
+      - --email-domain=*
+    ingress:
+      enabled: true
+      className: nginx
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - alertmanager.piny940.com
+      tls:
+        - hosts:
+            - alertmanager.piny940.com
+          secretName: cluster-tls
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: prometheus-oauth2-proxy-secret
+spec:
+  secretStoreRef:
+    name: vault-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 1m
+  data:
+    - secretKey: COOKIE_SECRET
+      remoteRef:
+        key: prometheus
+        property: oauth-cookie-secret
+    - secretKey: CLIENT_ID
+      remoteRef:
+        key: prometheus
+        property: oauth-client-id
+    - secretKey: CLIENT_SECRET
+      remoteRef:
+        key: prometheus
+        property: oauth-client-secret
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: prometheus-oauth2-proxy
+spec:
+  interval: 24h
+  url: https://oauth2-proxy.github.io/manifests
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus-oauth2-proxy
+spec:
+  interval: 10m
+  chart:
+    spec:
+      version: 7.x.x
+      chart: oauth2-proxy
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-oauth2-proxy
+  values:
+    envFrom:
+      - secretRef:
+          name: prometheus-oauth2-proxy-secret
+    extraArgs:
+      - --http-address=0.0.0.0:4180
+      - --github-user=piny940
+      - --client-id=$(CLIENT_ID)
+      - --client-secret=$(CLIENT_SECRET)
+      - --cookie-secret=$(COOKIE_SECRET)
+      - --provider=github
+      - --redirect-url=https://prometheus.piny940.com/oauth2/callback
+      - --cookie-domain=piny940.com
+      - --cookie-secure=true
+      - --whitelist-domain=*.piny940.com
+      - --email-domain=*
+    ingress:
+      enabled: true
+      className: nginx
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - prometheus.piny940.com
+      tls:
+        - hosts:
+            - prometheus.piny940.com
+          secretName: cluster-tls

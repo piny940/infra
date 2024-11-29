@@ -13,8 +13,8 @@ serverFQDN: stg-prometheus.piny940.com
 secretKey: prometheus
 #@ end
 
-#@ alertmanager-oauth = library.get("oauth2-proxy").with_data_values(alertmanager())
---- #@ template.replace(alertmanager-oauth.eval())
+#@ alertmanager_oauth = library.get("oauth2-proxy").with_data_values(alertmanager())
+--- #@ template.replace(alertmanager_oauth.eval())
 
-#@ prometheus-oauth = library.get("oauth2-proxy").with_data_values(prometheus())
---- #@ template.replace(prometheus-oauth.eval())
+#@ prometheus_oauth = library.get("oauth2-proxy").with_data_values(prometheus())
+--- #@ template.replace(prometheus_oauth.eval())
