@@ -34,10 +34,12 @@ spec:
       - --provider=github
       #@yaml/text-templated-strings
       - --redirect-url=https:// (@-=data.values.serverFQDN-@) /oauth2/callback
-      - --cookie-domain=piny940.com
-      - --cookie-secure=true
-      - --whitelist-domain=*.piny940.com
+      #@yaml/text-templated-strings
+      - --cookie-domain=(@-=data.values.serverFQDN-@)
+      #@yaml/text-templated-strings
+      - --whitelist-domain=(@-=data.values.serverFQDN-@)
       - --email-domain=*
+      - --cookie-secure=true
     ingress:
       enabled: true
       className: nginx
