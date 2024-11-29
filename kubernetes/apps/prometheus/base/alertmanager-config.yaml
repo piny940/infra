@@ -23,5 +23,5 @@ spec:
       slackConfigs:
         - apiURL:
             name: alertmanager-secret
-            key: alertmanager-webhook-url
+            key: webhook-url
           sendResolved: true
