@@ -1,0 +1,20 @@
+#@ load("@ytt:library", "library")
+#@ load("@ytt:template", "template")
+
+#@ def alertmanager():
+name: alertmanager-oauth2-proxy
+serverFQDN: alertmanager.piny940.com
+secretKey: alertmanager
+#@ end
+
+#@ def prometheus():
+name: prometheus-oauth2-proxy
+serverFQDN: prometheus.piny940.com
+secretKey: prometheus
+#@ end
+
+#@ alertmanager-oauth = library.get("oauth2-proxy").with_data_values(alertmanager())
+--- #@ template.replace(alertmanager-oauth.eval())
+
+#@ prometheus-oauth = library.get("oauth2-proxy").with_data_values(prometheus())
+--- #@ template.replace(prometheus-oauth.eval())
