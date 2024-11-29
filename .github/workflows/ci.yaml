@@ -26,12 +26,15 @@ jobs:
             kube:
               - "kubernetes/**"
               - ".github/workflows/ci.yaml"
+              - ".github/actions/**"
             gcp:
               - "gcp/**"
               - ".github/workflows/ci.yaml"
+              - ".github/actions/**"
             aws:
               - "aws/**"
               - ".github/workflows/ci.yaml"
+              - ".github/actions/**"
   # kubeconform:
   #   runs-on: ubuntu-latest
   #   steps:
