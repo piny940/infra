@@ -1,0 +1,51 @@
+#@ load("@ytt:data", "data")
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: #@ data.values.name
+spec:
+  interval: 24h
+  url: https://oauth2-proxy.github.io/manifests
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: #@ data.values.name
+spec:
+  interval: 10m
+  chart:
+    spec:
+      version: 7.x.x
+      chart: oauth2-proxy
+      sourceRef:
+        kind: HelmRepository
+        name: #@ data.values.name
+  values:
+    envFrom:
+      - secretRef:
+          name: #@ data.values.name + "-secret"
+    extraArgs:
+      - --http-address=0.0.0.0:4180
+      - --github-user=piny940
+      - --client-id=$(CLIENT_ID)
+      - --client-secret=$(CLIENT_SECRET)
+      - --cookie-secret=$(COOKIE_SECRET)
+      - --provider=github
+      #@yaml/text-templated-strings
+      - --redirect-url=https:// (@-=data.values.serverFQDN-@) /oauth2/callback
+      - --cookie-domain=piny940.com
+      - --cookie-secure=true
+      - --whitelist-domain=*.piny940.com
+      - --email-domain=*
+    ingress:
+      enabled: true
+      className: nginx
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        -  #@ data.values.serverFQDN
+      tls:
+        - hosts:
+            -  #@ data.values.serverFQDN
+          secretName: cluster-tls

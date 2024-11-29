@@ -11,3 +11,4 @@ registries:
 packages:
   - name: google/yamlfmt@v0.13.0
   - name: mikefarah/yq@v4.44.5
+  - name: carvel-dev/ytt@v0.51.0

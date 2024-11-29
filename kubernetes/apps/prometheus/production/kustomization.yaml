@@ -5,10 +5,11 @@ commonLabels:
   env: production
 resources:
   - ../base
+  - gen/oauth.yaml
 patches:
   - path: helm.yaml
 configMapGenerator:
-  - name: prometheus-oauth2-proxy-conf
+  - name: prometheus-conf
     behavior: merge
     literals:
       - PROMETHEUS_FQDN=prometheus.piny940.com
@@ -17,7 +18,7 @@ replacements:
   - source:
       kind: ConfigMap
       version: v1
-      name: prometheus-oauth2-proxy-conf
+      name: prometheus-conf
       fieldPath: data.ALERTMANAGER_FQDN
     targets:
       - select:
@@ -28,18 +29,10 @@ replacements:
         fieldPaths:
           - spec.values.alertmanager.ingress.hosts.0
           - spec.values.alertmanager.ingress.tls.0.hosts.0
-      - select:
-          group: helm.toolkit.fluxcd.io
-          version: v2
-          kind: HelmRelease
-          name: alertmanager-oauth2-proxy
-        fieldPaths:
-          - spec.values.ingress.hosts.0
-          - spec.values.ingress.tls.0.hosts.0
   - source:
       kind: ConfigMap
       version: v1
-      name: prometheus-oauth2-proxy-conf
+      name: prometheus-conf
       fieldPath: data.PROMETHEUS_FQDN
     targets:
       - select:
@@ -50,11 +43,3 @@ replacements:
         fieldPaths:
           - spec.values.prometheus.ingress.hosts.0
           - spec.values.prometheus.ingress.tls.0.hosts.0
-      - select:
-          group: helm.toolkit.fluxcd.io
-          version: v2
-          kind: HelmRelease
-          name: prometheus-oauth2-proxy
-        fieldPaths:
-          - spec.values.ingress.hosts.0
-          - spec.values.ingress.tls.0.hosts.0
