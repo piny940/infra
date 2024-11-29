@@ -1,0 +1,10 @@
+doublestar: true
+match_type: doublestar
+include:
+  - "**/*.yaml"
+  - "**/*.yml"
+exclude:
+  - "**/*.ytt.yaml"
+  - "**/*.ytt.yml"
+  - components/ytt/_ytt_lib/**/*.yaml
+  - components/ytt/_ytt_lib/**/*.yml

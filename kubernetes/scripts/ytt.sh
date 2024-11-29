@@ -12,3 +12,5 @@ for file in $(find apps -type f -name *.ytt.yml -or -name *.ytt.yaml); do
   
   ytt -f "$file" -f components/ytt/ > "$out"
 done
+
+yamlfmt
