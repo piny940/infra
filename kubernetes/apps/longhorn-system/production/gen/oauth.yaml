@@ -8,18 +8,18 @@ spec:
     kind: ClusterSecretStore
   refreshInterval: 1m
   data:
-  - secretKey: COOKIE_SECRET
-    remoteRef:
-      key: longhorn
-      property: oauth-cookie-secret
-  - secretKey: CLIENT_ID
-    remoteRef:
-      key: longhorn
-      property: oauth-client-id
-  - secretKey: CLIENT_SECRET
-    remoteRef:
-      key: longhorn
-      property: oauth-client-secret
+    - secretKey: COOKIE_SECRET
+      remoteRef:
+        key: longhorn
+        property: oauth-cookie-secret
+    - secretKey: CLIENT_ID
+      remoteRef:
+        key: longhorn
+        property: oauth-client-id
+    - secretKey: CLIENT_SECRET
+      remoteRef:
+        key: longhorn
+        property: oauth-client-secret
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
@@ -44,28 +44,28 @@ spec:
         name: longhorn-oauth2-proxy
   values:
     envFrom:
-    - secretRef:
-        name: longhorn-oauth2-proxy-secret
+      - secretRef:
+          name: longhorn-oauth2-proxy-secret
     extraArgs:
-    - --http-address=0.0.0.0:4180
-    - --github-user=piny940
-    - --client-id=$(CLIENT_ID)
-    - --client-secret=$(CLIENT_SECRET)
-    - --cookie-secret=$(COOKIE_SECRET)
-    - --provider=github
-    - --redirect-url=https://longhorn.piny940.com/oauth2/callback
-    - --cookie-domain=piny940.com
-    - --cookie-secure=true
-    - --whitelist-domain=*.piny940.com
-    - --email-domain=*
+      - --http-address=0.0.0.0:4180
+      - --github-user=piny940
+      - --client-id=$(CLIENT_ID)
+      - --client-secret=$(CLIENT_SECRET)
+      - --cookie-secret=$(COOKIE_SECRET)
+      - --provider=github
+      - --redirect-url=https://longhorn.piny940.com/oauth2/callback
+      - --cookie-domain=piny940.com
+      - --cookie-secure=true
+      - --whitelist-domain=*.piny940.com
+      - --email-domain=*
     ingress:
       enabled: true
       className: nginx
       path: /oauth2
       pathType: Prefix
       hosts:
-      - longhorn.piny940.com
-      tls:
-      - hosts:
         - longhorn.piny940.com
-        secretName: cluster-tls
+      tls:
+        - hosts:
+            - longhorn.piny940.com
+          secretName: cluster-tls
