@@ -36,8 +36,7 @@ spec:
       - --redirect-url=https:// (@-=data.values.serverFQDN-@) /oauth2/callback
       #@yaml/text-templated-strings
       - --cookie-domain=(@-=data.values.serverFQDN-@)
-      #@yaml/text-templated-strings
-      - --whitelist-domain=(@-=data.values.serverFQDN-@)
+      - --whitelist-domain=*.piny940.com
       - --email-domain=*
       - --cookie-secure=true
     ingress:
