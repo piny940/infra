@@ -7,16 +7,15 @@ resources:
   - ../base
   - gen/oauth.yaml
 configMapGenerator:
-  - name: oauth2-proxy-conf
+  - name: longhorn-conf
     behavior: merge
     literals:
-      - CLIENT_ID=Ov23liCgdwAQvk1BqWPm
       - SERVER_FQDN=longhorn.piny940.com
 replacements:
   - source:
       kind: ConfigMap
       version: v1
-      name: oauth2-proxy-conf
+      name: longhorn-conf
       fieldPath: data.SERVER_FQDN
     targets:
       - select:
