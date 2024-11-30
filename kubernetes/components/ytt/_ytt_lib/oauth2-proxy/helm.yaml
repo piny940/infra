@@ -37,7 +37,7 @@ spec:
       - --oidc-email-claim=name
       - --oidc-issuer-url=https://auth.piny940.com
       - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
-      - --login-url=https://auth.piny940.com
+      - --login-url=https://auth.piny940.com/api/v1/oauth/authorize
       - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
       - --profile-url=https://auth.piny940.com/api/v1/userinfo
       - --skip-oidc-discovery
