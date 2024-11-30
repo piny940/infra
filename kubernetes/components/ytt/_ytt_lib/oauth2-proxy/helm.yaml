@@ -54,11 +54,13 @@ spec:
       - name: oauth2-proxy
         configMap:
           name: #@ data.values.name + "-conf-1"
+          items:
+            - key: authenticated_emails_file
+              path: authenticated_emails_file
     extraVolumeMounts:
       - name: oauth2-proxy
         mountPath: /etc/oauth2-proxy
         readOnly: true
-        subPath: authenticated_emails_file
     ingress:
       enabled: true
       className: nginx
