@@ -61,10 +61,15 @@ spec:
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
       - --insecure-oidc-allow-unverified-email
+      - --insecure-oidc-skip-nonce
       - --oidc-audience-claim=$(CLIENT_ID)
-      - --oidc-email-claim=sub
+      - --oidc-email-claim=name
       - --oidc-issuer-url=https://auth.piny940.com
       - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
+      - --login-url=https://auth.piny940.com
+      - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
+      - --profile-url=https://auth.piny940.com/api/v1/userinfo
+      - --skip-oidc-discovery
       - --redirect-url=https://stg-longhorn.piny940.com/oauth2/callback
       - --cookie-domain=stg-longhorn.piny940.com
       - --whitelist-domain=stg-longhorn.piny940.com
