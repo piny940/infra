@@ -1,3 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-oauth2-proxy-conf-1
+data:
+  authenticated_emails_file: |
+    piny940
+---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
@@ -48,16 +56,30 @@ spec:
           name: alertmanager-oauth2-proxy-secret
     extraArgs:
       - --http-address=0.0.0.0:4180
-      - --github-user=piny940
+      - --provider=oidc
       - --client-id=$(CLIENT_ID)
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
-      - --provider=github
+      - --insecure-oidc-allow-unverified-email
+      - --oidc-audience-claim=$(CLIENT_ID)
+      - --oidc-email-claim=sub
+      - --oidc-issuer-url=https://auth.piny940.com
+      - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
       - --redirect-url=https://alertmanager.piny940.com/oauth2/callback
       - --cookie-domain=alertmanager.piny940.com
       - --whitelist-domain=alertmanager.piny940.com
       - --email-domain=*
       - --cookie-secure=true
+      - --authenticated-emails-file=/etc/oauth2-proxy/authenticated_emails_file
+    extraVolumes:
+      - name: oauth2-proxy
+        configMap:
+          name: alertmanager-oauth2-proxy-conf-1
+    extraVolumeMounts:
+      - name: oauth2-proxy
+        mountPath: /etc/oauth2-proxy
+        readOnly: true
+        subPath: authenticated_emails_file
     ingress:
       enabled: true
       className: nginx
@@ -69,6 +91,14 @@ spec:
         - hosts:
             - alertmanager.piny940.com
           secretName: cluster-tls
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-oauth2-proxy-conf-1
+data:
+  authenticated_emails_file: |
+    piny940
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
@@ -120,16 +150,30 @@ spec:
           name: prometheus-oauth2-proxy-secret
     extraArgs:
       - --http-address=0.0.0.0:4180
-      - --github-user=piny940
+      - --provider=oidc
       - --client-id=$(CLIENT_ID)
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
-      - --provider=github
+      - --insecure-oidc-allow-unverified-email
+      - --oidc-audience-claim=$(CLIENT_ID)
+      - --oidc-email-claim=sub
+      - --oidc-issuer-url=https://auth.piny940.com
+      - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
       - --redirect-url=https://prometheus.piny940.com/oauth2/callback
       - --cookie-domain=prometheus.piny940.com
       - --whitelist-domain=prometheus.piny940.com
       - --email-domain=*
       - --cookie-secure=true
+      - --authenticated-emails-file=/etc/oauth2-proxy/authenticated_emails_file
+    extraVolumes:
+      - name: oauth2-proxy
+        configMap:
+          name: prometheus-oauth2-proxy-conf-1
+    extraVolumeMounts:
+      - name: oauth2-proxy
+        mountPath: /etc/oauth2-proxy
+        readOnly: true
+        subPath: authenticated_emails_file
     ingress:
       enabled: true
       className: nginx

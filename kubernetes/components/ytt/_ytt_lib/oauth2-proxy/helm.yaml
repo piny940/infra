@@ -27,11 +27,20 @@ spec:
           name: #@ data.values.name + "-secret"
     extraArgs:
       - --http-address=0.0.0.0:4180
-      - --github-user=piny940
+      - --provider=oidc
       - --client-id=$(CLIENT_ID)
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
-      - --provider=github
+      - --insecure-oidc-allow-unverified-email
+      - --insecure-oidc-skip-nonce
+      - --oidc-audience-claim=$(CLIENT_ID)
+      - --oidc-email-claim=name
+      - --oidc-issuer-url=https://auth.piny940.com
+      - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
+      - --login-url=https://auth.piny940.com
+      - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
+      - --profile-url=https://auth.piny940.com/api/v1/userinfo
+      - --skip-oidc-discovery
       #@yaml/text-templated-strings
       - --redirect-url=https:// (@-=data.values.serverFQDN-@) /oauth2/callback
       #@yaml/text-templated-strings
@@ -40,6 +49,16 @@ spec:
       - --whitelist-domain=(@-=data.values.serverFQDN-@)
       - --email-domain=*
       - --cookie-secure=true
+      - --authenticated-emails-file=/etc/oauth2-proxy/authenticated_emails_file
+    extraVolumes:
+      - name: oauth2-proxy
+        configMap:
+          name: #@ data.values.name + "-conf-1"
+    extraVolumeMounts:
+      - name: oauth2-proxy
+        mountPath: /etc/oauth2-proxy
+        readOnly: true
+        subPath: authenticated_emails_file
     ingress:
       enabled: true
       className: nginx
