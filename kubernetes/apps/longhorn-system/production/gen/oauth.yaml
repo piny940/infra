@@ -75,7 +75,7 @@ spec:
       - --whitelist-domain=longhorn.piny940.com
       - --email-domain=*
       - --cookie-secure=true
-      - --authenticated-emails-file=/etc/oauth2-proxy/config/authenticated_emails_file
+      - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
     extraVolumes:
       - name: oauth2-proxy
         configMap:
@@ -85,7 +85,7 @@ spec:
               path: authenticated_emails_file
     extraVolumeMounts:
       - name: oauth2-proxy
-        mountPath: /etc/oauth2-proxy/config
+        mountPath: /etc/oauth2-proxy-config
         readOnly: true
     ingress:
       enabled: true
