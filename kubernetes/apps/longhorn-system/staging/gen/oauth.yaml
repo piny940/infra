@@ -62,7 +62,6 @@ spec:
       - --cookie-secret=$(COOKIE_SECRET)
       - --insecure-oidc-allow-unverified-email
       - --insecure-oidc-skip-nonce
-      - --oidc-audience-claim=$(CLIENT_ID)
       - --oidc-email-claim=name
       - --oidc-issuer-url=https://stg-auth.piny940.com
       - --oidc-jwks-url=https://stg-auth.piny940.com/api/v1/oauth/jwks

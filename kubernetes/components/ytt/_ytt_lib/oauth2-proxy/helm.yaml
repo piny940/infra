@@ -34,7 +34,6 @@ spec:
       - --cookie-secret=$(COOKIE_SECRET)
       - --insecure-oidc-allow-unverified-email
       - --insecure-oidc-skip-nonce
-      - --oidc-audience-claim=$(CLIENT_ID)
       - --oidc-email-claim=name
       #@yaml/text-templated-strings
       - --oidc-issuer-url=https:// (@-=prefix()-@) auth.piny940.com
