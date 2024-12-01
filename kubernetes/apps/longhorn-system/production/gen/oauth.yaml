@@ -51,9 +51,6 @@ spec:
         kind: HelmRepository
         name: longhorn-oauth2-proxy
   values:
-    image:
-      repository: ghcr.io/piny940/oauth2-proxy
-      tag: latest
     envFrom:
       - secretRef:
           name: longhorn-oauth2-proxy-secret
