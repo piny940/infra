@@ -69,11 +69,11 @@ spec:
       - --login-url=https://auth.piny940.com/api/v1/oauth/authorize
       - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
       - --profile-url=https://auth.piny940.com/api/v1/userinfo
-      - --skip-oidc-discovery
       - --redirect-url=https://alertmanager.piny940.com/oauth2/callback
       - --cookie-domain=alertmanager.piny940.com
       - --whitelist-domain=alertmanager.piny940.com
       - --email-domain=*
+      - --skip-oidc-discovery
       - --cookie-secure=true
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
     extraVolumes:
@@ -170,11 +170,11 @@ spec:
       - --login-url=https://auth.piny940.com/api/v1/oauth/authorize
       - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
       - --profile-url=https://auth.piny940.com/api/v1/userinfo
-      - --skip-oidc-discovery
       - --redirect-url=https://prometheus.piny940.com/oauth2/callback
       - --cookie-domain=prometheus.piny940.com
       - --whitelist-domain=prometheus.piny940.com
       - --email-domain=*
+      - --skip-oidc-discovery
       - --cookie-secure=true
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
     extraVolumes:
