@@ -71,7 +71,6 @@ spec:
       - --redirect-url=https://stg-longhorn.piny940.com/oauth2/callback
       - --cookie-domain=stg-longhorn.piny940.com
       - --whitelist-domain=stg-longhorn.piny940.com
-      - --email-domain=*
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file

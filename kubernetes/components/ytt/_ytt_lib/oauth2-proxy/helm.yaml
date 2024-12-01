@@ -51,7 +51,6 @@ spec:
       - --cookie-domain=(@-=data.values.serverFQDN-@)
       #@yaml/text-templated-strings
       - --whitelist-domain=(@-=data.values.serverFQDN-@)
-      - --email-domain=*
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file

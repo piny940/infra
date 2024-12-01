@@ -71,7 +71,6 @@ spec:
       - --redirect-url=https://alertmanager.piny940.com/oauth2/callback
       - --cookie-domain=alertmanager.piny940.com
       - --whitelist-domain=alertmanager.piny940.com
-      - --email-domain=*
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
@@ -171,7 +170,6 @@ spec:
       - --redirect-url=https://prometheus.piny940.com/oauth2/callback
       - --cookie-domain=prometheus.piny940.com
       - --whitelist-domain=prometheus.piny940.com
-      - --email-domain=*
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
