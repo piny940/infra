@@ -1,3 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: longhorn-oauth2-proxy-conf-1
+data:
+  authenticated_emails_file: |
+    piny940
+---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
@@ -48,16 +56,36 @@ spec:
           name: longhorn-oauth2-proxy-secret
     extraArgs:
       - --http-address=0.0.0.0:4180
-      - --github-user=piny940
+      - --provider=oidc
       - --client-id=$(CLIENT_ID)
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
-      - --provider=github
+      - --insecure-oidc-allow-unverified-email
+      - --insecure-oidc-skip-nonce
+      - --oidc-email-claim=name
+      - --oidc-issuer-url=https://auth.piny940.com
+      - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
+      - --login-url=https://auth.piny940.com/api/v1/oauth/authorize
+      - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
+      - --profile-url=https://auth.piny940.com/api/v1/userinfo
       - --redirect-url=https://longhorn.piny940.com/oauth2/callback
       - --cookie-domain=longhorn.piny940.com
       - --whitelist-domain=longhorn.piny940.com
-      - --email-domain=*
+      - --skip-oidc-discovery
       - --cookie-secure=true
+      - --email-domain=""
+      - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
+    extraVolumes:
+      - name: oauth2-proxy
+        configMap:
+          name: longhorn-oauth2-proxy-conf-1
+          items:
+            - key: authenticated_emails_file
+              path: authenticated_emails_file
+    extraVolumeMounts:
+      - name: oauth2-proxy
+        mountPath: /etc/oauth2-proxy-config
+        readOnly: true
     ingress:
       enabled: true
       className: nginx

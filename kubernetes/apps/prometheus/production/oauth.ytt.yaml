@@ -5,12 +5,14 @@
 name: alertmanager-oauth2-proxy
 serverFQDN: alertmanager.piny940.com
 secretKey: alertmanager
+env: production
 #@ end
 
 #@ def prometheus():
 name: prometheus-oauth2-proxy
 serverFQDN: prometheus.piny940.com
 secretKey: prometheus
+env: production
 #@ end
 
 #@ alertmanager_oauth = library.get("oauth2-proxy").with_data_values(alertmanager())
