@@ -76,6 +76,7 @@ spec:
       - --whitelist-domain=stg-alertmanager.piny940.com
       - --skip-oidc-discovery
       - --cookie-secure=true
+      - --email-domain=""
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
     extraVolumes:
       - name: oauth2-proxy
@@ -178,6 +179,7 @@ spec:
       - --whitelist-domain=stg-prometheus.piny940.com
       - --skip-oidc-discovery
       - --cookie-secure=true
+      - --email-domain=""
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
     extraVolumes:
       - name: oauth2-proxy
