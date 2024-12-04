@@ -13,7 +13,7 @@ resources:
 images:
   - name: auth
     newName: ghcr.io/piny940/auth-backend # {"$imagepolicy": "default:stg-auth:name"}
-    newTag: stg-e0bd6e37cb4797bbc960d1535442c8a094b5822e-336 # {"$imagepolicy": "default:stg-auth:tag"}
+    newTag: stg-4418b15a3b57792681e1c8d6b1aadc2d25fa17cc-339 # {"$imagepolicy": "default:stg-auth:tag"}
   - name: auth-frontend
     newName: ghcr.io/piny940/auth-frontend # {"$imagepolicy": "default:stg-auth-frontend:name"}
     newTag: stg-631b22c17d75ceeb8957f4c3b676a43327a5942d-330 # {"$imagepolicy": "default:stg-auth-frontend:tag"}
