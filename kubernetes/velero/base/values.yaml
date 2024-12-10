@@ -8,7 +8,7 @@ resources:
     memory: 128Mi
   limits:
     cpu: 1000m
-    memory: 512Mi
+    memory: 1Gi
 initContainers:
   - name: velero-plugin-for-gcp
     image: velero/velero-plugin-for-gcp:v1.11.0
