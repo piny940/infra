@@ -17,6 +17,9 @@ spec:
           - name: alertname
             value: Watchdog
             matchType: "="
+          - name: alertname
+            value: InfoInhibitor
+            matchType: "="
   receivers:
     - name: "null"
     - name: "slack"
