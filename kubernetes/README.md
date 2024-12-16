@@ -129,7 +129,7 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 - tab 補完を追加
 
 ```bash
-VELERO_VERSION=1.13.2
+VELERO_VERSION=1.15.0
 wget https://github.com/vmware-tanzu/velero/releases/download/v${VELERO_VERSION}/velero-v${VELERO_VERSION}-linux-amd64.tar.gz
 tar -xvf velero-v${VELERO_VERSION}-linux-amd64.tar.gz
 sudo mv velero-v${VELERO_VERSION}-linux-amd64/velero /usr/local/bin/
