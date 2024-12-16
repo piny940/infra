@@ -2,7 +2,6 @@ configuration:
   backupStorageLocation:
     - name: default
       provider: velero.io/gcp
-      validationFrequency: 3m
       bucket: velero-backup.piny940.com
       credential:
         name: google-credentials

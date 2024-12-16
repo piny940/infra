@@ -3,7 +3,6 @@ configuration:
     - name: default
       provider: velero.io/gcp
       bucket: stg-velero-backup.piny940.com
-      validationFrequency: 3m
       credential:
         name: google-credentials
         key: gcp

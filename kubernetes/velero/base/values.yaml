@@ -17,6 +17,7 @@ initContainers:
         name: plugins
 configuration:
   defaultVolumesToFsBackup: true
+  defaultRepoMaintainFrequency: 24h
 deployNodeAgent: true
 backupsEnabled: true
 snapshotsEnabled: false
