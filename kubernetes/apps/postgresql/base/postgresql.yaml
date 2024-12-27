@@ -19,6 +19,8 @@ spec:
       - createdb
     default.auth:
       - createdb
+    nextcloud.nextcloud:
+      - createdb
   postgresql:
     version: "15"
   patroni:

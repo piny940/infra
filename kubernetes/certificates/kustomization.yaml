@@ -12,3 +12,4 @@ resources:
   - monitoring.yaml
   - vault.yaml
   - velero.yaml
+  - nextcloud.yaml

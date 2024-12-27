@@ -9,3 +9,4 @@ spec:
     portfolio_staging: default.portfolio
     song_list_staging: default.song-list
     auth_staging: default.auth
+    nextcloud: nextcloud.nextcloud
