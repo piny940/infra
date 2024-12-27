@@ -64,6 +64,16 @@ jobs:
       - uses: ./.github/actions/setup-aqua
       - name: Yamlfmt
         run: cd kubernetes && yamlfmt -lint
+  kube-cluster-tls:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.kube == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-aqua
+      - name: Ytt
+        run: cd kubernetes && bash scripts/cluster-tls.sh
+      - run: if [ -n "$(git status --porcelain)" ]; then git diff; exit 1; fi
   kube-ytt:
     runs-on: ubuntu-latest
     needs: filter
