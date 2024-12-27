@@ -39,4 +39,3 @@ replacements:
           version: v2
           kind: HelmRelease
           name: nextcloud
-
