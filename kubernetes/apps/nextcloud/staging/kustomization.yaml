@@ -4,6 +4,8 @@ namespace: nextcloud
 namePrefix: stg-
 resources:
   - ../base
+patches:
+  - path: helm-overlay.yaml
 configMapGenerator:
   - name: nextcloud-conf
     behavior: merge
