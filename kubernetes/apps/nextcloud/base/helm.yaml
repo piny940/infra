@@ -1,0 +1,72 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: nextcloud
+spec:
+  interval: 24h
+  url: https://nextcloud.github.io/helm/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nextcloud
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: nextcloud
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+  values:
+    ingress:
+      enabled: true
+      className: nginx
+      tls:
+        - hosts:
+            - NEXTCLOUD_HOST_PLACEHOLDER
+          secretName: cluster-tls
+    nextcloud:
+      host: NEXTCLOUD_HOST_PLACEHOLDER
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-secret
+        usernameKey: username
+        passwordKey: password
+      mail:
+        enabled: false
+    redis:
+      enabled: false
+    nginx:
+      enabled: false
+    cronjob:
+      enabled: true
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 250m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+    rbac:
+      enabled: true
+      serviceaccount:
+        create: true
+        name: nextcloud-serviceaccount
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      host: postgres-cluster.database.svc.cluster.local:5432
+      database: nextcloud
+      existingSecret:
+        enabled: true
+        secretName: nextcloud.nextcloud.postgres-cluster.credentials.postgresql.acid.zalan.do
+        usernameKey: username
+        passwordKey: password
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+      size: STORAGE_SIZE_PLACEHOLDER
