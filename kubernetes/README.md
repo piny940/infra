@@ -171,7 +171,7 @@ sudo rm /etc/cni/net.d/*
 コードが最新になっていることを確認
 
 ```bash
-cd infra/kubernetes
+cd $HOME/infra/kubernetes
 git pull
 ```
 
