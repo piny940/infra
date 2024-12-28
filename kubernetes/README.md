@@ -160,6 +160,14 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install vault
 ```
 
+### k9s
+
+```bash
+wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb \
+  && sudo apt install ./k9s_linux_amd64.deb \
+  && rm k9s_linux_amd64.deb
+```
+
 ### kubeadm init
 
 CNI の設定やらの残骸を削除
