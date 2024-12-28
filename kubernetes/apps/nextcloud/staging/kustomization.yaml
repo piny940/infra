@@ -1,41 +1,41 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: nextcloud
-resources:
-  - ../base
-patches:
-  - path: helm-overlay.yaml
-configMapGenerator:
-  - name: nextcloud-conf
-    behavior: merge
-    literals:
-      - NEXTCLOUD_HOST=stg-nextcloud.piny940.com
-      - STORAGE_SIZE=8Gi
-replacements:
-  - source:
-      kind: ConfigMap
-      name: nextcloud-conf
-      version: v1
-      fieldPath: data.NEXTCLOUD_HOST
-    targets:
-      - fieldPaths:
-          - spec.values.ingress.tls.0.hosts.0
-          - spec.values.nextcloud.host
-        select:
-          group: helm.toolkit.fluxcd.io
-          version: v2
-          kind: HelmRelease
-          name: nextcloud
-  - source:
-      kind: ConfigMap
-      name: nextcloud-conf
-      version: v1
-      fieldPath: data.STORAGE_SIZE
-    targets:
-      - fieldPaths:
-          - spec.values.persistence.size
-        select:
-          group: helm.toolkit.fluxcd.io
-          version: v2
-          kind: HelmRelease
-          name: nextcloud
+resources: []
+#   - ../base
+# patches:
+#   - path: helm-overlay.yaml
+# configMapGenerator:
+#   - name: nextcloud-conf
+#     behavior: merge
+#     literals:
+#       - NEXTCLOUD_HOST=stg-nextcloud.piny940.com
+#       - STORAGE_SIZE=8Gi
+# replacements:
+#   - source:
+#       kind: ConfigMap
+#       name: nextcloud-conf
+#       version: v1
+#       fieldPath: data.NEXTCLOUD_HOST
+#     targets:
+#       - fieldPaths:
+#           - spec.values.ingress.tls.0.hosts.0
+#           - spec.values.nextcloud.host
+#         select:
+#           group: helm.toolkit.fluxcd.io
+#           version: v2
+#           kind: HelmRelease
+#           name: nextcloud
+#   - source:
+#       kind: ConfigMap
+#       name: nextcloud-conf
+#       version: v1
+#       fieldPath: data.STORAGE_SIZE
+#     targets:
+#       - fieldPaths:
+#           - spec.values.persistence.size
+#         select:
+#           group: helm.toolkit.fluxcd.io
+#           version: v2
+#           kind: HelmRelease
+#           name: nextcloud
