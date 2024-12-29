@@ -22,6 +22,8 @@ spec:
     ingress:
       enabled: true
       className: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: 10G
       tls:
         - hosts:
             - NEXTCLOUD_HOST_PLACEHOLDER
