@@ -48,6 +48,9 @@ spec:
       limits:
         memory: 1Gi
         cpu: 500m
+    phpClientHttpsFix:
+      enabled: true
+      protocol: https
     rbac:
       enabled: true
       serviceaccount:
