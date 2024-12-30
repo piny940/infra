@@ -10,7 +10,7 @@ configMapGenerator:
     behavior: merge
     literals:
       - NEXTCLOUD_HOST=nextcloud.piny940.com
-      - STORAGE_SIZE=100Gi
+      - STORAGE_SIZE=200Gi
 replacements:
   - source:
       kind: ConfigMap
