@@ -50,6 +50,7 @@ spec:
           php /var/www/html/occ config:app:set --value="" previewgenerator squareUncroppedSizes
           php /var/www/html/occ config:app:set --value="" previewgenerator widthSizes
           php /var/www/html/occ config:app:set --value="" previewgenerator heightSizes
+          echo '*/10 * * * * php /var/www/html/occ preview:pre-generate' >> /var/spool/cron/crontabs/www-data
       configs:
         previews.config.php: |-
           <?php
