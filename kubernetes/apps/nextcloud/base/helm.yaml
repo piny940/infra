@@ -46,8 +46,8 @@ spec:
           #!/bin/sh
           php /var/www/html/occ app:install previewgenerator
           php /var/www/html/occ app:enable previewgenerator
-          php /var/www/html/occ config:app:set --value="64 256" previewgenerator squareSizes
-          php /var/www/html/occ config:app:set --value="" previewgenerator squareUncroppedSizes
+          php /var/www/html/occ config:app:set --value="64 256 1024" previewgenerator squareSizes
+          php /var/www/html/occ config:app:set --value="1024" previewgenerator squareUncroppedSizes
           php /var/www/html/occ config:app:set --value="" previewgenerator widthSizes
           php /var/www/html/occ config:app:set --value="" previewgenerator heightSizes
       configs:
