@@ -46,6 +46,13 @@ spec:
           #!/bin/sh
           php /var/www/html/occ app:install previewgenerator
           php /var/www/html/occ app:enable previewgenerator
+      configs:
+        previews.config.php: |-
+          <?php
+          $CONFIG = array (
+            'preview_max_x' => 1024,
+            'preview_max_y' => 1024,
+          );
     redis:
       enabled: false
     nginx:
