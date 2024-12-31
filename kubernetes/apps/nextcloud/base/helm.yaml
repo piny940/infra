@@ -41,12 +41,15 @@ spec:
         passwordKey: password
       mail:
         enabled: false
+      hooks:
+        before-starting: |
+          #!/bin/sh
+          php /var/www/html/occ app:install previewgenerator
+          php /var/www/html/occ app:enable previewgenerator
     redis:
       enabled: false
     nginx:
       enabled: false
-    cronjob:
-      enabled: true
     resources:
       requests:
         memory: 256Mi
