@@ -10,6 +10,7 @@ spec:
         metadata:
           name: generate-preview
         spec:
+          restartPolicy: OnFailure
           containers:
             - name: generate-preview
               image: nextcloud:30.0.4-apache
