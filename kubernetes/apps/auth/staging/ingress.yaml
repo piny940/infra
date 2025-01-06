@@ -16,7 +16,7 @@ spec:
       http:
         paths:
           - path: /api/v1(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: auth
@@ -41,7 +41,7 @@ spec:
       http:
         paths:
           - path: /(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: auth-frontend
