@@ -23,3 +23,10 @@ spec:
                 name: longhorn-frontend
                 port:
                   number: 80
+          - path: /oauth2
+            pathType: Prefix
+            backend:
+              service:
+                name: longhorn-oauth2-proxy
+                port:
+                  number: 80
