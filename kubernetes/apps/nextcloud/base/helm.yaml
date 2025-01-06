@@ -61,6 +61,8 @@ spec:
       enabled: false
     nginx:
       enabled: false
+    cronjob:
+      enabled: true
     resources:
       requests:
         memory: 256Mi
