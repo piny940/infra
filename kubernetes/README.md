@@ -111,6 +111,24 @@ sudo systemctl start iscsid
 sudo systemctl enable iscsid
 ```
 
+multipathd が干渉しないようにする（参考: <https://longhorn.io/kb/troubleshooting-volume-with-multipath/>）
+
+```bash
+sudo vi /etc/multipath.conf
+```
+
+以下を追記する。
+
+```conf
+blacklist {
+    devnode "^sd[a-z0-9]+"
+}
+```
+
+```bash
+sudo systemctl restart multipathd.service
+```
+
 ### flux をインストール(初回のみ)
 
 参考: https://fluxcd.io/flux/installation/
