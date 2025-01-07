@@ -5,6 +5,8 @@ name: ""
 #@schema/validation min_len=1
 serverFQDN: ""
 #@schema/validation min_len=1
+upstreamURL: ""
+#@schema/validation min_len=1
 secretKey: ""
 #@schema/validation one_of=["staging", "production"]
 env: "production"

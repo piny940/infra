@@ -51,10 +51,13 @@ spec:
       - --cookie-domain=(@-=data.values.serverFQDN-@)
       #@yaml/text-templated-strings
       - --whitelist-domain=(@-=data.values.serverFQDN-@)
+      #@yaml/text-templated-strings
+      - --upstream=(@-=data.values.upstreamURL-@)
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
+      - --skip-provider-button
     extraVolumes:
       - name: oauth2-proxy
         configMap:
@@ -69,7 +72,7 @@ spec:
     ingress:
       enabled: true
       className: nginx
-      path: /oauth2
+      path: /
       pathType: Prefix
       hosts:
         -  #@ data.values.serverFQDN
