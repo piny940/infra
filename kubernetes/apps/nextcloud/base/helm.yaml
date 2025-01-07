@@ -56,6 +56,20 @@ spec:
           $CONFIG = array (
             'preview_max_x' => 1024,
             'preview_max_y' => 1024,
+            'enable_previews' => true,
+            'enabledPreviewProviders' => array (
+              'OC\Preview\BMP',
+              'OC\Preview\GIF',
+              'OC\Preview\JPEG',
+              'OC\Preview\Krita',
+              'OC\Preview\MarkDown',
+              'OC\Preview\MP3',
+              'OC\Preview\OpenDocument',
+              'OC\Preview\PNG',
+              'OC\Preview\TXT',
+              'OC\Preview\XBitmap',
+              'OC\Preview\Movie',
+            ),
           );
     redis:
       enabled: false
