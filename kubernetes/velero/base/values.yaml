@@ -18,6 +18,8 @@ initContainers:
 configuration:
   defaultVolumesToFsBackup: true
   defaultRepoMaintainFrequency: 24h
+  garbageCollectionFrequency: 24h
+  storeValidationFrequency: 10m
 deployNodeAgent: true
 backupsEnabled: true
 snapshotsEnabled: false
