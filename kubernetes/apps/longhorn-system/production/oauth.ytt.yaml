@@ -4,7 +4,6 @@
 #@ def values():
 name: longhorn-oauth2-proxy
 serverFQDN: longhorn.piny940.com
-upstreamURL: http://longhorn-frontend.longhorn-system.svc.cluster.local:80
 secretKey: longhorn
 env: production
 #@ end

@@ -71,7 +71,6 @@ spec:
       - --redirect-url=https://stg-longhorn.piny940.com/oauth2/callback
       - --cookie-domain=stg-longhorn.piny940.com
       - --whitelist-domain=stg-longhorn.piny940.com
-      - --upstream=http://longhorn-frontend.longhorn-system.svc.cluster.local:80
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""
@@ -90,7 +89,7 @@ spec:
     ingress:
       enabled: true
       className: nginx
-      path: /
+      path: /oauth2
       pathType: Prefix
       hosts:
         - stg-longhorn.piny940.com
