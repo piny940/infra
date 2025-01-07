@@ -26,3 +26,7 @@ spec:
           enabled: true
           additionalLabels:
             release: kube-prometheus-stack
+      ingressClassResource:
+        name: nginx
+        enabled: true
+        default: true
