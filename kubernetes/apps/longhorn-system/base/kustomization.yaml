@@ -3,5 +3,10 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - external-secret.yaml
+  - ingress.yaml
   - recurring-job.yaml
   - volume-snapshot-class.yaml
+configMapGenerator:
+  - name: longhorn-conf
+    literals:
+      - SERVER_FQDN=
