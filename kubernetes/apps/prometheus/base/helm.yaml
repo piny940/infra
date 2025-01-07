@@ -22,17 +22,7 @@ spec:
     alertmanager:
       enabled: true
       ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=https%3A%2F%2F$host$escaped_request_uri"
-        hosts:
-          - ALERTMANAGER_FQDN_PLACEHOLDER
-        tls:
-          - hosts:
-              - ALERTMANAGER_FQDN_PLACEHOLDER
-            secretName: cluster-tls
-        ingressClassName: nginx
+        enabled: false
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: slack-alert
@@ -86,17 +76,7 @@ spec:
       enabled: false
     prometheus:
       ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=https%3A%2F%2F$host$escaped_request_uri"
-        hosts:
-          - PROMETHEUS_FQDN_PLACEHOLDER
-        tls:
-          - hosts:
-              - PROMETHEUS_FQDN_PLACEHOLDER
-            secretName: cluster-tls
-        ingressClassName: nginx
+        enabled: false
       prometheusSpec:
         ruleSelector:
           matchExpressions:
