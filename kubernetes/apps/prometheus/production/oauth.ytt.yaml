@@ -4,6 +4,7 @@
 #@ def alertmanager():
 name: alertmanager-oauth2-proxy
 serverFQDN: alertmanager.piny940.com
+upstreamURL: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
 secretKey: alertmanager
 env: production
 #@ end
@@ -11,6 +12,7 @@ env: production
 #@ def prometheus():
 name: prometheus-oauth2-proxy
 serverFQDN: prometheus.piny940.com
+upstreamURL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
 secretKey: prometheus
 env: production
 #@ end
