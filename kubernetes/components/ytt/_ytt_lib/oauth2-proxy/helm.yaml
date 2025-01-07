@@ -51,6 +51,8 @@ spec:
       - --cookie-domain=(@-=data.values.serverFQDN-@)
       #@yaml/text-templated-strings
       - --whitelist-domain=(@-=data.values.serverFQDN-@)
+      #@yaml/text-templated-strings
+      - --upstream=(@-=data.values.upstreamURL-@)
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""
@@ -69,7 +71,7 @@ spec:
     ingress:
       enabled: true
       className: nginx
-      path: /oauth2
+      path: /
       pathType: Prefix
       hosts:
         -  #@ data.values.serverFQDN
