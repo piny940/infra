@@ -6,10 +6,5 @@ resources:
   - helm.yaml
   - prometheus-rule.yaml
   - service-account.yaml
-configMapGenerator:
-  - name: prometheus-conf
-    literals:
-      - PROMETHEUS_FQDN=
-      - ALERTMANAGER_FQDN=
 configurations:
   - kustomizeconfig.yaml

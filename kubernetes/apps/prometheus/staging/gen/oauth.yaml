@@ -71,10 +71,12 @@ spec:
       - --redirect-url=https://stg-alertmanager.piny940.com/oauth2/callback
       - --cookie-domain=stg-alertmanager.piny940.com
       - --whitelist-domain=stg-alertmanager.piny940.com
+      - --upstream=http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
+      - --skip-provider-button
     extraVolumes:
       - name: oauth2-proxy
         configMap:
@@ -89,7 +91,7 @@ spec:
     ingress:
       enabled: true
       className: nginx
-      path: /oauth2
+      path: /
       pathType: Prefix
       hosts:
         - stg-alertmanager.piny940.com
@@ -171,10 +173,12 @@ spec:
       - --redirect-url=https://stg-prometheus.piny940.com/oauth2/callback
       - --cookie-domain=stg-prometheus.piny940.com
       - --whitelist-domain=stg-prometheus.piny940.com
+      - --upstream=http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
+      - --skip-provider-button
     extraVolumes:
       - name: oauth2-proxy
         configMap:
@@ -189,7 +193,7 @@ spec:
     ingress:
       enabled: true
       className: nginx
-      path: /oauth2
+      path: /
       pathType: Prefix
       hosts:
         - stg-prometheus.piny940.com
