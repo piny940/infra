@@ -321,6 +321,15 @@ scp ~/$env-cluster-keys.json {hostname}:cluster-keys.json
 
 バックアップからの復元が終わるまで待って実行
 
+秘密鍵を作成。(初回のみ)  
+作成した鍵の公開鍵は GitHub の Deploy Keys に登録する。(<https://github.com/piny940/infra/settings/keys>)
+
+```bash
+ssh-keygen -t ed25519 -f ~/flux-ed25519.key
+```
+
+以下、毎回実行
+
 ```bash
 env=staging
 kubectl -n flux-system delete secret flux-system
@@ -328,7 +337,7 @@ flux bootstrap git \
   --components-extra=image-reflector-controller,image-automation-controller \
   --url=ssh://git@github.com/piny940/infra \
   --branch=main \
-  --private-key-file=/home/$(whoami)/.ssh/ed25519 \
+  --private-key-file=/home/$(whoami)/flux-ed25519.key \
   --path=kubernetes/_flux/$env
 ```
 
