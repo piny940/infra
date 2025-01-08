@@ -178,7 +178,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install vault
 ```
 
-### k9s
+### k9sをインストール(初回のみ)
 
 ```bash
 wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb \
