@@ -8,3 +8,5 @@ exclude:
   - "**/*.ytt.yml"
   - components/ytt/_ytt_lib/**/*.yaml
   - components/ytt/_ytt_lib/**/*.yml
+  - _flux/*/flux-system/**/*.yaml
+  - _flux/*/flux-system/**/*.yml
