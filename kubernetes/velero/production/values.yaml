@@ -4,7 +4,7 @@ configuration:
       provider: aws
       bucket: velero-backup-piny940-com
       credential:
-        name: velero-backblaze-credential
+        name: backblaze-credential
         key: backblaze
 schedules:
   backup-daily:

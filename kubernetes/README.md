@@ -288,7 +288,7 @@ scp ~/$env-velero-backblaze-credential.txt "$hostname":velero-backblaze-credenti
 
 ```bash
 kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/velero-credentials.json
-kubectl create secret generic backblaze-credentials -n velero --from-file=backblaze=$HOME/velero-backblaze-credential.txt
+kubectl create secret generic backblaze-credential -n velero --from-file=backblaze=$HOME/velero-backblaze-credential.txt
 ```
 
 Velero をインストール
