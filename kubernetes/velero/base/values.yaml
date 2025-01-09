@@ -15,6 +15,11 @@ initContainers:
     volumeMounts:
       - mountPath: /target
         name: plugins
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.11.0
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
 configuration:
   defaultVolumesToFsBackup: true
   defaultRepoMaintainFrequency: 24h
@@ -33,6 +38,7 @@ schedules:
   backup-daily:
     disabled: false
     template:
+      storageLocation: backblaze
       labels:
         app: velero-backup-daily
       excludedNamespaces:

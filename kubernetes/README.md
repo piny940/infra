@@ -178,7 +178,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install vault
 ```
 
-### k9sをインストール(初回のみ)
+### k9s をインストール(初回のみ)
 
 ```bash
 wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb \
@@ -265,7 +265,8 @@ kubectl get --raw /openid/v1/jwks > $HOME/cluster-jwks.json
 
 ```bash
 env=staging
-scp {hostname}:cluster-jwks.json "$env"-cluster-jwks.json
+hostname=cherry
+scp "$hostname":cluster-jwks.json "$env"-cluster-jwks.json
 ```
 
 `gcp/{env}/cluster-jwks.json` を置き換える
@@ -278,13 +279,16 @@ scp {hostname}:cluster-jwks.json "$env"-cluster-jwks.json
 
 ```bash
 env=staging
-scp ~/$env-velero-credentials.json {hostname}:velero-credentials.json
+hostname=cherry
+scp ~/$env-velero-credentials.json "$hostname":velero-credentials.json
+scp ~/$env-velero-backblaze-credential.txt "$hostname":velero-backblaze-credential.txt
 ```
 
 鍵を作成
 
 ```bash
 kubectl create secret generic google-credentials -n velero --from-file=gcp=$HOME/velero-credentials.json
+kubectl create secret generic backblaze-credential -n velero --from-file=backblaze=$HOME/velero-backblaze-credential.txt
 ```
 
 Velero をインストール
@@ -300,10 +304,18 @@ sh velero/$env/install.sh
 velero get backup
 ```
 
-バックアップを復元する
+バックアップを復元する。
+
+まずは longhorn
 
 ```bash
-velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system --from-backup {backup-name}
+velero restore create --include-namespaces longhorn-system --from-backup {backup-name}
+```
+
+完了したらそれ以外のリソースを復元
+
+```bash
+velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system,longhorn-system --from-backup {backup-name}
 ```
 
 ### Vault のセットアップ
@@ -312,7 +324,8 @@ vault の key をアップロード（ローカルで実行）（初回のみ）
 
 ```bash
 env=staging
-scp ~/$env-cluster-keys.json {hostname}:cluster-keys.json
+hostname=cherry
+scp ~/$env-cluster-keys.json "$hostname":cluster-keys.json
 ```
 
 [apps/vault/README.md](apps/vault/README.md)に従う
@@ -326,6 +339,7 @@ scp ~/$env-cluster-keys.json {hostname}:cluster-keys.json
 
 ```bash
 ssh-keygen -t ed25519 -f ~/flux-ed25519.key
+cat ~/flux-ed25519.key.pub
 ```
 
 以下、毎回実行
