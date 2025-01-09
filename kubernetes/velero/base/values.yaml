@@ -10,6 +10,11 @@ resources:
     cpu: 1000m
     memory: 1Gi
 initContainers:
+  - name: velero-plugin-for-gcp
+    image: velero/velero-plugin-for-gcp:v1.11.1
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
   - name: velero-plugin-for-aws
     image: velero/velero-plugin-for-aws:v1.11.0
     volumeMounts:
@@ -33,6 +38,7 @@ schedules:
   backup-daily:
     disabled: false
     template:
+      storageLocation: backblaze
       labels:
         app: velero-backup-daily
       excludedNamespaces:
