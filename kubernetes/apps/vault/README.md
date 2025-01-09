@@ -144,13 +144,13 @@ vault auth enable kubernetes
 kubernetes の認証を設定
 
 ```bash
-export SA_SECRET_NAME=$(kubectl get secrets -n vault --output=json \
+SA_SECRET_NAME=$(kubectl get secrets -n vault --output=json \
     | jq -r '.items[].metadata | select(.name|startswith("vault-auth-")).name')
-export SA_JWT_TOKEN=$(kubectl get secret -n vault $SA_SECRET_NAME \
+SA_JWT_TOKEN=$(kubectl get secret -n vault $SA_SECRET_NAME \
     --output 'go-template={{ .data.token }}' | base64 --decode)
-export SA_CA_CRT=$(kubectl config view --raw --minify --flatten \
+SA_CA_CRT=$(kubectl config view --raw --minify --flatten \
  --output 'jsonpath={.clusters[].cluster.certificate-authority-data}' | base64 --decode)
-export K8S_HOST=$(kubectl config view --raw --minify --flatten \
+K8S_HOST=$(kubectl config view --raw --minify --flatten \
     --output 'jsonpath={.clusters[].cluster.server}')
 vault write auth/kubernetes/config \
   token_reviewer_jwt="$SA_JWT_TOKEN" \
