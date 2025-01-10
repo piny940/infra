@@ -5,6 +5,7 @@
 name: alertmanager-oauth2-proxy
 serverFQDN: stg-alertmanager.piny940.com
 upstreamURL: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
+skipAuthRoute: GET=/-/healthy
 secretKey: alertmanager
 env: staging
 #@ end

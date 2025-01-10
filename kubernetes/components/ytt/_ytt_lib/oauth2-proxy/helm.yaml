@@ -53,6 +53,8 @@ spec:
       - --whitelist-domain=(@-=data.values.serverFQDN-@)
       #@yaml/text-templated-strings
       - --upstream=(@-=data.values.upstreamURL-@)
+      #@yaml/text-templated-strings
+      - --skip-auth-route=(@-=data.values.skipAuthRoute-@)
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""

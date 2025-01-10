@@ -72,6 +72,7 @@ spec:
       - --cookie-domain=longhorn.piny940.com
       - --whitelist-domain=longhorn.piny940.com
       - --upstream=http://longhorn-frontend.longhorn-system.svc.cluster.local:80
+      - --skip-auth-route=
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""
