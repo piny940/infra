@@ -10,3 +10,4 @@ upstreamURL: ""
 secretKey: ""
 #@schema/validation one_of=["staging", "production"]
 env: "production"
+skipAuthRoute: ""
