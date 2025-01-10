@@ -5,6 +5,7 @@ resource "google_storage_bucket" "velero-backup" {
   public_access_prevention    = "inherited"
   uniform_bucket_level_access = true
   storage_class               = "STANDARD"
+  force_destroy               = true
 }
 resource "google_service_account" "velero" {
   account_id                   = "velero"
