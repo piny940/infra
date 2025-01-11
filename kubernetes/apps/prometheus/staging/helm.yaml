@@ -8,3 +8,6 @@ spec:
       version: 58.x
   test:
     enable: true
+  values:
+    server:
+      baseURL: stg-alertmanager.piny940.com

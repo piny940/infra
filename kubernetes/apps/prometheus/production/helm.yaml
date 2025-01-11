@@ -6,3 +6,6 @@ spec:
   chart:
     spec:
       version: 58.7.2
+  values:
+    server:
+      baseURL: alertmanager.piny940.com

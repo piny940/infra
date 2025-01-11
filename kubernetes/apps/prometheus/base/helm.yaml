@@ -58,6 +58,7 @@ spec:
         requests:
           cpu: 500m
           memory: 512Mi
+      baseURL:
     grafana:
       enabled: false
     nodeExporter:
