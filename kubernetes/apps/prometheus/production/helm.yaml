@@ -10,3 +10,6 @@ spec:
     alertmanager:
       alertmanagerSpec:
         externalUrl: https://alertmanager.piny940.com
+    prometheus:
+      prometheusSpec:
+        externalUrl: https://prometheus.piny940.com
