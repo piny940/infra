@@ -7,5 +7,6 @@ spec:
     spec:
       version: 58.7.2
   values:
-    server:
-      baseURL: alertmanager.piny940.com
+    alertmanager:
+      alertmanagerSpec:
+        externalUrl: https://alertmanager.piny940.com

@@ -9,5 +9,6 @@ spec:
   test:
     enable: true
   values:
-    server:
-      baseURL: stg-alertmanager.piny940.com
+    alertmanager:
+      alertmanagerSpec:
+        externalUrl: https://stg-alertmanager.piny940.com
