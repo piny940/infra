@@ -15,7 +15,10 @@ spec:
   chart:
     spec:
       chart: metallb
+      version: 0.14.9
       sourceRef:
         kind: HelmRepository
         name: metallb
   values:
+  test:
+    enable: true

@@ -17,6 +17,7 @@ spec:
   chart:
     spec:
       chart: postgres-operator
+      version: 1.14.0
       sourceRef:
         kind: HelmRepository
         name: postgres-operator
@@ -30,3 +31,5 @@ spec:
       requests:
         cpu: 100m
         memory: 250Mi
+  test:
+    enable: true

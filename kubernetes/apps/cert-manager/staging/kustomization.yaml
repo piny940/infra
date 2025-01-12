@@ -3,8 +3,3 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - ../base
-patches:
-  - target:
-      kind: HelmRelease
-      name: vault
-    path: helm-overlay.yaml

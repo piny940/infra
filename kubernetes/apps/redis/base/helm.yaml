@@ -115,3 +115,5 @@ spec:
       terminationGracePeriodSeconds: 30
       serviceAccount:
         create: true
+  test:
+    enable: true

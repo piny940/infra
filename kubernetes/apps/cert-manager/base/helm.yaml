@@ -15,6 +15,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
+      version: "1.16.1"
       sourceRef:
         kind: HelmRepository
         name: jetstack
@@ -22,3 +23,5 @@ spec:
     crds:
       enabled: true
     clusterResourceNamespace: vault
+  test:
+    enable: true

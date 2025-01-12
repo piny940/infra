@@ -4,11 +4,6 @@ metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
-  chart:
-    spec:
-      version: 58.x
-  test:
-    enable: true
   values:
     alertmanager:
       alertmanagerSpec:

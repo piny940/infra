@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: database
 resources:
   - ../base
-patches:
-  - path: helm-overlay.yaml
