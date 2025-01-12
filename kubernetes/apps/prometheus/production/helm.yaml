@@ -6,3 +6,10 @@ spec:
   chart:
     spec:
       version: 58.7.2
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        externalUrl: https://alertmanager.piny940.com
+    prometheus:
+      prometheusSpec:
+        externalUrl: https://prometheus.piny940.com

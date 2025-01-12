@@ -8,3 +8,10 @@ spec:
       version: 58.x
   test:
     enable: true
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        externalUrl: https://stg-alertmanager.piny940.com
+    prometheus:
+      prometheusSpec:
+        externalUrl: https://stg-prometheus.piny940.com
