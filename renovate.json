@@ -12,5 +12,11 @@
   "pin": {
     "automerge": true
   },
-  "extends": ["config:recommended", ":disableDependencyDashboard"]
+  "extends": ["config:recommended", ":disableDependencyDashboard"],
+  "packageRules": [
+    {
+      "matchManagers": ["kustomize"],
+      "enabled": false
+    }
+  ]
 }
