@@ -44,7 +44,7 @@ func main() {
 				defer func() { <-sem }()
 
 				f := path.Join(AppDir, file.Name(), string(env))
-				slog.Info(fmt.Sprintf("Processing %s", f))
+				slog.Info(fmt.Sprintf("Building %s", f))
 				outDir := path.Join("tmp", "kustomize", "out", file.Name())
 				if err := os.MkdirAll(outDir, 0744); err != nil {
 					slog.Error(fmt.Sprintf("failed to mkdir %s: %v", outDir, err))
