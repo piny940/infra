@@ -12,3 +12,5 @@ packages:
   - name: google/yamlfmt@v0.13.0
   - name: mikefarah/yq@v4.44.5
   - name: carvel-dev/ytt@v0.51.0
+  - name: yannh/kubeconform@v0.6.7
+  - name: kubernetes-sigs/kustomize@kustomize/v5.5.0
