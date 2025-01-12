@@ -15,6 +15,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
+      version: 6.5.1
       sourceRef:
         kind: HelmRepository
         name: nextcloud
@@ -95,3 +96,5 @@ spec:
       storageClass: longhorn
       accessMode: ReadWriteOnce
       size: STORAGE_SIZE_PLACEHOLDER
+  test:
+    enable: true
