@@ -18,5 +18,8 @@
       "matchManagers": ["kustomize"],
       "enabled": false
     }
-  ]
+  ],
+  "flux": {
+    "fileMatch": ["\\.yaml$"]
+  }
 }
