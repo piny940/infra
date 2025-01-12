@@ -10,7 +10,7 @@ images:
     newTag: main-e870d8bd2210dc8783d49c4950791f533610415c-95 # {"$imagepolicy": "default:stg-song-list-backend:tag"}
   - name: song-list-frontend
     newName: ghcr.io/piny940/song-list-frontend # {"$imagepolicy": "default:stg-song-list-frontend:name"}
-    newTag: main-b5e5868e9ac9816bdcb665cc2a2a5ace5509462c-100 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
+    newTag: main-2e5b75fc58785f69c18cb97dbe8ee04bb3e9401b-101 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
 resources:
   - ../base
   - ingress.yaml
