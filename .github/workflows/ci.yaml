@@ -44,8 +44,6 @@ jobs:
   #         setup-tools: |
   #           kubeconform
   #           kustomize
-  #         kubeconform: "0.6.6"
-  #         kustomize: "5.4.1"
   #     - run: |
   #         for APP in $(ls kubernetes/apps/)
   #         do
