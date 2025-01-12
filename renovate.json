@@ -1,25 +1,28 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "lockFileMaintenance": {
-    "automerge": true
-  },
-  "minor": {
-    "automerge": true
-  },
-  "patch": {
-    "automerge": true
-  },
-  "pin": {
-    "automerge": true
-  },
   "extends": ["config:recommended", ":disableDependencyDashboard"],
+  "flux": {
+    "fileMatch": ["\\.yaml$"]
+  },
   "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "lockFileMaintenance"
+      ],
+      "automerge": true
+    },
     {
       "matchManagers": ["kustomize"],
       "enabled": false
+    },
+    {
+      "matchManagers": ["helm"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
     }
-  ],
-  "flux": {
-    "fileMatch": ["\\.yaml$"]
-  }
+  ]
 }
