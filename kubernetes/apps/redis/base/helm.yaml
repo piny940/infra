@@ -27,38 +27,13 @@ spec:
       enabled: false
     master:
       count: 1
-      livenessProbe:
-        enabled: true
-        initialDelaySeconds: 20
-        periodSeconds: 5
-        timeoutSeconds: 5
-        successThreshold: 1
-        failureThreshold: 5
-      readinessProbe:
-        enabled: true
-        initialDelaySeconds: 20
-        periodSeconds: 5
-        timeoutSeconds: 1
-        successThreshold: 1
-        failureThreshold: 5
-      resources:
-        requests:
-          cpu: 250m
-          memory: 128Mi
-        limits:
-          cpu: 500m
-          memory: 1024Mi
       kind: StatefulSet
-      updateStrategy:
-        type: RollingUpdate
       persistence:
         enabled: true
         storageClass: longhorn
         accessModes:
           - ReadWriteOnce
         size: 8Gi
-      service:
-        type: ClusterIP
       ## @param master.terminationGracePeriodSeconds Integer setting the termination grace period for the redis-master pods
       terminationGracePeriodSeconds: 30
       serviceAccount:
@@ -66,38 +41,6 @@ spec:
     replica:
       kind: StatefulSet
       replicaCount: 1
-      containerPorts:
-        redis: 6379
-      startupProbe:
-        enabled: true
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        timeoutSeconds: 5
-        successThreshold: 1
-        failureThreshold: 22
-      livenessProbe:
-        enabled: true
-        initialDelaySeconds: 20
-        periodSeconds: 5
-        timeoutSeconds: 5
-        successThreshold: 1
-        failureThreshold: 5
-      readinessProbe:
-        enabled: true
-        initialDelaySeconds: 20
-        periodSeconds: 5
-        timeoutSeconds: 1
-        successThreshold: 1
-        failureThreshold: 5
-      resources:
-        requests:
-          cpu: 250m
-          memory: 128Mi
-        limits:
-          cpu: 500m
-          memory: 1024Mi
-      updateStrategy:
-        type: RollingUpdate
       persistence:
         enabled: true
         storageClass: longhorn
@@ -108,10 +51,6 @@ spec:
         enabled: true
         whenScaled: Retain
         whenDeleted: Retain
-      service:
-        type: ClusterIP
-        ports:
-          redis: 6379
       terminationGracePeriodSeconds: 30
       serviceAccount:
         create: true
