@@ -54,13 +54,13 @@ func main() {
 		panic(err)
 	}
 	if err := CopyFromCache(conf); err != nil {
-		slog.Error(err.Error())
+		slog.Error(fmt.Sprintf("failed to copy from cache: %v", err))
 	}
 	if err := BuildApps(apps, conf); err != nil {
-		slog.Error(err.Error())
+		slog.Error(fmt.Sprintf("failed to build apps: %v", err))
 	}
 	if err := WriteCurrentCommit(conf); err != nil {
-		slog.Error(err.Error())
+		slog.Error(fmt.Sprintf("failed to write current commit: %v", err))
 	}
 }
 
@@ -252,7 +252,7 @@ func BuildApps(apps []AppPath, c *Config) error {
 			default:
 				err := Kustomize(ctx, app, c)
 				if err != nil {
-					errchan <- err
+					errchan <- fmt.Errorf("error occurred while building app %s: %w", app, err)
 					cancel()
 					return
 				}
