@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: clubroom-backend
     newName: ghcr.io/piny940/clubroom-backend # {"$imagepolicy": "default:stg-clubroom-backend:name"}
-    newTag: main-ddfb37e9fdce94891e2679561a59a2d26ca62769-18 # {"$imagepolicy": "default:stg-clubroom-backend:tag"}
+    newTag: main-69fe132e20b13687fecbf6727b088da034e6a385-20 # {"$imagepolicy": "default:stg-clubroom-backend:tag"}
   - name: clubroom-frontend
     newName: ghcr.io/piny940/clubroom-frontend # {"$imagepolicy": "default:stg-clubroom-frontend:name"}
     newTag: main-80d089f276de0967fdaa0022bbe89b6dd0655640-16 # {"$imagepolicy": "default:stg-clubroom-frontend:tag"}
