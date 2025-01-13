@@ -20,7 +20,8 @@
       "enabled": false
     },
     {
-      "matchManagers": ["helm"],
+      "matchManagers": ["flux"],
+      "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
       "automerge": false
     }
