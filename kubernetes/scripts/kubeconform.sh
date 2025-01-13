@@ -9,4 +9,4 @@ kubeconform -summary \
   -output json \
   -strict \
   -ignore-missing-schemas \
-  tmp/pkustomize/out
+  /tmp/pkustomize/out
