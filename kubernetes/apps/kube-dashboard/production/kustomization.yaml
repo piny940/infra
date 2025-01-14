@@ -3,11 +3,8 @@ kind: Kustomization
 namespace: kube-dashboard
 resources:
   - ../base
+  - gen/oauth.yaml
 labels:
   - pairs:
       env: production
     includeSelectors: true
-# configMapGenerator:
-#   - name: kube-dashboard-conf
-#     behavior: merge
-#     literals: []

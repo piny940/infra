@@ -4,7 +4,7 @@ metadata:
   name: kube-dashboard
   namespace: flux-system
 spec:
-  interval: 3m
+  interval: 1h
   path: ./kubernetes/apps/kube-dashboard/production
   prune: true
   sourceRef:

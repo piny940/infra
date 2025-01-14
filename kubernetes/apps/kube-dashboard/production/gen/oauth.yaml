@@ -63,15 +63,15 @@ spec:
       - --insecure-oidc-allow-unverified-email
       - --insecure-oidc-skip-nonce
       - --oidc-email-claim=name
-      - --oidc-issuer-url=https://stg-auth.piny940.com
-      - --oidc-jwks-url=https://stg-auth.piny940.com/api/v1/oauth/jwks
-      - --login-url=https://stg-auth.piny940.com/api/v1/oauth/authorize
-      - --redeem-url=https://stg-auth.piny940.com/api/v1/oauth/token
-      - --profile-url=https://stg-auth.piny940.com/api/v1/userinfo
-      - --redirect-url=https://stg-kube-dashboard.piny940.com/oauth2/callback
-      - --cookie-domain=stg-kube-dashboard.piny940.com
-      - --whitelist-domain=stg-kube-dashboard.piny940.com
-      - --upstream=http://kube-dashboard-frontend.kubernetes-dashboard.svc.cluster.local:8000
+      - --oidc-issuer-url=https://auth.piny940.com
+      - --oidc-jwks-url=https://auth.piny940.com/api/v1/oauth/jwks
+      - --login-url=https://auth.piny940.com/api/v1/oauth/authorize
+      - --redeem-url=https://auth.piny940.com/api/v1/oauth/token
+      - --profile-url=https://auth.piny940.com/api/v1/userinfo
+      - --redirect-url=https://kube-dashboard.piny940.com/oauth2/callback
+      - --cookie-domain=kube-dashboard.piny940.com
+      - --whitelist-domain=kube-dashboard.piny940.com
+      - --upstream=http://kube-dashboard-frontend.kube-dashboard.svc.cluster.local:8000
       - --skip-auth-route=
       - --skip-oidc-discovery
       - --cookie-secure=true
@@ -95,8 +95,8 @@ spec:
       path: /
       pathType: Prefix
       hosts:
-        - stg-kube-dashboard.piny940.com
+        - kube-dashboard.piny940.com
       tls:
         - hosts:
-            - stg-kube-dashboard.piny940.com
+            - kube-dashboard.piny940.com
           secretName: cluster-tls
