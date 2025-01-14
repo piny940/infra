@@ -4,7 +4,7 @@
 #@ def values():
 name: kube-dashboard-oauth2-proxy
 serverFQDN: kube-dashboard.piny940.com
-upstreamURL: http://kube-dashboard.kubernetes-dashboard.svc.cluster.local:8000
+upstreamURL: http://kubernetes-dashboard.kubernetes-dashboard.svc.cluster.local:8000
 secretKey: kube-dashboard
 env: production
 #@ end
