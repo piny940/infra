@@ -1,0 +1,13 @@
+#@ load("@ytt:library", "library")
+#@ load("@ytt:template", "template")
+
+#@ def values():
+name: kube-dashboard-oauth2-proxy
+serverFQDN: kube-dashboard.piny940.com
+upstreamURL: http://kube-dashboard-frontend.kubernetes-dashboard.svc.cluster.local:8000
+secretKey: kube-dashboard
+env: staging
+#@ end
+
+#@ oauth = library.get("oauth2-proxy").with_data_values(values())
+--- #@ template.replace(oauth.eval())
