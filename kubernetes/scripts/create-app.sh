@@ -18,6 +18,10 @@ kind: Kustomization
 namespace: $1
 resources:
   - ../base
+labels:
+  - pairs:
+      env: production
+    includeSelectors: true
 # configMapGenerator:
 #   - name: $1-conf
 #     behavior: merge
@@ -31,6 +35,10 @@ namespace: $1
 namePrefix: stg-
 resources:
   - ../base
+labels:
+  - pairs:
+      env: staging
+    includeSelectors: true
 # configMapGenerator:
 #   - name: $1-conf
 #     behavior: merge
