@@ -71,7 +71,7 @@ spec:
       - --redirect-url=https://kube-dashboard.piny940.com/oauth2/callback
       - --cookie-domain=kube-dashboard.piny940.com
       - --whitelist-domain=kube-dashboard.piny940.com
-      - --upstream=https://kubernetes-dashboard.kubernetes-dashboard.svc.cluster.local:443
+      - --upstream=https://kubernetes-dashboard-kong-proxy.kubernetes-dashboard.svc.cluster.local:443
       - --skip-auth-route=
       - --skip-oidc-discovery
       - --cookie-secure=true
