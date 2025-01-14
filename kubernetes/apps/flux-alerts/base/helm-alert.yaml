@@ -24,6 +24,9 @@ spec:
       namespace: ingress-nginx
     - kind: HelmRelease
       name: "*"
+      namespace: kubernetes-dashboard
+    - kind: HelmRelease
+      name: "*"
       namespace: longhorn-system
     - kind: HelmRelease
       name: "*"
