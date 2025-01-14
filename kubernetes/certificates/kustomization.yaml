@@ -13,3 +13,4 @@ resources:
   - vault.yaml
   - velero.yaml
   - nextcloud.yaml
+  - kubernetes-dashboard.yaml
