@@ -14,12 +14,7 @@ jobs:
       aws: ${{ steps.path-filter.outputs.aws }}
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/bot-filter
-        id: bot-filter
-        with:
-          actor: ${{ github.actor }}
       - uses: dorny/paths-filter@v3
-        if: steps.bot-filter.outputs.is-bot == 'false' || ${{ github.ref_name }} == 'main'
         id: path-filter
         with:
           filters: |
