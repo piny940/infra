@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: kintai-backend
     newName: ghcr.io/piny940/kintai-backend # {"$imagepolicy": "default:stg-kintai-backend:name"}
-    newTag: main-92b20fb67662b1a4812a2fe606405933a77d8b18-10 # {"$imagepolicy": "default:stg-kintai-backend:tag"}
+    newTag: main-f65e3b8b9bec22b9561dd579917b2e0702a14a47-21 # {"$imagepolicy": "default:stg-kintai-backend:tag"}
   - name: kintai-frontend
     newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:stg-kintai-frontend:name"}
     newTag: main-d5a797f9df45c4d3e66e9014defa6c1ddbb22493-19 # {"$imagepolicy": "default:stg-kintai-frontend:tag"}
