@@ -78,19 +78,8 @@ jobs:
     if: needs.filter.outputs.kube == 'true'
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          cd kubernetes/
-          before=$(ls _flux/**/*)
-          bash scripts/flux-kustomize.sh
-          after=$(ls _flux/**/*)
-          diff=$(diff <(echo ${before}) <(echo ${after}))
-          if [ -z "$diff" ]; then
-            echo "No changes detected"
-            exit 0
-          else
-            echo "Changes detected"
-            exit 1
-          fi
+      - run: cd kubernetes && bash scripts/flux-kustomize.sh
+      - run: if [ -n "$(git status --porcelain)" ]; then git diff; exit 1; fi
 
   tf-format:
     runs-on: ubuntu-latest
