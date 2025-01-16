@@ -55,6 +55,8 @@ spec:
       - --upstream=(@-=data.values.upstreamURL-@)
       #@yaml/text-templated-strings
       - --skip-auth-route=(@-=data.values.skipAuthRoute-@)
+      #@ if/end data.values.skipUpstreamTLSVerify:
+      - --ssl-upstream-insecure-skip-verify
       - --skip-oidc-discovery
       - --cookie-secure=true
       - --email-domain=""

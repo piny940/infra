@@ -6,6 +6,7 @@ name: kube-dashboard-oauth2-proxy
 serverFQDN: kube-dashboard.piny940.com
 upstreamURL: https://kubernetes-dashboard-kong-proxy.kubernetes-dashboard.svc.cluster.local:443
 secretKey: kube-dashboard
+skipUpstreamTLSVerify: true
 env: production
 #@ end
 
