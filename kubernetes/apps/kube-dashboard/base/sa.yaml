@@ -36,3 +36,12 @@ subjects:
   - kind: ServiceAccount
     name: kubernetes-dashboard-viewer
     namespace: kubernetes-dashboard
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubernetes-dashboard-viewer-token
+  namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/service-account.name: "kubernetes-dashboard-viewer"
+type: kubernetes.io/service-account-token
