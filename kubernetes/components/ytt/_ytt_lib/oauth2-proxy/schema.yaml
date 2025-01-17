@@ -11,3 +11,5 @@ secretKey: ""
 #@schema/validation one_of=["staging", "production"]
 env: "production"
 skipAuthRoute: ""
+#@schema/validation one_of=[True, False]
+skipUpstreamTLSVerify: false
