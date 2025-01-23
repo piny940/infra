@@ -21,7 +21,7 @@ spec:
       serviceAccount: fluentd
       containers:
         - name: fluentd
-          image: fluent/fluentd-kubernetes-daemonset:v1.17-debian-elasticsearch8-1
+          image: fluent/fluentd-kubernetes-daemonset:v1.18-debian-elasticsearch8-1
           envFrom:
             - configMapRef:
                 name: fluentd-conf
