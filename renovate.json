@@ -18,12 +18,6 @@
     {
       "matchManagers": ["kustomize"],
       "enabled": false
-    },
-    {
-      "matchManagers": ["flux"],
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
-      "automerge": false
     }
   ]
 }
