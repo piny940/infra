@@ -16,7 +16,9 @@ jobs:
           PR_URL=$(gh pr create --base main --title "FluxCD Image Update Automation PR" \
             --body ":crown: *An automated PR*" --head "${{ github.ref_name }}")
           echo "::set-output name=pr_url::$PR_URL"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable auto-merge for FluxCD PRs
         run: gh pr merge --auto --rebase --delete-branch "${{ steps.create_pr.outputs.pr_url }}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
