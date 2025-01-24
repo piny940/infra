@@ -10,15 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: checkout
-      - uses: repo-sync/pull-request@v2
-        name: Create pull request
-        with:
-          destination_branch: "main"
-          pr_title: "FluxCD Image Update Automation PR"
-          pr_body: ":crown: *An automated PR*"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create pull request
+        id: create_pr
+        run: |
+          PR_URL=$(gh pr create --base main --title "FluxCD Image Update Automation PR" \
+            --body ":crown: *An automated PR*" --head "${{ github.ref_name }}")
+          echo "::set-output name=pr_url::$PR_URL"
       - name: Enable auto-merge for FluxCD PRs
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: gh pr merge --auto --rebase --delete-branch "${{ steps.create_pr.outputs.pr_url }}"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
