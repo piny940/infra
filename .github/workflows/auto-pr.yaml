@@ -19,6 +19,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable auto-merge for FluxCD PRs
-        run: gh pr merge --auto --rebase --delete-branch "${{ steps.create_pr.outputs.pr_url }}"
+        run: gh pr merge --auto --rebase --delete-branch --author-email "fluxcdbot@users.noreply.github.com" "${{ steps.create_pr.outputs.pr_url }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
