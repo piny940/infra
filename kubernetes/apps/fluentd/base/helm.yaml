@@ -36,6 +36,8 @@ spec:
       requests:
         cpu: 10m
         memory: 128Mi
+      limits:
+        memory: 1Gi
     metrics:
       serviceMonitor:
         enabled: true
@@ -60,5 +62,3 @@ spec:
             annotations:
               summary: "Fluentd Scrape Missing"
               description: "Fluentd instance has disappeared from Prometheus target discovery"
-  test:
-    enable: true
