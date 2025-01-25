@@ -27,11 +27,11 @@ spec:
           name: fluentd-conf
       - secretRef:
           name: fluentd-secret
-  resources:
-    requests:
-      cpu: 10m
-      memory: 128Mi
-    limits:
-      memory: 128Mi
+    resources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
+      limits:
+        memory: 128Mi
   test:
     enable: true
