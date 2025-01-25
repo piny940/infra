@@ -27,6 +27,11 @@ spec:
           name: fluentd-conf
       - secretRef:
           name: fluentd-secret
+    env:
+      - name: K8S_NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
     resources:
       requests:
         cpu: 10m
