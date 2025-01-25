@@ -4,4 +4,4 @@ nameReference:
       - kind: HelmRelease
         path: spec/values/extraFilesConfigMapNameOverride
       - kind: HelmRelease
-        path: spec/values/envFrom/0/configMapRef/name
+        path: spec/values/envFrom/configMapRef/name
