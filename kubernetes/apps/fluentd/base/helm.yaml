@@ -38,5 +38,10 @@ spec:
         memory: 128Mi
       limits:
         memory: 128Mi
+    metrics:
+      serviceMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
   test:
     enable: true
