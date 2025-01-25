@@ -18,7 +18,7 @@ spec:
       version: 0.5.2
       sourceRef:
         kind: HelmRepository
-        name: fluentd
+        name: fluent
   values:
     variant: elasticsearch8
     extraFilesConfigMapNameOverride: extra-files
