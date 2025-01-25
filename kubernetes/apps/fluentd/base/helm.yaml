@@ -62,3 +62,5 @@ spec:
             annotations:
               summary: "Fluentd Scrape Missing"
               description: "Fluentd instance has disappeared from Prometheus target discovery"
+  test:
+    enable: true
