@@ -2,22 +2,19 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
 resources:
-  - daemonset.yaml
   - external-secret.yaml
-  - service-account.yaml
+  - helm.yaml
 configMapGenerator:
   - name: fluentd-conf
     literals:
       - FLUENT_ELASTICSEARCH_HOST=default-es-http.elastic-system.svc.cluster.local
       - FLUENT_ELASTICSEARCH_PORT=9200
-      - FLUENT_ELASTICSEARCH_SCHEME=https
-      - FLUENT_ELASTICSEARCH_SSL_VERIFY=false
       - FLUENT_ELASTICSEARCH_USER=elastic
-      - FLUENT_ELASTICSEARCH_SSL_VERSION=TLSv1_2
-      - FLUENT_ELASTICSEARCH_RELOAD_ON_FAILURE=false
-      - FLUENT_ELASTICSEARCH_RECONNECT_ON_ERROR=false
-      - FLUENT_ELASTICSEARCH_LOG_ES_400_REASON=true
-  - name: config-volume
+  - name: extra-files
     files:
-      - conf/tail_container_parse.conf
-      - conf/dedot_filter.conf
+      - conf/01_source.conf
+      - conf/02_filter.conf
+      - conf/03_dispatch.conf
+      - conf/04_outputs.conf
+configurations:
+  - kustomizeconfig.yaml
