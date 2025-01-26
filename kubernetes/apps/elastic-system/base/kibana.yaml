@@ -12,13 +12,17 @@ spec:
   podTemplate:
     spec:
       initContainers:
-        - name: deletion-ilm
+        - name: elastic-internal-init
           image: alpine/curl:latest
           imagePullPolicy: IfNotPresent
           command:
             - "/bin/sh"
             - "-c"
             - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
+            - "&"
+            - "/bin/sh"
+            - "-c"
+            - "/mnt/elastic-internal/scripts/log_format_json.sh"
           volumeMounts:
             - name: init-scripts
               mountPath: /mnt/elastic-internal/scripts/deletion-ilm.sh
@@ -56,6 +60,9 @@ spec:
             items:
               - key: deletion-ilm.sh
                 path: deletion-ilm.sh
+                mode: 0755
+              - key: log_format_json.sh
+                path: log_format_json.sh
                 mode: 0755
   http:
     service:

@@ -15,5 +15,6 @@ configMapGenerator:
   - name: init-kibana-conf
     files:
       - scripts/deletion-ilm.sh
+      - scripts/log_format_json.sh
 configurations:
   - kustomizeconfig.yaml
