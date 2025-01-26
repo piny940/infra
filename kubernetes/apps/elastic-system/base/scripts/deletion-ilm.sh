@@ -15,7 +15,7 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
 
 curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_index_template/logstash_template" -H 'Content-Type: application/json' -d"
 {
-  \"index_patterns\": [\"logstash-*\"],
+  \"index_patterns\": [\"fluentd.*\"],
   \"template\": {
     \"settings\": {
       \"index.lifecycle.name\": \"logs_auto_delete\"
