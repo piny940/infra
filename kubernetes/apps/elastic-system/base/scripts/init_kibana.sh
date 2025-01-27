@@ -35,4 +35,4 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
       }
     }
   }
-}
+}"
