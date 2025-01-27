@@ -14,7 +14,6 @@ configMapGenerator:
       - ES_VOLUME_SIZE=20Gi
   - name: init-kibana-conf
     files:
-      - scripts/deletion-ilm.sh
-      - scripts/log_format_json.sh
+      - scripts/init_kibana.sh
 configurations:
   - kustomizeconfig.yaml

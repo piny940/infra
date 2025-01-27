@@ -18,15 +18,11 @@ spec:
           command:
             - "/bin/sh"
             - "-c"
-            - "/mnt/elastic-internal/scripts/deletion-ilm.sh"
-            - "&"
-            - "/bin/sh"
-            - "-c"
-            - "/mnt/elastic-internal/scripts/log_format_json.sh"
+            - "/mnt/elastic-internal/scripts/init_kibana.sh"
           volumeMounts:
             - name: init-scripts
-              mountPath: /mnt/elastic-internal/scripts/deletion-ilm.sh
-              subPath: deletion-ilm.sh
+              mountPath: /mnt/elastic-internal/scripts/init_kibana.sh
+              subPath: init_kibana.sh
           env:
             - name: LOGS_TTL
               valueFrom:
@@ -58,11 +54,8 @@ spec:
           configMap:
             name: init-kibana-conf
             items:
-              - key: deletion-ilm.sh
-                path: deletion-ilm.sh
-                mode: 0755
-              - key: log_format_json.sh
-                path: log_format_json.sh
+              - key: init_kibana.sh
+                path: init_kibana.sh
                 mode: 0755
   http:
     service:
