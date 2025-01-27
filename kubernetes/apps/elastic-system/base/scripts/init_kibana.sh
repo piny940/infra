@@ -1,4 +1,4 @@
-# ログの自動削除
+# ログの自動削除・logのフォーマットをjsonに変更
 curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_ilm/policy/logs_auto_delete" -H 'Content-Type: application/json' -d"
 {
   \"policy\": {
@@ -12,21 +12,13 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
     }
   }
 }"
-curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_index_template/logstash_template" -H 'Content-Type: application/json' -d"
+curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_index_template/fluentd" -H 'Content-Type: application/json' -d"
 {
   \"index_patterns\": [\"fluentd.*\"],
   \"template\": {
     \"settings\": {
       \"index.lifecycle.name\": \"logs_auto_delete\"
-    }
-  }
-}"
-
-# logのフォーマットをjsonに変更
-curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_index_template/log_format_json" -H 'Content-Type: application/json' -d"
-{
-  \"index_patterns\": [\"fluentd.*\"],
-  \"template\": {
+    },
     \"mappings\": {
       \"properties\": {
         \"log\": {
