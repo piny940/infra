@@ -18,6 +18,13 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
   \"template\": {
     \"settings\": {
       \"index.lifecycle.name\": \"logs_auto_delete\"
+    },
+    \"mappings\": {
+      \"properties\": {
+        \"log\": {
+          \"type\": \"text\"
+        }
+      }
     }
   }
 }"
