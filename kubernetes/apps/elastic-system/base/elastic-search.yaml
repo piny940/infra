@@ -28,6 +28,7 @@ spec:
                   value: "10"
       config:
         node.store.allow_mmap: false
+        action.destructive_requires_name: DESTRUCTIVE_REQUIRES_NAME_PLACEHOLDER
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
