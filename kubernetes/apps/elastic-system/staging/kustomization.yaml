@@ -13,7 +13,6 @@ configMapGenerator:
       - KIBANA_SERVER_URL=https://stg-kibana.piny940.com
       - LOGS_TTL=30d
       - ES_VOLUME_SIZE=20Gi
-      - DESTRUCTIVE_REQUIRES_NAME=false
 replacements:
   - source:
       version: v1
@@ -39,15 +38,3 @@ replacements:
           kind: Elasticsearch
         fieldPaths:
           - spec.nodeSets.0.volumeClaimTemplates.0.spec.resources.requests.storage
-  - source:
-      version: v1
-      kind: ConfigMap
-      name: elastic-conf
-      fieldPath: data.DESTRUCTIVE_REQUIRES_NAME
-    targets:
-      - select:
-          group: elasticsearch.k8s.elastic.co
-          version: v1
-          kind: Elasticsearch
-        fieldPaths:
-          - spec.nodeSets.0.config.[action.destructive_requires_name]
