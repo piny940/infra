@@ -21,9 +21,7 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
     },
     \"mappings\": {
       \"properties\": {
-        \"log\": {
-          \"type\": \"text\"
-        }
+        \"log\": null
       }
     }
   }
