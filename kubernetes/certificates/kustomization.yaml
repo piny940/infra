@@ -14,3 +14,4 @@ resources:
   - velero.yaml
   - nextcloud.yaml
   - kubernetes-dashboard.yaml
+  - open-webui.yaml
