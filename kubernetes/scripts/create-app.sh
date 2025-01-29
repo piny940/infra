@@ -45,6 +45,14 @@ labels:
 #     literals: []
 EOF
 
+cat <<EOF >> namespaces/namespaces.yaml
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: $1
+EOF
+
 sh scripts/flux-kustomize.sh
 
 echo "App $1 created!"
