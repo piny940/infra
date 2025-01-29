@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: open-webui
 resources:
   - ../base
+  - gen/oauth.yaml
 labels:
   - pairs:
       env: production
