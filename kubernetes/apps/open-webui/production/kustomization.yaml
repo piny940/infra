@@ -7,7 +7,3 @@ labels:
   - pairs:
       env: production
     includeSelectors: true
-# configMapGenerator:
-#   - name: open-webui-conf
-#     behavior: merge
-#     literals: []
