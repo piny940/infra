@@ -6,7 +6,7 @@ spec:
   schedule: "16 18 * * *"
   jobTemplate:
     spec:
-      activeDeadlineSeconds: 100
+      activeDeadlineSeconds: 600
       template:
         spec:
           containers:
