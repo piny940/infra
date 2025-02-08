@@ -22,3 +22,5 @@ configMapGenerator:
       - FIRESTORE_COLLECTION_PATH=spreadsheets/2025-summer/recruits
       - MAGIC_SPREADSHEET_URL=https://butter-lamb-af5.notion.site/120a1618c45480e2b96afe16f98d49cd?v=120a1618c4548156879e000c46d1b39b
       - SERVER_HOST=https://stg-magic-spreadsheet-notifier.piny940.com
+patches:
+  - path: cronjob.yaml
