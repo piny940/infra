@@ -6,7 +6,7 @@ require (
 	github.com/fluxcd/source-controller/api v1.4.1
 	github.com/joho/godotenv v1.5.1
 	github.com/kelseyhightower/envconfig v1.4.0
-	k8s.io/apimachinery v0.32.1
+	k8s.io/apimachinery v0.32.2
 	k8s.io/client-go v0.32.1
 )
 
