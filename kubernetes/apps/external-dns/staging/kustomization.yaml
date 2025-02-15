@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: external-dns
     newName: ghcr.io/piny940/external-dns # {"$imagepolicy": "default:stg-external-dns:name"}
-    newTag: "20240601105714" # {"$imagepolicy": "default:stg-external-dns:tag"}
+    newTag: "20250215015952" # {"$imagepolicy": "default:stg-external-dns:tag"}
 resources:
   - ../base
 configMapGenerator:
