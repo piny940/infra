@@ -10,8 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: checkout
+      - name: Fetch pull request
+        id: fetch_pr
+        run: |
+          PR_URL=$(gh pr list --head ${{ github.ref_name }} --state open --json url --jq '.[].url')
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
       - name: Create pull request
         id: create_pr
+        if: steps.fetch_pr.outputs.pr_url == ''
         run: |
           PR_URL=$(gh pr create --base main --title "FluxCD Image Update Automation PR" \
             --body ":crown: *An automated PR*" --head "${{ github.ref_name }}")
