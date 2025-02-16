@@ -1,7 +1,0 @@
----
-- hosts: cherry
-  remote_user: 
-  become: yes
-  tasks:
-    - name: Echo
-      command: echo "Hello, World!"
