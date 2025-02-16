@@ -15,3 +15,19 @@ k8s の構築手順: [kubernetes/README.md](kubernetes/README.md)
 GCP リソースの terraform 管理：[gcp/](gcp)
 
 AWS リソースの terraform 管理：[aws/](aws)
+
+## 物理構成
+
+| マシン名 | IP | OS | CPU | Memory | Disk |
+| --- | --- | --- | --- | --- | --- |
+| peach | 192.168.151.158 | Ubuntu 24.04 | 6コア12スレッド | 16GB | 1TB |
+| cherry | 192.168.151.104 | Ubuntu 24.04 | 6コア12スレッド | 16GB | 512GB |
+| olive | 192.168.151.180 | Ubuntu 24.04 | 4コア4スレッド | 8GB | 512GB |
+
+## VM 構成
+
+| ホスト名 | IP | OS | CPU | Memory | Disk |
+| --- | --- | --- | --- | --- | --- |
+| peach | 192.168.151.158 | Ubuntu 24.04 | 6コア12スレッド | 16GB | 1TB |
+| cherry | 192.168.151.104 | Ubuntu 24.04 | 6コア12スレッド | 16GB | 512GB |
+| olive | 192.168.151.180 | Ubuntu 24.04 | 4コア4スレッド | 8GB | 512GB |
