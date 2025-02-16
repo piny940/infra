@@ -41,6 +41,8 @@ jobs:
           path: /tmp/pkustomize/cache
           key: pkustomize-${{ hashFiles('kubernetes/scripts/pkustomize/main.go') }}
       - uses: ./.github/actions/setup-aqua
+        with:
+          working_directory: kubernetes
       - run: cd kubernetes && bash scripts/kubeconform.sh
   kube-yamlfmt:
     runs-on: ubuntu-latest
@@ -49,6 +51,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-aqua
+        with:
+          working_directory: kubernetes
       - name: Yamlfmt
         run: cd kubernetes && yamlfmt -lint
   kube-cluster-tls:
@@ -58,6 +62,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-aqua
+        with:
+          working_directory: kubernetes
       - name: Ytt
         run: cd kubernetes && bash scripts/cluster-tls.sh
       - run: if [ -n "$(git status --porcelain)" ]; then git diff; exit 1; fi
@@ -68,6 +74,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-aqua
+        with:
+          working_directory: kubernetes
       - name: Ytt
         run: cd kubernetes && bash scripts/ytt.sh
       - run: if [ -n "$(git status --porcelain)" ]; then git diff; exit 1; fi
