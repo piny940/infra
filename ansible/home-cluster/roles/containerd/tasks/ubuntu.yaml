@@ -1,0 +1,62 @@
+- name: apt update
+  become: yes
+  apt:
+    update_cache: yes
+- name: Install required packages
+  become: yes
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+- name: Create keyrings directory if not exists
+  become: yes
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+- name: Add Docker GPG key
+  become: yes
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: '0644'
+- name: Add Docker repository
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
+    state: present
+    filename: docker
+- name: apt update
+  become: yes
+  apt:
+    update_cache: yes
+- name: Install Containerd
+  become: yes
+  apt:
+    name:
+      - containerd.io
+    state: present
+- name: Register default containerd configuration
+  become: yes
+  command: containerd config default
+  register: containerd_config
+- name: Create containerd configuration file
+  become: yes
+  copy:
+    content: "{{ containerd_config.stdout }}"
+    dest: /etc/containerd/config.toml
+    mode: '0644'
+- name: Enable SystemdCgroup
+  become: yes
+  replace:
+    regexp: 'SystemdCgroup = false'
+    replace: 'SystemdCgroup = true'
+    path: /etc/containerd/config.toml
+- name: Restart containerd
+  become: yes
+  service:
+    name: containerd
+    state: restarted

@@ -1,0 +1,4 @@
+- hosts: master_node
+  become: yes
+  roles:
+    - containerd
