@@ -1,4 +1,6 @@
-- hosts: master_node
-  become: yes
+---
+- name: Setup Master Node
+  hosts: master_node
+  become: true
   roles:
     - containerd

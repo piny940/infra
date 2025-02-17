@@ -1,1 +1,3 @@
-- import_tasks: ubuntu.yaml
+---
+- name: Install
+  ansible.builtin.import_tasks: ubuntu.yaml

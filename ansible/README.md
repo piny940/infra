@@ -13,5 +13,5 @@ sudo apt install ansible
 
 ```bash
 env=staging
-ansible-playbook -i "$env" cluster.yaml --vault-pass-file passwd.txt
+ansible-playbook -i inventories/"$env" cluster.yaml --vault-pass-file passwd.txt
 ```

@@ -1,10 +1,11 @@
-- name: apt update
-  become: yes
-  apt:
-    update_cache: yes
+---
+- name: Apt update
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
 - name: Install required packages
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - ca-certificates
@@ -12,51 +13,43 @@
       - software-properties-common
     state: present
 - name: Create keyrings directory if not exists
-  become: yes
-  file:
+  become: true
+  ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Add Docker GPG key
-  become: yes
-  get_url:
+  become: true
+  ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
-    mode: '0644'
+    mode: "0644"
 - name: Add Docker repository
-  become: yes
-  apt_repository:
+  become: true
+  ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
     state: present
     filename: docker
-- name: apt update
-  become: yes
-  apt:
-    update_cache: yes
+- name: Apt update
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
 - name: Install Containerd
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name:
       - containerd.io
     state: present
-- name: Register default containerd configuration
-  become: yes
-  command: containerd config default
-  register: containerd_config
-- name: Create containerd configuration file
-  become: yes
-  copy:
-    content: "{{ containerd_config.stdout }}"
+- name: Configure Containerd
+  become: true
+  ansible.builtin.template:
+    src: template/config.toml.j2
     dest: /etc/containerd/config.toml
-    mode: '0644'
-- name: Enable SystemdCgroup
-  become: yes
-  replace:
-    regexp: 'SystemdCgroup = false'
-    replace: 'SystemdCgroup = true'
-    path: /etc/containerd/config.toml
+    mode: "0644"
+    owner: root
+    group: root
 - name: Restart containerd
-  become: yes
-  service:
+  become: true
+  ansible.builtin.service:
     name: containerd
     state: restarted

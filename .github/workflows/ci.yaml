@@ -9,6 +9,7 @@ jobs:
   filter:
     runs-on: ubuntu-latest
     outputs:
+      ansible: ${{ steps.path-filter.outputs.ansible }}
       kube: ${{ steps.path-filter.outputs.kube }}
       gcp: ${{ steps.path-filter.outputs.gcp }}
       aws: ${{ steps.path-filter.outputs.aws }}
@@ -18,6 +19,10 @@ jobs:
         id: path-filter
         with:
           filters: |
+            ansible:
+              - "ansible/**"
+              - ".github/workflows/ci.yaml"
+              - ".github/actions/**"
             kube:
               - "kubernetes/**"
               - ".github/workflows/ci.yaml"
@@ -30,6 +35,19 @@ jobs:
               - "aws/**"
               - ".github/workflows/ci.yaml"
               - ".github/actions/**"
+  ansible-lint:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.ansible == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@v25
+        with:
+          args: ""
+          setup_python: "true"
+          working_directory: "ansible"
+          requirements_file: "ansible/requirements.txt"
   kubeconform:
     runs-on: ubuntu-latest
     needs: filter
