@@ -42,13 +42,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Write Password
-        run: echo ${{ secrets.ANSIBLE_PASSWORD }} > ansible/home-cluster/passwd.txt
+        run: echo ${{ secrets.ANSIBLE_PASSWORD }} > ansible/home-cluster/.ansible-vault-password
       - name: Run ansible-lint
         uses: ansible/ansible-lint@v25
         with:
           args: ""
           setup_python: "true"
-          working_directory: "ansible"
+          working_directory: "ansible/home-cluster"
   kubeconform:
     runs-on: ubuntu-latest
     needs: filter

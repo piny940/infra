@@ -11,4 +11,3 @@ registries:
   ref: v4.315.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: mikefarah/yq@v4.45.1
-- name: cloudflare/cloudflared@2025.2.0
