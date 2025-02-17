@@ -16,6 +16,14 @@ env=staging
 ansible-playbook -i inventories/"$env" cluster.yaml --vault-pass-file passwd.txt
 ```
 
+## Vault
+
+```bash
+ansible-vault edit vars/"$filename".yaml
+```
+
+作成したvarsファイルへのパスは`vars_files`に記述する。
+
 ## Lint
 
 ```bash
