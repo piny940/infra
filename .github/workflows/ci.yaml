@@ -41,6 +41,8 @@ jobs:
     if: needs.filter.outputs.ansible == 'true'
     steps:
       - uses: actions/checkout@v4
+      - name: Write Password
+        run: echo ${{ secrets.ANSIBLE_PASSWORD }} > infra/ansible/home-cluster/passwd.txt
       - name: Run ansible-lint
         uses: ansible/ansible-lint@v25
         with:
