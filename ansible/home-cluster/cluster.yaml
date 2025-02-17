@@ -4,3 +4,5 @@
   become: true
   roles:
     - containerd
+  vars_files:
+    - vars/hosts.yaml
