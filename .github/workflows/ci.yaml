@@ -47,7 +47,6 @@ jobs:
           args: ""
           setup_python: "true"
           working_directory: "ansible"
-          requirements_file: "ansible/requirements.txt"
   kubeconform:
     runs-on: ubuntu-latest
     needs: filter
