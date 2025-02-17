@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: magic-spreadsheet-notifier
     newName: ghcr.io/piny940/magic-spreadsheet-notifier # {"$imagepolicy": "default:stg-magic-spreadsheet-notifier:name"}
-    newTag: 1.0.35 # {"$imagepolicy": "default:stg-magic-spreadsheet-notifier:tag"}
+    newTag: 1.0.36 # {"$imagepolicy": "default:stg-magic-spreadsheet-notifier:tag"}
   - name: magic-spreadsheet-notifier-server
     newName: ghcr.io/piny940/magic-spreadsheet-notifier-server # {"$imagepolicy": "default:stg-magic-spreadsheet-notifier-server:name"}
     newTag: 1.0.36 # {"$imagepolicy": "default:stg-magic-spreadsheet-notifier-server:tag"}
