@@ -59,7 +59,7 @@ jobs:
     if: needs.filter.outputs.ansible == 'true' && github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/aqua
+      - uses: ./.github/actions/setup-aqua
         with:
           working_directory: ansible
       - name: Setup Cloudflare tunnel
