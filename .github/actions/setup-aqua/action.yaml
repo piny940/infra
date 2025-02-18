@@ -4,7 +4,7 @@ description: Setup aqua
 runs:
   using: composite
   steps:
-    - uses: actions/cache@v4.2.0
+    - uses: actions/cache@v4.2.1
       with:
         path: ~/.local/share/aquaproj-aqua
         key: v1-aqua-installer-${{runner.os}}-${{runner.arch}}-${{hashFiles('aqua.yaml')}}
