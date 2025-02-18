@@ -8,7 +8,7 @@ namePrefix: stg-
 images:
   - name: flux-target-updater
     newName: ghcr.io/piny940/flux-target-updater # {"$imagepolicy": "default:stg-flux-target-updater:name"}
-    newTag: main-8a4c2af3fa765d93e1897bd2e7d69bcbf6f60132-20250213200337 # {"$imagepolicy": "default:stg-flux-target-updater:tag"}
+    newTag: main-0504341ed69c7bc2ca28f91349f6b445a48d6bcd-20250218122126 # {"$imagepolicy": "default:stg-flux-target-updater:tag"}
 resources:
   - ../base
   - deployment.yaml
