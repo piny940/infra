@@ -87,11 +87,11 @@ jobs:
             User ansai
           EOF
       - name: Write Password
-        run: echo ${{ secrets.ANSIBLE_PASSWORD }} > ansible/home-cluster/passwd.txt
+        run: echo ${{ secrets.ANSIBLE_PASSWORD }} > ansible/home-cluster/.ansible-vault-password
       - name: Deploy
         run: |
           cd ansible/home-cluster
-          ansible-playbook -i inventories/staging cluster.yaml --vault-pass-file passwd.txt
+          ansible-playbook -i inventories/staging cluster.yaml --vault-pass-file .ansible-vault-password
   kube:
     runs-on: ubuntu-latest
     needs: filter
