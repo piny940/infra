@@ -2,10 +2,8 @@
 all:
   hosts:
     cherry:
-      ansible_host: 192.168.151.104
-      ansible_user: ansai
+      ansible_host: cherry
       ansible_ssh_private_key_file: ~/.ssh/ed25519
-      ansible_port: 53823
       ansible_become_password: "{{ cherry.ansible_become_password }}"
       ansible_python_interpreter: /usr/bin/python3
   children:
