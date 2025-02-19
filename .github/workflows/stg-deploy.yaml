@@ -86,10 +86,6 @@ jobs:
             Port 53823
             User ansai
           EOF
-          hosts=$(yq -r '.all.hosts | keys | .[]' < ansible/home-cluster/inventories/staging/hosts.yaml)
-          for host in $hosts; do
-            ssh-keyscan -H "$host" >> ~/.ssh/known_hosts
-          done
       - name: Write Password
         run: echo ${{ secrets.ANSIBLE_PASSWORD }} > ansible/home-cluster/.ansible-vault-password
       - name: Deploy
