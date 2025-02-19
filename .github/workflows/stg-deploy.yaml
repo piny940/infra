@@ -68,10 +68,10 @@ jobs:
           cache: 'pip'
       - name: Install Ansible
         run: pip install -r ansible/requirements.txt
+      - name: Download Cloudflared
+        run: curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
       - name: Install Cloudflared
-        run: |
-          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-          sudo dpkg -i cloudflared.deb
+        run: sudo dpkg -i cloudflared.deb
       - name: Setup Cloudflare tunnel
         run: sudo cloudflared service install ${{ secrets.CLOUDFLARE_STAGING_TUNNEL_TOKEN }}
       - name: Setup SSH
