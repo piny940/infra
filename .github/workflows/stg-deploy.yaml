@@ -62,8 +62,12 @@ jobs:
       - uses: ./.github/actions/setup-aqua
         with:
           working_directory: ansible
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
       - name: Install Ansible
-        run: pip install ansible==11.2.0
+        run: python -m pip install --upgrade pip ansible==11.2.0
       - name: Install Cloudflared
         run: |
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
