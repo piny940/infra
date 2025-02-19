@@ -76,7 +76,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/ed25519
           chmod 600 ~/.ssh/ed25519
           hosts=$(yq -r '.all.hosts | keys | .[]' < ansible/home-cluster/inventories/staging/hosts.yaml)
-          for $host in $hosts; do
+          for host in $hosts; do
             ssh-keyscan -H "$host" >> ~/.ssh/known_hosts
           done
           cat <<EOF > ~/.ssh/config
