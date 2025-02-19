@@ -1,0 +1,8 @@
+---
+- name: Setup Master Node
+  hosts: master_node
+  become: true
+  roles:
+    - containerd
+  vars_files:
+    - vars/hosts.yaml

@@ -1,16 +1,20 @@
 name: Setup Aqua
 description: Setup aqua
 
+inputs:
+  working_directory:
+    description: 'The working directory to run the aqua installer'
+    required: true
 runs:
   using: composite
   steps:
     - uses: actions/cache@v4.2.1
       with:
         path: ~/.local/share/aquaproj-aqua
-        key: v1-aqua-installer-${{runner.os}}-${{runner.arch}}-${{hashFiles('aqua.yaml')}}
+        key: v1-aqua-installer-${{runner.os}}-${{runner.arch}}-${{hashFiles('*/aqua.yaml')}}
         restore-keys: |
           v1-aqua-installer-${{runner.os}}-${{runner.arch}}-
     - uses: aquaproj/aqua-installer@v3.1.1
       with:
         aqua_version: v2.28.0
-        working_directory: kubernetes
+        working_directory: ${{ inputs.working_directory }}

@@ -12,6 +12,7 @@ jobs:
   path-filter:
     runs-on: ubuntu-latest
     outputs:
+      ansible: ${{ steps.path-filter.outputs.ansible }}
       kube: ${{ steps.path-filter.outputs.kube }}
       svcmtr: ${{ steps.path-filter.outputs.svcmtr }}
       gcp: ${{ steps.path-filter.outputs.gcp }}
@@ -23,22 +24,45 @@ jobs:
         id: path-filter
         with:
           filters: |
+            ansible:
+              - "ansible/**"
+              - ".github/workflows/prd-deploy.yaml"
+              - ".github/actions/**"
             kube:
               - "kubernetes/**"
               - ".github/workflows/prd-deploy.yaml"
+              - ".github/actions/**"
             svcmtr:
               - "service-monitor/**"
               - ".github/workflows/prd-deploy.yaml"
+              - ".github/actions/**"
             gcp:
               - "gcp/**"
               - ".github/workflows/prd-deploy.yaml"
+              - ".github/actions/**"
             aws:
               - "aws/**"
               - ".github/workflows/prd-deploy.yaml"
+              - ".github/actions/**"
             fluxupd:
               - "flux-target-updater/**"
               - ".github/workflows/prd-deploy.yaml"
+              - ".github/actions/**"
 
+  ansible:
+    runs-on: ubuntu-latest
+    needs: path-filter
+    environment: production
+    if: needs.path-filter.outputs.ansible == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy Ansible
+        uses: ./.github/actions/ansible-deploy
+        with:
+          env: production
+          cloudflare_tunnel_token: ${{ secrets.CLOUDFLARE_PRODUCTION_TUNNEL_TOKEN }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ansible_password: ${{ secrets.ANSIBLE_PASSWORD }}
   gcp-apply:
     runs-on: ubuntu-latest
     needs: path-filter

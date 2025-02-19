@@ -15,6 +15,7 @@ jobs:
   filter:
     runs-on: ubuntu-latest
     outputs:
+      ansible: ${{ steps.path-filter.outputs.ansible }}
       kube: ${{ steps.path-filter.outputs.kube }}
       svcmtr: ${{ steps.path-filter.outputs.svcmtr }}
       gcp: ${{ steps.path-filter.outputs.gcp }}
@@ -26,22 +27,58 @@ jobs:
         id: path-filter
         with:
           filters: |
+            ansible:
+              - "ansible/**"
+              - ".github/actions/**"
+              - ".github/workflows/stg-deploy.yaml"
             kube:
               - "kubernetes/**"
+              - ".github/actions/**"
               - ".github/workflows/stg-deploy.yaml"
             svcmtr:
               - "service-monitor/**"
+              - ".github/actions/**"
               - ".github/workflows/stg-deploy.yaml"
             gcp:
               - "gcp/**"
+              - ".github/actions/**"
               - ".github/workflows/stg-deploy.yaml"
             aws:
               - "aws/**"
+              - ".github/actions/**"
               - ".github/workflows/stg-deploy.yaml"
             fluxupd:
               - "flux-target-updater/**"
+              - ".github/actions/**"
               - ".github/workflows/stg-deploy.yaml"
 
+  ansible:
+    runs-on: ubuntu-latest
+    needs: filter
+    environment: staging # 管理者の承認を必要とする
+    if: needs.filter.outputs.ansible == 'true' && github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy Ansible
+        uses: ./.github/actions/ansible-deploy
+        with:
+          env: staging
+          cloudflare_tunnel_token: ${{ secrets.CLOUDFLARE_STAGING_TUNNEL_TOKEN }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ansible_password: ${{ secrets.ANSIBLE_PASSWORD }}
+  ansible-main:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.ansible == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy Ansible
+        uses: ./.github/actions/ansible-deploy
+        with:
+          env: staging
+          cloudflare_tunnel_token: ${{ secrets.CLOUDFLARE_STAGING_TUNNEL_TOKEN }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ansible_password: ${{ secrets.ANSIBLE_PASSWORD }}
   kube:
     runs-on: ubuntu-latest
     needs: filter
