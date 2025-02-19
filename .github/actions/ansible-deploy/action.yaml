@@ -24,13 +24,18 @@ runs:
         cache: 'pip'
     - name: Install Ansible
       run: pip install -r ansible/requirements.txt
+      shell: bash
     - name: Download Cloudflared
       run: curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+      shell: bash
     - name: Install Cloudflared
       run: sudo dpkg -i cloudflared.deb
+      shell: bash
     - name: Setup Cloudflare tunnel
       run: sudo cloudflared service install ${{ inputs.cloudflare_tunnel_token }}
+      shell: bash
     - name: Setup SSH
+      shell: bash
       run: |
         mkdir -p ~/.ssh
         echo "${{ inputs.ssh_private_key }}" > ~/.ssh/ed25519
@@ -45,7 +50,9 @@ runs:
         EOF
     - name: Write Password
       run: echo ${{ inputs.ansible_password }} > ansible/home-cluster/.ansible-vault-password
+      shell: bash
     - name: Deploy
+      shell: bash
       run: |
         cd ansible/home-cluster
         ansible-playbook -i inventories/${{ inputs.env }} cluster.yaml --vault-pass-file .ansible-vault-password
