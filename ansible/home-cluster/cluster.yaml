@@ -4,5 +4,7 @@
   become: true
   roles:
     - containerd
+    - pre_install
+    - kubeadm
   vars_files:
     - vars/hosts.yaml
