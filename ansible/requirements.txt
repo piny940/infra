@@ -7,4 +7,4 @@ MarkupSafe==3.0.2
 packaging==24.2
 pycparser==2.22
 PyYAML==6.0.2
-resolvelib==1.1.0
+resolvelib==1.0.1
