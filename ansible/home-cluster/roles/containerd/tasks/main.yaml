@@ -22,7 +22,7 @@
   become: true
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
-    dest: /etc/apt/keyrings/docker.asc
+    dest: /etc/apt/keyrings/docker.gpg
     mode: "0644"
 - name: Add Docker repository
   become: true
