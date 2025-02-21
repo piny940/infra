@@ -18,6 +18,16 @@
     url: https://apt.releases.hashicorp.com/gpg
     dest: /tmp/vault/vault.gpg
     mode: 0644
+- name: Create keyrings directory if not exists
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+- name: Convert Vault APT key to GPG key
+  ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/vault.gpg /tmp/vault/vault.gpg
+  args:
+    creates: /etc/apt/keyrings/vault.gpg
 - name: Add apt repository
   ansible.builtin.apt_repository:
     repo: deb [signed-by=/etc/apt/keyrings/vault.gpg] https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
