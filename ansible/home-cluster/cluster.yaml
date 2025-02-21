@@ -8,3 +8,4 @@
     - kubeadm
   vars_files:
     - vars/hosts.yaml
+    - vars/kubernetes.yaml
