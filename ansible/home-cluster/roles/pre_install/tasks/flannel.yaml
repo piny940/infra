@@ -11,5 +11,5 @@
     value: '1'
     state: present
   loop:
-    - net.bridge.bridge-nf-call-arptables
+    - net.bridge.bridge-nf-call-iptables
     - net.bridge.bridge-nf-call-ip6tables
