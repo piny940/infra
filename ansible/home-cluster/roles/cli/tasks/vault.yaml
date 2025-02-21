@@ -20,7 +20,7 @@
     mode: 0644
 - name: Add apt repository
   ansible.builtin.apt_repository:
-    repo: deb [signed-by=/etc/apt/keyrings/vault.gpg] https://apt.releases.hashicorp.com {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_release'] }} main
+    repo: deb [signed-by=/etc/apt/keyrings/vault.gpg] https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
     state: present
     filename: vault
 - name: Apt update
