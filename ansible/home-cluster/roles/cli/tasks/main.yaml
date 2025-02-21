@@ -3,3 +3,5 @@
   include_tasks: flux.yaml
 - name: Install velero
   include_tasks: velero.yaml
+- name: Install vault
+  include_tasks: vault.yaml

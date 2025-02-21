@@ -1,0 +1,33 @@
+---
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - gpg
+      - wget
+    state: present
+- name: Make sure directory exists
+  ansible.builtin.file:
+    path: /tmp/vault
+    state: directory
+    mode: 0755
+- name: Download Vault GPG key
+  ansible.builtin.get_url:
+    url: https://apt.releases.hashicorp.com/gpg
+    dest: /tmp/vault/vault.gpg
+    mode: 0644
+- name: Add apt repository
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/vault.gpg] https://apt.releases.hashicorp.com {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_release'] }} main
+    state: present
+    filename: vault
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install Vault
+  ansible.builtin.apt:
+    name:
+      - vault
+    state: present
