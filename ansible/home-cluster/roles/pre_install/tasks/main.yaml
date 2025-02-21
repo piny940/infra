@@ -3,3 +3,5 @@
   include_tasks: swapoff.yaml
 - name: Configure for flannel
   include_tasks: flannel.yaml
+- name: Configure for longhorn
+  include_tasks: longhorn.yaml
