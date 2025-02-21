@@ -1,0 +1,16 @@
+---
+- name: Download Velero
+  ansible.builtin.get_url:
+    url: https://github.com/vmware-tanzu/velero/releases/download/v{{ velero.version }}/velero-v{{ velero.version }}-linux-amd64.tar.gz 
+    dest: /tmp/velero-v{{ velero.version }}-linux-amd64.tar.gz
+    mode: 0644
+- name: Extract Velero
+  ansible.builtin.unarchive:
+    src: /tmp/velero-v{{ velero.version }}-linux-amd64.tar.gz
+    dest: /tmp
+    remote_src: yes
+- name: Move Velero binary to /usr/local/bin
+  ansible.builtin.command:
+    cmd: mv /tmp/velero-v{{ velero.version }}-linux-amd64/velero /usr/local/bin/
+  args:
+    creates: /usr/local/bin/velero

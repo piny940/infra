@@ -1,0 +1,5 @@
+---
+- name: Install Flux CLI
+  include_tasks: flux.yaml
+- name: Install velero
+  include_tasks: velero.yaml
