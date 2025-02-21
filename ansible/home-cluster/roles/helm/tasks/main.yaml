@@ -1,4 +1,9 @@
 ---
+- name: Make directory for helm
+  ansible.builtin.file:
+    path: /tmp/helm
+    state: directory
+    mode: 0755
 - name: Download helm signing
   ansible.builtin.get_url:
     url: https://baltocdn.com/helm/signing.asc
@@ -7,7 +12,7 @@
 - name: Helm gpg key
   ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/helm.gpg /tmp/helm/signing.asc
   args:
-    creates: /usr/share/keyrings/helm.gpg
+    creates: /etc/apt/keyrings/helm.gpg
 - name: Add Helm repository
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main 
