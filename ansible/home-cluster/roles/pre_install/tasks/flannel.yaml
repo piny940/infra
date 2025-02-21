@@ -1,0 +1,15 @@
+---
+- name: Configure br_netfilter
+  become: true
+  community.general.modprobe:
+    name: br_netfilter
+    persistent: present
+    state: present
+- name: Configure sysctl
+  ansible.posix.sysctl:
+    name: "{{ item }}"
+    value: '1'
+    state: present
+  loop:
+    - net.bridge.bridge-nf-call-arptables
+    - net.bridge.bridge-nf-call-ip6tables

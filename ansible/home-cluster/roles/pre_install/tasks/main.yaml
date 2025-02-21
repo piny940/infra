@@ -1,23 +1,5 @@
 ---
-- name: Check if swap file exists
-  ansible.builtin.stat:
-    path: /etc/fstab
-    get_attributes: no
-    get_checksum: no
-    get_mime: no
-  register: swap_file
-- name: Disable swap
-  loop:
-    - none
-    - swap
-  ansible.posix.mount:
-    path: "{{ item }}"
-    state: absent
-  when: swap_file.stat.exists
-- name: Mask swap.target
-  ansible.builtin.systemd_service:
-    name: swap.target
-    masked: yes
-- name: Disable swap
-  ansible.builtin.command: /sbin/swapoff -a
-    
+- name: Swapoff
+  include_tasks: swapoff.yaml
+- name: Configure for flannel
+  include_tasks: flannel.yaml
