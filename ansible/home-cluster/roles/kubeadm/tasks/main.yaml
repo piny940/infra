@@ -23,6 +23,12 @@
     dest: /tmp/kubernetes/Release.key
     mode: 0644
   register: gpg_key
+- name: Create keyrings directory if not exists
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
 - name: Convert Kubernetes APT key to GPG key
   ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/kubernetes/Release.key
   args:
