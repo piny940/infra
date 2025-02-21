@@ -6,6 +6,7 @@
     - containerd
     - pre_install
     - kubeadm
+    - cli
   vars_files:
     - vars/hosts.yaml
     - vars/kubernetes.yaml

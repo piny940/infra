@@ -1,0 +1,10 @@
+---
+- name: Download flux install script
+  ansible.builtin.get_url:
+    url: https://fluxcd.io/install.sh
+    dest: /tmp/flux-install.sh
+    mode: 0755
+- name: Run flux install script
+  ansible.builtin.shell: /tmp/flux-install.sh
+  args:
+    creates: /usr/local/bin/flux
