@@ -1,8 +1,13 @@
 ---
+- name: Make sure the directory exists
+  ansible.builtin.file:
+    path: /tmp/flux
+    state: directory
+    mode: 0755
 - name: Download flux install script
   ansible.builtin.get_url:
     url: https://fluxcd.io/install.sh
-    dest: /tmp/flux-install.sh
+    dest: /tmp/flux/flux-install.sh
     mode: 0755
 - name: Run flux install script
   ansible.builtin.shell: /tmp/flux-install.sh
