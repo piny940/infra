@@ -3,11 +3,11 @@
   hosts: master_node
   become: true
   roles:
-    - containerd
-    - pre_install
-    - helm
-    - kubeadm
-    - cli
+    - { role: containerd, tags: containerd }
+    - { role: pre_install, tags: pre_install }
+    - { role: helm, tags: helm }
+    - { role: kubeadm, tags: kubeadm }
+    - { role: cli, tags: cli }
   vars_files:
     - vars/hosts.yaml
     - vars/kubernetes.yaml
