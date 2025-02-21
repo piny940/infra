@@ -5,6 +5,7 @@
   roles:
     - containerd
     - pre_install
+    - helm
     - kubeadm
     - cli
   vars_files:
