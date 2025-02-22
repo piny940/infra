@@ -14,31 +14,20 @@
     state: present
 - name: Make sure the directory exists
   ansible.builtin.file:
-    path: /tmp/kubernetes
+    path: "{{ item }}"
     state: directory
     mode: "0755"
+  loop:
+    - /tmp/kubernetes
+    - /etc/apt/keyrings
 - name: Add Kubernetes GPG key
   ansible.builtin.get_url:
     url: https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/Release.key
     dest: /tmp/kubernetes/Release.key
     mode: "0644"
-  register: gpg_key
-- name: Create keyrings directory if not exists
-  become: true
-  ansible.builtin.file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: "0755"
-- name: Convert Kubernetes APT key to GPG key
-  ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/kubernetes/Release.key
-  args:
-    creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-  when: gpg_key.changed
-- name: Add Kubernetes APT repository
-  ansible.builtin.apt_repository:
-    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/ /
-    state: present
-    filename: kubernetes
+  notify:
+    - generate_gpg_key
+    - add_kubernetes_repo
 - name: Apt update
   become: true
   ansible.builtin.apt:
