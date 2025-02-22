@@ -5,3 +5,5 @@ velero:
   version: "1.15.0"
 k9s:
   version: "0.32.7"
+k0sctl:
+  version: "0.22.0"
