@@ -1,0 +1,7 @@
+---
+kubernetes:
+  version: "1.30"
+velero:
+  version: "1.15.0"
+k9s:
+  version: "0.32.7"

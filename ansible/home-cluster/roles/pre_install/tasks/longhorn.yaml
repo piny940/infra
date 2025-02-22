@@ -1,0 +1,33 @@
+---
+- name: Apt update
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - open-iscsi
+      - nfs-common
+- name: Start iscsid service
+  ansible.builtin.service:
+    name: iscsid
+    state: started
+    enabled: true
+- name: Add sdx to multipath blacklist
+  ansible.builtin.blockinfile:
+    backup: true
+    create: true
+    block: |
+      blacklist {
+        devnode "^sd[a-z0-9]+"
+      }
+    path: /etc/multipath.conf
+    owner: root
+    group: root
+    state: present
+    mode: "0644"
+- name: Restart multipathd service
+  ansible.builtin.service:
+    name: multipathd
+    state: restarted
+    enabled: true

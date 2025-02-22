@@ -21,7 +21,6 @@ runs:
     - uses: actions/setup-python@v5
       with:
         python-version: '3.13'
-        cache: 'pip'
     - name: Install Ansible
       run: pip install -r ansible/requirements.txt
       shell: bash
@@ -41,8 +40,8 @@ runs:
         echo "${{ inputs.ssh_private_key }}" > ~/.ssh/ed25519
         chmod 600 ~/.ssh/ed25519
         cat <<EOF > ~/.ssh/config
-        Host *
-          ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h.piny940.com
+        Host cherry
+          ProxyCommand /usr/local/bin/cloudflared access ssh --hostname cherry.piny940.com
           IdentityFile ~/.ssh/ed25519
           StrictHostKeyChecking no
           Port 53823

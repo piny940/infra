@@ -1,0 +1,10 @@
+---
+- name: Generate_gpg_key
+  ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/kubernetes/Release.key
+  args:
+    creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+- name: Add_kubernetes_repo
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/ /
+    state: present
+    filename: kubernetes

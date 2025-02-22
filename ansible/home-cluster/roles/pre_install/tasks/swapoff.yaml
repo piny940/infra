@@ -1,0 +1,24 @@
+---
+- name: Check if swap file exists
+  ansible.builtin.stat:
+    path: /etc/fstab
+    get_attributes: false
+    get_checksum: false
+    get_mime: false
+  register: swap_file
+- name: Disable swap
+  loop:
+    - none
+    - swap
+  ansible.posix.mount:
+    path: "{{ item }}"
+    state: absent
+  when: swap_file.stat.exists
+- name: Mask swap.target
+  ansible.builtin.systemd_service:
+    name: swap.target
+    masked: true
+- name: Disable swap
+  ansible.builtin.command: /sbin/swapoff -a
+  changed_when: false
+  when: swap_file.stat.exists
