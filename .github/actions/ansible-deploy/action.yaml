@@ -34,8 +34,8 @@ runs:
         echo "${{ inputs.ssh_private_key }}" > ~/.ssh/ed25519
         chmod 600 ~/.ssh/ed25519
         cat <<EOF > ~/.ssh/config
-        Host *
-          ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h.piny940.com
+        Host cherry
+          ProxyCommand /usr/local/bin/cloudflared access ssh --hostname cherry.piny940.com
           IdentityFile ~/.ssh/ed25519
           StrictHostKeyChecking no
           Port 53823
