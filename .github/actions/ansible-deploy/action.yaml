@@ -18,13 +18,6 @@ runs:
     - uses: ./.github/actions/setup-aqua
       with:
         working_directory: ansible
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-        cache: 'pip'
-    - name: Install Ansible
-      run: pip install -r ansible/requirements.txt
-      shell: bash
     - name: Download Cloudflared
       run: curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
       shell: bash
@@ -50,6 +43,13 @@ runs:
         EOF
     - name: Write Password
       run: echo ${{ inputs.ansible_password }} > ansible/home-cluster/.ansible-vault-password
+      shell: bash
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+        cache: 'pip'
+    - name: Install Ansible
+      run: pip install -r ansible/requirements.txt
       shell: bash
     - name: Deploy
       shell: bash
