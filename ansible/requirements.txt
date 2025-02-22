@@ -8,3 +8,4 @@ packaging==24.2
 pycparser==2.22
 PyYAML==6.0.2
 resolvelib==1.0.1
+passlib==1.7.4
