@@ -1,0 +1,12 @@
+---
+- name: Make sure .ssh directory exists
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+    mode: "0700"
+- name: Create private key
+  ansible.builtin.openssh_keypair:
+    type: ed25519
+    state: present
+    path: ~/.ssh/k0sctl
+  register: k0sctl_key_pair
