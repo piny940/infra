@@ -9,7 +9,7 @@ spec:
         address: 192.168.151.104
         user: privileged
         port: 53823
-        keyPath: .ssh/k0sctl
+        keyPath: ~/.ssh/k0sctl
       role: controller+worker
       noTaints: true
   k0s:
