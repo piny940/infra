@@ -22,3 +22,10 @@
     mode: "0644"
   notify: restart_sshd
   become: true
+- name: Add privileged user to sudoers
+  community.general.sudoers:
+    commands: ALL
+    name: privileged
+    nopassword: true
+    state: present
+    user: privileged
