@@ -1,0 +1,15 @@
+---
+- name: Make sure directory exists
+  ansible.builtin.file:
+    path: /tmp/k9s
+    state: directory
+    mode: 0755
+- name: Download k9s
+  ansible.builtin.get_url:
+    url: https://github.com/derailed/k9s/releases/download/v{{ k9s.version }}/k9s_linux_amd64.deb
+    dest: /tmp/k9s/k9s_linux_amd64_{{ k9s.version }}.deb
+    mode: 0644
+- name: Install k9s
+  ansible.builtin.apt:
+    deb: /tmp/k9s/k9s_linux_amd64_{{ k9s.version }}.deb
+    state: present
