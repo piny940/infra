@@ -25,6 +25,7 @@
     owner: root
     group: root
     state: present
+    mode: "0644"
 - name: Restart multipathd service
   ansible.builtin.service:
     name: multipathd

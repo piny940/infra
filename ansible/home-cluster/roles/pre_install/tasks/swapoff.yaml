@@ -20,3 +20,5 @@
     masked: true
 - name: Disable swap
   ansible.builtin.command: /sbin/swapoff -a
+  changed_when: false
+  when: swap_file.stat.exists
