@@ -1,9 +1,9 @@
 ---
 - name: Install Flux CLI
-  include_tasks: flux.yaml
+  ansible.builtin.include_tasks: flux.yaml
 - name: Install velero
-  include_tasks: velero.yaml
+  ansible.builtin.include_tasks: velero.yaml
 - name: Install vault
-  include_tasks: vault.yaml
+  ansible.builtin.include_tasks: vault.yaml
 - name: Install k9s
-  include_tasks: k9s.yaml
+  ansible.builtin.include_tasks: k9s.yaml

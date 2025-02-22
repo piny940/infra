@@ -12,12 +12,12 @@
   ansible.builtin.file:
     path: /tmp/vault
     state: directory
-    mode: 0755
+    mode: "0755"
 - name: Download Vault GPG key
   ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
     dest: /tmp/vault/vault.gpg
-    mode: 0644
+    mode: "0644"
 - name: Create keyrings directory if not exists
   become: true
   ansible.builtin.file:
