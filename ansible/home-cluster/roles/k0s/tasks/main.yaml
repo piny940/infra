@@ -1,0 +1,15 @@
+---
+- name: Create privileged user
+  ansible.builtin.user:
+    name: privileged
+    password: "{{ privileged.password | password_hash('sha512') }}"
+    groups: sudo
+    append: yes
+    state: present
+  become: true
+- name: Configure authorized key
+  ansible.posix.authorized_key:
+    user: privileged
+    key: "{{ k0sctl_key_pair['public_key'] }}"
+    state: present
+  become: true
