@@ -47,7 +47,6 @@ runs:
     - uses: actions/setup-python@v5
       with:
         python-version: '3.13'
-        cache: 'pip'
     - name: Install Ansible
       run: pip install -r ansible/requirements.txt
       shell: bash
