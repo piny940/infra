@@ -7,3 +7,5 @@ k9s:
   version: "0.32.7"
 k0sctl:
   version: "0.22.0"
+k0sctl_host:
+  address: "192.168.151.104"
