@@ -13,3 +13,12 @@
     key: "{{ k0sctl_key_pair['public_key'] }}"
     state: present
   become: true
+- name: Configure sshd
+  ansible.builtin.template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config.d/privileged.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart_sshd
+  become: true
