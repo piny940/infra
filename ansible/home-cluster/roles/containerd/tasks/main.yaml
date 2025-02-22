@@ -24,20 +24,7 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
     mode: "0644"
-  register: gpg_key
-- name: Create keyrings directory if not exists
-  become: true
-  ansible.builtin.file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: "0755"
-- name: Add Docker repository
-  become: true
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
-    state: present
-    filename: docker
-  when: gpg_key.changed
+  notify: add_containerd_repo
 - name: Apt update
   become: true
   ansible.builtin.apt:
