@@ -10,6 +10,10 @@
 ![Stg Nodes Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fstg-k8s-status-badge.piny940.com%2Fnodes)
 ![Stg Pods Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fstg-k8s-status-badge.piny940.com%2Fpods)
 
+## 概要
+
+ansible で自宅サーバーの構成管理: [ansible/README.md](ansible/README.md)
+
 k8s の構築手順: [kubernetes/README.md](kubernetes/README.md)
 
 GCP リソースの terraform 管理：[gcp/](gcp)
