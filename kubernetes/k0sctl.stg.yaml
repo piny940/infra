@@ -13,7 +13,7 @@ spec:
       role: controller+worker
       noTaints: true
   k0s:
-    version: 1.30.9+k0s.0
+    version: 1.31.5+k0s.0
     config:
       apiVersion: k0s.k0sproject.io/v1beta1
       kind: ClusterConfig
