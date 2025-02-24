@@ -49,7 +49,7 @@ jobs:
           args: ""
           setup_python: "true"
           working_directory: "ansible/home-cluster"
-          requirements_file: "ansible/home-cluster/requirements.yaml"
+          requirements_file: "requirements.yaml"
   kubeconform:
     runs-on: ubuntu-latest
     needs: filter
