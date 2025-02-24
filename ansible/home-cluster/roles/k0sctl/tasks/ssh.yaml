@@ -5,7 +5,7 @@
     state: directory
     mode: "0700"
 - name: Create private key
-  ansible.builtin.openssh_keypair:
+  community.crypto.openssh_keypair:
     type: ed25519
     state: present
     path: .ssh/k0sctl

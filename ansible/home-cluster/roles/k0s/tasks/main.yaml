@@ -4,7 +4,7 @@
     name: privileged
     password: "{{ privileged.password | password_hash('sha512') }}"
     groups: sudo
-    append: yes
+    append: true
     state: present
   become: true
 - name: Configure authorized key

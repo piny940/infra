@@ -3,10 +3,10 @@
   ansible.builtin.file:
     path: /tmp/k0sctl
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Install k0sctl
   ansible.builtin.get_url:
     url: https://github.com/k0sproject/k0sctl/releases/download/v{{ k0sctl.version }}/k0sctl-linux-amd64
     dest: /usr/local/bin/k0sctl_v{{ k0sctl.version }}_linux_amd64
-    mode: '0755'
+    mode: "0755"
   notify: create_symlink

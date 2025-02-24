@@ -1,5 +1,5 @@
 ---
 - name: Install k0sctl
-  include_tasks: install.yaml
+  ansible.builtin.include_tasks: install.yaml
 - name: Setup SSH
-  include_tasks: ssh.yaml
+  ansible.builtin.include_tasks: ssh.yaml
