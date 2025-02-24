@@ -315,7 +315,7 @@ velero get backup
 まずは longhorn
 
 ```bash
-velero restore create --include-namespaces longhorn-system --from-backup {backup-name}
+velero restore create --include-cluster-resources --include-namespaces longhorn-system --from-backup {backup-name}
 ```
 
 完了したらそれ以外のリソースを復元
