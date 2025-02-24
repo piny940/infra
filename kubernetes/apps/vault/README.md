@@ -128,16 +128,10 @@ kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
 
 ### 認証周りの設定
 
-vault にログイン
-
-```bash
-export VAULT_ADDR="https://${PREFIX}vault.piny940.com"
-jq -r ".root_token" ~/cluster-keys.json | vault login -
-```
-
 初回のみ、kubernetes の認証を有効にする
 
 ```bash
+kubectl exec vault-0 -n vault -- \
 vault auth enable kubernetes
 ```
 
@@ -152,11 +146,12 @@ SA_CA_CRT=$(kubectl config view --raw --minify --flatten \
  --output 'jsonpath={.clusters[].cluster.certificate-authority-data}' | base64 --decode)
 K8S_HOST=$(kubectl config view --raw --minify --flatten \
     --output 'jsonpath={.clusters[].cluster.server}')
-vault write auth/kubernetes/config \
-  token_reviewer_jwt="$SA_JWT_TOKEN" \
-  kubernetes_host="$K8S_HOST" \
-  kubernetes_ca_cert="$SA_CA_CRT" \
-  issuer="https://kubernetes.default.svc.cluster.local"
+kubectl exec vault-0 -n vault -- \
+  vault write auth/kubernetes/config \
+    token_reviewer_jwt="$SA_JWT_TOKEN" \
+    kubernetes_host="$K8S_HOST" \
+    kubernetes_ca_cert="$SA_CA_CRT" \
+    issuer="https://kubernetes.default.svc.cluster.local"
 ```
 
 ## WebUI にログイン
