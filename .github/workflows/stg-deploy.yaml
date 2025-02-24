@@ -76,7 +76,8 @@ jobs:
         uses: ./.github/actions/ansible-deploy
         with:
           env: staging
-          cloudflare_tunnel_token: ${{ secrets.CLOUDFLARE_STAGING_TUNNEL_TOKEN }}
+          cloudflare_client_id: ${{ secrets.CLOUDFLARE_CLIENT_ID }}
+          cloudflare_client_secret: ${{ secrets.CLOUDFLARE_CLIENT_SECRET }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ansible_password: ${{ secrets.ANSIBLE_PASSWORD }}
   kube:
