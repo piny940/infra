@@ -116,7 +116,7 @@ spec:
           - name: rm-chunks-head
             image: quay.io/prometheus/prometheus:latest
             restart: always
-            command: ["sh", "-c", "rm -rf /prometheus/chunks_head"]
+            command: ["sh", "-c", "ls -l /prometheus/chunks_head && rm -rf /prometheus/chunks_head"]
             volumeMounts:
               - mountPath: /prometheus
                 name: prometheus-kube-prometheus-stack-prometheus-db
