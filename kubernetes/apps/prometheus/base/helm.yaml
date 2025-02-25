@@ -112,3 +112,11 @@ spec:
                   storage: 20Gi
         podMonitorSelectorNilUsesHelmValues: true
         serviceMonitorSelectorNilUsesHelmValues: false
+        initContainers:
+          - name: rm-chunks-head
+            image: quay.io/prometheus/prometheus:latest
+            restart: always
+            command: ["sh", "-c", "rm -rf /prometheus/data/chunks_head"]
+            volumeMounts:
+              - mountPath: /prometheus
+                name: prometheus-kube-prometheus-stack-prometheus-db
