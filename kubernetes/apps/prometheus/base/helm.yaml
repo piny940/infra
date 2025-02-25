@@ -118,7 +118,7 @@ spec:
             restart: always
             entrypoint: ["/bin/sh", "-c"]
             command:
-              - 'rm -rf /prometheus/data/chunks_head; /bin/prometheus --config.file=/etc/prometheus/prometheus.yml'
+              - 'rm -rf /prometheus/data/chunks_head'
             volumeMounts:
               - mountPath: /prometheus
                 name: prometheus-kube-prometheus-stack-prometheus-db
