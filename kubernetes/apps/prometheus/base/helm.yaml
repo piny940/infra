@@ -113,9 +113,9 @@ spec:
         podMonitorSelectorNilUsesHelmValues: true
         serviceMonitorSelectorNilUsesHelmValues: false
         initContainers:
-          - name: rm-chunks-head                         
-            image: quay.io/prometheus/prometheus:latest                                             
-            restart: always                                                                                                                                                                                                              
-            entrypoint: ["/bin/sh","-c"]                                                                           
-            command:                                                                                               
+          - name: rm-chunks-head
+            image: quay.io/prometheus/prometheus:latest
+            restart: always
+            entrypoint: ["/bin/sh", "-c"]
+            command:
               - 'rm -rf /prometheus/data/chunks_head; /bin/prometheus --config.file=/etc/prometheus/prometheus.yml'
