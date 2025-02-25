@@ -113,13 +113,13 @@ spec:
         podMonitorSelectorNilUsesHelmValues: true
         serviceMonitorSelectorNilUsesHelmValues: false
         initContainers:
-          - name: rm-chunks-head                         
-            image: quay.io/prometheus/prometheus:latest                                             
-            restart: always                                                                                                                                                                                                              
-            entrypoint: ["/bin/sh","-c"]                                                                           
+          - name: rm-chunks-head
+            image: quay.io/prometheus/prometheus:latest
+            restart: always
+            entrypoint: ["/bin/sh", "-c"]
             command:
               - 'rm -rf /prometheus/data/chunks_head; /bin/prometheus --config.file=/etc/prometheus/prometheus.yml'
             volumeMounts:
               - mountPath: /prometheus
                 name: prometheus-kube-prometheus-stack-prometheus-db
-                subPath: prometheus-db                                                                                
+                subPath: prometheus-db
