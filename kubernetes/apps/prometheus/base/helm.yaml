@@ -122,4 +122,3 @@ spec:
             volumeMounts:
               - mountPath: /prometheus
                 name: prometheus-kube-prometheus-stack-prometheus-db
-                subPath: prometheus-db
