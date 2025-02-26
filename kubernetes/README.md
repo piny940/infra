@@ -10,7 +10,7 @@ bash scripts/flux-kustomize.sh
 - Merge すると staging・production の両方に更新が走る
 
 ## k8s クラスタの立て方
-
+<!-- 
 ### 事前準備
 
 - containerd が入っていない場合はインストールする
@@ -184,9 +184,9 @@ sudo apt update && sudo apt install vault
 wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb \
   && sudo apt install ./k9s_linux_amd64.deb \
   && rm k9s_linux_amd64.deb
-```
+``` -->
 
-### kubeadm init
+<!-- ### kubeadm init
 
 CNI の設定やらの残骸を削除
 
@@ -224,6 +224,12 @@ kubeadm join ...
 
 ```bash
 kubectl taint nodes {node-name} node-role.kubernetes.io/control-plane:NoSchedule-
+``` -->
+
+### k0s を実行
+
+```bash
+k0sctl apply --config k0sctl.yaml
 ```
 
 ### namespace を作成
@@ -309,7 +315,7 @@ velero get backup
 まずは longhorn
 
 ```bash
-velero restore create --include-namespaces longhorn-system --from-backup {backup-name}
+velero restore create --include-cluster-resources --include-namespaces longhorn-system --from-backup {backup-name}
 ```
 
 完了したらそれ以外のリソースを復元

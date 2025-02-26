@@ -2,14 +2,17 @@ inputs:
   env:
     description: "Environment to deploy to"
     required: true
-  cloudflare_tunnel_token:
-    description: "Cloudflare Tunnel Token"
-    required: true
   ssh_private_key:
     description: "SSH Private Key"
     required: true
   ansible_password:
     description: "Ansible Vault Password"
+    required: true
+  cloudflare_client_id:
+    description: "Cloudflare Client ID"
+    required: true
+  cloudflare_client_secret:
+    description: "Cloudflare Client Secret"
     required: true
 
 runs:
@@ -30,9 +33,6 @@ runs:
     - name: Install Cloudflared
       run: sudo dpkg -i cloudflared.deb
       shell: bash
-    - name: Setup Cloudflare tunnel
-      run: sudo cloudflared service install ${{ inputs.cloudflare_tunnel_token }}
-      shell: bash
     - name: Setup SSH
       shell: bash
       run: |
@@ -41,7 +41,7 @@ runs:
         chmod 600 ~/.ssh/ed25519
         cat <<EOF > ~/.ssh/config
         Host cherry
-          ProxyCommand /usr/local/bin/cloudflared access ssh --hostname cherry.piny940.com
+          ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ inputs.cloudflare_client_id }} --secret ${{ inputs.cloudflare_client_secret }} --hostname cherry.piny940.com
           IdentityFile ~/.ssh/ed25519
           StrictHostKeyChecking no
           Port 53823

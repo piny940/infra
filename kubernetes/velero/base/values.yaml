@@ -24,7 +24,7 @@ deployNodeAgent: true
 backupsEnabled: true
 snapshotsEnabled: false
 nodeAgent:
-  podVolumePath: /var/lib/kubelet/pods
+  podVolumePath: /var/lib/k0s/kubelet/pods
   resources:
     requests:
       cpu: 500m

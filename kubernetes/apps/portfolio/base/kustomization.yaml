@@ -28,7 +28,7 @@ configMapGenerator:
       - AUTH_AUTH_SERVER_URL=
       - AUTH_AUTH_SERVER_ISSUER=
       - AUTH_AUTH_AUDIENCE=
-      - AUTH_CLUSTER_ISSUER=https://kubernetes.default.svc.cluster.local
+      - AUTH_CLUSTER_ISSUER=https://kubernetes.default.svc
       - AUTH_CLUSTER_AUDIENCE=portfolio.piny940.com
       - AUTH_TOKEN_TTL=86400
       - SKIP_AUTH=false

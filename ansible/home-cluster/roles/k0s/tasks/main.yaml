@@ -1,0 +1,31 @@
+---
+- name: Create privileged user
+  ansible.builtin.user:
+    name: privileged
+    password: "{{ privileged.password | password_hash('sha512') }}"
+    groups: sudo
+    append: true
+    state: present
+  become: true
+- name: Configure authorized key
+  ansible.posix.authorized_key:
+    user: privileged
+    key: "{{ k0sctl_key_pair['public_key'] }}"
+    state: present
+  become: true
+- name: Configure sshd
+  ansible.builtin.template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config.d/privileged.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart_sshd
+  become: true
+- name: Add privileged user to sudoers
+  community.general.sudoers:
+    commands: ALL
+    name: privileged
+    nopassword: true
+    state: present
+    user: privileged
