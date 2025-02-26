@@ -1,0 +1,31 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: k0s-cluster
+  user: admin
+spec:
+  hosts:
+    - ssh:
+        address: 192.168.151.158
+        user: privileged
+        port: 53823
+        keyPath: ~/.ssh/k0sctl
+      role: controller+worker
+      noTaints: true
+  k0s:
+    version: 1.31.5+k0s.0
+    config:
+      apiVersion: k0s.k0sproject.io/v1beta1
+      kind: ClusterConfig
+      metadata:
+        name: k0s
+      spec:
+        network:
+          provider: custom
+          podCIDR: 10.244.0.0/16
+          kubeProxy:
+            mode: ipvs
+            ipvs:
+              strictARP: true
+        telemetry:
+          enabled: false
