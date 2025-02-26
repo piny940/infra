@@ -12,7 +12,6 @@ jobs:
   path-filter:
     runs-on: ubuntu-latest
     outputs:
-      ansible: ${{ steps.path-filter.outputs.ansible }}
       kube: ${{ steps.path-filter.outputs.kube }}
       svcmtr: ${{ steps.path-filter.outputs.svcmtr }}
       gcp: ${{ steps.path-filter.outputs.gcp }}
@@ -24,10 +23,6 @@ jobs:
         id: path-filter
         with:
           filters: |
-            ansible:
-              - "ansible/**"
-              - ".github/workflows/prd-deploy.yaml"
-              - ".github/actions/**"
             kube:
               - "kubernetes/**"
               - ".github/workflows/prd-deploy.yaml"
@@ -49,21 +44,6 @@ jobs:
               - ".github/workflows/prd-deploy.yaml"
               - ".github/actions/**"
 
-  ansible:
-    runs-on: ubuntu-latest
-    needs: path-filter
-    environment: production
-    if: needs.path-filter.outputs.ansible == 'true'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy Ansible
-        uses: ./.github/actions/ansible-deploy
-        with:
-          env: production
-          cloudflare_client_id: ${{ secrets.CLOUDFLARE_CLIENT_ID }}
-          cloudflare_client_secret: ${{ secrets.CLOUDFLARE_CLIENT_SECRET }}
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ansible_password: ${{ secrets.ANSIBLE_PASSWORD }}
   gcp-apply:
     runs-on: ubuntu-latest
     needs: path-filter
