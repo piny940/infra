@@ -40,8 +40,8 @@ runs:
         echo "${{ inputs.ssh_private_key }}" > ~/.ssh/ed25519
         chmod 600 ~/.ssh/ed25519
         cat <<EOF > ~/.ssh/config
-        Host cherry
-          ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ inputs.cloudflare_client_id }} --secret ${{ inputs.cloudflare_client_secret }} --hostname cherry.piny940.com
+        Host *
+          ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ inputs.cloudflare_client_id }} --secret ${{ inputs.cloudflare_client_secret }} --hostname %h.piny940.com
           IdentityFile ~/.ssh/ed25519
           StrictHostKeyChecking no
           Port 53823
