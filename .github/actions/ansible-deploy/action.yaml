@@ -52,6 +52,9 @@ runs:
           Port 53823
           User ansai
         EOF
+    - name: Test SSH
+      run: ssh cherry -vvv
+      shell: bash
     - name: Write Password
       run: echo ${{ inputs.ansible_password }} > ansible/home-cluster/.ansible-vault-password
       shell: bash
