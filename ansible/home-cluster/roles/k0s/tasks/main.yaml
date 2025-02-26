@@ -20,7 +20,7 @@
     owner: root
     group: root
     mode: "0644"
-  notify: restart_sshd
+  notify: Restart sshd
   become: true
 - name: Add privileged user to sudoers
   community.general.sudoers:

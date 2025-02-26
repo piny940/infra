@@ -1,5 +1,5 @@
 ---
-- name: Create_symlink
+- name: Create symlink
   ansible.builtin.file:
     src: /usr/local/bin/k0sctl_v{{ k0sctl.version }}_linux_amd64
     dest: /usr/local/bin/k0sctl

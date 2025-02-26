@@ -27,7 +27,7 @@
     mode: "0644"
   notify:
     - generate_gpg_key
-    - add_kubernetes_repo
+    - Add kubernetes repo
 - name: Apt update
   become: true
   ansible.builtin.apt:

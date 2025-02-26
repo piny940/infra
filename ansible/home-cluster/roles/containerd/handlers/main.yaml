@@ -1,5 +1,5 @@
 ---
-- name: Add_containerd_repo
+- name: Add containerd repo
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
     state: present
