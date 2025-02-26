@@ -44,6 +44,8 @@ runs:
           ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ inputs.cloudflare_client_id }} --secret ${{ inputs.cloudflare_client_secret }} --hostname %h.piny940.com
           IdentityFile ~/.ssh/ed25519
           StrictHostKeyChecking no
+          ConnectTimeout 10
+          ConnectionAttempts 5
           Port 53823
           User ansai
         EOF
