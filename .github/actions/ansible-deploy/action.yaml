@@ -33,6 +33,9 @@ runs:
     - name: Install Cloudflared
       run: sudo dpkg -i cloudflared.deb
       shell: bash
+    - name: Test Cloudflared
+      run: /usr/local/bin/cloudflared --version
+      shell: bash
     - name: Setup SSH
       shell: bash
       run: |
