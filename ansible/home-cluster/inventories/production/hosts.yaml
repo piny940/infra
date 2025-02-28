@@ -7,7 +7,14 @@ all:
       ansible_user: ansai
       ansible_become_password: "{{ peach.ansible_become_password }}"
       ansible_python_interpreter: /usr/bin/python3
+    olive:
+      ansible_host: olive
+      ansible_ssh_private_key_file: ~/.ssh/ed25519
+      ansible_user: ansai
+      ansible_become_password: "{{ olive.ansible_become_password }}"
+      ansible_python_interpreter: /usr/bin/python3
   children:
     master_node:
       hosts:
         peach:
+        olive:

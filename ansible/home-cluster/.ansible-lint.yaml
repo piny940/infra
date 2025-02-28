@@ -2,3 +2,5 @@
 extra_vars:
   cherry:
     ansible_become_password: password
+skip_list:
+  - no-handler

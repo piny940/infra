@@ -9,9 +9,18 @@
     url: https://baltocdn.com/helm/signing.asc
     dest: /tmp/helm/signing.asc
     mode: "0644"
-  notify:
-    - Helm gpg key
-    - Add helm repo
+  register: download_helm_signing
+- name: Helm gpg key
+  ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/helm.gpg /tmp/helm/signing.asc
+  args:
+    creates: /etc/apt/keyrings/helm.gpg
+  when: download_helm_signing.changed
+- name: Add helm repo
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main
+    state: present
+    filename: helm
+  when: download_helm_signing.changed
 - name: Apt update
   ansible.builtin.apt:
     update_cache: true
