@@ -11,3 +11,14 @@
   vars_files:
     - vars/hosts.yaml
     - vars/kubernetes.yaml
+- name: Setup Worker Nodes
+  hosts: worker_nodes
+  become: true
+  roles:
+    - { role: k0sctl, tags: k0sctl }
+    - { role: k0s, tags: k0s }
+    - { role: pre_install, tags: pre_install }
+    - { role: cli, tags: cli }
+  vars_files:
+    - vars/hosts.yaml
+    - vars/kubernetes.yaml

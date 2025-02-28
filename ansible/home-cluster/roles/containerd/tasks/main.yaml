@@ -24,7 +24,13 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
     mode: "0644"
-  notify: Add containerd repo
+  register: download_docker_gpg
+- name: Add containerd repo
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
+    state: present
+    filename: docker
+  when: download_docker_gpg.changed
 - name: Apt update
   become: true
   ansible.builtin.apt:

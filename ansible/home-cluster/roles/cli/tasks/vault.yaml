@@ -21,9 +21,18 @@
     url: https://apt.releases.hashicorp.com/gpg
     dest: /tmp/vault/vault.gpg
     mode: "0644"
-  notify:
-    - Generate vault keyring
-    - Add vault repo
+  register: download_vault_gpg
+- name: Generate vault keyring
+  ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/vault.gpg /tmp/vault/vault.gpg
+  args:
+    creates: /etc/apt/keyrings/vault.gpg
+  when: download_vault_gpg.changed
+- name: Add vault repo
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/vault.gpg] https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
+    state: present
+    filename: vault
+  when: download_vault_gpg.changed
 - name: Apt update
   ansible.builtin.apt:
     update_cache: true
