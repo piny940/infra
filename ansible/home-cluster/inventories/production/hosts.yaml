@@ -14,7 +14,12 @@ all:
       ansible_become_password: "{{ olive.ansible_become_password }}"
       ansible_python_interpreter: /usr/bin/python3
   children:
-    master_node:
+    k0sctl:
       hosts:
         peach:
+    master_nodes:
+      hosts:
+        peach:
+    worker_nodes:
+      hosts:
         olive:

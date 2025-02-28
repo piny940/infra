@@ -8,6 +8,9 @@ all:
       ansible_become_password: "{{ cherry.ansible_become_password }}"
       ansible_python_interpreter: /usr/bin/python3
   children:
-    master_node:
+    k0sctl:
+      hosts:
+        cherry:
+    master_nodes:
       hosts:
         cherry:

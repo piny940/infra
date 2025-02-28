@@ -10,7 +10,7 @@
 - name: Configure authorized key
   ansible.posix.authorized_key:
     user: privileged
-    key: "{{ k0sctl_key_pair['public_key'] }}"
+    key: "{{ hostvars[groups['k0sctl'][0]].k0sctl_key_pair['public_key'] }}"
     state: present
   become: true
 - name: Configure sshd
