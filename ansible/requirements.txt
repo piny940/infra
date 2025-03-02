@@ -1,7 +1,7 @@
 ansible==11.3.0
 ansible-core==2.18.3
 cffi==1.17.1
-cryptography==44.0.1
+cryptography==44.0.2
 Jinja2==3.1.5
 MarkupSafe==3.0.2
 packaging==24.2
