@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: portfolio-admin
     newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:stg-portfolio-admin:name"}
-    newTag: main-7bdb4782c9f7d0655c04243d64b9455f1f078d18-20250303015308 # {"$imagepolicy": "default:stg-portfolio-admin:tag"}
+    newTag: main-caea687cbc75a745ef54d243d34ef0534557df5d-20250303070524 # {"$imagepolicy": "default:stg-portfolio-admin:tag"}
   - name: portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:stg-portfolio-app:name"}
     newTag: main-caea687cbc75a745ef54d243d34ef0534557df5d-20250303070525 # {"$imagepolicy": "default:stg-portfolio-app:tag"}
