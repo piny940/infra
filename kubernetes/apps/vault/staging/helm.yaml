@@ -10,5 +10,6 @@ spec:
         tls:
           - hosts:
               - stg-vault.piny940.com
+            secretName: cluster-tls
         hosts:
           - host: stg-vault.piny940.com
