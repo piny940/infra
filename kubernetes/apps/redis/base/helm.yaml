@@ -24,7 +24,9 @@ spec:
         name: bitnami
   values:
     auth:
-      enabled: false
+      enabled: true
+      existingSecret: redis-secret
+      existingSecretPasswordKey: redis-password
     master:
       count: 1
       kind: StatefulSet
