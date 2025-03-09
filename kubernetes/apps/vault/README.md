@@ -128,6 +128,16 @@ kubectl exec vault-0 -n vault -- vault operator unseal $VAULT_UNSEAL_KEY
 
 ### 認証周りの設定
 
+ログイン：
+
+```bash
+jq -r ".root_token" ~/cluster-keys.json
+```
+
+```bash
+kubectl exec vault-0 -n vault -- vault login {root_token}
+```
+
 初回のみ、kubernetes の認証を有効にする
 
 ```bash
