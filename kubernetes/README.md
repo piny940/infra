@@ -300,7 +300,7 @@ velero restore create --include-cluster-resources --include-namespaces longhorn-
 完了したらそれ以外のリソースを復元
 
 ```bash
-velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system,longhorn-system --from-backup {backup-name}
+velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system,longhorn-system,metallb-system --from-backup {backup-name}
 ```
 
 ### Vault のセットアップ
