@@ -238,27 +238,6 @@ k0sctl apply --config k0sctl.yaml
 kubectl apply -k namespaces
 ```
 
-### flannel をインストール
-
-```bash
-env=staging
-kubectl apply -k apps/flannel/$env
-```
-
-reboot が必要(多分)
-
-```bash
-sudo systemctl reboot
-```
-
-reboot したら swap が再度有効化されるため、再度無効化する。
-
-```bash
-sudo swapoff -a
-```
-
-Pod が起動するまで少し時間がかかる(多分)
-
 ### Workload Identity 連携を設定
 
 `cluster-jwks.json` を作成
