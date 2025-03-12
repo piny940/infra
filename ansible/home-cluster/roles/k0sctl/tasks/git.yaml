@@ -1,0 +1,8 @@
+---
+- name: Git clone infra repository
+  ansible.builtin.git:
+    clone: true
+    dest: "~/infra"
+    repo: https://github.com/piny940/infra.git
+    update: true
+    version: main
