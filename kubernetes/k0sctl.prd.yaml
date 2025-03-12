@@ -10,7 +10,6 @@ spec:
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: controller
-      noTaints: true
     - ssh:
         address: 192.168.151.228
         user: privileged
