@@ -56,3 +56,6 @@ all:
         betelgeuse:
         rigel:
         olive:
+    ha_proxies:
+      hosts:
+        castor:
