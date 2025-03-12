@@ -17,7 +17,7 @@ export VAULT_K8S_NAMESPACE="vault"
 export VAULT_HELM_RELEASE_NAME="vault"
 export VAULT_SERVICE_NAME="vault"
 export K8S_CLUSTER_NAME="cluster.local"
-export WORKDIR="/tmp/vault"
+export WORKDIR="/tmp/vault-keys"
 mkdir -p ${WORKDIR}
 ```
 
