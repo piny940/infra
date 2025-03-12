@@ -5,6 +5,7 @@
   roles:
     - { role: k0sctl, tags: k0sctl }
     - { role: cli, tags: cli }
+    - { role: helm, tags: helm }
   vars_files:
     - vars/hosts.yaml
     - vars/kubernetes.yaml
