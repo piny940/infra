@@ -3,5 +3,3 @@
   ansible.builtin.include_tasks: install.yaml
 - name: Setup SSH
   ansible.builtin.include_tasks: ssh.yaml
-- name: Git clone infra repository
-  ansible.builtin.include_tasks: git.yaml

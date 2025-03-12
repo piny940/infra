@@ -6,16 +6,19 @@ metadata:
 spec:
   hosts:
     - ssh:
-        address: 192.168.151.158
+        address: 192.168.151.224
         user: privileged
-        port: 53823
         keyPath: ~/.ssh/k0sctl
-      role: controller+worker
+      role: controller
       noTaints: true
     - ssh:
-        address: 192.168.151.180
+        address: 192.168.151.228
         user: privileged
-        port: 53823
+        keyPath: ~/.ssh/k0sctl
+      role: worker
+    - ssh:
+        address: 192.168.151.225
+        user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
   k0s:
