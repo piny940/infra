@@ -27,8 +27,6 @@ spec:
       ingress:
         enabled: false
       alertmanagerSpec:
-        nodeSelector:
-          node-role.kubernetes.io/control-plane: ""
         alertmanagerConfiguration:
           name: slack-alert
         replicas: 1
@@ -84,8 +82,6 @@ spec:
       ingress:
         enabled: false
       prometheusSpec:
-        nodeSelector:
-          node-role.kubernetes.io/control-plane: ""
         ruleSelector:
           matchExpressions:
             - key: app

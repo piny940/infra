@@ -21,8 +21,6 @@ spec:
         name: nextcloud
   values:
     replicaCount: 3
-    nodeSelector:
-      node-role.kubernetes.io/control-plane: ""
     ingress:
       enabled: true
       className: nginx

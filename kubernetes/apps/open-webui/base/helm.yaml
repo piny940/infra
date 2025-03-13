@@ -42,8 +42,6 @@ spec:
     persistence:
       enabled: true
       existingClaim: open-webui-pvc
-    nodeSelector:
-      node-role.kubernetes.io/control-plane: ""
     extraEnvVars:
       - name: OPENAI_API_KEY
         valueFrom:
