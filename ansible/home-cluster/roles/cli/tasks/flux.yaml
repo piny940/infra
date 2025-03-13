@@ -10,6 +10,6 @@
     dest: /tmp/flux/flux-install.sh
     mode: "0755"
 - name: Run flux install script
-  ansible.builtin.command: /tmp/flux-install.sh
+  ansible.builtin.command: /tmp/flux/flux-install.sh
   args:
     creates: /usr/local/bin/flux
