@@ -1,0 +1,22 @@
+name: Staging push
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: read
+  packages: write
+
+jobs:
+  kube:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Push to staging branch
+        run:  |
+          git push -u origin HEAD:staging -f
