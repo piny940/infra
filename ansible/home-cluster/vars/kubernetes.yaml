@@ -9,3 +9,5 @@ k0sctl:
   version: "0.22.0"
 k0sctl_host:
   address: "192.168.151.104"
+aqua:
+  version: "2.46.0-0"
