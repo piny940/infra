@@ -10,4 +10,3 @@ csi:
   snapshotterReplicaCount: 1
 defaultSettings:
   storageReservedPercentageForDefaultDisk: 5
-
