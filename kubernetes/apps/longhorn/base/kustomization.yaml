@@ -5,5 +5,7 @@ resources:
   - helm.yaml
 configMapGenerator:
   - name: values
+    files:
+      - values.base.yaml
 configurations:
   - kustomizeconfig.yaml
