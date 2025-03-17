@@ -10,3 +10,8 @@
     dest: /usr/local/bin/k0sctl_v{{ k0sctl.version }}_linux_amd64
     mode: "0755"
   notify: Create symlink
+- name: Create config directory
+  ansible.builtin.file:
+    path: ~/.kube
+    state: directory
+    mode: "0755"

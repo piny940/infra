@@ -6,16 +6,23 @@ metadata:
 spec:
   hosts:
     - ssh:
-        address: 192.168.151.158
+        address: 192.168.151.224 # altair
         user: privileged
-        port: 53823
         keyPath: ~/.ssh/k0sctl
-      role: controller+worker
-      noTaints: true
+      role: controller
     - ssh:
-        address: 192.168.151.180
+        address: 192.168.151.228 # rigel
         user: privileged
-        port: 53823
+        keyPath: ~/.ssh/k0sctl
+      role: worker
+    - ssh:
+        address: 192.168.151.225 # betelgeuse
+        user: privileged
+        keyPath: ~/.ssh/k0sctl
+      role: worker
+    - ssh:
+        address: 192.168.151.234 # bellatrix
+        user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
   k0s:
@@ -27,7 +34,7 @@ spec:
         name: k0s
       spec:
         network:
-          provider: custom
+          provider: kuberouter
           podCIDR: 10.244.0.0/16
           kubeProxy:
             mode: ipvs

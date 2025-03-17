@@ -25,9 +25,18 @@
     url: https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/Release.key
     dest: /tmp/kubernetes/Release.key
     mode: "0644"
-  notify:
-    - generate_gpg_key
-    - Add kubernetes repo
+  register: gpg_key
+- name: Generate_gpg_key
+  ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/kubernetes/Release.key
+  args:
+    creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  when: gpg_key.changed
+- name: Add kubernetes repo
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/ /
+    state: present
+    filename: kubernetes
+  when: gpg_key.changed
 - name: Apt update
   become: true
   ansible.builtin.apt:
@@ -36,8 +45,6 @@
   become: true
   ansible.builtin.apt:
     name:
-      - kubelet
-      - kubeadm
       - kubectl
     state: present
 - name: Hold kubernetes packages
@@ -46,6 +53,4 @@
     name: "{{ item }}"
     selection: hold
   loop:
-    - kubelet
-    - kubeadm
     - kubectl

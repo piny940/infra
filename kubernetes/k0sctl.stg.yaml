@@ -21,7 +21,7 @@ spec:
         name: k0s
       spec:
         network:
-          provider: custom
+          provider: kuberouter
           podCIDR: 10.244.0.0/16
           kubeProxy:
             mode: ipvs

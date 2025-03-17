@@ -1,9 +1,19 @@
 ---
+- name: Setup HA Proxies
+  hosts: ha_proxies
+  become: true
+  roles:
+    - { role: ha_proxy, tags: ha_proxy }
+  vars_files:
+    - vars/hosts.yaml
+    - vars/kubernetes.yaml
 - name: Setup k0sctl
   hosts: k0sctl
   become: true
   roles:
     - { role: k0sctl, tags: k0sctl }
+    - { role: cli, tags: cli }
+    - { role: helm, tags: helm }
   vars_files:
     - vars/hosts.yaml
     - vars/kubernetes.yaml
@@ -14,7 +24,6 @@
     - { role: k0s, tags: k0s }
     - { role: pre_install, tags: pre_install }
     - { role: helm, tags: helm }
-    - { role: cli, tags: cli }
   vars_files:
     - vars/hosts.yaml
     - vars/kubernetes.yaml

@@ -238,27 +238,6 @@ k0sctl apply --config k0sctl.yaml
 kubectl apply -k namespaces
 ```
 
-### flannel をインストール
-
-```bash
-env=staging
-kubectl apply -k apps/flannel/$env
-```
-
-reboot が必要(多分)
-
-```bash
-sudo systemctl reboot
-```
-
-reboot したら swap が再度有効化されるため、再度無効化する。
-
-```bash
-sudo swapoff -a
-```
-
-Pod が起動するまで少し時間がかかる(多分)
-
 ### Workload Identity 連携を設定
 
 `cluster-jwks.json` を作成
@@ -321,7 +300,7 @@ velero restore create --include-cluster-resources --include-namespaces longhorn-
 完了したらそれ以外のリソースを復元
 
 ```bash
-velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system,longhorn-system --from-backup {backup-name}
+velero restore create --include-cluster-resources --exclude-namespaces velero,flux-system,kube-system,longhorn-system,metallb-system --from-backup {backup-name}
 ```
 
 ### Vault のセットアップ
