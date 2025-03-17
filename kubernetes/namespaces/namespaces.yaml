@@ -57,8 +57,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: open-webui
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: velero
