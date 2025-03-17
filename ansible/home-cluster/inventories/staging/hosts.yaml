@@ -1,16 +1,19 @@
 ---
 all:
   hosts:
-    cherry:
-      ansible_host: cherry
+    procyon:
+      ansible_host: 192.168.151.236
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ cherry.password }}"
+      ansible_become_password: "{{ procyon.password }}"
       ansible_python_interpreter: /usr/bin/python3
   children:
     k0sctl:
       hosts:
-        cherry:
+        procyon:
     master_nodes:
       hosts:
-        cherry:
+        procyon:
+    worker_nodes:
+      hosts:
+        procyon:

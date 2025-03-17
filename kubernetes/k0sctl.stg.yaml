@@ -6,7 +6,7 @@ metadata:
 spec:
   hosts:
     - ssh:
-        address: 192.168.151.104
+        address: 192.168.151.236 # procyon
         user: privileged
         port: 53823
         keyPath: ~/.ssh/k0sctl
