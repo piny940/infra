@@ -15,4 +15,7 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: values
+      valuesKey: values.base.yaml
+    - kind: ConfigMap
+      name: values
       valuesKey: values.yaml

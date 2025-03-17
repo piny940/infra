@@ -8,4 +8,4 @@ echo env = "$env"
 echo version = "$version"
 
 helm repo add longhorn https://charts.longhorn.io
-helm install longhorn longhorn/longhorn --namespace longhorn-system --values apps/longhorn/"$env"/values.yaml --version "$version"
+helm install longhorn longhorn/longhorn --namespace longhorn-system --values apps/longhorn/base/values.base.yaml --values apps/longhorn/"$env"/values.yaml --version "$version"
