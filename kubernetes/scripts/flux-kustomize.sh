@@ -1,7 +1,6 @@
 kustomization() {
   app=$1
   path=$2
-  source=$3
 
   echo "apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -14,7 +13,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: ${source}
+    name: flux-system
     namespace: flux-system" 
 }
 
@@ -40,12 +39,7 @@ createKustomization() {
   fi
 
   target="apps/$app/$env"
-  if [ $env = "staging" ]; then
-    source="apps-git"
-  else
-    source="flux-system"
-  fi
-  kustomization $app $target $source > $file_path
+  kustomization $app $target > $file_path
 }
 
 for env in staging production; do
