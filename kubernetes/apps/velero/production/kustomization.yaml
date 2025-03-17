@@ -3,11 +3,8 @@ kind: Kustomization
 namespace: velero
 resources:
   - ../base
-labels:
-  - pairs:
-      env: production
-    includeSelectors: true
-# configMapGenerator:
-#   - name: velero-conf
-#     behavior: merge
-#     literals: []
+configMapGenerator:
+  - name: values
+    behavior: merge
+    files:
+      - values.yaml
