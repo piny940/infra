@@ -16,7 +16,6 @@ jobs:
       svcmtr: ${{ steps.path-filter.outputs.svcmtr }}
       gcp: ${{ steps.path-filter.outputs.gcp }}
       aws: ${{ steps.path-filter.outputs.aws }}
-      fluxupd: ${{ steps.path-filter.outputs.fluxupd }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -37,10 +36,6 @@ jobs:
               - ".github/actions/**"
             aws:
               - "aws/**"
-              - ".github/workflows/prd-deploy.yaml"
-              - ".github/actions/**"
-            fluxupd:
-              - "flux-target-updater/**"
               - ".github/workflows/prd-deploy.yaml"
               - ".github/actions/**"
 
