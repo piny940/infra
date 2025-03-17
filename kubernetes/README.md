@@ -25,14 +25,24 @@ git pull
 
 ```bash
 env=staging
-k0sctl apply --config k0sctl."$env".yaml
+if [ "$env" = "staging" ]; then
+  ext=stg
+else
+  ext=prd
+fi
+k0sctl apply --config k0sctl."$ext".yaml
 ```
 
 ### config を作成
 
 ```bash
 env=staging
-k0sctl kubeconfig --config k0sctl."$env".yaml > ~/.kube/config
+if [ "$env" = "staging" ]; then
+  ext=stg
+else
+  ext=prd
+fi
+k0sctl kubeconfig --config k0sctl."$ext".yaml > ~/.kube/config
 ```
 
 ### namespace を作成
