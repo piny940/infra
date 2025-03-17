@@ -1,3 +1,8 @@
+if [ -z "$1" ]; then
+  echo "Usage: create-app.sh <app-name>"
+  exit 1
+fi
+
 mkdir -p apps/$1
 mkdir -p apps/$1/base
 mkdir -p apps/$1/staging
