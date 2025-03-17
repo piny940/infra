@@ -3,3 +3,8 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - ../base
+configMapGenerator:
+  - name: values
+    behavior: merge
+    files:
+      - values.yaml
