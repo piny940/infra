@@ -6,17 +6,22 @@ metadata:
 spec:
   hosts:
     - ssh:
-        address: 192.168.151.224
+        address: 192.168.151.224 # altair
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: controller
     - ssh:
-        address: 192.168.151.228
+        address: 192.168.151.228 # rigel
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
     - ssh:
-        address: 192.168.151.225
+        address: 192.168.151.225 # betelgeuse
+        user: privileged
+        keyPath: ~/.ssh/k0sctl
+      role: worker
+    - ssh:
+        address: 192.168.151.234 # bellatrix
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
