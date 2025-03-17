@@ -21,4 +21,4 @@ app_name=$(yq eval .metadata.name apps/velero/base/helm.yaml)
 
 echo version = "$version"
 
-helm install "$app_name" "$repo_name"/"$chart_name" --namespace velero --values velero/base/values.base.yaml --values velero/"$env"/values.yaml --version "$version"
+helm install "$app_name" "$repo_name"/"$chart_name" --namespace velero --values apps/velero/base/values.base.yaml --values apps/velero/"$env"/values.yaml --version "$version"
