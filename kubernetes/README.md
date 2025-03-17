@@ -42,6 +42,7 @@ if [ "$env" = "staging" ]; then
 else
   ext=prd
 fi
+mkdir -p ~/.kube
 k0sctl kubeconfig --config k0sctl."$ext".yaml > ~/.kube/config
 ```
 
