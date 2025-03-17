@@ -17,9 +17,6 @@
     },
     {
       "path": "service-monitor"
-    },
-    {
-      "path": "flux-target-updater"
     }
   ],
   "settings": {}
