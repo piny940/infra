@@ -101,7 +101,7 @@ Velero をインストール
 
 ```bash
 export env=staging
-sh velero/$env/install.sh
+sh apps/velero/install.sh
 ```
 
 次のコマンドで、バックアップが sync されているのを確認する。
