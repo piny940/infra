@@ -100,7 +100,7 @@ kubectl create secret generic backblaze-credential -n velero --from-file=backbla
 Velero をインストール
 
 ```bash
-env=staging
+export env=staging
 sh velero/$env/install.sh
 ```
 
