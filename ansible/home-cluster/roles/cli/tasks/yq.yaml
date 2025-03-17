@@ -1,10 +1,21 @@
 ---
-- name: Apt update
-  apt:
-    update_cache: yes
-  become: yes
-- name: Install yq
-  apt:
-    name: yq
-    state: present
-  become: yes
+- name: Make directory for yq
+  ansible.builtin.file:
+    path: /tmp/yq/yq_{{ yq.version }}_linux_amd64
+    state: directory
+    mode: "0755"
+- name: Download yq
+  ansible.builtin.get_url:
+    url: https://github.com/mikefarah/yq/releases/download/v{{ yq.version }}/yq_linux_amd64.tar.gz
+    dest: /tmp/yq/yq_{{ yq.version }}_linux_amd64.tar.gz
+    mode: "0644"
+- name: Extract yq
+  ansible.builtin.unarchive:
+    src: /tmp/yq/yq_{{ yq.version }}_linux_amd64.tar.gz
+    dest: /tmp/yq/yq_{{ yq.version }}_linux_amd64
+    remote_src: true
+- name: Move yq binary to /usr/local/bin
+  ansible.builtin.command:
+    cmd: mv /tmp/yq/yq_{{ yq.version }}_linux_amd64/yq_linux_amd64 /usr/local/bin/yq
+  args:
+    creates: /usr/local/bin/yq
