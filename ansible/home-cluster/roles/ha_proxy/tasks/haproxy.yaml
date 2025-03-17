@@ -14,11 +14,11 @@
     dest: /etc/haproxy/haproxy.cfg
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Restart HA Proxy
 - name: Enable ha proxy
   ansible.builtin.systemd:
     name: haproxy
-    enabled: yes
+    enabled: true
     state: started
   notify: Restart HA Proxy

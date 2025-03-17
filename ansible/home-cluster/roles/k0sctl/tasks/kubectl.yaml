@@ -54,6 +54,3 @@
     selection: hold
   loop:
     - kubectl
-
-
-

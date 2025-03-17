@@ -1,3 +1,0 @@
----
-- name: Install HA Proxy
-  ansible.builtin.include_tasks: haproxy.yaml
