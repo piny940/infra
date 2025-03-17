@@ -1,9 +1,8 @@
 name: Staging Deploy
 on:
-  pull_request:
   push:
     branches:
-      - main
+      - staging
 
 permissions:
   id-token: write
@@ -50,8 +49,7 @@ jobs:
   kube:
     runs-on: ubuntu-latest
     needs: filter
-    environment: staging # 管理者の承認を必要とする
-    if: needs.filter.outputs.kube == 'true' && github.event_name == 'pull_request'
+    if: needs.filter.outputs.kube == 'true'
     steps:
       - uses: actions/checkout@v4
       - name: Deploy
@@ -62,39 +60,11 @@ jobs:
           target-branch: ${{ github.head_ref }}
           flux-target-updater-token: ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}
           action-link: ${{ github.event.pull_request.html_url }}
-  kube-main:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.kube == 'true' && github.event_name == 'push' && github.ref_name == 'main'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy
-        uses: ./.github/actions/kube-deploy-stg
-        with:
-          slack-bot-token: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
-          slack-channel-id: ${{ vars.STG_SLACK_CHANNEL_ID }}
-          target-branch: main
-          flux-target-updater-token: ${{ secrets.FLUX_TARGET_UPDATER_TOKEN }}
-          action-link: ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
 
   service-monitor:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.svcmtr == 'true' && github.event_name == 'pull_request'
-    environment: staging # 管理者の承認を必要とする
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Deploy
-        uses: ./.github/actions/service-monitor-deploy
-        with:
-          func-name: stg-service-monitor
-          aws-region: ${{ secrets.AWS_REGION }}
-          aws-update-health-check-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
-  service-monitor-main:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.svcmtr == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    if: needs.filter.outputs.svcmtr == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -108,24 +78,7 @@ jobs:
   fluxupd:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.fluxupd == 'true' && github.event_name == 'pull_request'
-    environment: staging # 管理者の承認を必要とする
-    steps:
-      - name: Get current datetime
-        run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-      - name: Check out
-        uses: actions/checkout@v4
-      - name: Deploy
-        uses: ./.github/actions/fluxupd-deploy
-        with:
-          github-actor: ${{ github.actor }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          tags: |
-            ghcr.io/piny940/flux-target-updater:main-${{ github.sha }}-${{ env.TIMESTAMP }}
-  fluxupd-main:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.fluxupd == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    if: needs.filter.outputs.fluxupd == 'true'
     steps:
       - name: Get current datetime
         run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
@@ -142,21 +95,7 @@ jobs:
   gcp-apply:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.gcp == 'true' && github.event_name == 'pull_request'
-    environment: staging # 管理者の承認を必要とする
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Terraform Apply
-        uses: ./.github/actions/gcp-apply
-        with:
-          env: staging
-          gcp-project: ${{ vars.STG_GCP_PROJECT }}
-          gcp-project-number: ${{ vars.STG_GCP_PROJECT_NUMBER }}
-  gcp-apply-main:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.gcp == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    if: needs.filter.outputs.gcp == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -170,22 +109,7 @@ jobs:
   aws-apply:
     runs-on: ubuntu-latest
     needs: filter
-    if: needs.filter.outputs.aws == 'true' && github.event_name == 'pull_request'
-    environment: staging # 管理者の承認を必要とする
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Terraform Apply
-        uses: ./.github/actions/aws-apply
-        with:
-          env: "staging"
-          aws-region: ${{ vars.AWS_REGION }}
-          aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
-  aws-apply-main:
-    runs-on: ubuntu-latest
-    needs: filter
-    if: needs.filter.outputs.aws == 'true' && github.event_name == 'push' && github.ref_name == 'main'
+    if: needs.filter.outputs.aws == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4

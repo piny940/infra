@@ -1,0 +1,25 @@
+name: Staging push
+on:
+  pull_request:
+
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
+jobs:
+  kube:
+    runs-on: ubuntu-latest
+    environment: staging # 管理者の承認が必要
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.DEPLOY_STG_APP_ID }}
+          private-key: ${{ secrets.DEPLOY_STG_APP_PRIVATE_KEY }}
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+      - name: Push to staging branch
+        run:  |
+          git push -u origin HEAD:staging -f
