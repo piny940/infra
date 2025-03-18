@@ -54,5 +54,7 @@ spec:
       existingSecret: grafana-secret
       userKey: admin-user
       passwordKey: admin-password
+    deploymentStrategy:
+      type: Recreate
   test:
     enable: true
