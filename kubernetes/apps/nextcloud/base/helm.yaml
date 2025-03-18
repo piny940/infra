@@ -20,7 +20,7 @@ spec:
         kind: HelmRepository
         name: nextcloud
   values:
-    replicaCount: 3
+    replicaCount: 1
     ingress:
       enabled: true
       className: nginx
@@ -33,6 +33,8 @@ spec:
           secretName: cluster-tls
     nextcloud:
       host: NEXTCLOUD_HOST_PLACEHOLDER
+      strategy:
+        type: Recreate
       existingSecret:
         enabled: true
         secretName: nextcloud-secret
