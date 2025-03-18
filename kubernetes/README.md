@@ -153,12 +153,6 @@ flux bootstrap git \
   --path=kubernetes/_flux/$env
 ```
 
-Staging 環境の場合は git repository を作成する
-
-```bash
-kubectl apply -f _flux/staging/flux-system/git-repository.yaml
-```
-
 ### 補足
 
 バックアップから復元しない場合
