@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="gqQ57Hev0fb6u8LDAb-K" name="Page-1">
-        <mxGraphModel dx="4882" dy="1764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1550" dy="970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="80" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="80" value="" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-680" y="30" width="2220" height="1670" as="geometry"/>
                 </mxCell>
                 <mxCell id="63" value="" style="group" parent="1" vertex="1" connectable="0">
@@ -58,19 +58,19 @@
                 <mxCell id="35" value="" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" parent="62" vertex="1">
                     <mxGeometry width="130" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="" style="whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;opacity=80;" vertex="1" parent="62">
+                <mxCell id="86" value="" style="whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;opacity=80;" parent="62" vertex="1">
                     <mxGeometry x="70" y="1260" width="420" height="300" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="&lt;font style=&quot;font-size: 38px;&quot;&gt;&lt;b&gt;k0sctl&lt;/b&gt;&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="62">
+                <mxCell id="87" value="&lt;font style=&quot;font-size: 38px;&quot;&gt;&lt;b&gt;k0sctl&lt;/b&gt;&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="62" vertex="1">
                     <mxGeometry x="75" y="1260" width="165" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" value="" style="group" vertex="1" connectable="0" parent="62">
+                <mxCell id="88" value="" style="group" parent="62" vertex="1" connectable="0">
                     <mxGeometry x="80" y="1340" width="390" height="195" as="geometry"/>
                 </mxCell>
-                <mxCell id="89" value="&lt;b style=&quot;font-size: 38px;&quot;&gt;sirius&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 38px;&quot;&gt;1コア2GiB&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 38px;&quot;&gt;64GiB&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;align=left;horizontal=1;verticalAlign=middle;spacingLeft=70;" vertex="1" parent="88">
+                <mxCell id="89" value="&lt;b style=&quot;font-size: 38px;&quot;&gt;sirius&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 38px;&quot;&gt;1コア2GiB&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 38px;&quot;&gt;64GiB&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;align=left;horizontal=1;verticalAlign=middle;spacingLeft=70;" parent="88" vertex="1">
                     <mxGeometry x="20" y="15" width="370" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" value="" style="shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.vm_linux;" vertex="1" parent="88">
+                <mxCell id="90" value="" style="shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.vm_linux;" parent="88" vertex="1">
                     <mxGeometry x="10" width="80" height="75.2" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="" style="whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;opacity=80;" parent="1" vertex="1">
@@ -121,7 +121,7 @@
                 <mxCell id="56" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="-535" y="1070" width="380" height="195" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="&lt;b style=&quot;font-size: 38px;&quot;&gt;bellatrix&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 38px;&quot;&gt;2コア8GiB&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 38px;&quot;&gt;212GiB&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;align=left;horizontal=1;verticalAlign=middle;spacingLeft=70;" parent="56" vertex="1">
+                <mxCell id="9" value="&lt;b style=&quot;font-size: 38px;&quot;&gt;bellatrix&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 38px;&quot;&gt;6コア8GiB&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 38px;&quot;&gt;212GiB&lt;/font&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;align=left;horizontal=1;verticalAlign=middle;spacingLeft=70;" parent="56" vertex="1">
                     <mxGeometry x="10" y="15" width="370" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="" style="shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.vm_linux;" parent="56" vertex="1">
