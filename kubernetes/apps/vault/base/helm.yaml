@@ -72,8 +72,9 @@ spec:
         storageClass: longhorn
         size: 1Gi
         accessMode: ReadWriteOnce
-        annotations:
-          helm.sh/resource-policy: keep
+      persistentVolumeClaimRetentionPolicy:
+        whenDeleted: Retain
+        whenScaled: Retain
       readinessProbe:
         enabled: true
         # If you need to use a http path instead of the default exec
