@@ -11,5 +11,5 @@ patches:
 configMapGenerator:
   - name: dashboard-files
     files:
-      - dashboards/pods-metrics.json
+      - dashboards/home.json
       - dashboards/pod-details.json
