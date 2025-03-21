@@ -9,7 +9,7 @@ images:
     newTag: 1.0.45 # {"$imagepolicy": "default:magic-spreadsheet-notifier:tag"}
   - name: magic-spreadsheet-notifier-server
     newName: ghcr.io/piny940/magic-spreadsheet-notifier-server # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:name"}
-    newTag: 1.0.44 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:tag"}
+    newTag: 1.0.45 # {"$imagepolicy": "default:magic-spreadsheet-notifier-server:tag"}
 resources:
   - ../base
   - ingress.yaml
