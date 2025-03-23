@@ -37,9 +37,48 @@ frontend kube-api
   bind *:6443
   option tcplog
   mode tcp
-  default_backend controllers
+  default_backend kube-api-server
+frontend konnectivity
+	bind *:8132
+	mode tcp
+	default_backend konnectivity-server
+frontend controller-join-api
+	bind *:9443
+	mode tcp
+	default_backend controller-join-api-server
 
-backend controllers
+backend kube-api-server
   mode tcp
-  balance    roundrobin
-  server altair 192.168.151.224:6443
+	retries 3
+	timeout connect 3s
+	option redispatch 1
+  balance roundrobin
+  server altair 192.168.151.224:6443 check
+	server vega 192.168.151.229:6443 check
+	server deneb 192.168.151.233:6443 check
+
+backend konnectivity-server
+  mode tcp
+	retries 3
+	timeout connect 3s
+	option redispatch 1
+  balance roundrobin
+  server altair 192.168.151.224:8132 check
+	server vega 192.168.151.229:8132 check
+	server deneb 192.168.151.233:8132 check
+
+backend controller-join-api-server
+	mode tcp
+	retries 3
+	timeout connect 3s
+	option redispatch 1
+	balance roundrobin
+  server altair 192.168.151.224:9443 check
+	server vega 192.168.151.229:9443 check
+	server deneb 192.168.151.233:9443 check
+
+listen stats
+	bind *:9000
+	mode http
+	stats enable
+	stats uri /

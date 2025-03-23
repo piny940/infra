@@ -38,6 +38,10 @@ spec:
       metadata:
         name: k0s
       spec:
+        api:
+          externalAddress: 192.168.151.235 # pollux
+          sans:
+            - 192.168.151.235 # pollux
         network:
           provider: kuberouter
           podCIDR: 10.244.0.0/16
