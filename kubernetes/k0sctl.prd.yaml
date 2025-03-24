@@ -39,6 +39,8 @@ spec:
         name: k0s
       spec:
         api:
+          address: 192.168.151.235 # pollux
+          port: 6443
           externalAddress: 192.168.151.235 # pollux
           sans:
             - 192.168.151.235 # pollux
