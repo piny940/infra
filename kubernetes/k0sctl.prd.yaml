@@ -11,6 +11,16 @@ spec:
         keyPath: ~/.ssh/k0sctl
       role: controller
     - ssh:
+        address: 192.168.151.233 # deneb
+        user: privileged
+        keyPath: ~/.ssh/k0sctl
+      role: controller
+    - ssh:
+        address: 192.168.151.229 # vega
+        user: privileged
+        keyPath: ~/.ssh/k0sctl
+      role: controller
+    - ssh:
         address: 192.168.151.228 # rigel
         user: privileged
         keyPath: ~/.ssh/k0sctl
