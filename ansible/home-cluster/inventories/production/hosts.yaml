@@ -80,3 +80,9 @@ all:
       hosts:
         castor:
         pollux:
+    keepalived_master:
+      hosts:
+        castor:
+    keepalived_backup:
+      hosts:
+        pollux:

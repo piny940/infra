@@ -1,0 +1,11 @@
+---
+- name: Gather Facts
+  hosts: all
+  gather_facts: true
+  vars_files:
+    - vars/hosts.yaml
+    - vars/kubernetes.yaml
+  tasks:
+    - name: Display Gathered Facts
+      debug:
+        var: ansible_facts
