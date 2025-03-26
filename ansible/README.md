@@ -29,3 +29,10 @@ ansible-vault edit vars/"$filename".yaml
 ```bash
 ansible-lint --fix
 ```
+
+## Show Facts
+
+```bash
+env=staging
+ansible-playbook -i inventories/"$env" facts.yaml | less
+```
