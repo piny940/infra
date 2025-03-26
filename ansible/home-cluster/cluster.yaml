@@ -3,6 +3,7 @@
   hosts: ha_proxies
   become: true
   roles:
+    - { role: keepalived, tags: keepalived }
     - { role: ha_proxy, tags: ha_proxy }
   vars_files:
     - vars/hosts.yaml

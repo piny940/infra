@@ -1,0 +1,14 @@
+vrrp_instance keepalived {
+  state BACKUP
+  interface ens32
+  virtual_router_id 10
+  priority 100
+  advert_int 1
+  authentication {
+      auth_type PASS
+      auth_pass {{ keepalived.password }}
+  }
+  virtual_ipaddress {
+      {{ keepalived.virtual_ip }}
+  }
+}
