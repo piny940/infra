@@ -49,11 +49,11 @@ spec:
         name: k0s
       spec:
         api:
-          address: 192.168.151.235 # pollux
+          address: 192.168.151.11 # keepalive
           port: 6443
-          externalAddress: 192.168.151.235 # pollux
+          externalAddress: 192.168.151.11 # keepalive
           sans:
-            - 192.168.151.235 # pollux
+            - 192.168.151.11 # keepalive
         network:
           provider: kuberouter
           podCIDR: 10.244.0.0/16
