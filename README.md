@@ -48,3 +48,4 @@ AWS リソースの terraform 管理：[aws/](aws)
 | serius | k0sctl | peach | 192.168.151.226 | Ubuntu 24.04 | 1コア | 2GB | 64GB |
 | procyon | Controller+Worker(stg) | kiwi | 192.168.151.236 | Ubuntu 24.04 | 6コア | 16GB | 512GB |
 | olive | Worker(prd) | olive | 192.168.151.158 | Ubuntu 24.04 | 4コア | 8GB | 512GB |
+| keepalive(pollux+castor) | Controller(prd) | kiwi+peach | 192.168.151.11 | | | | |

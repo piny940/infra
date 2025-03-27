@@ -1,0 +1,17 @@
+---
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install keepalived
+  ansible.builtin.apt:
+    name:
+      - keepalived
+    state: present
+- name: Configure keepalived
+  ansible.builtin.template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    mode: "0644"
+    owner: root
+    group: root
+  notify: Restart keepalived
