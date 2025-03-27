@@ -7,5 +7,5 @@
     - vars/kubernetes.yaml
   tasks:
     - name: Display Gathered Facts
-      debug:
+      ansible.builtin.debug:
         var: ansible_facts
