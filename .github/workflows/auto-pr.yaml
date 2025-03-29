@@ -33,4 +33,4 @@ jobs:
       - name: Enable auto-merge for FluxCD PRs
         run: gh pr merge --auto --merge --delete-branch "${{ steps.create_pr.outputs.pr_url }}"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
