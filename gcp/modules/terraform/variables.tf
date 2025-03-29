@@ -18,3 +18,6 @@ variable "workload_identity_pool_id" {
 variable "repo" {
   type = string
 }
+variable "branch" {
+  type = string
+}

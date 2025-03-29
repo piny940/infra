@@ -12,6 +12,7 @@ module "terraform" {
   project_number            = local.project_number
   workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
   repo                      = local.repo
+  branch                    = "staging"
 }
 module "kube_workload_identity" {
   source                                      = "../modules/kube_workload_identity"
