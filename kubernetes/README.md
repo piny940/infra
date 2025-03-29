@@ -52,6 +52,13 @@ k0sctl kubeconfig --config k0sctl."$ext".yaml > ~/.kube/config
 kubectl apply -k namespaces
 ```
 
+### longhorn をインストール
+
+```bash
+export env=staging
+sh apps/longhorn/install.sh
+```
+
 ### Workload Identity 連携を設定
 
 `cluster-jwks.json` を作成
@@ -69,13 +76,6 @@ scp "$hostname":cluster-jwks.json "$env"-cluster-jwks.json
 ```
 
 `gcp/{env}/cluster-jwks.json` を置き換える
-
-### longhorn をインストール
-
-```bash
-export env=staging
-sh apps/longhorn/install.sh
-```
 
 ### バックアップを復元
 
