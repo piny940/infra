@@ -37,8 +37,8 @@ resource "google_service_account_iam_member" "terraform_github_actions_pull_requ
   role               = "roles/iam.workloadIdentityUser"
   member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:${var.repo}:pull_request"
 }
-resource "google_service_account_iam_member" "terraform_github_actions_main_workload_identity_user" {
+resource "google_service_account_iam_member" "terraform_github_actions_branch_workload_identity_user" {
   service_account_id = google_service_account.terraform_github_actions.id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:${var.repo}:ref:refs/heads/main"
+  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:${var.repo}:ref:refs/heads/${var.branch}"
 }
