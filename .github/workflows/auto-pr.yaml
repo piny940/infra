@@ -8,15 +8,21 @@ jobs:
     name: Open PR to main
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.DEPLOY_STG_APP_ID }}
+          private-key: ${{ secrets.DEPLOY_STG_APP_PRIVATE_KEY }}
       - uses: actions/checkout@v4
-        name: checkout
+        with:
+          token: ${{ steps.app-token.outputs.token }}
       - name: Fetch pull request
         id: fetch_pr
         run: |
           PR_URL=$(gh pr list --head ${{ github.ref_name }} --state open --json url --jq '.[].url')
           echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
       - name: Create pull request
         id: create_pr
         if: steps.fetch_pr.outputs.pr_url == ''
