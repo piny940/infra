@@ -23,6 +23,7 @@ jobs:
       - uses: dorny/paths-filter@v3
         id: path-filter
         with:
+          base: staging
           filters: |
             kube:
               - "kubernetes/**"
