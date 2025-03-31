@@ -457,7 +457,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "(sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\"}[1m])) by (pod))\n/ (sum(kube_pod_container_resource_limits{resource=\"cpu\",pod=~\"$pod\",namespace=~\"$namespace\"}) by (pod))",
+          "expr": "(sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\", container!=\"POD\", image!=\"\"}[5m])) by (pod))\n/ (sum(kube_pod_container_resource_limits{resource=\"cpu\",pod=~\"$pod\",namespace=~\"$namespace\"}) by (pod))",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -544,7 +544,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "(sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\"}[1m])) by (pod))\n/ (sum(kube_pod_container_resource_requests{resource=\"cpu\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod))",
+          "expr": "(sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\", container!=\"POD\", image!=\"\"}[5m])) by (pod))\n/ (sum(kube_pod_container_resource_requests{resource=\"cpu\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod))",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -631,7 +631,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{name!=\"\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod)\n/ sum(kube_pod_container_resource_limits{resource=\"memory\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod)",
+          "expr": "sum(container_memory_usage_bytes{name!=\"\",namespace=~\"$namespace\",pod=~\"$pod\", container!=\"POD\", image!=\"\"}) by (pod)\n/ sum(kube_pod_container_resource_limits{resource=\"memory\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -718,7 +718,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{name!=\"\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod)\n/ sum(kube_pod_container_resource_requests{resource=\"memory\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod)",
+          "expr": "sum(container_memory_usage_bytes{name!=\"\",namespace=~\"$namespace\",pod=~\"$pod\", container!=\"POD\", image!=\"\"}) by (pod)\n/ sum(kube_pod_container_resource_requests{resource=\"memory\",namespace=~\"$namespace\",pod=~\"$pod\"}) by (pod)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -817,7 +817,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\", container!=\"POD\", image!=\"\"}[1m]))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\", container!=\"POD\", image!=\"\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1568,5 +1568,5 @@
   "timezone": "browser",
   "title": "Pod詳細",
   "uid": "GlXkUBGiz",
-  "version": 22
+  "version": 24
 }
