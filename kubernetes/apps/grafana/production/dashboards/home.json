@@ -695,7 +695,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\"}[1m])) by (pod))\n/ (sum(kube_pod_container_resource_requests{resource=\"cpu\",namespace=~\"$namespace\"}) by (pod))",
+          "expr": "(sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", container!=\"POD\",image!=\"\"}[5m])) by (pod))\n/ (sum(kube_pod_container_resource_requests{resource=\"cpu\",namespace=~\"$namespace\"}) by (pod))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1938,8 +1938,8 @@
       {
         "allValue": ".*",
         "current": {
-          "text": "All",
-          "value": "$__all"
+          "text": "vault",
+          "value": "vault"
         },
         "datasource": {
           "type": "prometheus",
@@ -1970,5 +1970,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "ddn9tqi9bctmof",
-  "version": 28
+  "version": 29
 }
