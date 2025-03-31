@@ -35,6 +35,13 @@ spec:
                 secretKeyRef:
                   name: default.song-list.postgres-cluster.credentials.postgresql.acid.zalan.do
                   key: password
+          resources:
+            requests:
+              cpu: 10m
+              memory: 200Mi
+            limits:
+              cpu: 100m
+              memory: 500Mi
       initContainers:
         - name: db-migrate
           image: song-list-backend

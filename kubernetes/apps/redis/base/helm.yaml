@@ -40,6 +40,13 @@ spec:
       terminationGracePeriodSeconds: 30
       serviceAccount:
         create: true
+      resources:
+        requests:
+          cpu: 20m
+          memory: 50Mi
+        limits:
+          cpu: "3"
+          memory: 1024Mi
     replica:
       kind: StatefulSet
       replicaCount: 1
@@ -56,5 +63,12 @@ spec:
       terminationGracePeriodSeconds: 30
       serviceAccount:
         create: true
+      resources:
+        requests:
+          cpu: 50m
+          memory: 20Mi
+        limits:
+          cpu: 3
+          memory: 1024Mi
   test:
     enable: true

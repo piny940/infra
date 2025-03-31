@@ -31,5 +31,12 @@ spec:
         name: nginx
         enabled: true
         default: true
+      resources:
+        limits:
+          cpu: 100m
+          memory: 500Mi
+        requests:
+          cpu: 20m
+          memory: 150Mi
   test:
     enable: true
