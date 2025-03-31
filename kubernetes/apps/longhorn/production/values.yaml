@@ -1,2 +1,2 @@
 persistence:
-  defaultClassReplicaCount: 1
+  defaultClassReplicaCount: 3
