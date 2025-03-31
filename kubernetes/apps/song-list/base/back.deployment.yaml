@@ -39,9 +39,6 @@ spec:
             requests:
               cpu: 10m
               memory: 200Mi
-            limits:
-              cpu: 100m
-              memory: 500Mi
       initContainers:
         - name: db-migrate
           image: song-list-backend
