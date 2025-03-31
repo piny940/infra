@@ -36,3 +36,10 @@ spec:
             failureThreshold: 3
             initialDelaySeconds: 5
             periodSeconds: 5
+          resources:
+            requests:
+              cpu: 10m
+              memory: 150Mi
+            limits:
+              cpu: 100m
+              memory: 500Mi

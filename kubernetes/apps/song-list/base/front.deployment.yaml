@@ -22,3 +22,10 @@ spec:
           envFrom:
             - configMapRef:
                 name: song-list-conf
+          resources:
+            requests:
+              cpu: 10m
+              memory: 150Mi
+            limits:
+              cpu: 100m
+              memory: 500Mi
