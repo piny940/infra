@@ -59,9 +59,6 @@ spec:
             requests:
               cpu: 10m
               memory: 30Mi
-            limits:
-              cpu: 100m
-              memory: 500Mi
       volumes:
         - name: token
           projected:
