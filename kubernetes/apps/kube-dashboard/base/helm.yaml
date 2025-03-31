@@ -20,5 +20,41 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
   values:
+    auth:
+      containers:
+        resources:
+          requests:
+            cpu: 1m
+            memory: 10Mi
+          limits:
+            cpu: 250m
+            memory: 400Mi
+    api:
+      containers:
+        resources:
+          requests:
+            cpu: 1m
+            memory: 20Mi
+          limits:
+            cpu: 250m
+            memory: 400Mi
+    web:
+      containers:
+        resources:
+          requests:
+            cpu: 1m
+            memory: 20Mi
+          limits:
+            cpu: 250m
+            memory: 400Mi
+    metricsScraper:
+      containers:
+        resources:
+          requests:
+            cpu: 1m
+            memory: 20Mi
+          limits:
+            cpu: 250m
+            memory: 400Mi
   test:
     enable: true
