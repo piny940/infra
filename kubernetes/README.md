@@ -1,3 +1,5 @@
+# Kubernetes
+
 ## 開発
 
 - GitHub に push すると staging 環境に更新が走る
@@ -16,3 +18,21 @@ bash scripts/kubeconform.sh
 
 - [INIT.md](INIT.md)
 
+## クラスタアップグレード手順
+
+サーバーにログインしてコードを最新にする
+
+```bash
+cd ~/infra/kubernetes
+git pull
+```
+
+```bash
+env=staging
+if [ "$env" = "staging" ]; then
+  ext=stg
+else
+  ext=prd
+fi
+k0sctl apply --config k0sctl."$ext".yaml
+```
