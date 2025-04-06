@@ -13,3 +13,4 @@ configMapGenerator:
     files:
       - dashboards/home.json
       - dashboards/pod-details.json
+      - dashboards/nodes.json
