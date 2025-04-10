@@ -37,3 +37,10 @@ module "portfolio" {
   project_number            = local.project_number
   workload_identity_pool_id = module.workload_identity_pool.workload_identity_pool_id
 }
+resource "google_storage_bucket" "clubroom" {
+  name     = "proxmox-remote-backend.piny940.com"
+  location = "asia-southeast1"
+
+  public_access_prevention    = "inherited"
+  uniform_bucket_level_access = true
+}
