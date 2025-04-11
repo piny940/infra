@@ -31,3 +31,4 @@
 - name: Install cloudflare service
   ansible.builtin.command:
     cmd: cloudflared service install {{ vars.cloudflare.tunnel_token[vars.env] }}
+  when: not ansible_service.stat.exists
