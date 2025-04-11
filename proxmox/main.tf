@@ -45,7 +45,7 @@ resource "proxmox_virtual_environment_vm" "procyon" {
       }
     }
     user_account {
-      username = "ansai"
+      username = var.username
       keys     = split("\n", trimspace(data.http.authorized-keys.response_body))
     }
   }
