@@ -1,0 +1,24 @@
+---
+- name: Ensure keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+- name: Ensure cloudflare signing downloaded
+  ansible.builtin.get_url:
+    url: https://pkg.cloudflare.com/cloudflare-main.gpg
+    dest: /etc/apt/keyrings/cloudflare.gpg
+    mode: "0644"
+- name: Ensure cloudflared repository exists
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_facts['distribution_release'] }} main
+    state: present
+    filename: cloudflared
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install Cloudflared
+  ansible.builtin.apt:
+    name:
+      - cloudflared
+    state: present
