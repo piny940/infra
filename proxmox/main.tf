@@ -1,94 +1,52 @@
+data "http" "authorized-keys" {
+  url                = "https://raw.githubusercontent.com/piny940/dotfiles/refs/heads/main/.ssh/authorized_keys"
+  request_timeout_ms = 3000
+}
+resource "proxmox_virtual_environment_download_file" "kiwi_ubuntu_jammy_cloud_image" {
+  content_type = "iso"
+  datastore_id = "local"
+  node_name    = "kiwi"
+  url          = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+  file_name    = "jammy-server-cloudimg-amd64.img"
+}
 resource "proxmox_virtual_environment_vm" "procyon" {
-  acpi                    = true
-  bios                    = "seabios"
-  description             = null
-  id                      = "107"
-  ipv4_addresses          = []
-  ipv6_addresses          = []
-  keyboard_layout         = null
-  kvm_arguments           = null
-  mac_addresses           = []
-  machine                 = null
-  name                    = "procyon"
-  network_interface_names = []
-  node_name               = "kiwi"
-  protection              = false
-  scsi_hardware           = "virtio-scsi-single"
-  started                 = true
-  tablet_device           = true
-  tags                    = []
-  template                = false
-  vm_id                   = 107
-
+  name            = "procyon"
+  vm_id           = 107
+  node_name       = "kiwi"
+  on_boot         = true
+  scsi_hardware   = "virtio-scsi-single"
+  started         = true
+  stop_on_destroy = true
   cpu {
-    affinity     = null
-    architecture = null
-    cores        = 6
-    flags        = []
-    hotplugged   = 0
-    limit        = 0
-    numa         = false
-    sockets      = 1
-    type         = "x86-64-v2-AES"
-    units        = 1024
-  }
-
-  disk {
-    aio               = "io_uring"
-    backup            = true
-    cache             = "none"
-    datastore_id      = "local"
-    discard           = "ignore"
-    file_format       = "iso"
-    file_id           = null
-    interface         = "ide2"
-    iothread          = false
-    path_in_datastore = "iso/ubuntu-24.04.2-live-server-amd64.iso"
-    replicate         = true
-    serial            = null
-    size              = 2
-    ssd               = false
+    cores = 6
+    type  = "x86-64-v2-AES"
   }
   disk {
-    aio               = "io_uring"
-    backup            = true
-    cache             = "none"
-    datastore_id      = "local-lvm"
-    discard           = "ignore"
-    file_format       = "raw"
-    file_id           = null
-    interface         = "scsi0"
-    iothread          = true
-    path_in_datastore = "vm-107-disk-0"
-    replicate         = true
-    serial            = null
-    size              = 512
-    ssd               = false
+    datastore_id = "local-lvm"
+    file_id      = proxmox_virtual_environment_download_file.kiwi_ubuntu_jammy_cloud_image.id
+    iothread     = true
+    interface    = "scsi0"
+    size         = 512
   }
-
   memory {
-    dedicated      = 12000
-    floating       = 0
-    hugepages      = null
-    keep_hugepages = false
-    shared         = 0
+    dedicated = 12000
   }
-
   network_device {
-    bridge       = "vmbr0"
-    disconnected = false
-    enabled      = true
-    firewall     = true
-    mac_address  = "BC:24:11:A6:4B:A9"
-    model        = "virtio"
-    mtu          = 0
-    queues       = 0
-    rate_limit   = 0
-    trunks       = null
-    vlan_id      = 0
+    bridge = "vmbr0"
   }
-
-  operating_system {
-    type = "l26"
+  initialization {
+    dns {
+      servers = ["192.168.150.1"]
+    }
+    ip_config {
+      ipv4 {
+        address = "192.168.151.236/23"
+        gateway = "192.168.150.1"
+      }
+    }
+    user_account {
+      username = "ansai"
+      keys     = split("\n", trimspace(data.http.authorized-keys.response_body))
+    }
   }
 }
