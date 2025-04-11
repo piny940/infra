@@ -154,5 +154,4 @@ https://github.com/kubernetes-csi/external-snapshotter/tree/master?tab=readme-ov
 - swap は無効化されている？
 - containerd の設定は正しい？
 - longhorn のために iscsid 入れた？
-- `.env` は正しい？
 - コマンドを実行してるディレクトリ(`pwd`)は正しい？
