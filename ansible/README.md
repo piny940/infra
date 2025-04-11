@@ -13,7 +13,7 @@ sudo apt install ansible
 
 ```bash
 env=staging
-ansible-playbook -i inventories/"$env" cluster.yaml
+ansible-playbook -i inventories/"$env" cluster.yaml -e env="$env"
 ```
 
 ## Vault
@@ -22,7 +22,7 @@ ansible-playbook -i inventories/"$env" cluster.yaml
 ansible-vault edit vars/"$filename".yaml
 ```
 
-作成したvarsファイルへのパスは`vars_files`に記述する。
+作成した vars ファイルへのパスは`vars_files`に記述する。
 
 ## Lint
 

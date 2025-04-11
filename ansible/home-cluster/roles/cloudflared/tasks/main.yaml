@@ -11,7 +11,7 @@
     mode: "0644"
 - name: Ensure cloudflared repository exists
   ansible.builtin.apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_facts['distribution_release'] }} main
+    repo: deb [signed-by=/etc/apt/keyrings/cloudflare.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_facts['distribution_release'] }} main
     state: present
     filename: cloudflared
 - name: Apt update
@@ -22,3 +22,12 @@
     name:
       - cloudflared
     state: present
+- name: Check cloudflare service exists
+  ansible.builtin.stat:
+    path: /etc/systemd/system/cloudflared.service
+    get_checksum: false
+    get_attributes: false
+  register: ansible_service
+- name: Install cloudflare service
+  ansible.builtin.command:
+    cmd: cloudflared service install {{ vars.cloudflare.tunnel_token[vars.env] }}
