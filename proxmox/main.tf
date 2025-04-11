@@ -2,12 +2,26 @@ data "http" "authorized-keys" {
   url                = "https://raw.githubusercontent.com/piny940/dotfiles/refs/heads/main/.ssh/authorized_keys"
   request_timeout_ms = 3000
 }
-resource "proxmox_virtual_environment_download_file" "kiwi_ubuntu_jammy_cloud_image" {
+resource "proxmox_virtual_environment_download_file" "kiwi_ubuntu_noble_cloud_image" {
   content_type = "iso"
   datastore_id = "local"
   node_name    = "kiwi"
-  url          = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-  file_name    = "jammy-server-cloudimg-amd64.img"
+  url          = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+  file_name    = "noble-server-cloudimg-amd64.img"
+}
+resource "proxmox_virtual_environment_download_file" "cherry_ubuntu_noble_cloud_image" {
+  content_type = "iso"
+  datastore_id = "local"
+  node_name    = "cherry"
+  url          = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+  file_name    = "noble-server-cloudimg-amd64.img"
+}
+resource "proxmox_virtual_environment_download_file" "peach_ubuntu_noble_cloud_image" {
+  content_type = "iso"
+  datastore_id = "local"
+  node_name    = "peach"
+  url          = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+  file_name    = "noble-server-cloudimg-amd64.img"
 }
 resource "proxmox_virtual_environment_vm" "procyon" {
   name            = "procyon"
@@ -23,7 +37,7 @@ resource "proxmox_virtual_environment_vm" "procyon" {
   }
   disk {
     datastore_id = "local-lvm"
-    file_id      = proxmox_virtual_environment_download_file.kiwi_ubuntu_jammy_cloud_image.id
+    file_id      = proxmox_virtual_environment_download_file.kiwi_ubuntu_noble_cloud_image.id
     iothread     = true
     interface    = "scsi0"
     size         = 512
