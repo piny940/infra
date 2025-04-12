@@ -1,4 +1,6 @@
 ---
+- name: Install fzf
+  ansible.builtin.include_tasks: fzf.yaml
 - name: Install yadm
   ansible.builtin.include_tasks: yadm.yaml
 - name: Install yq
