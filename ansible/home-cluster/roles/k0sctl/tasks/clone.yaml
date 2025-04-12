@@ -8,5 +8,5 @@
 - name: Ensure infra repository has cloned
   ansible.builtin.git:
     dest: /home/{{ ansible_user }}/infra
-    repo: https://github.com/piny940/infra.git
+    repo: git@github.com:piny940/infra.git
   become: false
