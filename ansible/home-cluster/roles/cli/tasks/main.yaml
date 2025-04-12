@@ -1,4 +1,6 @@
 ---
+- name: Install yadm
+  ansible.builtin.include_tasks: yadm.yaml
 - name: Install yq
   ansible.builtin.include_tasks: yq.yaml
 - name: Install Flux CLI

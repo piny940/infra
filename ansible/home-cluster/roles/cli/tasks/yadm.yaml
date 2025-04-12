@@ -1,0 +1,14 @@
+---
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install yadm
+  ansible.builtin.apt:
+    name:
+      - yadm
+    state: present
+- name: Yadm clone
+  ansible.builtin.command:
+    cmd: yadm clone https://github.com/piny940/dotfiles.git
+    creates: README.md
+  become: false

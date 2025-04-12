@@ -12,7 +12,6 @@
   hosts: k0sctl
   become: true
   roles:
-    - { role: cloudflared, tags: cloudflared }
     - { role: k0sctl, tags: k0sctl }
     - { role: cli, tags: cli }
     - { role: helm, tags: helm }
@@ -33,6 +32,7 @@
   hosts: worker_nodes
   become: true
   roles:
+    - { role: cloudflared, tags: cloudflared }
     - { role: k0s, tags: k0s }
     - { role: pre_install, tags: pre_install }
   vars_files:
