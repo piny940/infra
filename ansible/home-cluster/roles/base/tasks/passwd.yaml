@@ -2,6 +2,8 @@
 - name: Ensure user and password exists
   ansible.builtin.user:
     name: "{{ ansible_user }}"
-    password: "{{ procyon.password | password_hash('sha512') }}"
-    groups: sudo
+    password: "{{ ansible_become_password | password_hash('sha512') }}"
+    groups:
+      - "{{ ansible_user }}"
+      - sudo
     state: present
