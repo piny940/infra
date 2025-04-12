@@ -12,4 +12,6 @@
     mode: "0600"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  register: k0sctl_key_pair
+- name: Register public key
+  ansible.builtin.command: cat .ssh/k0sctl.pub
+  register: k0sctl_public_key

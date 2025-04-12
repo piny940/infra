@@ -1,0 +1,5 @@
+---
+- name: Set user password
+  ansible.builtin.include_tasks: passwd.yaml
+- name: Configure ssh
+  ansible.builtin.include_tasks: ssh.yaml

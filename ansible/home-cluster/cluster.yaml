@@ -1,4 +1,12 @@
 ---
+- name: Setup base
+  hosts: all
+  become: true
+  roles:
+    - { role: base, tags: base }
+  vars_files:
+    - vars/secrets.yaml
+    - vars/kubernetes.yaml
 - name: Setup HA Proxies
   hosts: ha_proxies
   become: true
@@ -32,6 +40,7 @@
   hosts: worker_nodes
   become: true
   roles:
+    - { role: cloudflared, tags: cloudflared }
     - { role: k0s, tags: k0s }
     - { role: pre_install, tags: pre_install }
   vars_files:

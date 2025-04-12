@@ -1,0 +1,11 @@
+---
+- name: Apt update
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install fzf
+  become: true
+  ansible.builtin.apt:
+    name:
+      - fzf
+    state: present
