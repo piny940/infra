@@ -1,4 +1,12 @@
 ---
+- name: Setup base
+  hosts: all
+  become: true
+  roles:
+    - { role: base, tags: base }
+  vars_files:
+    - vars/secrets.yaml
+    - vars/kubernetes.yaml
 - name: Setup HA Proxies
   hosts: ha_proxies
   become: true

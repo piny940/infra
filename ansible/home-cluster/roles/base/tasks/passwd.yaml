@@ -1,0 +1,7 @@
+---
+- name: Ensure user and password exists
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    password: "{{ procyon.password | password_hash('sha512') }}"
+    groups: sudo
+    state: present
