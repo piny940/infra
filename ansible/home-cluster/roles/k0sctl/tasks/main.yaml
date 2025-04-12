@@ -1,4 +1,6 @@
 ---
+- name: Clone infra repository
+  ansible.builtin.include_tasks: clone.yaml
 - name: Install k0sctl
   ansible.builtin.include_tasks: install.yaml
 - name: Setup SSH

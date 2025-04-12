@@ -1,0 +1,12 @@
+---
+- name: Copy ssh key
+  ansible.builtin.copy:
+    src: ~/.ssh/ed25519
+    dest: /home/{{ ansible_user }}/.ssh/ed25519
+    owner: "{{ ansible_user }}"
+    mode: "0600"
+- name: Ensure infra repository has cloned
+  ansible.builtin.git:
+    dest: /home/{{ ansible_user }}/infra
+    repo: https://github.com/piny940/infra.git
+  become: false
