@@ -19,7 +19,7 @@ ansible-playbook -i inventories/"$env" cluster.yaml -e env="$env"
 ## Vault
 
 ```bash
-ansible-vault edit vars/"$filename".yaml
+ansible-vault edit vars/secrets.yaml
 ```
 
 作成した vars ファイルへのパスは`vars_files`に記述する。

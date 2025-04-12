@@ -9,4 +9,5 @@
   ansible.builtin.git:
     dest: /home/{{ ansible_user }}/infra
     repo: git@github.com:piny940/infra.git
+    version: main
   become: false

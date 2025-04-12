@@ -5,4 +5,5 @@
     group: root
     dest: /etc/ssh/sshd_config.d/10_default.conf
     src: sshd_config.j2
+    mode: "0644"
   notify: Restart sshd

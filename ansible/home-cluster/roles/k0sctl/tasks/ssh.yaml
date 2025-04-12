@@ -13,5 +13,5 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 - name: Register public key
-  command: cat .ssh/k0sctl.pub
+  ansible.builtin.command: cat .ssh/k0sctl.pub
   register: k0sctl_public_key
