@@ -111,7 +111,7 @@ vault の key をアップロード（ローカルで実行）（初回のみ）
 
 ```bash
 env=staging
-hostname=cherry
+hostname=procyon
 scp ~/$env-cluster-keys.json "$hostname":cluster-keys.json
 ```
 

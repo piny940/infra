@@ -8,4 +8,4 @@
   ansible.builtin.apt:
     name:
       - fzf
-    state: present
+    state: absent
