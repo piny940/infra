@@ -1,6 +1,6 @@
 image:
   repository: velero/velero
-  tag: v1.15.2
+  tag: v1.16.0
   pullPolicy: IfNotPresent
 resources:
   requests:
@@ -11,7 +11,7 @@ resources:
     memory: 1Gi
 initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.11.1
+    image: velero/velero-plugin-for-aws:v1.12.0
     volumeMounts:
       - mountPath: /target
         name: plugins
