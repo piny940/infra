@@ -15,3 +15,4 @@ resources:
   - nextcloud.yaml
   - kubernetes-dashboard.yaml
   - open-webui.yaml
+  - kube-cronjob-system.yaml
