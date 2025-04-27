@@ -71,3 +71,44 @@ resource "proxmox_virtual_environment_vm" "procyon" {
     }
   }
 }
+resource "proxmox_virtual_environment_network_linux_bridge" "kiwi_vmbr11" {
+  node_name = "kiwi"
+  name      = "vmbr11"
+}
+resource "proxmox_virtual_environment_vm" "brt01" {
+  name            = "brt01"
+  node_name       = "kiwi"
+  on_boot         = true
+  scsi_hardware   = "virtio-scsi-single"
+  started         = true
+  stop_on_destroy = true
+  cpu {
+    cores = 1
+    type  = "x86-64-v2-AES"
+  }
+  disk {
+    datastore_id = "local-lvm"
+    iothread     = true
+    interface    = "scsi0"
+    size         = 2
+  }
+  cdrom {
+    file_id   = proxmox_virtual_environment_download_file.kiwi_vyos_rolling_cloud_image.id
+    interface = "ide3"
+  }
+  memory {
+    dedicated = 512
+  }
+  network_device {
+    bridge = local.default_bridge
+  }
+  network_device {
+    bridge = proxmox_virtual_environment_network_linux_bridge.kiwi_vmbr11.name
+  }
+  initialization {
+    user_account {
+      username = var.username
+      keys     = split("\n", trimspace(data.http.authorized-keys.response_body))
+    }
+  }
+}
