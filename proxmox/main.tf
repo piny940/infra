@@ -106,6 +106,11 @@ resource "proxmox_virtual_environment_vm" "brt01" {
     bridge = proxmox_virtual_environment_network_linux_bridge.kiwi_vmbr11.name
   }
   initialization {
+    ip_config {
+      ipv4 {
+        address = "dhcp"
+      }
+    }
     user_account {
       username = var.username
       keys     = split("\n", trimspace(data.http.authorized-keys.response_body))
