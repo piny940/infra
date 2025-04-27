@@ -23,6 +23,13 @@ resource "proxmox_virtual_environment_download_file" "peach_ubuntu_noble_cloud_i
   url          = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
   file_name    = "noble-server-cloudimg-amd64.img"
 }
+resource "proxmox_virtual_environment_download_file" "kiwi_vyos_rolling_cloud_image" {
+  content_type = "iso"
+  datastore_id = "local"
+  node_name    = "kiwi"
+  url          = "https://github.com/vyos/vyos-nightly-build/releases/download/2025.04.01-0021-rolling/vyos-2025.04.01-0021-rolling-generic-amd64.iso"
+  file_name    = "vyos-2025.04.01-0021-rolling-generic-amd64.iso"
+}
 resource "proxmox_virtual_environment_vm" "procyon" {
   name            = "procyon"
   vm_id           = 107
