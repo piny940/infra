@@ -84,21 +84,3 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
-
-  dispatch:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/create-github-app-token@v2
-        id: app-token
-        with:
-          app-id: ${{ vars.DEPLOY_STG_APP_ID }}
-          private-key: ${{ secrets.DEPLOY_STG_APP_PRIVATE_KEY }}
-      - run: |
-          gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/piny940/selfhost-cicd/dispatches \
-            -f "event_type=stg-apply" -F "client_payload[filter]=proxmox"
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
