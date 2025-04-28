@@ -27,8 +27,8 @@ resource "proxmox_virtual_environment_download_file" "kiwi_vyos_rolling_cloud_im
   content_type = "iso"
   datastore_id = "local"
   node_name    = "kiwi"
-  url          = "https://github.com/vyos/vyos-nightly-build/releases/download/2025.04.01-0021-rolling/vyos-2025.04.01-0021-rolling-generic-amd64.iso"
-  file_name    = "vyos-2025.04.01-0021-rolling-generic-amd64.iso"
+  url          = "https://github.com/vyos/vyos-nightly-build/releases/download/1.5-rolling-202503030030/vyos-1.5-rolling-202503030030-generic-amd64.iso"
+  file_name    = "vyos-1.5-rolling-202503030030-generic-amd64.iso"
 }
 resource "proxmox_virtual_environment_vm" "procyon" {
   name            = "procyon"
@@ -106,9 +106,13 @@ resource "proxmox_virtual_environment_vm" "brt01" {
     bridge = proxmox_virtual_environment_network_linux_bridge.kiwi_vmbr11.name
   }
   initialization {
+    dns {
+      servers = ["192.168.150.1"]
+    }
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = "192.168.151.102/23"
+        gateway = "192.168.150.1"
       }
     }
     user_account {
