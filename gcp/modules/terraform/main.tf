@@ -19,7 +19,7 @@ resource "google_iam_workload_identity_pool_provider" "repo_github_actions" {
   workload_identity_pool_provider_id = "repo-github-actions"
   display_name                       = "Terrform GitHub Actions"
   description                        = "for Terraform GitHub Actions"
-  attribute_condition                = "assertion.repository == \"${var.repo}\" || assertion.repository == \"selfhost-cicd\""
+  attribute_condition                = "assertion.repository == \"${var.repo}\" || assertion.repository == \"piny940/selfhost-cicd\""
   attribute_mapping = {
     "google.subject" = "assertion.sub"
   }
@@ -45,5 +45,5 @@ resource "google_service_account_iam_member" "terraform_github_actions_branch_wo
 resource "google_service_account_iam_member" "terraform_github_actions_selfhost_cicd_branch_workload_identity_user" {
   service_account_id = google_service_account.terraform_github_actions.id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:selfhost-cicd:ref:refs/heads/main"
+  member             = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.workload_identity_pool_id}/subject/repo:piny940/selfhost-cicd:ref:refs/heads/main"
 }
