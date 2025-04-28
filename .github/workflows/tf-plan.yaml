@@ -99,6 +99,6 @@ jobs:
           owner: ${{ github.repository_owner }}
           repositories: selfhost-cicd
       - run: |
-          gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/piny940/selfhost-cicd/dispatches -f "event_type=ci" -F "client_payload[filter]=proxmox" -F "client_payload[ref]=${{ github.ref }}" -F "client_payload[pr_number]=${{ github.event.pull_request.number }}"
+          gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/piny940/selfhost-cicd/dispatches -f "event_type=ci" -F "client_payload[filter]=proxmox" -F "client_payload[ref]=${{ github.ref }}"
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
