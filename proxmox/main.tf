@@ -106,9 +106,6 @@ resource "proxmox_virtual_environment_vm" "brt01" {
     bridge = proxmox_virtual_environment_network_linux_bridge.kiwi_vmbr11.name
   }
   initialization {
-    dns {
-      servers = ["192.168.150.1"]
-    }
     ip_config {
       ipv4 {
         address = "192.168.151.102/23"
