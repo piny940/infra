@@ -42,4 +42,3 @@ jobs:
       - name: Push to staging branch
         run:  |
           git push -u origin HEAD:staging -f
-

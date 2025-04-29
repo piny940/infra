@@ -11,6 +11,7 @@ jobs:
     outputs:
       gcp: ${{ steps.path-filter.outputs.gcp }}
       aws: ${{ steps.path-filter.outputs.aws }}
+      proxmox: ${{ steps.path-filter.outputs.proxmox }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -22,6 +23,9 @@ jobs:
               - ".github/workflows/ci.yaml"
             aws:
               - "aws/**"
+              - ".github/workflows/ci.yaml"
+            proxmox:
+              - "proxmox/**"
               - ".github/workflows/ci.yaml"
 
   gcp-plan-prd:
@@ -81,3 +85,20 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           aws-role-arn: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+  proxmox-plan:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.proxmox == 'true'
+    steps:
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.DEPLOY_STG_APP_ID }}
+          private-key: ${{ secrets.DEPLOY_STG_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: selfhost-cicd
+      - run: |
+          gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/piny940/selfhost-cicd/dispatches -f "event_type=ci" -F "client_payload[filter]=proxmox" -F "client_payload[ref]=${{ github.ref }}" -F "client_payload[pr_number]=${{ github.event.pull_request.number }}"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
