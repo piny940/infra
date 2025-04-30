@@ -16,7 +16,7 @@ resource "proxmox_virtual_environment_vm" "brt01" {
   on_boot         = true
   scsi_hardware   = "virtio-scsi-single"
   started         = true
-  stop_on_destroy = true
+  stop_on_destroy = false
   cpu {
     cores = 2
     type  = "x86-64-v2-AES"
@@ -60,7 +60,7 @@ resource "proxmox_virtual_environment_vm" "brt02" {
   on_boot         = true
   scsi_hardware   = "virtio-scsi-single"
   started         = true
-  stop_on_destroy = true
+  stop_on_destroy = false
   cpu {
     cores = 2
     type  = "x86-64-v2-AES"
@@ -104,7 +104,7 @@ resource "proxmox_virtual_environment_vm" "crt" {
   on_boot         = true
   scsi_hardware   = "virtio-scsi-single"
   started         = true
-  stop_on_destroy = true
+  stop_on_destroy = false
   cpu {
     cores = 2
     type  = "x86-64-v2-AES"

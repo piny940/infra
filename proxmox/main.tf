@@ -37,7 +37,7 @@ resource "proxmox_virtual_environment_vm" "procyon" {
   on_boot         = true
   scsi_hardware   = "virtio-scsi-single"
   started         = true
-  stop_on_destroy = true
+  stop_on_destroy = false
   cpu {
     cores = 6
     type  = "x86-64-v2-AES"
