@@ -18,6 +18,10 @@
     {
       "matchManagers": ["kustomize"],
       "enabled": false
+    },
+    {
+      "matchManagers": ["terraform"],
+      "automerge": false
     }
   ]
 }
