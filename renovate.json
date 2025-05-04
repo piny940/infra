@@ -20,7 +20,7 @@
       "enabled": false
     },
     {
-      "matchManagers": ["terraform"],
+      "matchFileNames": ["terraform/**", "ansible/**"],
       "automerge": false
     }
   ]
