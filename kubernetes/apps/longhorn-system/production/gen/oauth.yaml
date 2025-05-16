@@ -6,7 +6,7 @@ data:
   authenticated_emails_file: |
     piny940
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: longhorn-oauth2-proxy-secret

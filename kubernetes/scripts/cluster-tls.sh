@@ -1,6 +1,6 @@
 external_secret() {
   app=$1
-  echo "apiVersion: external-secrets.io/v1beta1
+  echo "apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cluster-tls
