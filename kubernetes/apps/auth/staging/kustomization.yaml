@@ -19,7 +19,7 @@ images:
     newTag: stg-006a79dbb57b22a2d6828e32b7b42370e67712e2-1202 # {"$imagepolicy": "default:stg-auth-frontend:tag"}
   - name: auth-example
     newName: ghcr.io/piny940/auth-example # {"$imagepolicy": "default:stg-auth-example:name"}
-    newTag: stg-623a1019a8d950871a293632ddbcf5393fc7746c-1208 # {"$imagepolicy": "default:stg-auth-example:tag"}
+    newTag: stg-336172200e17059309d9e2604420b090cadcecfb-1215 # {"$imagepolicy": "default:stg-auth-example:tag"}
 configMapGenerator:
   - name: auth-conf
     behavior: merge
