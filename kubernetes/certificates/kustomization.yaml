@@ -16,3 +16,4 @@ resources:
   - kubernetes-dashboard.yaml
   - open-webui.yaml
   - kube-cronjob-system.yaml
+  - k0s-system.yaml

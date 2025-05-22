@@ -1,0 +1,19 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: cluster-tls
+  namespace: k0s-system
+spec:
+  secretStoreRef:
+    name: vault-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 24h
+  data:
+    - secretKey: tls.crt
+      remoteRef:
+        key: cluster-tls
+        property: tls.crt
+    - secretKey: tls.key
+      remoteRef:
+        key: cluster-tls
+        property: tls.key
