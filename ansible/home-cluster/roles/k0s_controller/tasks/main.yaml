@@ -1,0 +1,16 @@
+---
+- name: Make sure k0s directory exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0774"
+  loop:
+    - /var/log/k0s/audit
+    - /var/lib/k0s
+- name: Make sure audit-policy.yaml is created
+  ansible.builtin.template:
+    src: audit-policy.yaml.j2
+    dest: /var/lib/k0s/audit-policy.yaml
+    owner: root
+    group: root
+    mode: "0644"

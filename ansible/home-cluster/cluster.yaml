@@ -30,6 +30,7 @@
   hosts: master_nodes
   become: true
   roles:
+    - { role: k0s_controller, tags: k0s_controller }
     - { role: k0s, tags: k0s }
     - { role: pre_install, tags: pre_install }
     - { role: helm, tags: helm }
