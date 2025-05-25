@@ -34,5 +34,5 @@ if [ "$env" = "staging" ]; then
 else
   ext=prd
 fi
-k0sctl apply --config k0sctl."$ext".yaml
+k0sctl apply --config cluster/k0sctl."$ext".yaml
 ```

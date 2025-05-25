@@ -19,7 +19,7 @@ if [ "$env" = "staging" ]; then
 else
   ext=prd
 fi
-k0sctl apply --config k0sctl."$ext".yaml
+k0sctl apply --config cluster/k0sctl."$ext".yaml
 ```
 
 ## config を作成
@@ -32,7 +32,7 @@ else
   ext=prd
 fi
 mkdir -p ~/.kube
-k0sctl kubeconfig --config k0sctl."$ext".yaml > ~/.kube/config
+k0sctl kubeconfig --config cluster/k0sctl."$ext".yaml > ~/.kube/config
 ```
 
 ## namespace を作成
