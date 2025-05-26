@@ -24,7 +24,7 @@ spec:
         api:
           extraArgs:
             audit-policy-file: /var/lib/k0s/audit-policy.yaml
-            audit-log-path: /var/log/k0s/audit.log
+            audit-log-path: /var/log/k0s/audit/audit.log
         network:
           provider: kuberouter
           podCIDR: 10.244.0.0/16
