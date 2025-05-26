@@ -22,3 +22,28 @@ curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https:/
     }
   }
 }"
+
+curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_ilm/policy/delete_in_two_days" -H 'Content-Type: application/json' -d"
+{
+  \"policy\": {
+    \"phases\": {
+      \"delete\": {
+        \"min_age\": \"2d\",
+        \"actions\": {
+          \"delete\": {}
+        }
+      }
+    }
+  }
+}"
+
+curl -X PUT -k -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}" "https://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/_index_template/kube_apiserver_template" -H 'Content-Type: application/json' -d"
+{
+  \"index_patterns\": [\"fluentd.kube_apiserver.*\"],
+  \"template\": {
+    \"settings\": {
+      \"index.lifecycle.name\": \"delete_in_two_days\"
+    }
+  }
+}"
+
