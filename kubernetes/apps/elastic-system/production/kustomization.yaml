@@ -12,7 +12,7 @@ configMapGenerator:
     literals:
       - KIBANA_SERVER_URL=https://kibana.piny940.com
       - LOGS_TTL=90d
-      - ES_VOLUME_SIZE=30Gi
+      - ES_VOLUME_SIZE=40Gi
 replacements:
   - source:
       version: v1
