@@ -9,10 +9,6 @@ spec:
         address: 192.168.151.236 # procyon
         user: privileged
         keyPath: ~/.ssh/k0sctl
-      hooks:
-        apply:
-          before:
-            - sudo mkdir -p /var/log/k0s && sudo chmod -R 777 /var/log/k0s
       role: controller+worker
       noTaints: true
       installFlags:
