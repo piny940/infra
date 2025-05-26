@@ -3,19 +3,20 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: "0774"
+    mode: "0744"
   loop:
-    - /var/log/k0s
+    - /var/log/k0s/audit
     - /var/lib/k0s
 - name: Make sure audit-policy.yaml is created
   ansible.builtin.template:
     src: audit-policy.yaml.j2
     dest: /var/lib/k0s/audit-policy.yaml
-    owner: root
+    owner: kube-apiserver
     group: root
-    mode: "0777"
+    mode: "0644"
 - name: Make sure audit.log is created
   ansible.builtin.file:
-    path: /var/log/k0s/audit.log
+    path: /var/log/k0s/audit/audit.log
     state: touch
-    mode: "0777"
+    mode: "600"
+    owner: kube-apiserver
