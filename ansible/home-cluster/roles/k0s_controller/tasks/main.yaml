@@ -5,7 +5,7 @@
     state: directory
     mode: "0774"
   loop:
-    - /var/log/k0s/audit
+    - /var/log/k0s
     - /var/lib/k0s
 - name: Make sure audit-policy.yaml is created
   ansible.builtin.template:
@@ -13,4 +13,9 @@
     dest: /var/lib/k0s/audit-policy.yaml
     owner: root
     group: root
-    mode: "0644"
+    mode: "0777"
+- name: Make sure audit.log is created
+  ansible.builtin.file:
+    path: /var/log/k0s/audit.log
+    state: touch
+    mode: "0777"
