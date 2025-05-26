@@ -12,7 +12,7 @@ spec:
       hooks:
         apply:
           before:
-            - sudo mkdir -p /var/log/k0s && sudo chmod -R 770 /var/log/k0s
+            - sudo mkdir -p /var/log/k0s && sudo chmod -R 777 /var/log/k0s
       role: controller+worker
       noTaints: true
       installFlags:
