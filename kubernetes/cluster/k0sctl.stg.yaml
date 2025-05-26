@@ -25,6 +25,8 @@ spec:
           extraArgs:
             audit-policy-file: /var/lib/k0s/audit-policy.yaml
             audit-log-path: /var/log/k0s/audit/audit.log
+            audit-log-maxsize: "100"
+            audit-log-maxage: "2"
         network:
           provider: kuberouter
           podCIDR: 10.244.0.0/16
