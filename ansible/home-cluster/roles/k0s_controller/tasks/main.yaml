@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: "0744"
+    mode: "0777"
   loop:
     - /var/log/k0s/audit
     - /var/lib/k0s
