@@ -12,6 +12,7 @@ spec:
       role: controller
       installFlags:
         - --enable-metrics-scraper
+        - --enable-worker
     - ssh:
         address: 192.168.151.233 # deneb
         user: privileged
@@ -19,6 +20,7 @@ spec:
       role: controller
       installFlags:
         - --enable-metrics-scraper
+        - --enable-worker
     - ssh:
         address: 192.168.151.229 # vega
         user: privileged
@@ -26,6 +28,7 @@ spec:
       role: controller
       installFlags:
         - --enable-metrics-scraper
+        - --enable-worker
     - ssh:
         address: 192.168.151.228 # rigel
         user: privileged
