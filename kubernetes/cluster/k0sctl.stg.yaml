@@ -13,7 +13,6 @@ spec:
       noTaints: true
       installFlags:
         - --enable-metrics-scraper
-        - --enable-worker
   k0s:
     version: 1.32.2+k0s.0
     config:
