@@ -13,3 +13,7 @@ labels:
 #   - name: package-watcher-conf
 #     behavior: merge
 #     literals: []
+images:
+  - name: package-watcher
+    newName: ghcr.io/piny940/package-watcher # {"$imagepolicy": "default:package-watcher:name"}
+    newTag: 1.0.1 # {"$imagepolicy": "default:package-watcher:tag"}
