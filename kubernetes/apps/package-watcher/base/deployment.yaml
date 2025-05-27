@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: package-watcher
+  labels:
+    app: package-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: package-watcher
+  template:
+    metadata:
+      labels:
+        app: package-watcher
+    spec:
+      serviceAccountName: package-watcher
+      containers:
+        - name: app
+          image: package-watcher
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 10m
+              memory: 30Mi

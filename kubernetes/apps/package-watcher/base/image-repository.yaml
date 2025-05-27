@@ -1,0 +1,7 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: package-watcher
+spec:
+  image: ghcr.io/piny940/package-watcher
+  interval: 1m

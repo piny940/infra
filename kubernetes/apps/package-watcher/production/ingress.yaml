@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: package-watcher-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - package-watcher.piny940.com
+      secretName: cluster-tls
+  rules:
+    - host: package-watcher.piny940.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: package-watcher
+                port:
+                  number: 8080

@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: package-watcher
+spec:
+  imageRepositoryRef:
+    name: package-watcher
+  policy:
+    semver:
+      range: 1.0.x
