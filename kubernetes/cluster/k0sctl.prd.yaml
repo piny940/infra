@@ -9,26 +9,23 @@ spec:
         address: 192.168.151.224 # altair
         user: privileged
         keyPath: ~/.ssh/k0sctl
-      role: controller
+      role: controller+worker
       installFlags:
         - --enable-metrics-scraper
-        - --enable-worker
     - ssh:
         address: 192.168.151.233 # deneb
         user: privileged
         keyPath: ~/.ssh/k0sctl
-      role: controller
+      role: controller+worker
       installFlags:
         - --enable-metrics-scraper
-        - --enable-worker
     - ssh:
         address: 192.168.151.229 # vega
         user: privileged
         keyPath: ~/.ssh/k0sctl
-      role: controller
+      role: controller+worker
       installFlags:
         - --enable-metrics-scraper
-        - --enable-worker
     - ssh:
         address: 192.168.151.228 # rigel
         user: privileged
