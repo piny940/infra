@@ -5,6 +5,8 @@ resources:
   - service.yaml
   - image-repository.yaml
   - service-account.yaml
+configurations:
+  - kustomizeconfig.yaml
 # configMapGenerator:
 #   - name: package-watcher-conf
 #     literals: []
