@@ -1,9 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: package-watcher
+namespace: default
 namePrefix: stg-
 resources:
   - ../base
+  - image-policy.yaml
+  - ingress.yaml
 labels:
   - pairs:
       env: staging
@@ -12,3 +14,7 @@ labels:
 #   - name: package-watcher-conf
 #     behavior: merge
 #     literals: []
+images:
+  - name: package-watcher
+    newName: ghcr.io/piny940/package-watcher # {"$imagepolicy": "default:stg-package-watcher:name"}
+    newTag: stg-b872a91c113cf388e0b7d539fd85b2549c37963b-9 # {"$imagepolicy": "default:stg-package-watcher:tag"}

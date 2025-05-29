@@ -17,4 +17,3 @@ resources:
   - open-webui.yaml
   - kube-cronjob-system.yaml
   - k0s-system.yaml
-  - package-watcher.yaml

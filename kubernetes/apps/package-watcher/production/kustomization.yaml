@@ -1,8 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: package-watcher
+namespace: default
 resources:
   - ../base
+  - image-policy.yaml
+  - ingress.yaml
 labels:
   - pairs:
       env: production
@@ -11,3 +13,7 @@ labels:
 #   - name: package-watcher-conf
 #     behavior: merge
 #     literals: []
+images:
+  - name: package-watcher
+    newName: ghcr.io/piny940/package-watcher # {"$imagepolicy": "default:package-watcher:name"}
+    newTag: 1.0.2 # {"$imagepolicy": "default:package-watcher:tag"}
