@@ -6,8 +6,8 @@ spec:
   imageRepositoryRef:
     name: package-watcher
   filterTags:
-    pattern: "^main-[a-z0-9]+-(?P<n>[0-9]+)$"
-    extract: "$n"
+    pattern: "^main-[a-z0-9]+-(?P<ts>[0-9]+)$"
+    extract: "$ts"
   policy:
     numerical:
       order: asc
