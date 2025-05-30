@@ -17,4 +17,4 @@ labels:
 images:
   - name: package-watcher
     newName: ghcr.io/piny940/package-watcher # {"$imagepolicy": "default:stg-package-watcher:name"}
-    newTag: stg-b872a91c113cf388e0b7d539fd85b2549c37963b-9 # {"$imagepolicy": "default:stg-package-watcher:tag"}
+    newTag: stg-e3783750cd9d5c754f2e04a8e3e3a4668a79a26e-14 # {"$imagepolicy": "default:stg-package-watcher:tag"}
