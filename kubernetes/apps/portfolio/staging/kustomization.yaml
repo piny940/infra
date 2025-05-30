@@ -16,7 +16,7 @@ images:
     newTag: main-89aaa17796a2b15c27c74846aa11d6c95adb25fd-20250530045335 # {"$imagepolicy": "default:stg-portfolio-backend:tag"}
   - name: portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:stg-portfolio-updater:name"}
-    newTag: main-f623a088e1cc5714b4f8d2dd46167812e0f84ced-20250530152920 # {"$imagepolicy": "default:stg-portfolio-updater:tag"}
+    newTag: main-395fb4f2ca5f50b95ed71b3e1dea6eb03cd1d6c5-20250530190744 # {"$imagepolicy": "default:stg-portfolio-updater:tag"}
 resources:
   - ../base
   - ingress.yaml
