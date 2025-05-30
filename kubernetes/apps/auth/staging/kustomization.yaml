@@ -16,7 +16,7 @@ images:
     newTag: stg-acaa1d740c597b409ac1a7c13d0337de266cb0ae-1260 # {"$imagepolicy": "default:stg-auth:tag"}
   - name: auth-frontend
     newName: ghcr.io/piny940/auth-frontend # {"$imagepolicy": "default:stg-auth-frontend:name"}
-    newTag: stg-b8f3e92c1bf9156f55e8bdd5b36ab09a9b77e32b-1251 # {"$imagepolicy": "default:stg-auth-frontend:tag"}
+    newTag: stg-acaa1d740c597b409ac1a7c13d0337de266cb0ae-1260 # {"$imagepolicy": "default:stg-auth-frontend:tag"}
   - name: auth-example
     newName: ghcr.io/piny940/auth-example # {"$imagepolicy": "default:stg-auth-example:name"}
     newTag: stg-acaa1d740c597b409ac1a7c13d0337de266cb0ae-1260 # {"$imagepolicy": "default:stg-auth-example:tag"}
