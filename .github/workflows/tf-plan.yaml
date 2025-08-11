@@ -13,7 +13,7 @@ jobs:
       aws: ${{ steps.path-filter.outputs.aws }}
       proxmox: ${{ steps.path-filter.outputs.proxmox }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dorny/paths-filter@v3
         id: path-filter
         with:
@@ -34,7 +34,7 @@ jobs:
     if: needs.filter.outputs.gcp == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Terraform Plan
         uses: ./.github/actions/gcp-plan
         with:
@@ -48,7 +48,7 @@ jobs:
     if: needs.filter.outputs.gcp == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Terraform Plan
         uses: ./.github/actions/gcp-plan
         with:
@@ -63,7 +63,7 @@ jobs:
     if: needs.filter.outputs.aws == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Terraform Plan
         uses: ./.github/actions/aws-plan
         with:
@@ -77,7 +77,7 @@ jobs:
     if: needs.filter.outputs.aws == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Terraform Plan
         uses: ./.github/actions/aws-plan
         with:
