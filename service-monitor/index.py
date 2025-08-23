@@ -25,6 +25,8 @@ def check(path):
   except requests.exceptions.ConnectTimeout:
     return False, 'Connection timed out'
   if res.status_code == 200:
+    if res.text != 'OK':
+      return False, 'Response is not OK: ' + res.text
     return True, None
   else:
     return False, res.text
