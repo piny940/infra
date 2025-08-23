@@ -95,9 +95,14 @@ kubectl create secret generic vault-tls -n $VAULT_K8S_NAMESPACE --from-file=vaul
 
 ### サーバーの設定
 
-初回のみ：
+初回のみ、ローカルから鍵をアップロード
 
 ```bash
+env=staging
+scp "$env"-cluster-keys.json procyon:cluster-keys.json
+```
+
+<!-- ```bash
 CLUSTER_KEY=$(kubectl exec vault-0 -n vault -- vault operator init \
                 -key-shares=1 \
                 -key-threshold=1 \
@@ -106,7 +111,7 @@ if [ -z "${CLUSTER_KEY}" ]; then
 echo "CLUSTER_KEY is not set"
 fi
 echo $CLUSTRE_KEY > ~/cluster-keys.json
-```
+``` -->
 
 prefix を設定
 
