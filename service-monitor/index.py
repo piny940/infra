@@ -19,10 +19,11 @@ def notify_slack(msg):
 
 
 def check(path):
-  user = os.getenv('BASIC_AUTH_USER')
-  password = os.getenv('BASIC_AUTH_PASSWORD')
-  auth = base64.b64encode(f'{user}:{password}'.encode('utf-8'))
-  res = requests.get(path, headers={'Authorization': f'Basic {auth.decode("utf-8")}'})
+  timeout = os.getenv('CHECK_TIMEOUT') or '3'
+  try:
+    res = requests.get(path, timeout=float(timeout))
+  except requests.exceptions.ConnectTimeout:
+    return False, 'Connection timed out'
   if res.status_code == 200:
     return True, None
   else:
