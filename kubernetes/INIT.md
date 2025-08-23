@@ -66,6 +66,12 @@ scp "$hostname":cluster-jwks.json "$env"-cluster-jwks.json
 
 `gcp/{env}/cluster-jwks.json` を置き換える
 
+```bash
+env=staging
+dir=Documents/github/infra/gcp/staging/cluster-jwks.json
+cp "$env"-cluster-jwks.json "$dir"
+```
+
 ## バックアップを復元
 
 参考: https://velero.io/docs/v1.13/restore-reference/
