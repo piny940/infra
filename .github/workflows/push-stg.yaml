@@ -25,7 +25,7 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
       - name: Push to staging branch
-        run:  |
+        run: |
           git push -u origin HEAD:staging -f
   main:
     runs-on: ubuntu-latest
@@ -40,5 +40,5 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
       - name: Push to staging branch
-        run:  |
+        run: |
           git push -u origin HEAD:staging -f
