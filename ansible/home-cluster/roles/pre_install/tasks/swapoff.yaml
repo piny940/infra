@@ -5,7 +5,7 @@
     get_attributes: false
     get_checksum: false
     get_mime: false
-  register: swap_file
+  register: pre_install_swap_file
 - name: Disable swap
   loop:
     - none
@@ -13,7 +13,7 @@
   ansible.posix.mount:
     path: "{{ item }}"
     state: absent
-  when: swap_file.stat.exists
+  when: pre_install_swap_file.stat.exists
 - name: Mask swap.target
   ansible.builtin.systemd_service:
     name: swap.target
@@ -21,4 +21,4 @@
 - name: Disable swap
   ansible.builtin.command: /sbin/swapoff -a
   changed_when: false
-  when: swap_file.stat.exists
+  when: pre_install_swap_file.stat.exists
