@@ -50,6 +50,7 @@ resource "aws_lambda_function" "service-monitor" {
       BASIC_AUTH_PASSWORD = data.aws_ssm_parameter.basic_auth_password.value
       SLACK_API_TOKEN     = data.aws_ssm_parameter.slack_api_token.value
       SLACK_CHANNEL       = local.slack_channel
+      CHECK_TIMEOUT       = "1"
     }
   }
 }
