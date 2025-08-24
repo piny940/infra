@@ -92,5 +92,6 @@ spec:
         limits:
           memory: 256Mi
           cpu: 250m
+      updateStrategyType: RollingUpdate
   test:
     enable: true
