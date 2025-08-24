@@ -8,5 +8,4 @@ kubeconform -summary \
   -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
   -output json \
   -strict \
-  -ignore-missing-schemas \
   /tmp/pkustomize/out
