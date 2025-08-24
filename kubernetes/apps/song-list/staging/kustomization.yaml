@@ -23,3 +23,11 @@ configMapGenerator:
       - BACKEND_HOST=stg-song-list-backend.default.svc.cluster.local
       - SERVER_NAME=cherry
       - RAILS_HOST=stg-song-list-backend.piny940.com
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: ".*"

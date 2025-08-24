@@ -70,3 +70,11 @@ replacements:
           version: v1
           kind: Deployment
           name: portfolio-backend
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: ".*"

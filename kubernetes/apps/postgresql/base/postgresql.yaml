@@ -7,7 +7,7 @@ spec:
   volume:
     size: 10Gi
     storageClass: longhorn
-  numberOfInstances: 1
+  numberOfInstances: 2
   users:
     default.kintai:
       - createdb
