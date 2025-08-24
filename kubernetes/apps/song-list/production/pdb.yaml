@@ -1,0 +1,19 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: song-list-backend
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: song-list-backend
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: song-list-frontend
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: song-list-frontend

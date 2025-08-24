@@ -5,7 +5,7 @@ metadata:
   labels:
     app: portfolio-backend
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: portfolio-backend
