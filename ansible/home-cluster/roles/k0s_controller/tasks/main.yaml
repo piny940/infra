@@ -11,12 +11,12 @@
   ansible.builtin.template:
     src: audit-policy.yaml.j2
     dest: /var/lib/k0s/audit-policy.yaml
-    owner: kube-apiserver
+    owner: root
     group: root
-    mode: "0644"
+    mode: "0666"
 - name: Make sure audit.log is created
   ansible.builtin.file:
     path: /var/log/k0s/audit/audit.log
     state: touch
-    mode: "600"
-    owner: kube-apiserver
+    mode: "666"
+    owner: root
