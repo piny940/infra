@@ -3,3 +3,13 @@ kind: Kustomization
 namespace: ingress-nginx
 resources:
   - ../base
+patches:
+  - target:
+      kind: HelmRelease
+      name: ingress-nginx
+    patch: |-
+      - op: remove
+        path: /spec/values/controller/minAvailable
+      - op: replace
+        path: /spec/values/controller/replicaCount
+        value: 1

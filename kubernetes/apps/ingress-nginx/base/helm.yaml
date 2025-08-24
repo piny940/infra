@@ -21,6 +21,8 @@ spec:
         name: ingress-nginx
   values:
     controller:
+      replicaCount: 2
+      minAvailable: 1
       metrics:
         enabled: true
         serviceMonitor:
