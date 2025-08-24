@@ -45,3 +45,11 @@ configMapGenerator:
       - NEXT_PUBLIC_API_URL=https://stg-auth.piny940.com/api/v1
       - NEXT_PUBLIC_APP_URL=https://stg-auth-example.piny940.com
       - NEXT_PUBLIC_CLIENT_ID=s7tWwn7g3osEP2eG
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: ".*"

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: song-list-backend
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: song-list-backend
