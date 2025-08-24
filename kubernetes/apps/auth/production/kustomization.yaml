@@ -9,6 +9,7 @@ resources:
   - ../base
   - image-policy.yaml
   - ingress.yaml
+  - pdb.yaml
 images:
   - name: auth
     newName: ghcr.io/piny940/auth-backend # {"$imagepolicy": "default:auth:name"}
