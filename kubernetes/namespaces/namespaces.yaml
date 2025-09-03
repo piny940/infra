@@ -21,11 +21,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: kubernetes-dashboard
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: longhorn-system
 ---
 apiVersion: v1
