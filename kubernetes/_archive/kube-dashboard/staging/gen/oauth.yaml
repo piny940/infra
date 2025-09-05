@@ -56,29 +56,16 @@ spec:
           name: stg-kube-dashboard-oauth2-proxy-secret
     extraArgs:
       - --http-address=0.0.0.0:4180
-      - --provider=oidc
+      - --provider=github
       - --client-id=$(CLIENT_ID)
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
-      - --insecure-oidc-allow-unverified-email
-      - --insecure-oidc-skip-nonce
-      - --oidc-email-claim=name
-      - --oidc-issuer-url=https://stg-auth.piny940.com
-      - --oidc-jwks-url=https://stg-auth.piny940.com/api/v1/oauth/jwks
-      - --login-url=https://stg-auth.piny940.com/api/v1/oauth/authorize
-      - --redeem-url=https://stg-auth.piny940.com/api/v1/oauth/token
-      - --profile-url=https://stg-auth.piny940.com/api/v1/userinfo
-      - --redirect-url=https://stg-kube-dashboard.piny940.com/oauth2/callback
-      - --cookie-domain=stg-kube-dashboard.piny940.com
-      - --whitelist-domain=stg-kube-dashboard.piny940.com
       - --upstream=https://kubernetes-dashboard-kong-proxy.kubernetes-dashboard.svc.cluster.local:443
       - --skip-auth-route=
-      - --ssl-upstream-insecure-skip-verify
-      - --skip-oidc-discovery
       - --cookie-secure=true
-      - --email-domain=""
       - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
       - --skip-provider-button
+      - --github-user=piny940
     extraVolumes:
       - name: oauth2-proxy
         configMap:
