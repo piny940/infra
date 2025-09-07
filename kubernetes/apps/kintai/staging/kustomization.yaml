@@ -10,7 +10,7 @@ images:
     newTag: main-37185dc0325dd32809d07e8b31adfbfbd917a2a7-35 # {"$imagepolicy": "default:stg-kintai-backend:tag"}
   - name: kintai-frontend
     newName: ghcr.io/piny940/kintai-frontend # {"$imagepolicy": "default:stg-kintai-frontend:name"}
-    newTag: main-6d19707e339afd412fb3fe694e65b03707fce63c-61 # {"$imagepolicy": "default:stg-kintai-frontend:tag"}
+    newTag: main-be86393043c95cc3735dd5bf6ba947551d862cef-62 # {"$imagepolicy": "default:stg-kintai-frontend:tag"}
 resources:
   - ../base
   - back.image-policy.yaml
