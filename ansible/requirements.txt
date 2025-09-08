@@ -1,5 +1,5 @@
 ansible==11.9.0
-ansible-core==2.19.1
+ansible-core==2.19.2
 PyYAML==6.0.2
 passlib==1.7.4
 ansible-lint==25.8.2
