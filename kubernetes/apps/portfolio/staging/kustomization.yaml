@@ -10,7 +10,7 @@ images:
     newTag: main-e5827de3edacb4738f140f02963d4003b08d22ee-20250908111030 # {"$imagepolicy": "default:stg-portfolio-admin:tag"}
   - name: portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:stg-portfolio-app:name"}
-    newTag: main-d116a4345b3e36bf1e590fadb60037a2e2616ab6-20250908235207 # {"$imagepolicy": "default:stg-portfolio-app:tag"}
+    newTag: main-fd48675c3334284e9c14252ff26ed8d8c7cf21f5-20250908235302 # {"$imagepolicy": "default:stg-portfolio-app:tag"}
   - name: portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:stg-portfolio-backend:name"}
     newTag: main-33db8fc1495773857b923e4a6c8415b9022243e5-20250908210116 # {"$imagepolicy": "default:stg-portfolio-backend:tag"}
