@@ -1,0 +1,48 @@
+---
+- name: Ensure coredns user exists
+  user:
+    name: "{{ coredns.user }}"
+    system: yes
+
+- name: Create install/config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ coredns.user }}"
+    group: "{{ coredns.user }}"
+    mode: "0755"
+  loop:
+    - "{{ coredns.install_dir }}"
+    - "{{ coredns.config_dir }}"
+
+- name: Download coredns v{{ coredns.version }}
+  get_url:
+    url: https://github.com/coredns/coredns/releases/download/v{{ coredns.version }}/coredns_{{ coredns.version }}_linux_amd64.tgz
+    dest: "/tmp/coredns_{{ coredns.version }}.tgz"
+    mode: "0644"
+  register: download_result
+- name: Extract CoreDNS {{ coredns.version }}
+  unarchive:
+    src: "/tmp/coredns_{{ coredns.version }}.tgz"
+    dest: /usr/local/bin/
+    remote_src: yes
+  when: download_result is changed
+
+- name: Deploy systemd service
+  template:
+    src: coredns.service.j2
+    dest: /etc/systemd/system/coredns.service
+    mode: "0644"
+  notify:
+    - Reload systemd
+    - Restart CoreDNS
+
+- name: Deploy CoreDNS configuration from template
+  template:
+    src: Corefile.j2
+    dest: /etc/coredns/Corefile
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart CoreDNS

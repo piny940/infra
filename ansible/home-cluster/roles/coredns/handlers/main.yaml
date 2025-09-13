@@ -1,0 +1,9 @@
+---
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Restart CoreDNS
+  systemd:
+    name: coredns
+    state: restarted
+    enabled: true
