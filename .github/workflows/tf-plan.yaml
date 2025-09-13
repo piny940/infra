@@ -19,10 +19,12 @@ jobs:
           filters: |
             gcp:
               - "gcp/**"
-              - ".github/workflows/ci.yaml"
+              - ".github/actions/gcp-plan/action.yaml"
+              - ".github/workflows/tf-plan.yaml"
             aws:
               - "aws/**"
-              - ".github/workflows/ci.yaml"
+              - ".github/actions/aws-plan/action.yaml"
+              - ".github/workflows/tf-plan.yaml"
 
   gcp-plan-prd:
     runs-on: ubuntu-latest
