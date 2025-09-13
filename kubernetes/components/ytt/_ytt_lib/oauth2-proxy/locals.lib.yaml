@@ -1,6 +1,0 @@
-#@ load("@ytt:data", "data")
-
-#@ def prefix():
-#@   return "stg-" if data.values.env == "staging" else ""
-#@ end
-

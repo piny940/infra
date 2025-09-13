@@ -7,7 +7,6 @@ serverFQDN: alertmanager.piny940.com
 upstreamURL: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
 skipAuthRoute: GET=/-/healthy
 secretKey: alertmanager
-env: production
 #@ end
 
 #@ def prometheus():
@@ -15,7 +14,6 @@ name: prometheus-oauth2-proxy
 serverFQDN: prometheus.piny940.com
 upstreamURL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
 secretKey: prometheus
-env: production
 #@ end
 
 #@ alertmanager_oauth = library.get("oauth2-proxy").with_data_values(alertmanager())

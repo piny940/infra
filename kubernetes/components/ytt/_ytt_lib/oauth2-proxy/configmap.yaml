@@ -1,9 +1,0 @@
-#@ load("@ytt:data", "data")
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: #@ data.values.name + "-conf-1"
-data:
-  authenticated_emails_file: |
-    piny940
