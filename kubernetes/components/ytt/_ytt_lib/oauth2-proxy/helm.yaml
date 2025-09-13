@@ -1,5 +1,4 @@
 #@ load("@ytt:data", "data")
-#@ load("locals.lib.yaml", "prefix")
 
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
@@ -28,51 +27,20 @@ spec:
           name: #@ data.values.name + "-secret"
     extraArgs:
       - --http-address=0.0.0.0:4180
-      - --provider=oidc
+      - --provider=github
+      - --github-user=piny940
       - --client-id=$(CLIENT_ID)
       - --client-secret=$(CLIENT_SECRET)
       - --cookie-secret=$(COOKIE_SECRET)
-      - --insecure-oidc-allow-unverified-email
-      - --insecure-oidc-skip-nonce
-      - --oidc-email-claim=name
-      #@yaml/text-templated-strings
-      - --oidc-issuer-url=https:// (@-=prefix()-@) auth.piny940.com
-      #@yaml/text-templated-strings
-      - --oidc-jwks-url=https:// (@-=prefix()-@) auth.piny940.com/api/v1/oauth/jwks
-      #@yaml/text-templated-strings
-      - --login-url=https:// (@-=prefix()-@) auth.piny940.com/api/v1/oauth/authorize
-      #@yaml/text-templated-strings
-      - --redeem-url=https:// (@-=prefix()-@) auth.piny940.com/api/v1/oauth/token
-      #@yaml/text-templated-strings
-      - --profile-url=https:// (@-=prefix()-@) auth.piny940.com/api/v1/userinfo
       #@yaml/text-templated-strings
       - --redirect-url=https:// (@-=data.values.serverFQDN-@) /oauth2/callback
       #@yaml/text-templated-strings
-      - --cookie-domain=(@-=data.values.serverFQDN-@)
-      #@yaml/text-templated-strings
-      - --whitelist-domain=(@-=data.values.serverFQDN-@)
+      - --whitelist-domain=*.piny940.com
       #@yaml/text-templated-strings
       - --upstream=(@-=data.values.upstreamURL-@)
       #@yaml/text-templated-strings
       - --skip-auth-route=(@-=data.values.skipAuthRoute-@)
-      #@ if/end data.values.skipUpstreamTLSVerify:
-      - --ssl-upstream-insecure-skip-verify
-      - --skip-oidc-discovery
       - --cookie-secure=true
-      - --email-domain=""
-      - --authenticated-emails-file=/etc/oauth2-proxy-config/authenticated_emails_file
-      - --skip-provider-button
-    extraVolumes:
-      - name: oauth2-proxy
-        configMap:
-          name: #@ data.values.name + "-conf-1"
-          items:
-            - key: authenticated_emails_file
-              path: authenticated_emails_file
-    extraVolumeMounts:
-      - name: oauth2-proxy
-        mountPath: /etc/oauth2-proxy-config
-        readOnly: true
     ingress:
       enabled: true
       className: nginx
