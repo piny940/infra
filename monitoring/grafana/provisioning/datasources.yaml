@@ -1,0 +1,10 @@
+apiVersion: 1
+datasources:
+  - name: "Prometheus"
+    type: prometheus
+    access: proxy
+    url: https://prometheus.piny940.com
+  - name: "Staging Prometheus"
+    type: prometheus
+    access: proxy
+    url: https://stg-prometheus.piny940.com
