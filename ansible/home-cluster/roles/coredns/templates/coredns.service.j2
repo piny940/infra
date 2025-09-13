@@ -1,0 +1,12 @@
+[Unit]
+Description=CoreDNS DNS server
+After=network.target
+
+[Service]
+User={{ coredns.user }}
+ExecStart={{ coredns.install_dir }}/coredns -conf {{ coredns.config_dir }}/Corefile
+Restart=on-failure
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
