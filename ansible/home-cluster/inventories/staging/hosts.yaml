@@ -2,7 +2,7 @@
 all:
   hosts:
     procyon:
-      ansible_host: 192.168.151.236
+      ansible_host: "{{ procyon.host }}"
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
       ansible_become_password: "{{ procyon.password }}"

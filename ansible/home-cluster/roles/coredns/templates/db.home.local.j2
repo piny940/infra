@@ -1,0 +1,12 @@
+$TTL 10
+$ORIGIN home.local.
+@   IN  SOA ns.home.local. admin.home.local. (
+        2025091401 ; serial
+        3600       ; refresh (1 hour)
+        600        ; retry (10 minutes)
+        86400      ; expire (1 day)
+        10         ; minimum (10 seconds)
+    )
+    IN  NS  ns.home.local.
+ns  IN  A   {{ coredns.host }}
+procyon IN A {{ procyon.host }}

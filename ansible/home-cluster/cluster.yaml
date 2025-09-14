@@ -7,6 +7,11 @@
   vars_files:
     - vars/secrets.yaml
     - vars/kubernetes.yaml
+- name: Setup DNS
+  hosts: ha_proxies
+  become: true
+  roles:
+    - { role: coredns, tags: coredns }
 - name: Setup HA Proxies
   hosts: ha_proxies
   become: true

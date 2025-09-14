@@ -12,7 +12,10 @@ yq:
 keepalived:
   virtual_ip: 192.168.151.11
 coredns:
+  host: 192.168.151.11
   version: "1.12.4"
   install_dir: "/usr/local/bin"
   config_dir: "/etc/coredns"
   user: "coredns"
+procyon:
+  host: 192.168.151.236

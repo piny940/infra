@@ -1,0 +1,11 @@
+. {
+  log
+  errors
+  health
+}
+
+home.local {
+  file {{ coredns.config_dir }}/db.home.local
+  log
+  errors
+}

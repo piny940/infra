@@ -24,7 +24,7 @@
 - name: Extract CoreDNS {{ coredns.version }}
   unarchive:
     src: "/tmp/coredns_{{ coredns.version }}.tgz"
-    dest: /usr/local/bin/
+    dest: "{{ coredns.install_dir }}/"
     remote_src: yes
   when: download_result is changed
 
@@ -40,7 +40,17 @@
 - name: Deploy CoreDNS configuration from template
   template:
     src: Corefile.j2
-    dest: /etc/coredns/Corefile
+    dest: "{{ coredns.config_dir }}/Corefile"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart CoreDNS
+
+- name: Deploy DB file from template
+  template:
+    src: db.home.local.j2
+    dest: "{{ coredns.config_dir }}/db.home.local"
     owner: root
     group: root
     mode: "0644"
