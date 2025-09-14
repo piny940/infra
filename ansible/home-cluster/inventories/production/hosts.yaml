@@ -5,61 +5,61 @@ all:
       ansible_host: 192.168.151.235
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ pollux.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     deneb:
       ansible_host: 192.168.151.233
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ deneb.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     bellatrix:
       ansible_host: 192.168.151.234
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ bellatrix.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     castor:
       ansible_host: 192.168.151.223
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ castor.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     altair:
       ansible_host: 192.168.151.224
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ altair.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     betelgeuse:
       ansible_host: 192.168.151.225
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ betelgeuse.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     sirius:
       ansible_host: 192.168.151.226
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ sirius.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     rigel:
       ansible_host: 192.168.151.228
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ rigel.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     vega:
       ansible_host: 192.168.151.229
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ vega.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
     olive:
       ansible_host: olive
       ansible_ssh_private_key_file: ~/.ssh/ed25519
       ansible_user: ansai
-      ansible_become_password: "{{ olive.password }}"
+      ansible_become_password: "{{ server.password }}"
       ansible_python_interpreter: /usr/bin/python3
   children:
     k0sctl:
