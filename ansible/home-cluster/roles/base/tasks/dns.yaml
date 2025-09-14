@@ -1,11 +1,11 @@
 ---
 - name: Make sure systemd-resolved conf.d directory exists
-  file:
+  ansible.builtin.file:
     path: /etc/systemd/resolved.conf.d
     state: directory
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
 
 - name: Deploy home.local DNS configuration
   ansible.builtin.template:
@@ -13,6 +13,6 @@
     src: home-local.conf.j2
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart systemd-resolved

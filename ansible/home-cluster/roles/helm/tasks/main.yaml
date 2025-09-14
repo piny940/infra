@@ -44,4 +44,4 @@
   ansible.builtin.apt:
     name:
       - helm
-    state: latest
+    state: present

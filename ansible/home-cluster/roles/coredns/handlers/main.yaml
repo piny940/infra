@@ -1,9 +1,8 @@
 ---
 - name: Reload systemd
-  command: systemctl daemon-reload
-
+  ansible.builtin.command: systemctl daemon-reload
 - name: Restart CoreDNS
-  systemd:
+  ansible.builtin.systemd:
     name: coredns
     state: restarted
     enabled: true
