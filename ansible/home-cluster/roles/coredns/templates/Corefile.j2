@@ -1,10 +1,10 @@
-. {
+.:5053 {
   log
   errors
   health
 }
 
-home.local {
+home.local:5053 {
   file {{ coredns.config_dir }}/db.home.local
   log
   errors

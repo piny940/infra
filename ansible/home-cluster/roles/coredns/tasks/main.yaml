@@ -15,18 +15,30 @@
     - "{{ coredns.install_dir }}"
     - "{{ coredns.config_dir }}"
 
+- name: Make sure tgz file does not exist
+  ansible.builtin.file:
+    state: absent
+    path: "/tmp/coredns_{{ coredns.version }}.tgz"
 - name: Download coredns v{{ coredns.version }}
   get_url:
     url: https://github.com/coredns/coredns/releases/download/v{{ coredns.version }}/coredns_{{ coredns.version }}_linux_amd64.tgz
     dest: "/tmp/coredns_{{ coredns.version }}.tgz"
     mode: "0644"
   register: download_result
+- name: Make sure coredns is deleted
+  ansible.builtin.file:
+    state: absent
+    path: "{{ coredns.install_dir }}/coredns"
+  when: download_result is changed
 - name: Extract CoreDNS {{ coredns.version }}
   unarchive:
     src: "/tmp/coredns_{{ coredns.version }}.tgz"
     dest: "{{ coredns.install_dir }}/"
     remote_src: yes
   when: download_result is changed
+  notify:
+    - Reload systemd
+    - Restart CoreDNS
 
 - name: Deploy systemd service
   template:

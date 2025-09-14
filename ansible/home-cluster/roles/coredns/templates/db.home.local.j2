@@ -1,11 +1,11 @@
-$TTL 10
+$TTL 86400
 $ORIGIN home.local.
 @   IN  SOA ns.home.local. admin.home.local. (
-        2025091401 ; serial
+        2025091402 ; serial
         3600       ; refresh (1 hour)
         600        ; retry (10 minutes)
-        86400      ; expire (1 day)
-        10         ; minimum (10 seconds)
+        604800     ; expire (1 week)
+        86400      ; minimum (1 day)
     )
     IN  NS  ns.home.local.
 ns  IN  A   {{ coredns.host }}
