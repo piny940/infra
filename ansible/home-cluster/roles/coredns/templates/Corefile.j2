@@ -1,10 +1,10 @@
-.:5053 {
+.:{{ coredns.port }} {
   log
   errors
   health
 }
 
-home.local:5053 {
+home.local:{{ coredns.port }} {
   file {{ coredns.config_dir }}/db.home.local
   log
   errors
