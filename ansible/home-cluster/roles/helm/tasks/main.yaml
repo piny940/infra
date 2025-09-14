@@ -4,28 +4,44 @@
     path: /tmp/helm
     state: directory
     mode: "0755"
+- name: Make sure helm signing file is deleted
+  ansible.builtin.file:
+    state: absent
+    path: /tmp/helm/signing.asc
 - name: Download helm signing
   ansible.builtin.get_url:
-    url: https://baltocdn.com/helm/signing.asc
+    url: https://packages.buildkite.com/helm-linux/helm-debian/gpgkey
     dest: /tmp/helm/signing.asc
     mode: "0644"
+    force: true
   register: helm_download_helm_signing
+- name: Make sure Helm gpg key is deleted
+  ansible.builtin.file:
+    state: absent
+    path: /etc/apt/keyrings/helm.gpg
+  when: helm_download_helm_signing.changed
 - name: Helm gpg key
   ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/helm.gpg /tmp/helm/signing.asc
   args:
     creates: /etc/apt/keyrings/helm.gpg
   when: helm_download_helm_signing.changed
+- name: Make sure that helm repo does not exist
+  ansible.builtin.file:
+    state: absent
+    path: /etc/apt/sources.list.d/helm.list
+  when: helm_download_helm_signing.changed
 - name: Add helm repo
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main
     state: present
     filename: helm
   when: helm_download_helm_signing.changed
 - name: Apt update
   ansible.builtin.apt:
     update_cache: true
+  when: helm_download_helm_signing.changed
 - name: Install Helm
   ansible.builtin.apt:
     name:
       - helm
-    state: present
+    state: latest

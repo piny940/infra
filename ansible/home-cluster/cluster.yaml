@@ -12,6 +12,9 @@
   become: true
   roles:
     - { role: coredns, tags: coredns }
+  vars_files:
+    - vars/secrets.yaml
+    - vars/kubernetes.yaml
 - name: Setup HA Proxies
   hosts: ha_proxies
   become: true
