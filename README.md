@@ -47,7 +47,7 @@ AWS リソースの terraform 管理：[aws/](aws)
 | bellatrix                | Worker(prd)            | kiwi       | 192.168.151.234 | Ubuntu 24.04 | 6 コア  | 8GB    | 128GB |
 | serius                   | k0sctl                 | peach      | 192.168.151.226 | Ubuntu 24.04 | 1 コア  | 2GB    | 64GB  |
 | procyon                  | Controller+Worker(stg) | kiwi       | 192.168.151.236 | Ubuntu 24.04 | 6 コア  | 12GB   | 512GB |
-| olive                    | Worker(prd)            | olive      | 192.168.151.158 | Ubuntu 24.04 | 4 コア  | 8GB    | 512GB |
+| olive                    | Worker(prd)            | olive      | 192.168.151.180 | Ubuntu 24.04 | 4 コア  | 8GB    | 512GB |
 | keepalive(pollux+castor) | Controller(prd)        | kiwi+peach | 192.168.151.11  |              |         |        |       |
 | crt                      | vyos                   | kiwi       | 192.168.151.104 | vyos1.5      | 2 コア  | 512MB  | 2GB   |
 | br01                     | vyos                   | kiwi       | 192.168.151.102 | vyos1.5      | 2 コア  | 512MB  | 2GB   |
