@@ -1,3 +1,5 @@
 ---
 - name: Configure ssh
   ansible.builtin.include_tasks: ssh.yaml
+- name: Configure dns
+  ansible.builtin.include_tasks: dns.yaml

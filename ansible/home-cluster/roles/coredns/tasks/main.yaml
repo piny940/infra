@@ -1,0 +1,70 @@
+---
+- name: Ensure coredns user exists
+  ansible.builtin.user:
+    name: "{{ coredns.user }}"
+    system: true
+
+- name: Create install/config directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ coredns.user }}"
+    group: "{{ coredns.user }}"
+    mode: "0755"
+  loop:
+    - "{{ coredns.install_dir }}"
+    - "{{ coredns.config_dir }}"
+
+- name: Make sure tgz file does not exist
+  ansible.builtin.file:
+    state: absent
+    path: "/tmp/coredns_{{ coredns.version }}.tgz"
+- name: Download coredns v{{ coredns.version }}
+  ansible.builtin.get_url:
+    url: https://github.com/coredns/coredns/releases/download/v{{ coredns.version }}/coredns_{{ coredns.version }}_linux_amd64.tgz
+    dest: "/tmp/coredns_{{ coredns.version }}.tgz"
+    mode: "0644"
+  register: coredns_download_result
+- name: Make sure coredns is deleted
+  ansible.builtin.file:
+    state: absent
+    path: "{{ coredns.install_dir }}/coredns"
+  when: coredns_download_result is changed
+- name: Extract CoreDNS {{ coredns.version }}
+  ansible.builtin.unarchive:
+    src: "/tmp/coredns_{{ coredns.version }}.tgz"
+    dest: "{{ coredns.install_dir }}/"
+    remote_src: true
+  when: coredns_download_result is changed
+  notify:
+    - Reload systemd
+    - Restart CoreDNS
+
+- name: Deploy systemd service
+  ansible.builtin.template:
+    src: coredns.service.j2
+    dest: /etc/systemd/system/coredns.service
+    mode: "0644"
+  notify:
+    - Reload systemd
+    - Restart CoreDNS
+
+- name: Deploy CoreDNS configuration from template
+  ansible.builtin.template:
+    src: Corefile.j2
+    dest: "{{ coredns.config_dir }}/Corefile"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart CoreDNS
+
+- name: Deploy DB file from template
+  ansible.builtin.template:
+    src: db.home.local.j2
+    dest: "{{ coredns.config_dir }}/db.home.local"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart CoreDNS

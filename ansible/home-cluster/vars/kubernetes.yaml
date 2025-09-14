@@ -11,3 +11,32 @@ yq:
   version: "4.2.0"
 keepalived:
   virtual_ip: 192.168.151.11
+coredns:
+  host: 192.168.151.11
+  port: "5053"
+  version: "1.12.4"
+  install_dir: "/usr/local/bin"
+  config_dir: "/etc/coredns"
+  user: "coredns"
+procyon:
+  host: 192.168.151.236
+pollux:
+  host: 192.168.151.235
+deneb:
+  host: 192.168.151.233
+bellatrix:
+  host: 192.168.151.234
+castor:
+  host: 192.168.151.223
+altair:
+  host: 192.168.151.224
+betelgeuse:
+  host: 192.168.151.225
+sirius:
+  host: 192.168.151.226
+rigel:
+  host: 192.168.151.228
+vega:
+  host: 192.168.151.229
+olive:
+  host: 192.168.151.180

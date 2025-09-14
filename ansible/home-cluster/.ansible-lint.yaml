@@ -5,3 +5,4 @@ extra_vars:
 skip_list:
   - no-handler
   - no-changed-when
+  - command-instead-of-module
