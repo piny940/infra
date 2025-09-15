@@ -3,24 +3,37 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana:12.1.0
-    ports:
-      - "12000:3000"
     environment:
       GF_PATHS_CONFIG: /etc/grafana/grafana.ini
       GF_PATHS_DATA: /var/lib/grafana/data
       GF_PATHS_LOGS: /var/log/grafana
       GF_PATHS_PLUGINS: /var/lib/grafana/plugins
+    env_file:
+      - ./grafana/.env
     volumes:
-      - grafana-storage:/var/lib/grafana
+      # - grafana-storage:/var/lib/grafana
       - grafana-logs:/var/log/grafana
       - ./grafana/config.ini:/etc/grafana/grafana.ini:ro
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.29.1-alpine-slim
+    ports:
+      - 12001:3000
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     secrets:
-      - grafana_client_secret
+      - tls.crt
+      - tls.key
+    depends_on:
+      - grafana
 
 volumes:
-  grafana-storage:
+  # grafana-storage:
   grafana-logs:
 secrets:
-  grafana_client_secret:
-    file: ./grafana/secrets/client_secret.txt
+  tls.crt:
+    file: ./nginx/secrets/tls.crt
+  tls.key:
+    file: ./nginx/secrets/tls.key
