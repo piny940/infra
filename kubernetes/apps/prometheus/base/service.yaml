@@ -6,7 +6,6 @@ spec:
   type: NodePort
   selector:
     app.kubernetes.io/name: prometheus
-    operator.prometheus.io/name: kube-prometheus-stack-prometheus
   ports:
     - name: http-web
       port: 9090
