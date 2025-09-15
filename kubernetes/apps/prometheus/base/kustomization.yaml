@@ -6,6 +6,5 @@ resources:
   - helm.yaml
   - prometheus-rule.yaml
   - service-account.yaml
-  - service.yaml
 configurations:
   - kustomizeconfig.yaml

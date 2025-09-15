@@ -79,6 +79,9 @@ spec:
     kubeScheduler:
       enabled: false
     prometheus:
+      service:
+        type: NodePort
+        nodePort: 30007
       ingress:
         enabled: false
       prometheusSpec:
