@@ -552,8 +552,8 @@
                 "id": "links",
                 "value": [
                   {
-                    "title": "",
-                    "url": "d/GlXkUBGiz/kubernetes3a-pod-overview?orgId=1&refresh=10s&${namespace:queryparam}&var-pod=${__value.text}&var-container=All"
+                    "title": "Pod Details",
+                    "url": "/d/stg-k8s-pod-details/pod-details?orgId=1&from=now-6h&to=now&timezone=browser&${namespace:queryparam}&var-pod=${__value.text}&refresh=30s"
                   }
                 ]
               },
