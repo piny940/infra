@@ -1,0 +1,19 @@
+apiVersion: 1
+providers:
+  - name: 'Production from File'
+    folder: Production Kubernetes
+    type: file
+    disableDeletion: true
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards/prd-k8s
+  - name: 'Staging from File'
+    folder: Staging Kubernetes
+    type: file
+    disableDeletion: true
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards/stg-k8s
+

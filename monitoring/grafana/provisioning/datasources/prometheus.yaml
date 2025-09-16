@@ -1,0 +1,10 @@
+apiVersion: 1
+datasources:
+  - name: "Production Kubernetes Prometheus"
+    type: prometheus
+    url: http://nginx:3002
+    uid: prd-k8s-prometheus
+  - name: "Staging Kubernetes Prometheus"
+    type: prometheus
+    url: http://nginx:3001
+    uid: stg-k8s-prometheus
