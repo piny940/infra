@@ -13,13 +13,13 @@ resources:
 images:
   - name: auth
     newName: ghcr.io/piny940/auth-backend # {"$imagepolicy": "default:stg-auth:name"}
-    newTag: stg-4aea1666cb2f9c1cd0c84761e7a24d3b85f90381-1578 # {"$imagepolicy": "default:stg-auth:tag"}
+    newTag: stg-fd73af666ce373b387e7c016aec000a9cb05d717-1584 # {"$imagepolicy": "default:stg-auth:tag"}
   - name: auth-frontend
     newName: ghcr.io/piny940/auth-frontend # {"$imagepolicy": "default:stg-auth-frontend:name"}
     newTag: stg-bfde9f8c699297c2b335747ca4c3777b9d050a5a-1579 # {"$imagepolicy": "default:stg-auth-frontend:tag"}
   - name: auth-example
     newName: ghcr.io/piny940/auth-example # {"$imagepolicy": "default:stg-auth-example:name"}
-    newTag: stg-4aea1666cb2f9c1cd0c84761e7a24d3b85f90381-1578 # {"$imagepolicy": "default:stg-auth-example:tag"}
+    newTag: stg-bfde9f8c699297c2b335747ca4c3777b9d050a5a-1579 # {"$imagepolicy": "default:stg-auth-example:tag"}
 configMapGenerator:
   - name: auth-conf
     behavior: merge
