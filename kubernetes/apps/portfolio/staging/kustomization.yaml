@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: portfolio-admin
     newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:stg-portfolio-admin:name"}
-    newTag: main-11147be4e1b663fa0df9f81a912acaf2e5686a25-20250925161822 # {"$imagepolicy": "default:stg-portfolio-admin:tag"}
+    newTag: main-11147be4e1b663fa0df9f81a912acaf2e5686a25-20250925162345 # {"$imagepolicy": "default:stg-portfolio-admin:tag"}
   - name: portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:stg-portfolio-app:name"}
     newTag: main-11147be4e1b663fa0df9f81a912acaf2e5686a25-20250925161822 # {"$imagepolicy": "default:stg-portfolio-app:tag"}
@@ -16,7 +16,7 @@ images:
     newTag: main-11147be4e1b663fa0df9f81a912acaf2e5686a25-20250925161822 # {"$imagepolicy": "default:stg-portfolio-backend:tag"}
   - name: portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:stg-portfolio-updater:name"}
-    newTag: main-11147be4e1b663fa0df9f81a912acaf2e5686a25-20250925161823 # {"$imagepolicy": "default:stg-portfolio-updater:tag"}
+    newTag: main-11147be4e1b663fa0df9f81a912acaf2e5686a25-20250925162345 # {"$imagepolicy": "default:stg-portfolio-updater:tag"}
 resources:
   - ../base
   - ingress.yaml
