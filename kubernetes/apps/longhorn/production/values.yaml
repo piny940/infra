@@ -1,2 +1,9 @@
 persistence:
   defaultClassReplicaCount: 3
+longhornUI:
+  replicas: 3
+csi:
+  attacherReplicaCount: 3
+  provisionerReplicaCount: 3
+  resizerReplicaCount: 3
+  snapshotterReplicaCount: 3
