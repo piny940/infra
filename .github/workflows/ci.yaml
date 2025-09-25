@@ -1,6 +1,7 @@
 name: CI
 on:
   pull_request:
+    branches-ignore: [fluxcd/*]
 permissions:
   id-token: write
   contents: read
