@@ -9,4 +9,4 @@ csi:
   resizerReplicaCount: 1
   snapshotterReplicaCount: 1
 defaultSettings:
-  storageReservedPercentageForDefaultDisk: 5
+  storageReservedPercentageForDefaultDisk: "5"
