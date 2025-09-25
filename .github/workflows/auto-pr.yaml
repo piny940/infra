@@ -31,6 +31,6 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
       - name: Enable auto-merge for FluxCD PRs
-        run: gh pr merge --auto --merge --delete-branch "${{ steps.create_pr.outputs.pr_url }}"
+        run: gh pr merge --merge --delete-branch "${{ steps.create_pr.outputs.pr_url }}"
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
