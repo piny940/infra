@@ -4,7 +4,7 @@ metadata:
   name: song-list
   namespace: flux-system
 spec:
-  interval: 3m
+  interval: 30s
   path: ./kubernetes/apps/song-list/staging
   prune: true
   sourceRef:
