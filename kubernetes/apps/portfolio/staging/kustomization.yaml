@@ -78,3 +78,9 @@ patches:
     target:
       kind: Deployment
       name: ".*"
+  - patch: |-
+      - op: replace
+        path: /spec/interval
+        value: 30s
+    target:
+      kind: ImageRepository
