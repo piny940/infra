@@ -7,7 +7,7 @@ spec:
     name: portfolio-admin
   policy:
     semver:
-      range: 1.0.x
+      range: 1.1.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -17,11 +17,8 @@ spec:
   imageRepositoryRef:
     name: portfolio-app
   policy:
-    numerical:
-      order: asc
-  filterTags:
-    pattern: "^1.0.0-(?P<ts>[0-9]+)$"
-    extract: "$ts"
+    semver:
+      range: 1.1.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -32,7 +29,7 @@ spec:
     name: portfolio-backend
   policy:
     semver:
-      range: 1.0.x
+      range: 1.1.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -43,4 +40,4 @@ spec:
     name: portfolio-updater
   policy:
     semver:
-      range: 1.0.x
+      range: 1.1.x
