@@ -7,7 +7,7 @@ commonLabels:
 images:
   - name: song-list-backend
     newName: ghcr.io/piny940/song-list-backend # {"$imagepolicy": "default:stg-song-list-backend:name"}
-    newTag: main-f950f0625dd592a253645f712caf9a26b58eb8af-614 # {"$imagepolicy": "default:stg-song-list-backend:tag"}
+    newTag: main-4eb551183c0b1550fba9a7f94873c6ddc99c3e19-619 # {"$imagepolicy": "default:stg-song-list-backend:tag"}
   - name: song-list-frontend
     newName: ghcr.io/piny940/song-list-frontend # {"$imagepolicy": "default:stg-song-list-frontend:name"}
     newTag: main-f950f0625dd592a253645f712caf9a26b58eb8af-614 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
