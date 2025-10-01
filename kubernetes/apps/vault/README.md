@@ -1,6 +1,6 @@
 # Vault
 
-参考: https://qiita.com/piny940/items/66214e8f7c8af18ba014
+参考: <https://qiita.com/piny940/items/66214e8f7c8af18ba014>
 
 ## CLI をインストール(初回のみ)
 
@@ -200,36 +200,6 @@ vault write auth/kubernetes/role/issuer \
 
 `Secret Engines`から`K/V`を選択し、`k8s`という名前で作成する。
 
-## PIK の設定
-
-PKI を有効にする。
-
-```bash
-WORKDIR="/tmp/vault"
-vault secrets enable pki
-vault secrets tune -max-lease-ttl=43800h pki
-```
-
-Root 証明書を作成
-
-```bash
-vault write pki/root/generate/internal common_name="root" issuer_name="root" ttl=87600h > ${WORKDIR}/root_ca.crt
-vault write pki/config/urls issuing_certificates="https://vault.vault:8200/v1/pki/ca" crl_distribution_points="https://vault.vault:8200/v1/pki/crl"
-vault write pki/roles/vault-vault allowed_domains=vault.vault allow_subdomains=false max_ttl=72h
-```
-
-中間証明書の CSR を作成
-
-```bash
-vault secrets enable -path=pki_int pki
-vault secrets tune -max-lease-ttl=43800h pki_int
-vault write -format=json pki_int/intermediate/generate/internal common_name="Vault Intermediate Authority" issuer_name="vault-intermediate" | jq -r '.data.csr' > ${WORKDIR}/pki_intermediate.csr
-vault write pki_int/config/urls issuing_certificates="https://vault.vault.svc.cluster.local:8200/v1/pki/ca" crl_distribution_points="https://vault.vault.svc.cluster.local:8200/v1/pki/crl"
-vault write -format=json pki/root/sign-intermediate issuer_ref="root" csr=@${WORKDIR}/pki_intermediate.csr format=pem_bundle ttl="43800h" | jq -r '.data.certificate' > ${WORKDIR}/intermediate.cert.pem
-vault write pki_int/intermediate/set-signed certificate=@${WORKDIR}/intermediate.cert.pem
-vault write pki_int/roles/cluster-local issuer_ref="$(vault read -field=default pki_int/config/issuers)"  allowed_domains="svc.cluster.local" allow_subdomains=true max_ttl="720h"
-```
-
 ## UI からログインできるようにする
 
 ローカルPCで自分のGoogleのsubを確認
@@ -262,12 +232,6 @@ cat <<EOF | kubectl exec -i vault-0 -n vault -- vault policy write admin -
   }
   path "monitoring/*" {
     capabilities = ["read", "list", "create", "update", "delete"]
-  }
-  path "pki/*" {
-    capabilities = ["read", "list"]
-  }
-  path "pki_int/*" {
-    capabilities = ["read", "list"]
   }
 EOF
 kubectl exec vault-0 -n vault -- \
