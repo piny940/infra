@@ -56,5 +56,11 @@ spec:
           secretKeyRef:
             name: open-webui-secret
             key: GITHUB_CLIENT_SECRET
+    ingress:
+      enabled: true
+      class: nginx
+      tls: true
+      existingSecret: cluster-tls
+      host: HOST_PLACEHOLDER
   test:
     enable: true

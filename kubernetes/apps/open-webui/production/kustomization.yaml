@@ -12,3 +12,11 @@ configMapGenerator:
     behavior: merge
     literals:
       - GITHUB_CLIENT_ID=Ov23liQnnPEPWDtRyF5J
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/values/ingress/host
+        value: open-webui.piny940.com
+    target:
+      kind: HelmRelease
+      name: open-webui
