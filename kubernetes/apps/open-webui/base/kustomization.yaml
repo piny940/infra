@@ -4,3 +4,9 @@ resources:
   - external-secret.yaml
   - helm.yaml
   - pvc.yaml
+configMapGenerator:
+  - name: open-webui-conf
+    literals:
+      - GITHUB_CLIENT_ID=
+configurations:
+  - kustomizeconfig.yaml

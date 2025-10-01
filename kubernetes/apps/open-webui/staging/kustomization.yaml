@@ -3,8 +3,12 @@ kind: Kustomization
 namespace: open-webui
 resources:
   - ../base
-  - gen/oauth.yaml
 labels:
   - pairs:
       env: staging
     includeSelectors: true
+configMapGenerator:
+  - name: open-webui-conf
+    behavior: merge
+    literals:
+      - GITHUB_CLIENT_ID=Ov23liC9EWLS8m9q2pi4
