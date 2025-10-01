@@ -248,14 +248,49 @@ path "pki_int/*" {
 }
 ```
 
-`k8s/`以下のリソースに対して、全ての操作が可能なポリシーになっている。
+ローカルPCで自分のGoogleのsubを確認
 
-`Access` > `Enable new method`で`Userpass`を有効にする。
-`Path`は適当で OK
+```sh
+gcloud auth print-identity-token
+```
 
-ユーザーを作成する。
+GCPでGoogle Auth Platformのクライアントを作成。
+承認済みRedirectURIは `https://${prefix}vault.piny940.com/ui/vault/auth/oidc/oidc/callback`
 
-- `Generated Token's Policies`は先程作成したものを選択する。
-- `Generated Token's Initial TTL`は`86400`(24h)にする。
+```sh
+CLIENT_ID={クライアントID}
+CLIENT_SECRET={クライアントシークレット}
+GOOGLE_SUB={自分のGoogleアカウントのsub}
+ENV={staging | production}
+```
 
-これで、admin ユーザーが作成される。
+以下を実行。
+
+```sh
+if [ "$ENV" = "staging" ]; then
+  CALLBACK=https://stg-vault.piny940.com/ui/vault/auth/oidc/oidc/callback
+else
+  CALLBACK=https://vault.piny940.com/ui/vault/auth/oidc/oidc/callback
+fi
+kubectl exec vault-0 -n vault -- \
+vault auth enable oidc
+kubectl exec vault-0 -n vault -- \
+  vault write auth/oidc/config \
+    oidc_discovery_url="https://accounts.google.com" \
+    oidc_client_id="$CLIENT_ID" \
+    oidc_client_secret="$CLIENT_SECRET" \
+    default_role="admin"
+kubectl exec vault-0 -n vault -- \
+  vault auth tune \
+    -default-lease-ttl=86400s \
+    -listing-visibility=unauth \
+  oidc/
+kubectl exec vault-0 -n vault -- \
+  vault write auth/oidc/role/admin \
+    name="admin" \
+    role_type="oidc" \
+    user_claim="sub" \
+    bound_subject="$GOOGLE_SUB" \
+    allowed_redirect_uris="$CALLBACK" \
+    token_policies="admin"
+```
