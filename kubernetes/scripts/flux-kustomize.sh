@@ -51,7 +51,7 @@ for dir in `ls -d apps/*/`; do
   # apps/xx/ -> xx
   app=$(echo $dir | sed -e 's:apps/::g' | sed -e 's:/::g')
 
-  for env in staging production; do
+  for env in apps/$app; do
     if [ ! -e "_flux/$env/kustomizations/$app.yaml" ]; then
       createKustomization $app $env
     fi
