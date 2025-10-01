@@ -230,23 +230,7 @@ vault write pki_int/intermediate/set-signed certificate=@${WORKDIR}/intermediate
 vault write pki_int/roles/cluster-local issuer_ref="$(vault read -field=default pki_int/config/issuers)"  allowed_domains="svc.cluster.local" allow_subdomains=true max_ttl="720h"
 ```
 
-## Admin ユーザーを作成
-
-root アカウントだと危険なので、admin ユーザーを作成する。
-
-`Policies` > 'Create ACL Policy' で以下のポリシーを作成する。
-
-```hcl
-path "k8s/*" {
-  capabilities = ["read", "list", "create", "update", "delete"]
-}
-path "pki/*" {
-  capabilities = ["read", "list"]
-}
-path "pki_int/*" {
-  capabilities = ["read", "list"]
-}
-```
+## UI からログインできるようにする
 
 ローカルPCで自分のGoogleのsubを確認
 
@@ -272,6 +256,20 @@ if [ "$ENV" = "staging" ]; then
 else
   CALLBACK=https://vault.piny940.com/ui/vault/auth/oidc/oidc/callback
 fi
+cat <<EOF | kubectl exec -i vault-0 -n vault -- vault policy write admin -
+  path "k8s/*" {
+    capabilities = ["read", "list", "create", "update", "delete"]
+  }
+  path "monitoring/*" {
+    capabilities = ["read", "list", "create", "update", "delete"]
+  }
+  path "pki/*" {
+    capabilities = ["read", "list"]
+  }
+  path "pki_int/*" {
+    capabilities = ["read", "list"]
+  }
+EOF
 kubectl exec vault-0 -n vault -- \
 vault auth enable oidc
 kubectl exec vault-0 -n vault -- \
@@ -293,4 +291,32 @@ kubectl exec vault-0 -n vault -- \
     bound_subject="$GOOGLE_SUB" \
     allowed_redirect_uris="$CALLBACK" \
     token_policies="admin"
+```
+
+## Monitoring 環境のための設定
+
+ローカルPCで自分のGoogleのsubを確認
+
+```sh
+gcloud auth print-identity-token
+```
+
+```sh
+GOOGLE_SUB={自分のGoogleアカウントのsub}
+```
+
+```sh
+cat <<EOF | kubectl exec -i vault-0 -n vault -- vault policy write monitoring -
+  path "monitoring/*" {
+    capabilities = ["read", "list"]
+  }
+EOF
+kubectl exec vault-0 -n vault -- \
+  vault write auth/oidc/role/monitoring \
+    name="monitoring" \
+    role_type="oidc" \
+    user_claim="sub" \
+    bound_subject="$GOOGLE_SUB" \
+    allowed_redirect_uris="http://localhost:8250/oidc/callback" \
+    token_policies="monitoring"
 ```
