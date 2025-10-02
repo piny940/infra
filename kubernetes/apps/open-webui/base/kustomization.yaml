@@ -12,7 +12,6 @@ configMapGenerator:
       - CORS_ALLOW_ORIGIN=
       - ENABLE_SIGNUP=false
       - ENABLE_LOGIN_FORM=false
-      - DEFAULT_MODELS=gpt-4o
       - ENABLE_OPENAI_API=true
       - OPENAI_API_BASE_URL=https://api.openai.com/v1
       - ENABLE_OAUTH_SIGNUP=true
