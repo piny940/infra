@@ -42,11 +42,16 @@ spec:
     persistence:
       enabled: true
       existingClaim: open-webui-pvc
-    extraEnvVars:
-      - name: OPENAI_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: open-webui-secret
-            key: OPENAI_API_KEY
+    extraEnvFrom:
+      - configMapRef:
+          name: open-webui-conf
+      - secretRef:
+          name: open-webui-secret
+    ingress:
+      enabled: true
+      class: nginx
+      tls: true
+      existingSecret: cluster-tls
+      host: HOST_PLACEHOLDER
   test:
     enable: true
