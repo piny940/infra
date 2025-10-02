@@ -45,17 +45,8 @@ spec:
     extraEnvFrom:
       - configMapRef:
           name: open-webui-conf
-    extraEnvVars:
-      - name: OPENAI_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: open-webui-secret
-            key: OPENAI_API_KEY
-      - name: GITHUB_CLIENT_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: open-webui-secret
-            key: GITHUB_CLIENT_SECRET
+      - secretRef:
+          name: open-webui-secret
     ingress:
       enabled: true
       class: nginx

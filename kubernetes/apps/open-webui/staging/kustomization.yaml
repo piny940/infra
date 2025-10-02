@@ -11,7 +11,9 @@ configMapGenerator:
   - name: open-webui-conf
     behavior: merge
     literals:
+      - WEBUI_URL=https://stg-openai.piny940.com
       - GITHUB_CLIENT_ID=Ov23liC9EWLS8m9q2pi4
+      - CORS_ALLOW_ORIGIN=https://stg-openai.piny940.com
 patches:
   - patch: |-
       - op: replace
