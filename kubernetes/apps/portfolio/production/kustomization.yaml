@@ -15,7 +15,7 @@ images:
     newTag: 1.1.36 # {"$imagepolicy": "default:portfolio-backend:tag"}
   - name: portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater:name"}
-    newTag: 1.1.54 # {"$imagepolicy": "default:portfolio-updater:tag"}
+    newTag: 1.1.56 # {"$imagepolicy": "default:portfolio-updater:tag"}
 resources:
   - ../base
   - ingress.yaml
