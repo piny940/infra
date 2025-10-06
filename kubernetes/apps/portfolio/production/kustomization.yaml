@@ -6,7 +6,7 @@ commonLabels:
 images:
   - name: portfolio-admin
     newName: ghcr.io/piny940/portfolio-admin # {"$imagepolicy": "default:portfolio-admin:name"}
-    newTag: 1.1.53 # {"$imagepolicy": "default:portfolio-admin:tag"}
+    newTag: 1.1.54 # {"$imagepolicy": "default:portfolio-admin:tag"}
   - name: portfolio-app
     newName: ghcr.io/piny940/portfolio-app # {"$imagepolicy": "default:portfolio-app:name"}
     newTag: 1.1.52 # {"$imagepolicy": "default:portfolio-app:tag"}
