@@ -19,7 +19,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: nginx:1.29.1-alpine-slim
+    image: nginx:1.29.2-alpine-slim
     ports:
       - 12001:3000
     volumes:
