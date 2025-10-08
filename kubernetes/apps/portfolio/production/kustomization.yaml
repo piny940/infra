@@ -12,7 +12,7 @@ images:
     newTag: 1.1.57 # {"$imagepolicy": "default:portfolio-app:tag"}
   - name: portfolio-backend
     newName: ghcr.io/piny940/portfolio-backend # {"$imagepolicy": "default:portfolio-backend:name"}
-    newTag: 1.1.58 # {"$imagepolicy": "default:portfolio-backend:tag"}
+    newTag: 1.1.60 # {"$imagepolicy": "default:portfolio-backend:tag"}
   - name: portfolio-updater
     newName: ghcr.io/piny940/portfolio-updater # {"$imagepolicy": "default:portfolio-updater:name"}
     newTag: 1.1.59 # {"$imagepolicy": "default:portfolio-updater:tag"}
