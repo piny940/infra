@@ -7,9 +7,8 @@ export VAULT_ADDR="https://vault.piny940.com"
 vault login -method=oidc role=monitoring
 
 # Grafana
-cp ./grafana/.env.sample ./grafana/.env
 vault kv get -mount="monitoring" -format="json" "grafana" \
-  | jq -r '.data.data | to_entries[] | "\(.key)=\(.value)"' >> ./grafana/.env
+  | jq -r '.data.data | to_entries[] | "\(.key)=\(.value)"' > ./grafana/.env
 
 # NGINX
 mkdir -p ./nginx/secrets
