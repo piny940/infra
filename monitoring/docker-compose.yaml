@@ -62,4 +62,4 @@ secrets:
   tls.key:
     file: ./nginx/secrets/tls.key
   es_ca.crt:
-    file: ./elasticsearch/secrets/ca.crt
+    file: ./elasticsearch/secrets/http_ca.crt
