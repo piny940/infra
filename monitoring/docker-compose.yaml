@@ -11,7 +11,7 @@ services:
     env_file:
       - ./grafana/.env
     volumes:
-      # - grafana-storage:/var/lib/grafana
+      - grafana-storage:/var/lib/grafana
       - grafana-logs:/var/log/grafana
       - ./grafana/config.ini:/etc/grafana/grafana.ini:ro
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
@@ -22,7 +22,6 @@ services:
     image: nginx:1.29.2-alpine-slim
     ports:
       - 12001:3000
-      - 12002:3003
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     secrets:
@@ -34,25 +33,33 @@ services:
   elasticsearch:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:9.1.5
-  kibana:
-    container_name: kibana
-    image: docker.elastic.co/kibana/kibana:9.1.5
+    volumes:
+      - es-data:/usr/share/elasticsearch
+
+  fluentbit:
+    container_name: fluentbit
+    image: cr.fluentbit.io/fluent/fluent-bit:4.0.12
+    command:
+      - --config
+      - /fluent-bit/etc/fluent-bit.yaml
+    volumes:
+      - ./fluentbit/fluent-bit.yaml:/fluent-bit/etc/fluent-bit.yaml:ro
+      - fluentbit-db:/fluent-bit/db
+      - fluentbit-logs:/fluent-bit/log
+      - grafana-logs:/grafana/logs
+    env_file:
+      - ./fluentbit/.env
     depends_on:
       - elasticsearch
-    env_file:
-      - ./kibana/.env
-    volumes:
-      - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
-    secrets:
-      - es_ca.crt
 
 volumes:
-  # grafana-storage:
+  grafana-storage:
   grafana-logs:
+  es-data:
+  fluentbit-logs:
+  fluentbit-db:
 secrets:
   tls.crt:
     file: ./nginx/secrets/tls.crt
   tls.key:
     file: ./nginx/secrets/tls.key
-  es_ca.crt:
-    file: ./elasticsearch/secrets/http_ca.crt
