@@ -42,14 +42,7 @@ services:
     env_file:
       - ./kibana/.env
     volumes:
-      - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.original.yml:ro
-    entrypoint:
-      - /bin/sh
-    command:
-      - -c
-      - |
-        cp /usr/share/kibana/config/kibana.original.yml /usr/share/kibana/config/kibana.yml
-        /bin/tini -- /usr/local/bin/kibana-docker
+      - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
     secrets:
       - es_ca.crt
 

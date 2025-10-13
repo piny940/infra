@@ -14,3 +14,8 @@ vault kv get -mount="monitoring" -format="json" "grafana" \
 mkdir -p ./nginx/secrets
 vault kv get -mount="monitoring" -field="tls.crt" "tls" > ./nginx/secrets/tls.crt
 vault kv get -mount="monitoring" -field="tls.key" "tls" > ./nginx/secrets/tls.key
+
+# Kibana
+ENCRYPTION_KEY=`vault kv get -mount="monitoring" -field="ENCRYPTION_KEY" "kibana"`
+echo "ENCRYPTION_KEY=\"${ENCRYPTION_KEY}\"\nELASTICSEARCH_PASSWORD=" > ./kibana/.env
+
