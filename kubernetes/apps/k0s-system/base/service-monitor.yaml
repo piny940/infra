@@ -3,6 +3,8 @@ kind: ServiceMonitor
 metadata:
   name: k0s
   namespace: k0s-system
+  labels:
+    release: kube-prometheus-stack
 spec:
   endpoints:
     - port: http
