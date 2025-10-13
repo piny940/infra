@@ -16,9 +16,5 @@ mkdir -p ./nginx/secrets
 vault kv get -mount="monitoring" -field="tls.crt" "tls" > ./nginx/secrets/tls.crt
 vault kv get -mount="monitoring" -field="tls.key" "tls" > ./nginx/secrets/tls.key
 
-# Kibana
-ENCRYPTION_KEY=`vault kv get -mount="monitoring" -field="ENCRYPTION_KEY" "kibana"`
-echo "ENCRYPTION_KEY=\"${ENCRYPTION_KEY}\"\nELASTICSEARCH_PASSWORD=" > ./kibana/.env
-
 # Fluent Bit
 echo "ELASTICSEARCH_PASSWORD=" > ./fluentbit/.env
