@@ -8,7 +8,6 @@ services:
       GF_PATHS_LOGS: /var/log/grafana
       GF_PATHS_PLUGINS: /var/lib/grafana/plugins
       GF_PATHS_PROVISIONING: /etc/grafana/provisioning
-      GF_LOG_MODE: file
     env_file:
       - ./grafana/.env
     volumes:
@@ -35,7 +34,7 @@ services:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:9.1.5
     volumes:
-      - es-data:/usr/share/elasticsearch/data
+      - es-data:/usr/share/elasticsearch
 
   fluentbit:
     container_name: fluentbit

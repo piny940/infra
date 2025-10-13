@@ -3,6 +3,12 @@ service:
   log_file: /fluent-bit/log/fluent-bit.log 
   log_level: info
 parsers:
+  - name: grafana_logs
+    format: json
+    time_key: t
+    time_format: '%Y-%m-%dT%H:%M:%S.%N%Z'
+    time_keep: true
+    time_key_nanos: true
   - name: fluentbit_logs
     format: regex
     regex: '^\[(?<time>[^\]]+)\] \[(?<level>[^\]]*)\] \[(?<logger>[^\]]*)\] (?<msg>.*)$'
@@ -19,8 +25,17 @@ pipeline:
       db: /fluent-bit/db/fluent-bit.pos
       db.locking: true
       parser: fluentbit_logs
+    - name: tail
+      read_from_head: true
+      tag: grafana.logs
+      path: /grafana/logs/*.log
+      db: /fluent-bit/db/grafana.pos
+      db.locking: true
+      parser: grafana_logs
 
   outputs:
+    - name: stdout
+      match: '*'
     - name: es
       compress: gzip
       match: '*'
