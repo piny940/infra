@@ -38,7 +38,7 @@ services:
 
   fluentbit:
     container_name: fluentbit
-    image: cr.fluentbit.io/fluent/fluent-bit:4.0.12
+    image: cr.fluentbit.io/fluent/fluent-bit:4.1.1
     command:
       - --config
       - /fluent-bit/etc/fluent-bit.yaml
