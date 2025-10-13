@@ -16,11 +16,11 @@ providers:
     allowUiUpdates: true
     options:
       path: /var/lib/grafana/dashboards/stg-k8s
-  - name: 'Fluent Bit from File'
-    folder: Fluent Bit
+  - name: 'Monitoring from File'
+    folder: Monitoring
     type: file
     disableDeletion: true
     updateIntervalSeconds: 30
     allowUiUpdates: false
     options:
-      path: /var/lib/grafana/dashboards/fluentbit/fluentbit.json
+      path: /var/lib/grafana/dashboards/monitoring
