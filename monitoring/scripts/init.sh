@@ -9,6 +9,7 @@ vault login -method=oidc role=monitoring
 # Grafana
 vault kv get -mount="monitoring" -format="json" "grafana" \
   | jq -r '.data.data | to_entries[] | "\(.key)=\(.value)"' > ./grafana/.env
+echo "ELASTICSEARCH_PASSWORD=\"${ELASTICSEARCH_PASSWORD}\"" >> ./grafana/.env
 
 # NGINX
 mkdir -p ./nginx/secrets
@@ -19,3 +20,5 @@ vault kv get -mount="monitoring" -field="tls.key" "tls" > ./nginx/secrets/tls.ke
 ENCRYPTION_KEY=`vault kv get -mount="monitoring" -field="ENCRYPTION_KEY" "kibana"`
 echo "ENCRYPTION_KEY=\"${ENCRYPTION_KEY}\"\nELASTICSEARCH_PASSWORD=" > ./kibana/.env
 
+# Fluent Bit
+echo "ELASTICSEARCH_PASSWORD=" > ./fluentbit/.env
