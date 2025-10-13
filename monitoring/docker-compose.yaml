@@ -46,6 +46,19 @@ services:
     secrets:
       - es_ca.crt
 
+  fluentbit:
+    container_name: fluentbit
+    image: cr.fluentbit.io/fluent/fluent-bit:4.0.12
+    command:
+      - --config
+      - /fluent-bit/etc/fluent-bit.yaml
+    volumes:
+      - ./fluentbit/fluent-bit.yaml:/fluent-bit/etc/fluent-bit.yaml:ro
+    env_file:
+      - ./fluentbit/.env
+    depends_on:
+      - elasticsearch
+
 volumes:
   # grafana-storage:
   grafana-logs:

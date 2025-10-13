@@ -1,0 +1,43 @@
+service:
+  http_server: off
+  log_file: /fluent-bit/log/fluent-bit.log 
+  log_level: info
+parsers:
+  - name: fluentbit_logs
+    format: regex
+    regex: '^\[(?<time>[^\]]+)\] \[(?<level>[^\]]*)\] \[(?<logger>[^\]]*)\] (?<msg>.*)$'
+    time_key: time
+    time_format: '%Y/%m/%d %H:%M:%S'
+    time_keep: true
+
+pipeline:
+  inputs:
+    - name: tail
+      read_from_head: true
+      tag: fluentbit.logs
+      path: /fluent-bit/log/fluent-bit.log
+      db: /fluent-bit/log/fluent-bit.db
+      db.locking: true
+      parser: fluentbit_logs
+
+  outputs:
+    - name: es
+      compress: gzip
+      match: '*'
+      host: elasticsearch
+      port: 9200
+      tls: on
+      tls.verify: off
+      http_user: 'elastic'
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix: logstash
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
