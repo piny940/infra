@@ -6,6 +6,9 @@ set -e
 export VAULT_ADDR="https://vault.piny940.com"
 vault login -method=oidc role=monitoring
 
+# Elastic Search
+ELASTICSEARCH_PASSWORD=$(vault kv get -mount="monitoring" -field="ELASTIC_PASSWORD" "elasticsearch")
+
 # Grafana
 vault kv get -mount="monitoring" -format="json" "grafana" \
   | jq -r '.data.data | to_entries[] | "\(.key)=\(.value)"' > ./grafana/.env
@@ -17,4 +20,4 @@ vault kv get -mount="monitoring" -field="tls.crt" "tls" > ./nginx/secrets/tls.cr
 vault kv get -mount="monitoring" -field="tls.key" "tls" > ./nginx/secrets/tls.key
 
 # Fluent Bit
-echo "ELASTICSEARCH_PASSWORD=" > ./fluentbit/.env
+echo "ELASTICSEARCH_PASSWORD=\"${ELASTICSEARCH_PASSWORD}\"" > ./fluentbit/.env

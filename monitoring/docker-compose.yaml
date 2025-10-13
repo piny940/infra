@@ -64,5 +64,3 @@ secrets:
     file: ./nginx/secrets/tls.crt
   tls.key:
     file: ./nginx/secrets/tls.key
-  es_ca.crt:
-    file: ./elasticsearch/secrets/http_ca.crt
