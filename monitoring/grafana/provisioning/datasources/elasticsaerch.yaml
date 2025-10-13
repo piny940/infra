@@ -1,0 +1,15 @@
+apiVersion: 1
+datasources:
+  - name: "Elasticsearch"
+    type: elasticsearch
+    url: https://elasticsearch:9200
+    uid: es
+    basicAuth: true
+    basicAuthUser: elastic
+    withCredentials: true
+    jsonData:
+      tlsSkipVerify: true
+      timeField: "@timestamp"
+    secureJsonData:
+      basicAuthPassword: "${ELASTICSEARCH_PASSWORD}"
+
