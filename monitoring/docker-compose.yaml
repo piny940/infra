@@ -54,6 +54,7 @@ services:
       - /fluent-bit/etc/fluent-bit.yaml
     volumes:
       - ./fluentbit/fluent-bit.yaml:/fluent-bit/etc/fluent-bit.yaml:ro
+      - fluentbit-db:/fluent-bit/db
     env_file:
       - ./fluentbit/.env
     depends_on:
@@ -62,6 +63,7 @@ services:
 volumes:
   # grafana-storage:
   grafana-logs:
+  fluentbit-db:
 secrets:
   tls.crt:
     file: ./nginx/secrets/tls.crt

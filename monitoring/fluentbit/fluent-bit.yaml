@@ -16,7 +16,7 @@ pipeline:
       read_from_head: true
       tag: fluentbit.logs
       path: /fluent-bit/log/fluent-bit.log
-      db: /fluent-bit/log/fluent-bit.db
+      db: /fluent-bit/db/fluent-bit.pos
       db.locking: true
       parser: fluentbit_logs
 
