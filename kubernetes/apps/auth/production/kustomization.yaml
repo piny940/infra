@@ -16,7 +16,7 @@ images:
     newTag: 1.0.516 # {"$imagepolicy": "default:auth:tag"}
   - name: auth-frontend
     newName: ghcr.io/piny940/auth-frontend # {"$imagepolicy": "default:auth-frontend:name"}
-    newTag: 1.0.515 # {"$imagepolicy": "default:auth-frontend:tag"}
+    newTag: 1.0.516 # {"$imagepolicy": "default:auth-frontend:tag"}
   - name: auth-example
     newName: ghcr.io/piny940/auth-example # {"$imagepolicy": "default:auth-example:name"}
     newTag: 1.0.513 # {"$imagepolicy": "default:auth-example:tag"}
