@@ -119,7 +119,13 @@
       "id": 1,
       "options": {
         "cellHeight": "sm",
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "@timestamp"
+          }
+        ]
       },
       "pluginVersion": "12.2.0",
       "targets": [
