@@ -10,4 +10,5 @@ labels:
 configMapGenerator:
   - name: fluentbit-conf
     behavior: merge
-    literals: []
+    literals:
+      - ENV=staging

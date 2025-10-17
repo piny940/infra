@@ -25,6 +25,10 @@ pipeline:
       keep_log: false
       labels: false
       annotations: false
+    - name: modify
+      match: "*"
+      Add:
+        - env ${ENV}
   outputs:
     - name: stdout
       match: '*'
