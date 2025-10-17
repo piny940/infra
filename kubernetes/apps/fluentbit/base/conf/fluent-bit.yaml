@@ -1,0 +1,52 @@
+service:
+  http_server: off
+  log_file: /fluent-bit/log/fluent-bit.log 
+  log_level: info
+parsers:
+  - name: fluentbit_logs
+    format: regex
+    regex: '^\[(?<time>[^\]]+)\] \[(?<level>[^\]]*)\] \[(?<logger>[^\]]*)\] (?<msg>.*)$'
+    time_key: time
+    time_format: '%Y/%m/%d %H:%M:%S'
+    time_keep: true
+
+pipeline:
+  inputs:
+    - name: tail
+      path: /var/log/containers/fluent-bit-*_monitoring_*.log
+      db: /var/log/fluent-bit/fluent-bit-containers.pos
+      db.locking: true
+      read_from_head: true
+      tag: kubernetes.fluentbit.*
+      parser: fluentbit_logs
+
+  filters:
+    - name: kubernetes
+      match: kubernetes.*
+      merge_log: true
+      keep_log: false
+      labels: false
+      annotations: false
+
+  outputs:
+    - name: stdout
+      match: '*'
+    - name: es
+      compress: gzip
+      match: '*'
+      host: olive.home.local
+      port: 12002
+      tls: off
+      http_user: 'elastic'
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix: logstash
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
