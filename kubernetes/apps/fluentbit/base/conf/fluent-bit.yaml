@@ -1,6 +1,6 @@
 service:
   http_server: off
-  log_file: /fluent-bit/log/fluent-bit.log 
+  log_file: /fluent-bit/log/fluent-bit.log
   log_level: info
 parsers:
   - name: fluentbit_logs
@@ -9,7 +9,6 @@ parsers:
     time_key: time
     time_format: '%Y/%m/%d %H:%M:%S'
     time_keep: true
-
 pipeline:
   inputs:
     - name: tail
@@ -19,7 +18,6 @@ pipeline:
       read_from_head: true
       tag: kubernetes.fluentbit.*
       parser: fluentbit_logs
-
   filters:
     - name: kubernetes
       match: kubernetes.*
@@ -27,7 +25,6 @@ pipeline:
       keep_log: false
       labels: false
       annotations: false
-
   outputs:
     - name: stdout
       match: '*'
