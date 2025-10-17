@@ -6,9 +6,8 @@ parsers:
   - name: grafana_logs
     format: json
     time_key: t
-    time_format: '%Y-%m-%dT%H:%M:%S.%N%Z'
+    time_format: '%Y-%m-%dT%H:%M:%S.%LZ'
     time_keep: true
-    time_key_nanos: true
   - name: fluentbit_logs
     format: regex
     regex: '^\[(?<time>[^\]]+)\] \[(?<level>[^\]]*)\] \[(?<logger>[^\]]*)\] (?<msg>.*)$'
@@ -32,13 +31,16 @@ pipeline:
       db: /fluent-bit/db/grafana.pos
       db.locking: true
       parser: grafana_logs
+  filters:
+    - name: type_converter
+      match: 'grafana.logs'
+      int_key:
+        - status status string
 
   outputs:
-    - name: stdout
-      match: '*'
     - name: es
       compress: gzip
-      match: '*'
+      match: 'fluentbit.logs'
       host: elasticsearch
       port: 9200
       tls: on
@@ -46,7 +48,27 @@ pipeline:
       http_user: 'elastic'
       http_passwd: '${ELASTICSEARCH_PASSWORD}'
       logstash_format: true
-      logstash_prefix: logstash
+      logstash_prefix: fluentbit.logs
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - name: es
+      compress: gzip
+      match: 'grafana.logs'
+      host: elasticsearch
+      port: 9200
+      tls: on
+      tls.verify: off
+      http_user: 'elastic'
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix: grafana.logs
       logstash_prefix_separator: '-'
       logstash_dateformat: '%Y.%m.%d'
       time_key: '@timestamp'

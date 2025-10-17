@@ -10,6 +10,8 @@ services:
       GF_PATHS_PROVISIONING: /etc/grafana/provisioning
     env_file:
       - ./grafana/.env
+    depends_on:
+      - elasticsearch
     volumes:
       - grafana-storage:/var/lib/grafana
       - grafana-logs:/var/log/grafana
@@ -22,13 +24,12 @@ services:
     image: nginx:1.29.2-alpine-slim
     ports:
       - 12001:3000
+      - 12002:3003
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     secrets:
       - tls.crt
       - tls.key
-    depends_on:
-      - grafana
     
   elasticsearch:
     container_name: elasticsearch

@@ -12,4 +12,3 @@ datasources:
       timeField: "@timestamp"
     secureJsonData:
       basicAuthPassword: "${ELASTICSEARCH_PASSWORD}"
-
