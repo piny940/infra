@@ -30,18 +30,16 @@ pipeline:
       Add:
         - env ${ENV}
   outputs:
-    - name: stdout
-      match: '*'
     - name: es
       compress: gzip
-      match: '*'
-      host: olive.home.local
-      port: 12002
+      match: 'kubernetes.var.log.containers.fluent-bit-*_monitoring_*.log'
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
       tls: off
-      http_user: 'elastic'
+      http_user: ${ELASTICSEARCH_USER}
       http_passwd: '${ELASTICSEARCH_PASSWORD}'
       logstash_format: true
-      logstash_prefix: logstash
+      logstash_prefix: kubernetes.fluentbit
       logstash_prefix_separator: '-'
       logstash_dateformat: '%Y.%m.%d'
       time_key: '@timestamp'

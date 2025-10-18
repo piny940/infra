@@ -5,7 +5,11 @@ resources:
   - external-secret.yaml
 configMapGenerator:
   - name: fluentbit-conf
-    literals: []
+    literals:
+      - ENV=
+      - ELASTICSEARCH_HOST=olive.home.local
+      - ELASTICSEARCH_PORT=12002
+      - ELASTICSEARCH_USER=elastic
   - name: fluentbit-extra-files
     files:
       - conf/fluent-bit.yaml
