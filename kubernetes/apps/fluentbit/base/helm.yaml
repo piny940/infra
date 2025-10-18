@@ -48,14 +48,6 @@ spec:
           for: 10m
           labels:
             severity: critical
-    livenessProbe:
-      httpGet:
-        path: /
-        port: http
-    readinessProbe:
-      httpGet:
-        path: /api/v1/health
-        port: http
     resources:
       limits:
         cpu: 1000m
