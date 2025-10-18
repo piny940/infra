@@ -48,6 +48,18 @@ spec:
           for: 10m
           labels:
             severity: critical
+    livenessProbe:
+      httpGet:
+        path: /
+        port: http
+      initialDelaySeconds: 15
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /api/v1/health
+        port: http
+      initialDelaySeconds: 5
+      periodSeconds: 10
     resources:
       limits:
         cpu: 1000m
@@ -62,8 +74,6 @@ spec:
           name: fluentbit-secret
       - configMapRef:
           name: fluentbit-conf
-    flush: 1
-    metricsPort: 2020
     existingConfigMap: fluentbit-extra-files
   test:
     enable: true
