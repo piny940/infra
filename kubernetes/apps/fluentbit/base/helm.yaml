@@ -21,6 +21,9 @@ spec:
         name: fluent
   values:
     kind: DaemonSet
+    args:
+      - --workdir=/fluent-bit/etc
+      - --config=/fluent-bit/etc/conf/fluent-bit.yaml
     serviceAccount:
       create: true
       name: fluent-bit
