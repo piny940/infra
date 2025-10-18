@@ -3,3 +3,5 @@ nameReference:
     fieldSpecs:
       - kind: HelmRelease
         path: spec/values/envFrom/configMapRef/name
+      - kind: HelmRelease
+        path: spec/values/existingConfigMap
