@@ -36,6 +36,17 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:9.1.5
     volumes:
       - es-data:/usr/share/elasticsearch
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:9.1.3
+    depends_on:
+      - elasticsearch
+    ports:
+      - 15601:5601
+    env_file:
+      - ./kibana/.env
+    volumes:
+      - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
 
   fluentbit:
     container_name: fluentbit
