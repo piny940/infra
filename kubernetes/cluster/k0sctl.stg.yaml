@@ -13,6 +13,7 @@ spec:
       noTaints: true
       installFlags:
         - --enable-metrics-scraper
+        - --kubelet-extra-args="--resolv-conf=/run/systemd/resolve/resolv.conf"
   k0s:
     version: 1.33.4+k0s.0
     config:
