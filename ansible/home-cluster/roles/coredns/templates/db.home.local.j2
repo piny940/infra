@@ -8,7 +8,9 @@ $ORIGIN home.local.
         86400      ; minimum (1 day)
     )
     IN  NS  ns.home.local.
-ns  IN  A   {{ coredns.host }}
+{% for host in coredns.hosts %}
+ns IN A {{ vars[host].host }}
+{% endfor %}
 procyon IN A {{ procyon.host }}
 pollux IN A {{ pollux.host }}
 deneb IN A {{ deneb.host }}

@@ -12,7 +12,9 @@ yq:
 keepalived:
   virtual_ip: 192.168.151.11
 coredns:
-  host: 192.168.151.11
+  hosts:
+    - castor
+    - pollux
   port: "5053"
   version: "1.12.4"
   install_dir: "/usr/local/bin"

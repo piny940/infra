@@ -12,6 +12,7 @@
   become: true
   roles:
     - { role: coredns, tags: coredns }
+    - { role: unbound, tags: unbound }
   vars_files:
     - vars/secrets.yaml
     - vars/kubernetes.yaml

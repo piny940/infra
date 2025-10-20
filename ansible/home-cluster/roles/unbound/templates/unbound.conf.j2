@@ -1,0 +1,15 @@
+server:
+    interface: 0.0.0.0
+    port: 53
+    verbosity: 1
+    domain-insecure: home.local
+
+stub-zone:
+    name: home.local
+{% for host in coredns.hosts %}
+    stub-addr: {{ vars[host].host }}@{{ coredns.port }}
+{% endfor %}
+
+forward-zone:
+    name: "."
+    forward-addr: 192.168.150.1
