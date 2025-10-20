@@ -1,2 +1,2 @@
 Match User privileged
-  AllowUsers privileged@{{ hostvars[groups['k0sctl'][0]]['ansible_host'] }}
+  AllowUsers privileged@{{ vars[groups['k0sctl'][0]]['host'] }}

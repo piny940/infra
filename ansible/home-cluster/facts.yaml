@@ -3,9 +3,12 @@
   hosts: all
   gather_facts: true
   vars_files:
-    - vars/hosts.yaml
+    - vars/secrets.yaml
     - vars/kubernetes.yaml
   tasks:
     - name: Display Gathered Facts
       ansible.builtin.debug:
         var: ansible_facts
+    - name: Show all variables
+      ansible.builtin.debug:
+        var: hostvars
