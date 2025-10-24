@@ -1,0 +1,23 @@
+---
+- name: Ensure /etc/netplan directory exists
+  ansible.builtin.file:
+    path: /etc/netplan
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+- name: Deploy netplan configuration for home network
+  ansible.builtin.template:
+    src: templates/netplan.yaml.j2
+    dest: /etc/netplan/10-home-network.yaml
+    owner: root
+    group: root
+    mode: "0600"
+  notify:
+    - Apply netplan configuration
+- name: Remove old netplan configuration files
+  ansible.builtin.file:
+    path: /etc/netplan/50-cloud-init.yaml
+    state: absent
+  notify:
+    - Apply netplan configuration

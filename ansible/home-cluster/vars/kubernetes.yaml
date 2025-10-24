@@ -12,7 +12,7 @@ yq:
 keepalived:
   virtual_ip: 192.168.151.11
 coredns:
-  hosts:
+  hostnames:
     - castor
     - pollux
   port: "5053"
@@ -20,6 +20,10 @@ coredns:
   install_dir: "/usr/local/bin"
   config_dir: "/etc/coredns"
   user: "coredns"
+unbound:
+  hostnames:
+    - pollux
+    - castor
 procyon:
   host: 192.168.151.236
 pollux:
@@ -42,3 +46,8 @@ vega:
   host: 192.168.151.229
 olive:
   host: 192.168.151.180
+network:
+  subnet: 192.168.150.0
+  gateway: 192.168.150.1
+  netmask: 255.255.254.0
+  cidr: "23"

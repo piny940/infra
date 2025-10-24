@@ -7,12 +7,9 @@
     group: root
     mode: "0755"
 
-- name: Deploy home.local DNS configuration
-  ansible.builtin.template:
-    dest: /etc/systemd/resolved.conf.d/10-home-local.conf
-    src: home-local.conf.j2
-    owner: root
-    group: root
-    mode: "0644"
+- name: Remove home.local DNS configuration
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d/10-home-local.conf
+    state: absent
   notify:
     - Restart systemd-resolved

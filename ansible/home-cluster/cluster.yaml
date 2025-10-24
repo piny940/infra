@@ -16,6 +16,14 @@
   vars_files:
     - vars/secrets.yaml
     - vars/kubernetes.yaml
+- name: Setup Network
+  hosts: all
+  become: true
+  roles:
+    - { role: network, tags: network }
+  vars_files:
+    - vars/secrets.yaml
+    - vars/kubernetes.yaml
 - name: Setup HA Proxies
   hosts: ha_proxies
   become: true
