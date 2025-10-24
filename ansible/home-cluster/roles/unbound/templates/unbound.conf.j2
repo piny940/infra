@@ -1,0 +1,16 @@
+server:
+    interface: 0.0.0.0
+    port: 53
+    verbosity: 2
+    domain-insecure: home.local
+    access-control: {{ network.subnet }}/{{ network.cidr }} allow
+
+stub-zone:
+    name: home.local
+{% for host in coredns.hostnames %}
+    stub-addr: {{ vars[host].host }}@{{ coredns.port }}
+{% endfor %}
+
+forward-zone:
+    name: "."
+    forward-addr: {{ network.gateway }}

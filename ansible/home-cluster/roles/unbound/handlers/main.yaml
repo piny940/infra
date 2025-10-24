@@ -1,0 +1,5 @@
+---
+- name: Restart Unbound
+  ansible.builtin.systemd:
+    name: unbound
+    state: restarted

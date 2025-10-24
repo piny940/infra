@@ -1,0 +1,18 @@
+network:
+  version: 2
+  ethernets:
+    {{ ansible_facts['default_ipv4']['interface'] }}:
+      dhcp4: false
+      addresses:
+      - "{{ ansible_facts['default_ipv4']['address'] }}/{{ network.cidr }}"
+      nameservers:
+        addresses:
+{% for hostname in unbound.hostnames %}
+        - {{ vars[hostname].host }}
+{% endfor %}
+        search:
+        - "~."
+        - "~home.local"
+      routes:
+      - to: "default"
+        via: {{ network.gateway }}

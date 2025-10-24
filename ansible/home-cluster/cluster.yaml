@@ -12,6 +12,15 @@
   become: true
   roles:
     - { role: coredns, tags: coredns }
+    - { role: unbound, tags: unbound }
+  vars_files:
+    - vars/secrets.yaml
+    - vars/kubernetes.yaml
+- name: Setup Network
+  hosts: all
+  become: true
+  roles:
+    - { role: network, tags: network }
   vars_files:
     - vars/secrets.yaml
     - vars/kubernetes.yaml
