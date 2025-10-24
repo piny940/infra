@@ -12,12 +12,12 @@
     regexp: "^#?DNSStubListener="
     line: "DNSStubListener=no"
     state: present
-  register: resolved_conf_changed
+  register: unbound_resolved_conf_changed
 - name: Restart systemd-resolved
   ansible.builtin.systemd:
     name: systemd-resolved
     state: restarted
-  when: resolved_conf_changed.changed
+  when: unbound_resolved_conf_changed.changed
 
 - name: Create Unbound configuration directory
   ansible.builtin.file:
