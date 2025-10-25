@@ -49,6 +49,23 @@ services:
       - ./kibana/.env
     volumes:
       - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
+  auto-delete-ilm:
+    container_name: auto-delete-ilm
+    image: curlimages/curl:8.16.0
+    entrypoint: ["/bin/sh", "/scripts/deletion-ilm.sh"]
+    env_file:
+      - ./auto-delete-ilm/.env
+    environment:
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - LOGS_PRD_TTL=90d
+      - LOGS_STG_TTL=30d
+      - LOGS_MONITORING_TTL=30d
+    volumes:
+      - ./auto-delete-ilm/deletion-ilm.sh:/scripts/deletion-ilm.sh:ro
+    depends_on:
+      - elasticsearch
 
   fluentbit:
     container_name: fluentbit
