@@ -76,4 +76,4 @@ spec:
           name: fluentbit-conf
     existingConfigMap: fluentbit-extra-files
   test:
-    enable: true
+    enable: false
