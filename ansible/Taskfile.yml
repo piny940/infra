@@ -1,0 +1,51 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  UV_VERSION: '0.9.5'
+  PROJECT: '{{.PROJECT | default "home-cluster"}}'
+  PLAYBOOK: '{{.PLAYBOOK | default "cluster.yaml"}}'
+
+tasks:
+  install:
+    desc: Install all dependencies
+    cmds:
+      - curl -LsSf https://astral.sh/uv/{{.UV_VERSION}}/install.sh | sh
+      - uv sync
+      - uv run ansible-galaxy collection install -r requirements.yaml
+
+  run:
+    desc: Run ansible-playbook
+    cmds:
+      - |
+        cd {{.PROJECT}} && \
+        uv run ansible-playbook \
+          -i inventories/{{.env}} \
+          -e env={{.env}} \
+          {{.PLAYBOOK}} \
+          {{.CLI_ARGS}}
+  run:stg:
+    desc: Run ansible-playbook in the staging environment
+    cmds:
+      - task run env=staging -- {{.CLI_ARGS}}
+  run:prd:
+    desc: Run ansible-playbook in the production environment
+    cmds:
+      - task run env=production -- {{.CLI_ARGS}}
+  
+  vault:
+    desc: Edit vault file
+    cmds:
+      - cd {{.PROJECT}} && uv run ansible-vault edit vars/secrets.yaml
+  
+  lint:
+    desc: Lint ansible playbooks
+    cmds:
+      - for: ['home-cluster']
+        cmd: cd {{.ITEM}} && uv run ansible-lint --fix {{.CLI_ARGS}}
+  lint:check:
+    desc: Check lint ansible playbooks
+    cmds:
+      - for: ['home-cluster']
+        cmd: cd {{.ITEM}} && uv run ansible-lint {{.CLI_ARGS}}

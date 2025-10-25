@@ -1,25 +1,26 @@
 # Ansible
 
-## Install Ansible
+## Requirement
 
-```bash
-sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible
-```
+- [Taskfile](https://taskfile.dev) installed
+
+## Install
+
+- `task install`
 
 ## Run Ansible
 
-```bash
-env=staging
-ansible-playbook -i inventories/"$env" cluster.yaml -e env="$env"
-```
+- staging: `PLAYBOOK=... PROJECT=... task run:stg`
+- production: `PLAYBOOK=... PROJECT=... task run:prd`
+
+By default, `PROJECT` is `home-cluster`, and `PLAYBOOK` is `cluster.yaml`. You can run `task run:stg` or `task run:prd`.
+
+To specify tags: `task run:stg -- -t {tagname}`
 
 ## Vault
 
 ```bash
-ansible-vault edit vars/secrets.yaml
+PROJECT=... task vault
 ```
 
 作成した vars ファイルへのパスは`vars_files`に記述する。
@@ -27,12 +28,11 @@ ansible-vault edit vars/secrets.yaml
 ## Lint
 
 ```bash
-ansible-lint --fix
+task lint
 ```
 
 ## Show Facts
 
 ```bash
-env=staging
-ansible-playbook -i inventories/"$env" facts.yaml | less
+PLAYBOOK=facts.yaml task run:stg | less
 ```
