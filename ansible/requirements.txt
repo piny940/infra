@@ -1,5 +1,0 @@
-ansible==11.11.0
-ansible-core==2.19.3
-PyYAML==6.0.3
-passlib==1.7.4
-ansible-lint==25.9.2
