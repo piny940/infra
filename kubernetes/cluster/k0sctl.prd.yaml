@@ -31,16 +31,22 @@ spec:
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
+      installFlags:
+        - --kubelet-extra-args="--resolv-conf=/run/systemd/resolve/resolv.conf"
     - ssh:
         address: 192.168.151.225 # betelgeuse
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
+      installFlags:
+        - --kubelet-extra-args="--resolv-conf=/run/systemd/resolve/resolv.conf"
     - ssh:
         address: 192.168.151.234 # bellatrix
         user: privileged
         keyPath: ~/.ssh/k0sctl
       role: worker
+      installFlags:
+        - --kubelet-extra-args="--resolv-conf=/run/systemd/resolve/resolv.conf"
   k0s:
     version: 1.33.4+k0s.0
     config:
