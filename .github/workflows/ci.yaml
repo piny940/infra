@@ -39,9 +39,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: filter
     if: needs.filter.outputs.ansible == 'true'
-    strategy:
-      matrix:
-        project: [home-cluster]
     steps:
       - uses: actions/checkout@v5
       - name: Write Password
@@ -55,7 +52,7 @@ jobs:
       - name: Install the project
         run: cd ansible && uv sync --locked --all-extras --dev
       - name: Ansible Lint
-        run: cd ansible/${{ matrix.project }} && uv run ansible-lint
+        run: cd ansible/home-cluster && uv run ansible-lint
   kubeconform:
     runs-on: ubuntu-latest
     needs: filter
