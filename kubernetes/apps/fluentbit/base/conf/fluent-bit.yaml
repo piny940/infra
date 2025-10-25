@@ -1,0 +1,50 @@
+service:
+  http_server: on
+  http_listen: 0.0.0.0
+  http_port: 2020
+  health_check: on
+  flush: 1
+  log_level: info
+parsers:
+  - name: fluentbit_logs
+    format: regex
+    regex: '^\[(?<time>[^\]]+)\] \[(?<level>[^\]]*)\] \[(?<logger>[^\]]*)\] (?<msg>.*)$'
+    time_key: time
+    time_format: '%Y/%m/%d %H:%M:%S'
+    time_keep: true
+pipeline:
+  inputs:
+    - name: tail
+      path: /var/log/containers/fluent-bit-*_monitoring_*.log
+      db: /var/log/fluent-bit-monitoring.pos
+      db.locking: true
+      read_from_head: true
+      tag: kubernetes.fluentbit.*
+      parser: fluentbit_logs
+  filters:
+    - name: kubernetes
+      match: kubernetes.*
+      merge_log: true
+      keep_log: false
+      labels: false
+      annotations: false
+  outputs:
+    - name: es
+      compress: gzip
+      match: 'kubernetes.fluentbit.*'
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix: kubernetes.${ENV}.fluentbit.logs
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true

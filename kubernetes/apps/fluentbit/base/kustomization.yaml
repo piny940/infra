@@ -1,6 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources: []
-# configMapGenerator:
-#   - name: fluentbit-conf
-#     literals: []
+resources:
+  - helm.yaml
+  - external-secret.yaml
+configMapGenerator:
+  - name: fluentbit-conf
+    literals:
+      - ENV=
+      - ELASTICSEARCH_HOST=olive.home.local
+      - ELASTICSEARCH_PORT=12002
+      - ELASTICSEARCH_USER=elastic
+  - name: fluentbit-extra-files
+    files:
+      - conf/fluent-bit.yaml
+configurations:
+  - kustomizeconfig.yaml

@@ -7,7 +7,8 @@ labels:
   - pairs:
       env: production
     includeSelectors: true
-# configMapGenerator:
-#   - name: fluentbit-conf
-#     behavior: merge
-#     literals: []
+configMapGenerator:
+  - name: fluentbit-conf
+    behavior: merge
+    literals:
+      - ENV=production
