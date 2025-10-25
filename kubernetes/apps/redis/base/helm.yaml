@@ -23,6 +23,10 @@ spec:
         kind: HelmRepository
         name: bitnami
   values:
+    image:
+      registry: docker.io
+      repository: redis
+      tag: 8.2.2
     auth:
       enabled: true
       existingSecret: redis-secret
