@@ -9,3 +9,6 @@
     name: systemd-resolved
     state: restarted
     enabled: true
+- name: Reload sysctl
+  ansible.builtin.command: sysctl -p
+  become: true

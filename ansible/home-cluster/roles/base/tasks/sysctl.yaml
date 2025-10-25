@@ -1,0 +1,30 @@
+---
+- name: Make sure /etc/sysctl.d directory exists
+  ansible.builtin.file:
+    path: /etc/sysctl.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+- name: Fs.inotify configuration
+  ansible.builtin.template:
+    src: fs-inotify.conf.j2
+    dest: /etc/sysctl.d/5-fs-inotify.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload sysctl
+- name: Configure fs.inotify parameters
+  ansible.posix.sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: true
+  loop:
+    - { name: "fs.inotify.max_queued_events", value: "16384" }
+    - { name: "fs.inotify.max_user_watches", value: "99524288" }
+    - { name: "fs.inotify.max_user_instances", value: "9999999" }
+  become: true
+  notify:
+    - Reload sysctl
