@@ -18,8 +18,6 @@ services:
       - ./grafana/config.ini:/etc/grafana/grafana.ini:ro
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
-    depends_on:
-      - elasticsearch
 
   nginx:
     container_name: nginx
