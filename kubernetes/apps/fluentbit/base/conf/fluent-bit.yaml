@@ -28,10 +28,6 @@ pipeline:
       keep_log: false
       labels: false
       annotations: false
-    - name: modify
-      match: "*"
-      Add:
-        - env ${ENV}
   outputs:
     - name: es
       compress: gzip
@@ -42,7 +38,7 @@ pipeline:
       http_user: ${ELASTICSEARCH_USER}
       http_passwd: '${ELASTICSEARCH_PASSWORD}'
       logstash_format: true
-      logstash_prefix: kubernetes.fluentbit.logs
+      logstash_prefix: kubernetes.${ENV}.fluentbit.logs
       logstash_prefix_separator: '-'
       logstash_dateformat: '%Y.%m.%d'
       time_key: '@timestamp'
