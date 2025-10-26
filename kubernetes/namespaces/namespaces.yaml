@@ -36,22 +36,12 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nextcloud
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: vault
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: velero
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: open-webui
 ---
 apiVersion: v1
 kind: Namespace
