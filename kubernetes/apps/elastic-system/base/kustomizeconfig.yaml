@@ -1,7 +1,0 @@
-nameReference:
-  - kind: ConfigMap
-    fieldSpecs:
-      - kind: Kibana
-        path: spec/podTemplate/spec/volumes/configMap/name
-      - kind: Kibana
-        path: spec/podTemplate/spec/initContainers/env/valueFrom/configMapKeyRef/name

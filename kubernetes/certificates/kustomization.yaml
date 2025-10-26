@@ -4,7 +4,6 @@ resources:
   - cert-manager.yaml
   - default.yaml
   - database.yaml
-  - elastic-system.yaml
   - external-secrets.yaml
   - ingress-nginx.yaml
   - longhorn-system.yaml
