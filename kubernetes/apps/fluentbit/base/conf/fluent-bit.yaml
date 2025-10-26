@@ -19,56 +19,36 @@ parsers:
     time_keep: true
 pipeline:
   inputs:
-    - tag: kubernetes.fluentbit.*
-      name: tail
-      path: /var/log/containers/fluent-bit-*_monitoring_*.log
-      db: /var/log/fluent-bit-monitoring.pos
+    - name: tail
+      path: /var/log/containers/*.log
+      db: /var/log/fluent-bit.pos
       db.locking: true
       read_from_head: true
       multiline.parser: cri
-    - tag: kubernetes.auth.*
-      name: tail
-      path: /var/log/containers/${PREFIX}auth-*_default_*.log
-      exclude_path: /var/log/containers/${PREFIX}auth-frontend-*.log,/var/log/containers/${PREFIX}auth-example-*.log
-      db: /var/log/fluent-bit-auth.pos
-      db.locking: true
-      read_from_head: true
-      multiline.parser: cri
-    - tag: kubernetes.auth-frontend.*
-      name: tail
-      path: /var/log/containers/${PREFIX}auth-frontend-*_default_*.log
-      db: /var/log/fluent-bit-auth-frontend.pos
-      db.locking: true
-      read_from_head: true
-      multiline.parser: cri
-    - tag: kubernetes.auth-example.*
-      name: tail
-      path: /var/log/containers/${PREFIX}auth-example-*_default_*.log
-      db: /var/log/fluent-bit-auth-example.pos
-      db.locking: true
-      read_from_head: true
-      multiline.parser: cri
+      tag: kube.*
   filters:
+    - name: kubernetes
+      match: kube.*
+      kube_tag_prefix: "kube.var.log.containers."
+      merge_log: false
+      keep_log: true
+      labels: false
+      annotations: false
     - name: parser
-      match: kubernetes.fluentbit.*
+      match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
       key_name: log
       parser: fluentbit_logs
       reserve_data: true
       preserve_key: true
     - name: parser
-      match: kubernetes.auth.*
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
       key_name: log
       parser: json_with_time
       reserve_data: true
       preserve_key: true
-    - name: kubernetes
-      match: kubernetes.*
-      merge_log: true
-      keep_log: true
-      labels: false
-      annotations: false
   outputs:
-    - match: 'kubernetes.fluentbit.*'
+    - match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
+      logstash_prefix: kubernetes.${ENV}.fluentbit.logs
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -77,7 +57,6 @@ pipeline:
       http_user: ${ELASTICSEARCH_USER}
       http_passwd: '${ELASTICSEARCH_PASSWORD}'
       logstash_format: true
-      logstash_prefix: kubernetes.${ENV}.fluentbit.logs
       logstash_prefix_separator: '-'
       logstash_dateformat: '%Y.%m.%d'
       time_key: '@timestamp'
@@ -87,7 +66,7 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match: 'kubernetes.auth.*'
+    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
       logstash_prefix: kubernetes.${ENV}.auth.logs
       name: es
       compress: gzip
@@ -106,7 +85,7 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match: 'kubernetes.auth-frontend.*'
+    - match_regex: \.${PREFIX}auth-frontend-[^-]+-[^-]+_default_.*\.log$
       logstash_prefix: kubernetes.${ENV}.auth-frontend.logs
       name: es
       compress: gzip
@@ -125,7 +104,7 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match: 'kubernetes.auth-example.*'
+    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-example-[^-]+-[^-]+_default_.*\.log$
       logstash_prefix: kubernetes.${ENV}.auth-example.logs
       name: es
       compress: gzip
