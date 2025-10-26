@@ -47,7 +47,7 @@ pipeline:
       reserve_data: true
       preserve_key: true
     - name: parser
-      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}(auth|k8s-status-badge|portfolio-app|portfolio-backend)-[^-]+-[^-]+_default_.*\.log$
       key_name: log
       parser: json_with_time
       reserve_data: true
@@ -56,12 +56,6 @@ pipeline:
       match_regex: ^kube\.var\.log\.containers\.${PREFIX}external-dns-[^-]+-[^-]+_default_.*\.log$
       key_name: log
       parser: externaldns_logs
-      reserve_data: true
-      preserve_key: true
-    - name: parser
-      match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
-      key_name: log
-      parser: json_with_time
       reserve_data: true
       preserve_key: true
     - name: record_modifier
@@ -166,6 +160,139 @@ pipeline:
       trace_error: true
     - logstash_prefix: kubernetes.${ENV}.k8s-status-badge.logs
       match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.portfolio-app.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}portfolio-app-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.portfolio-admin.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}portfolio-admin-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.portfolio-backend.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}portfolio-backend-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.portfolio-updater.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}portfolio-updater-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.song-list-backend.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}song-list-backend-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.song-list-frontend.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}song-list-frontend-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.song-list-sidekiq.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}song-list-sidekiq-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
