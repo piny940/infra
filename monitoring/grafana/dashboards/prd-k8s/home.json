@@ -2,7 +2,11 @@
   "title": "Home",
   "timezone": "browser",
   "uid": "prd-cluster-home",
-  "tags": ["kubernetes", "pods", "production"],
+  "tags": [
+    "kubernetes",
+    "pods",
+    "production"
+  ],
   "version": 29,
   "time": {
     "from": "now-6h",

@@ -12,3 +12,29 @@ datasources:
       timeField: "@timestamp"
     secureJsonData:
       basicAuthPassword: "${ELASTICSEARCH_PASSWORD}"
+  - name: "Production Kubernetes Elasticsearch Logs"
+    type: elasticsearch
+    url: https://elasticsearch:9200
+    uid: es-prd-k8s-logs
+    basicAuth: true
+    basicAuthUser: elastic
+    withCredentials: true
+    jsonData:
+      tlsSkipVerify: true
+      timeField: "@timestamp"
+      index: kubernetes.production.*.logs-*
+    secureJsonData:
+      basicAuthPassword: "${ELASTICSEARCH_PASSWORD}"
+  - name: "Staging Kubernetes Elasticsearch Logs"
+    type: elasticsearch
+    url: https://elasticsearch:9200
+    uid: es-stg-k8s-logs
+    basicAuth: true
+    basicAuthUser: elastic
+    withCredentials: true
+    jsonData:
+      tlsSkipVerify: true
+      timeField: "@timestamp"
+      index: kubernetes.staging.*.logs-*
+    secureJsonData:
+      basicAuthPassword: "${ELASTICSEARCH_PASSWORD}"
