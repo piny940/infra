@@ -69,8 +69,8 @@ pipeline:
       record:
         - env ${ENV}
   outputs:
-    - match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.fluentbit.logs
+    - logstash_prefix: kubernetes.${ENV}.fluentbit.logs
+      match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -88,8 +88,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.auth.logs
+    - logstash_prefix: kubernetes.${ENV}.auth.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -107,8 +107,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-frontend-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.auth-frontend.logs
+    - logstash_prefix: kubernetes.${ENV}.auth-frontend.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-frontend-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -126,8 +126,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-example-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.auth-example.logs
+    - logstash_prefix: kubernetes.${ENV}.auth-example.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-example-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -145,8 +145,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}external-dns-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.external-dns.logs
+    - logstash_prefix: kubernetes.${ENV}.external-dns.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}external-dns-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -164,8 +164,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.k8s-status-badge.logs
+    - logstash_prefix: kubernetes.${ENV}.k8s-status-badge.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
