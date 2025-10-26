@@ -46,6 +46,10 @@ pipeline:
       parser: json_with_time
       reserve_data: true
       preserve_key: true
+    - name: record_modifier
+      match: "*"
+      record:
+        - env ${ENV}
   outputs:
     - match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
       logstash_prefix: kubernetes.${ENV}.fluentbit.logs
