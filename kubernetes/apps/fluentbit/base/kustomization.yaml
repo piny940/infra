@@ -7,6 +7,7 @@ configMapGenerator:
   - name: fluentbit-conf
     literals:
       - ENV=
+      - PREFIX=
       - ELASTICSEARCH_HOST=olive.home.local
       - ELASTICSEARCH_PORT=12002
       - ELASTICSEARCH_USER=elastic

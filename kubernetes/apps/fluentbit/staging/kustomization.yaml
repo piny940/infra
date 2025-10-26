@@ -12,3 +12,4 @@ configMapGenerator:
     behavior: merge
     literals:
       - ENV=staging
+      - PREFIX=stg-
