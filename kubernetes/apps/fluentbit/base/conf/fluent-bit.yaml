@@ -58,6 +58,12 @@ pipeline:
       parser: externaldns_logs
       reserve_data: true
       preserve_key: true
+    - name: parser
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
+      key_name: log
+      parser: json_with_time
+      reserve_data: true
+      preserve_key: true
     - name: record_modifier
       match: "*"
       record:
@@ -141,6 +147,25 @@ pipeline:
       trace_error: true
     - match_regex: ^kube\.var\.log\.containers\.${PREFIX}external-dns-[^-]+-[^-]+_default_.*\.log$
       logstash_prefix: kubernetes.${ENV}.external-dns.logs
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
+      logstash_prefix: kubernetes.${ENV}.k8s-status-badge.logs
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
