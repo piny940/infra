@@ -54,15 +54,17 @@ pipeline:
       key_name: log
       parser: fluentbit_logs
       reserve_data: true
+      preserve_key: true
     - name: parser
       match: kubernetes.auth.*
       key_name: log
       parser: json_with_time
       reserve_data: true
+      preserve_key: true
     - name: kubernetes
       match: kubernetes.*
       merge_log: true
-      keep_log: false
+      keep_log: true
       labels: false
       annotations: false
   outputs:
