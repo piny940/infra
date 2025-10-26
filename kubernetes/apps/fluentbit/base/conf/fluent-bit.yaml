@@ -12,6 +12,12 @@ parsers:
     time_key: time
     time_format: '%Y/%m/%d %H:%M:%S'
     time_keep: true
+  - name: externaldns_logs
+    format: regex
+    regex: ^time="(?<time>[^"]+)" level=(?<level>\w+) msg="(?<msg>.*)"$
+    time_key: time
+    time_format: '%Y-%m-%dT%H:%M:%SZ'
+    time_keep: true
   - name: json_with_time
     format: json
     time_key: time
@@ -46,13 +52,25 @@ pipeline:
       parser: json_with_time
       reserve_data: true
       preserve_key: true
+    - name: parser
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}external-dns-[^-]+-[^-]+_default_.*\.log$
+      key_name: log
+      parser: externaldns_logs
+      reserve_data: true
+      preserve_key: true
+    - name: parser
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
+      key_name: log
+      parser: json_with_time
+      reserve_data: true
+      preserve_key: true
     - name: record_modifier
       match: "*"
       record:
         - env ${ENV}
   outputs:
-    - match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.fluentbit.logs
+    - logstash_prefix: kubernetes.${ENV}.fluentbit.logs
+      match_regex: ^kube\.var\.log\.containers\.fluent-bit-[^-]+_monitoring_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -70,8 +88,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.auth.logs
+    - logstash_prefix: kubernetes.${ENV}.auth.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -89,8 +107,8 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: \.${PREFIX}auth-frontend-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.auth-frontend.logs
+    - logstash_prefix: kubernetes.${ENV}.auth-frontend.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-frontend-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
@@ -108,8 +126,46 @@ pipeline:
       tag_key: '_tag'
       suppress_type_name: true
       trace_error: true
-    - match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-example-[^-]+-[^-]+_default_.*\.log$
-      logstash_prefix: kubernetes.${ENV}.auth-example.logs
+    - logstash_prefix: kubernetes.${ENV}.auth-example.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}auth-example-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.external-dns.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}external-dns-[^-]+-[^-]+_default_.*\.log$
+      name: es
+      compress: gzip
+      host: ${ELASTICSEARCH_HOST}
+      port: ${ELASTICSEARCH_PORT}
+      tls: off
+      http_user: ${ELASTICSEARCH_USER}
+      http_passwd: '${ELASTICSEARCH_PASSWORD}'
+      logstash_format: true
+      logstash_prefix_separator: '-'
+      logstash_dateformat: '%Y.%m.%d'
+      time_key: '@timestamp'
+      time_key_format: '%Y-%m-%dT%H:%M:%S'
+      time_key_nanos: false
+      include_tag_key: true
+      tag_key: '_tag'
+      suppress_type_name: true
+      trace_error: true
+    - logstash_prefix: kubernetes.${ENV}.k8s-status-badge.logs
+      match_regex: ^kube\.var\.log\.containers\.${PREFIX}k8s-status-badge-[^-]+-[^-]+_default_.*\.log$
       name: es
       compress: gzip
       host: ${ELASTICSEARCH_HOST}
