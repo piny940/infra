@@ -16,7 +16,7 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: "Production: {{range .Updated.Images}}{{println .}}{{end}}"
+      messageTemplate: "Production: {{range .Changed.Images}}{{println .}}{{end}}"
     push:
       branch: fluxcd/image-update
   update:
@@ -42,7 +42,7 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: "Staging: {{range .Updated.Images}}{{println .}}{{end}}"
+      messageTemplate: "Staging: {{range .Changed.Images}}{{println .}}{{end}}"
     push:
       branch: fluxcd/image-update
   update:
