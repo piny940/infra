@@ -16,13 +16,11 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: |
+      messageTemplate: >-
         Staging Changes:
         {{ range $resource, $changes := .Changed.Objects -}}
-        - {{ $resource.Kind }} {{ $resource.Name }}
-          Changes:
         {{- range $_, $change := $changes }}
-            - {{ $change.OldValue }} -> {{ $change.NewValue }}
+        - {{ $change.OldValue }} -> {{ $change.NewValue }}
         {{ end -}}
         {{ end -}}
     push:
@@ -50,13 +48,11 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: |
+      messageTemplate: >-
         Staging Changes:
         {{ range $resource, $changes := .Changed.Objects -}}
-        - {{ $resource.Kind }} {{ $resource.Name }}
-          Changes:
         {{- range $_, $change := $changes }}
-            - {{ $change.OldValue }} -> {{ $change.NewValue }}
+        - {{ $change.OldValue }} -> {{ $change.NewValue }}
         {{ end -}}
         {{ end -}}
     push:
