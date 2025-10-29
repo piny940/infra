@@ -17,12 +17,7 @@ spec:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
       messageTemplate: >-
-        Staging Changes:
-        {{ range $resource, $changes := .Changed.Objects -}}
-        {{- range $_, $change := $changes }}
-        - {{ $change.OldValue }} -> {{ $change.NewValue }}
-        {{ end -}}
-        {{ end -}}
+        Staging Changes: {{ range $resource, $changes := .Changed.Objects -}} {{- range $_, $change := $changes }} - {{ $change.OldValue }} -> {{ $change.NewValue }} {{ end -}} {{ end -}}
     push:
       branch: fluxcd/image-update
   update:
@@ -49,12 +44,7 @@ spec:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
       messageTemplate: >-
-        Staging Changes:
-        {{ range $resource, $changes := .Changed.Objects -}}
-        {{- range $_, $change := $changes }}
-        - {{ $change.OldValue }} -> {{ $change.NewValue }}
-        {{ end -}}
-        {{ end -}}
+        Staging Changes: {{ range $resource, $changes := .Changed.Objects -}} {{- range $_, $change := $changes }} - {{ $change.OldValue }} -> {{ $change.NewValue }} {{ end -}} {{ end -}}
     push:
       branch: fluxcd/image-update
   update:
