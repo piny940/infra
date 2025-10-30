@@ -3,8 +3,8 @@
   ansible.builtin.apt:
     update_cache: true
     name:
-      - yadm
-    state: latest
+      - yadm={{ yadm.version }}
+    state: present
 - name: Yadm clone
   ansible.builtin.command:
     cmd: yadm clone https://github.com/piny940/dotfiles.git

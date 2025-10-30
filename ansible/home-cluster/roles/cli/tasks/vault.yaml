@@ -40,5 +40,5 @@
   ansible.builtin.apt:
     update_cache: true
     name:
-      - vault
-    state: latest
+      - vault={{ vault.version }}
+    state: present

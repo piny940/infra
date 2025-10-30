@@ -11,6 +11,10 @@ yq:
   version: "4.2.0"
 flux:
   version: "2.7.2"
+vault:
+  version: 1.21.0-1
+yadm:
+  version: 3.2.2-1
 keepalived:
   virtual_ip: 192.168.151.11
 coredns:
