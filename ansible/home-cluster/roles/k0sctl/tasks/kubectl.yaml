@@ -1,11 +1,8 @@
 ---
-- name: Apt update
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install required packages
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name:
       - apt-transport-https
       - ca-certificates
@@ -20,37 +17,42 @@
   loop:
     - /tmp/kubernetes
     - /etc/apt/keyrings
+- name: Make sure tmp gpg key file is absent
+  ansible.builtin.file:
+    path: /tmp/kubernetes/Release.key
+    state: absent
 - name: Add Kubernetes GPG key
   ansible.builtin.get_url:
     url: https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/Release.key
     dest: /tmp/kubernetes/Release.key
     mode: "0644"
-  register: k0sctl_gpg_key
+- name: Make sure keyrings file is absent
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    state: absent
 - name: Generate_gpg_key
   ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/kubernetes/Release.key
   args:
     creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-  when: k0sctl_gpg_key.changed
 - name: Add kubernetes repo
   ansible.builtin.apt_repository:
     repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ kubernetes.version }}/deb/ /
     state: present
     filename: kubernetes
-  when: k0sctl_gpg_key.changed
-- name: Apt update
+- name: Unhold kubernetes packages
   become: true
-  ansible.builtin.apt:
-    update_cache: true
+  ansible.builtin.dpkg_selections:
+    name: kubectl
+    selection: install
 - name: Install Kubernetes packages
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name:
       - kubectl
-    state: present
+    state: latest
 - name: Hold kubernetes packages
   become: true
   ansible.builtin.dpkg_selections:
-    name: "{{ item }}"
+    name: kubectl
     selection: hold
-  loop:
-    - kubectl

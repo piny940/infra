@@ -1,6 +1,6 @@
 ---
 kubernetes:
-  version: "1.31"
+  version: "1.33"
 velero:
   version: "1.16.0"
 k9s:

@@ -1,13 +1,11 @@
 ---
-- name: Apt update
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install required packages
   ansible.builtin.apt:
+    update_cache: true
     name:
       - gpg
       - wget
-    state: present
+    state: latest
 - name: Make sure directory exists
   ansible.builtin.file:
     path: "{{ item }}"
@@ -16,28 +14,31 @@
   loop:
     - /tmp/vault
     - /etc/apt/keyrings
+- name: Make sure tmp gpg key file is absent
+  ansible.builtin.file:
+    path: /tmp/vault/vault.gpg
+    state: absent
 - name: Download Vault GPG key
   ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
     dest: /tmp/vault/vault.gpg
     mode: "0644"
-  register: cli_download_vault_gpg
+- name: Make sure keyrings file is absent
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/vault.gpg
+    state: absent
 - name: Generate vault keyring
   ansible.builtin.command: gpg --dearmor -o /etc/apt/keyrings/vault.gpg /tmp/vault/vault.gpg
   args:
     creates: /etc/apt/keyrings/vault.gpg
-  when: cli_download_vault_gpg.changed
 - name: Add vault repo
   ansible.builtin.apt_repository:
     repo: deb [signed-by=/etc/apt/keyrings/vault.gpg] https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
     state: present
     filename: vault
-  when: cli_download_vault_gpg.changed
-- name: Apt update
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install Vault
   ansible.builtin.apt:
+    update_cache: true
     name:
       - vault
-    state: present
+    state: latest
