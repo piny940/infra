@@ -1,11 +1,9 @@
 ---
-- name: Apt update
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install yadm
   ansible.builtin.apt:
+    update_cache: true
     name:
-      - yadm
+      - yadm={{ yadm.version }}
     state: present
 - name: Yadm clone
   ansible.builtin.command:

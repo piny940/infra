@@ -1,46 +1,43 @@
 ---
-- name: Apt update
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install required packages
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name:
       - apt-transport-https
       - ca-certificates
       - curl
       - software-properties-common
-    state: present
+    state: latest
 - name: Create keyrings directory if not exists
   become: true
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
     mode: "0755"
+- name: Ensure docker gpg key file is absent
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/docker.asc
+    state: absent
 - name: Add Docker GPG key
   become: true
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
     mode: "0644"
-  register: containerd_download_docker_gpg
 - name: Add containerd repo
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
     state: present
     filename: docker
-  when: containerd_download_docker_gpg.changed
-- name: Apt update
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install Containerd
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name:
       - containerd.io
-    state: present
+    state: latest
 - name: Configure Containerd
   become: true
   ansible.builtin.template:

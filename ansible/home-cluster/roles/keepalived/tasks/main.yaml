@@ -1,12 +1,10 @@
 ---
-- name: Apt update
-  ansible.builtin.apt:
-    update_cache: true
 - name: Install keepalived
   ansible.builtin.apt:
+    update_cache: true
     name:
       - keepalived
-    state: present
+    state: latest
 - name: Configure keepalived
   ansible.builtin.template:
     src: keepalived.conf.j2

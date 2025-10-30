@@ -1,13 +1,10 @@
 ---
-- name: Apt update
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
 - name: Apt install haproxy
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name: haproxy
-    state: present
+    state: latest
 - name: Configure ha proxy
   ansible.builtin.template:
     src: haproxy.conf.j2

@@ -36,12 +36,9 @@
     state: present
     filename: helm
   when: helm_download_helm_signing.changed
-- name: Apt update
-  ansible.builtin.apt:
-    update_cache: true
-  when: helm_download_helm_signing.changed
 - name: Install Helm
   ansible.builtin.apt:
+    update_cache: true
     name:
       - helm
-    state: present
+    state: latest

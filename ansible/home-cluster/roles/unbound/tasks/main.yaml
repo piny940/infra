@@ -3,7 +3,7 @@
   ansible.builtin.apt:
     name:
       - unbound
-    state: present
+    state: latest
     update_cache: true
 
 - name: Disable systemd-resolved DNS stub listener

@@ -4,6 +4,10 @@
     path: /etc/apt/keyrings
     state: directory
     mode: "0755"
+- name: Ensure cloudflare gpg key file is absent
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/cloudflare.gpg
+    state: absent
 - name: Ensure cloudflare signing downloaded
   ansible.builtin.get_url:
     url: https://pkg.cloudflare.com/cloudflare-main.gpg
@@ -14,16 +18,12 @@
     repo: deb [signed-by=/etc/apt/keyrings/cloudflare.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_facts['distribution_release'] }} main
     state: present
     filename: cloudflared
-  register: cloudflared_apt_repository
-- name: Apt update
-  ansible.builtin.apt:
-    update_cache: true
-  when: cloudflared_apt_repository.changed
 - name: Install Cloudflared
   ansible.builtin.apt:
+    update_cache: true
     name:
       - cloudflared
-    state: present
+    state: latest
 - name: Check cloudflare service exists
   ansible.builtin.stat:
     path: /etc/systemd/system/cloudflared.service
