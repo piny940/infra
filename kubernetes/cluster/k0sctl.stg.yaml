@@ -15,7 +15,7 @@ spec:
         - --enable-metrics-scraper
         - --kubelet-extra-args="--resolv-conf=/run/systemd/resolve/resolv.conf"
   k0s:
-    version: 1.33.4+k0s.0
+    version: 1.34.1+k0s.0
     config:
       apiVersion: k0s.k0sproject.io/v1beta1
       kind: ClusterConfig
