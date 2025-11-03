@@ -14,7 +14,7 @@ runs:
         key: v1-aqua-installer-${{runner.os}}-${{runner.arch}}-${{hashFiles('*/aqua.yaml')}}
         restore-keys: |
           v1-aqua-installer-${{runner.os}}-${{runner.arch}}-
-    - uses: aquaproj/aqua-installer@v4.0.3
+    - uses: aquaproj/aqua-installer@v4.0.4
       with:
         aqua_version: v2.28.0
         working_directory: ${{ inputs.working_directory }}
