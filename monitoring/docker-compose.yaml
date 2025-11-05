@@ -49,7 +49,7 @@ services:
       - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
   auto-delete-ilm:
     container_name: auto-delete-ilm
-    image: curlimages/curl:8.16.0
+    image: curlimages/curl:8.17.0
     entrypoint: ["/bin/sh", "/scripts/deletion-ilm.sh"]
     env_file:
       - ./auto-delete-ilm/.env
