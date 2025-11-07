@@ -15,7 +15,7 @@ spec:
   chart:
     spec:
       chart: open-webui
-      version: 8.12.3
+      version: 8.14.0
       sourceRef:
         kind: HelmRepository
         name: open-webui
