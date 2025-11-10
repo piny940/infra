@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = "==3.13.9"
 dependencies = [
   "ansible==12.2.0",
-  "ansible-lint==25.9.2",
+  "ansible-lint==25.11.0",
   "passlib==1.7.4",
   "pyyaml==6.0.3",
 ]
