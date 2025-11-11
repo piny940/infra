@@ -38,7 +38,7 @@ services:
       - es-data:/usr/share/elasticsearch
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:9.2.0
+    image: docker.elastic.co/kibana/kibana:9.2.1
     depends_on:
       - elasticsearch
     ports:
