@@ -6,10 +6,10 @@ commonLabels:
 images:
   - name: song-list-backend
     newName: ghcr.io/piny940/song-list-backend # {"$imagepolicy": "default:song-list-backend:name"}
-    newTag: 1.0.149 # {"$imagepolicy": "default:song-list-backend:tag"}
+    newTag: 1.0.150 # {"$imagepolicy": "default:song-list-backend:tag"}
   - name: song-list-frontend
     newName: ghcr.io/piny940/song-list-frontend # {"$imagepolicy": "default:song-list-frontend:name"}
-    newTag: 1.0.148 # {"$imagepolicy": "default:song-list-frontend:tag"}
+    newTag: 1.0.149 # {"$imagepolicy": "default:song-list-frontend:tag"}
 resources:
   - ../base
   - ingress.yaml
