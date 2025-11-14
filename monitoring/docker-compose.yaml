@@ -25,6 +25,9 @@ services:
     ports:
       - 12001:3000
       - 12002:3003
+    dns:
+      - 192.168.151.223
+      - 192.168.151.235
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     secrets:
