@@ -7,10 +7,10 @@ commonLabels:
 images:
   - name: song-list-backend
     newName: ghcr.io/piny940/song-list-backend # {"$imagepolicy": "default:stg-song-list-backend:name"}
-    newTag: main-e28f8d102842fab5e840e44d8f56affe3a3dff5f-801 # {"$imagepolicy": "default:stg-song-list-backend:tag"}
+    newTag: main-d804243e83ca1f21a9fe14cfe96cd2c7071c1cda-808 # {"$imagepolicy": "default:stg-song-list-backend:tag"}
   - name: song-list-frontend
     newName: ghcr.io/piny940/song-list-frontend # {"$imagepolicy": "default:stg-song-list-frontend:name"}
-    newTag: main-e28f8d102842fab5e840e44d8f56affe3a3dff5f-801 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
+    newTag: main-d804243e83ca1f21a9fe14cfe96cd2c7071c1cda-808 # {"$imagepolicy": "default:stg-song-list-frontend:tag"}
 resources:
   - ../base
   - ingress.yaml
