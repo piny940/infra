@@ -18,6 +18,7 @@ services:
       - ./grafana/config.ini:/etc/grafana/grafana.ini:ro
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    restart: unless-stopped
 
   nginx:
     container_name: nginx
@@ -33,12 +34,14 @@ services:
     secrets:
       - tls.crt
       - tls.key
+    restart: unless-stopped
 
   elasticsearch:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:9.2.1
     volumes:
       - es-data:/usr/share/elasticsearch
+    restart: unless-stopped
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:9.2.1
@@ -50,6 +53,7 @@ services:
       - ./kibana/.env
     volumes:
       - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
+    restart: unless-stopped
   auto-delete-ilm:
     container_name: auto-delete-ilm
     image: curlimages/curl:8.17.0
@@ -67,6 +71,7 @@ services:
       - ./auto-delete-ilm/deletion-ilm.sh:/scripts/deletion-ilm.sh:ro
     depends_on:
       - elasticsearch
+    restart: on-failure
 
   fluentbit:
     container_name: fluentbit
@@ -83,6 +88,7 @@ services:
       - ./fluentbit/.env
     depends_on:
       - elasticsearch
+    restart: unless-stopped
 
 volumes:
   grafana-storage:
