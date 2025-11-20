@@ -19,7 +19,7 @@ jobs:
       gcp: ${{ steps.path-filter.outputs.gcp }}
       aws: ${{ steps.path-filter.outputs.aws }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: dorny/paths-filter@v3
         id: path-filter
         with:
@@ -48,7 +48,7 @@ jobs:
     if: needs.filter.outputs.svcmtr == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Deploy
         uses: ./.github/actions/service-monitor-deploy
         with:
@@ -62,7 +62,7 @@ jobs:
     if: needs.filter.outputs.gcp == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Terraform Apply
         uses: ./.github/actions/gcp-apply
         with:
@@ -76,7 +76,7 @@ jobs:
     if: needs.filter.outputs.aws == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Terraform Apply
         uses: ./.github/actions/aws-apply
         with:
