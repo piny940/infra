@@ -13,7 +13,7 @@ jobs:
         with:
           app-id: ${{ vars.DEPLOY_STG_APP_ID }}
           private-key: ${{ secrets.DEPLOY_STG_APP_PRIVATE_KEY }}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Fetch pull request
         id: fetch_pr
         run: |
