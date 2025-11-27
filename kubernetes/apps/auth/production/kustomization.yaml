@@ -19,7 +19,7 @@ images:
     newTag: 1.0.563 # {"$imagepolicy": "default:auth-frontend:tag"}
   - name: auth-example
     newName: ghcr.io/piny940/auth-example # {"$imagepolicy": "default:auth-example:name"}
-    newTag: 1.0.563 # {"$imagepolicy": "default:auth-example:tag"}
+    newTag: 1.0.565 # {"$imagepolicy": "default:auth-example:tag"}
 configMapGenerator:
   - name: auth-conf
     behavior: merge
