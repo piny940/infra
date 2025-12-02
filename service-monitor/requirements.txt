@@ -1,5 +1,5 @@
 boto3~=1.42.0
-botocore~=1.41.0
+botocore~=1.42.1
 certifi~=2025.11.12
 charset-normalizer~=3.4.1
 idna~=3.10
