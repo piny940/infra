@@ -10,4 +10,4 @@ requests~=2.32.3
 s3transfer~=0.16.0
 six~=1.17.0
 slack_sdk~=3.39.0
-urllib3~=2.5.0
+urllib3~=2.6.0
