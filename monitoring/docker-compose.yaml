@@ -22,7 +22,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: nginx:1.29.3-alpine-slim
+    image: nginx:1.29.4-alpine-slim
     ports:
       - 12001:3000
       - 12002:3003
