@@ -37,7 +37,7 @@ spec:
   interval: 10m
   chart:
     spec:
-      version: 8.x
+      version: 9.x
       chart: oauth2-proxy
       sourceRef:
         kind: HelmRepository
@@ -109,7 +109,7 @@ spec:
   interval: 10m
   chart:
     spec:
-      version: 8.x
+      version: 9.x
       chart: oauth2-proxy
       sourceRef:
         kind: HelmRepository
