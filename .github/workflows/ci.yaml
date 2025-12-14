@@ -14,7 +14,7 @@ jobs:
       gcp: ${{ steps.path-filter.outputs.gcp }}
       aws: ${{ steps.path-filter.outputs.aws }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: dorny/paths-filter@v3
         id: path-filter
         with:
@@ -40,7 +40,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.ansible == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Write Password
         run: echo ${{ secrets.ANSIBLE_PASSWORD }} > ansible/home-cluster/.ansible-vault-password
       - name: Install uv
@@ -58,7 +58,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.kube == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v5
         with:
           path: /tmp/pkustomize/cache
@@ -72,7 +72,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.kube == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-aqua
         with:
           working_directory: kubernetes
@@ -83,7 +83,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.kube == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-aqua
         with:
           working_directory: kubernetes
@@ -95,7 +95,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.kube == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-aqua
         with:
           working_directory: kubernetes
@@ -108,7 +108,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.kube == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: cd kubernetes && bash scripts/flux-kustomize.sh
       - run: if [ -n "$(git status --porcelain)" ]; then git diff; exit 1; fi
 
@@ -117,7 +117,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.aws == 'true' || needs.filter.outputs.gcp == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.9.5
