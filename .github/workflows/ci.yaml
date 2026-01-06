@@ -46,7 +46,7 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.9.21"
+          version: "0.9.22"
           enable-cache: true
           working-directory: "ansible"
       - name: Install the project
