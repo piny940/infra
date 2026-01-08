@@ -56,7 +56,7 @@ services:
     restart: unless-stopped
   auto-delete-ilm:
     container_name: auto-delete-ilm
-    image: curlimages/curl:8.17.0
+    image: curlimages/curl:8.18.0
     entrypoint: ["/bin/sh", "/scripts/deletion-ilm.sh"]
     env_file:
       - ./auto-delete-ilm/.env
