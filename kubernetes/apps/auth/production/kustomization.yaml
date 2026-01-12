@@ -13,7 +13,7 @@ resources:
 images:
   - name: auth
     newName: ghcr.io/piny940/auth-backend # {"$imagepolicy": "default:auth:name"}
-    newTag: 1.0.619 # {"$imagepolicy": "default:auth:tag"}
+    newTag: 1.0.620 # {"$imagepolicy": "default:auth:tag"}
   - name: auth-frontend
     newName: ghcr.io/piny940/auth-frontend # {"$imagepolicy": "default:auth-frontend:name"}
     newTag: 1.0.619 # {"$imagepolicy": "default:auth-frontend:tag"}
