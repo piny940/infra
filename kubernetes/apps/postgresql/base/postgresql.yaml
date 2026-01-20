@@ -5,7 +5,7 @@ metadata:
 spec:
   teamId: cluster
   volume:
-    size: 10Gi
+    size: 20Gi
     storageClass: longhorn
   numberOfInstances: 2
   users:
