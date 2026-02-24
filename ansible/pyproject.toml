@@ -5,7 +5,7 @@ description = "Ansible workspace"
 readme = "README.md"
 requires-python = "==3.14.2"
 dependencies = [
-  "ansible==12.3.0",
+  "ansible==13.4.0",
   "ansible-lint==25.12.2",
   "passlib==1.7.4",
   "pyyaml==6.0.3",
