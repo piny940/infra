@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:9.3.0
+    image: docker.elastic.co/kibana/kibana:9.3.2
     depends_on:
       - elasticsearch
     ports:
