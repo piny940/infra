@@ -26,7 +26,7 @@ spec:
     image:
       registry: docker.io
       repository: redis
-      tag: 8.8.0
+      tag: 8.10.1
     auth:
       enabled: true
       existingSecret: redis-secret
